@@ -14,6 +14,7 @@ public class GameLauncher {
 
         window.pack();
 
+
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
