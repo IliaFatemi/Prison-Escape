@@ -82,13 +82,35 @@ public class Inmate extends Entity{
     }
 
     //Get the x position of the player
-    public double getX(){
-        return x;
-    }
+    public double getX(){return x;}
 
     //Get the Y position of the player
-    public double getY(){
-        return y;
+    public double getY(){return y;}
+
+    //Get player speed
+    public double getSpeed(){return speed;}
+
+    //Get player direction
+    public String getDirection(){return direction;}
+
+    //Setting the players position in the oposite direction
+    public void revertPosition(String pos){
+        if(pos == "down"){
+            y *= -1;
+            y += 100;
+        }
+        else if(pos == "up"){
+            y *= -1;
+            y += 100;
+        }
+        else if(pos == "left"){
+            x *= -1;
+            x += 100;
+        } 
+        else if(pos == "right"){
+            x *= -1;
+            x += 100;
+        }
     }
 
     public void draw(Graphics2D g2){

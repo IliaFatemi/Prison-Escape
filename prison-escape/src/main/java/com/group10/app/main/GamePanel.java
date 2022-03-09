@@ -25,7 +25,7 @@ public class GamePanel extends JPanel implements Runnable{
     final int framePerSecond = 60;
 
     //The distance where the player and enemy will colide at
-    int COLLISION_DISTANCE = 40;
+    int ENEMY_COLLISION_DISTANCE = 40;
 
     KeyManager keyH = new KeyManager();
     Thread gameThread;
@@ -59,13 +59,24 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     
-    //Setting up collision between two objects.This function takes two perameters as turtles.    
-    public boolean isCollision(Inmate inmate, Gaurd gaurd){   
-        double distance = sqrt(pow(inmate.getX() - gaurd.getX(), 2) + pow(inmate.getY() - gaurd.getY(), 2));
-            if (distance <= COLLISION_DISTANCE){
+    //Setting up collision between two objects.This function takes two perameters as turtles. 
+    //Input: (Inmate:Obj, ObjectX: int, ObjectY: int: collision_type:int)   
+    public boolean isCollision(Inmate inmate, double objectX, double objectY, int collision_type){   
+        double distance = sqrt(pow(inmate.getX() - objectX, 2) + pow(inmate.getY() - objectY, 2));
+        //System.out.println(distance);
+            if (distance <= collision_type){
                 return true;
             }
             return false;
+    }
+
+    //Checking the boundary for the player
+    //If player steps out of the screen area, the function will return true
+    public boolean isBoundary(Inmate inmate){
+        if(inmate.getX() > screenWidth-2*cellSize || inmate.getX() < 0 + cellSize || inmate.getY() > screenHeight-2*cellSize || inmate.getY() < 0 + cellSize){
+            return true;
+        }
+        return false;
     }
 
     public void run() {
@@ -76,10 +87,17 @@ public class GamePanel extends JPanel implements Runnable{
             update();
             repaint();
 
-            //Testing for collision detection
-            if (isCollision(inmate, gaurd)){
-                System.out.println("COLLIDED");
-                System.out.println("===========colision========================");
+           //Testing for collision detection with a gaurd
+            if (isCollision(inmate, gaurd.getX(), gaurd.getY(), ENEMY_COLLISION_DISTANCE)){
+                System.out.println("ENEMY COLLIDED");
+                System.out.println("===================================");
+            }
+
+            //Testing collision with border boundary
+            if (isBoundary(inmate)){
+                System.out.println("BOUNDARY COLLLISION");
+                System.out.println("===================================");
+                inmate.revertPosition(inmate.getDirection());
             }
 
             try {
