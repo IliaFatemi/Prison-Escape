@@ -2,6 +2,7 @@ package com.group10.app.main;
 
 import com.group10.app.entity.Inmate;
 import com.group10.app.entity.Gaurd;
+import com.group10.app.objects.TileManager;
 import static java.lang.Math.*;
 
 import javax.swing.*;
@@ -14,10 +15,10 @@ public class GamePanel extends JPanel implements Runnable{
     final int scaleFactor = 3;
 
     public final int cellSize = originalCellSize * scaleFactor; //48x48 cells
-    final int screenColNumber = 20;
-    final int screenRowNumber = 14;
-    final int screenWidth = cellSize * screenColNumber;
-    final int screenHeight = cellSize * screenRowNumber;
+    public final int screenColNumber = 20;
+    public final int screenRowNumber = 14;
+    public final int screenWidth = cellSize * screenColNumber;
+    public final int screenHeight = cellSize * screenRowNumber;
 
     final int framePerSecond = 60;
 
@@ -26,6 +27,9 @@ public class GamePanel extends JPanel implements Runnable{
 
     KeyManager keyH = new KeyManager();
     Thread gameThread;
+
+    //setup the tiles
+    TileManager tileManage = new TileManager(this);
 
     //set player default position
     Inmate inmate = new Inmate(this, keyH);
@@ -97,6 +101,9 @@ public class GamePanel extends JPanel implements Runnable{
     public void paintComponent(Graphics graphic){
         super.paintComponent(graphic);
         Graphics2D g2 = (Graphics2D) graphic;
+
+        //draw tiles
+        tileManage.draw(g2);
 
         //Draw gaurd
         gaurd.draw(g2, this);
