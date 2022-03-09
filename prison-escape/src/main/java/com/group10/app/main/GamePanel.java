@@ -8,8 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{
+   
     // Screen settings
-
     final int originalCellSize = 16;
     final int scaleFactor = 3;
 
@@ -21,20 +21,20 @@ public class GamePanel extends JPanel implements Runnable{
 
     final int framePerSecond = 60;
 
+    //The distance where the player and enemy will colide at
+    int COLLISION_DISTANCE = 40;
+
     KeyManager keyH = new KeyManager();
     Thread gameThread;
-    Inmate inmate = new Inmate(this, keyH);
+
     //set player default position
+    Inmate inmate = new Inmate(this, keyH);
     int playerX = 100;
     int playerY = 100;
     int playerSpeed = 4;
 
     //set gaurds position
     Gaurd gaurd = new Gaurd(this, 200, 200);
-
-    //The distance where the player and enemy will colide at
-    int COLLISION_DISTANCE = 40;
-
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -45,12 +45,9 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void startGameThread(){
-
         gameThread = new Thread(this);
         gameThread.start();
-
     }
-
 
     
     //Setting up collision between two objects.This function takes two perameters as turtles.    
@@ -69,7 +66,7 @@ public class GamePanel extends JPanel implements Runnable{
         while(gameThread != null){
             update();
             repaint();
-            
+
             //Testing for collision detection
             if (isCollision(inmate, gaurd)){
                 System.out.println("COLLIDED");
@@ -101,7 +98,10 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(graphic);
         Graphics2D g2 = (Graphics2D) graphic;
 
+        //Draw gaurd
         gaurd.draw(g2, this);
+
+        //Draw the inmate
         inmate.draw(g2);
 
         g2.dispose();
