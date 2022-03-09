@@ -3,5 +3,4 @@ import java.awt.image.BufferedImage;
 
 public class Walls {
     public BufferedImage image;
-    
 }

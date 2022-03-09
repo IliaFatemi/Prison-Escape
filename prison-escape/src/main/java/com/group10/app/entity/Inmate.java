@@ -81,10 +81,12 @@ public class Inmate extends Entity{
         }
     }
 
+    //Get the x position of the player
     public double getX(){
         return x;
     }
 
+    //Get the Y position of the player
     public double getY(){
         return y;
     }

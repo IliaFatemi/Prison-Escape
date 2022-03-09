@@ -19,15 +19,16 @@ public class WallManager {
         registerImage();
     }
 
+    //Register the images
     public void registerImage(){
         try{
             //horizontal wall texture 
-            wall[5] = new Walls();
-            wall[5].image = ImageIO.read(getClass().getResourceAsStream("/tiles/horizontalWall.png"));
+            wall[0] = new Walls();
+            wall[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/horizontalWall.png"));
 
             //vertical wall texture 
-            wall[6] = new Walls();
-            wall[6].image = ImageIO.read(getClass().getResourceAsStream("/tiles/verticalWall.png"));
+            wall[1] = new Walls();
+            wall[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/verticalWall.png"));
         } catch(IOException e){
             e.printStackTrace();
         }
@@ -40,7 +41,7 @@ public class WallManager {
 
         //boarder on the top of the screen
         for(int i = 0; i < gp.screenWidth; i++){
-            g2.drawImage(wall[5].image, nextCol, nextRow, gp.cellSize, gp.cellSize, null);
+            g2.drawImage(wall[0].image, nextCol, nextRow, gp.cellSize, gp.cellSize, null);
             nextCol += gp.cellSize;
         }
 
@@ -49,7 +50,7 @@ public class WallManager {
         for(int row = 0; row < gp.screenWidth; row++){
             for(int col = 0; col < gp.screenHeight; col++){
                 if(col == gp.cellSize - (gp.cellSize-1)){
-                    g2.drawImage(wall[6].image, col, nextRow, gp.cellSize, gp.cellSize, null);
+                    g2.drawImage(wall[1].image, col, nextRow, gp.cellSize, gp.cellSize, null);
                     
                 }
             }
@@ -59,7 +60,7 @@ public class WallManager {
         //boarder on the bottom of the screen
         nextCol = 0; nextRow = 0;
         for(int row = 0; row < gp.screenWidth; row++){
-            g2.drawImage(wall[5].image, nextCol, gp.screenHeight-gp.cellSize, gp.cellSize, gp.cellSize, null);
+            g2.drawImage(wall[0].image, nextCol, gp.screenHeight-gp.cellSize, gp.cellSize, gp.cellSize, null);
             nextCol += gp.cellSize;
         }
 
@@ -69,12 +70,11 @@ public class WallManager {
             for(int col = 0; col <gp.screenHeight; col++){
                 nextCol+=gp.cellSize;
                 if(nextCol == gp.screenWidth-gp.cellSize){
-                    g2.drawImage(wall[6].image, nextCol, nextRow, gp.cellSize, gp.cellSize, null);
+                    g2.drawImage(wall[1].image, nextCol, nextRow, gp.cellSize, gp.cellSize, null);
                 }
             }
             nextRow+=gp.cellSize;
             nextCol = 0;
         }
-
     }
 }
