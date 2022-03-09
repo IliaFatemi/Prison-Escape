@@ -47,6 +47,7 @@ public class TileManager {
         }
     }
 
+    //Draw the object
     public void draw(Graphics2D g2){
         //Fill out the whole screen with concrete tiles
         int nextCol = 0, nextRow = 0;

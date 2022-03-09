@@ -3,6 +3,8 @@ package com.group10.app.main;
 import com.group10.app.entity.Inmate;
 import com.group10.app.entity.Gaurd;
 import com.group10.app.objects.TileManager;
+import com.group10.app.objects.WallManager;
+
 import static java.lang.Math.*;
 
 import javax.swing.*;
@@ -30,6 +32,9 @@ public class GamePanel extends JPanel implements Runnable{
 
     //setup the tiles
     TileManager tileManage = new TileManager(this);
+
+    //setup the walls
+    WallManager wallmanager = new WallManager(this);
 
     //set player default position
     Inmate inmate = new Inmate(this, keyH);
@@ -104,6 +109,9 @@ public class GamePanel extends JPanel implements Runnable{
 
         //draw tiles
         tileManage.draw(g2);
+
+        //draw walls
+        wallmanager.drawBoarder(g2);
 
         //Draw gaurd
         gaurd.draw(g2, this);
