@@ -79,8 +79,6 @@ public class Inmate extends Entity{
     }
 
     public void draw(Graphics2D g2){
-//        g2.setColor(Color.CYAN);
-//        g2.fillRect(x, y, gp.cellSize, gp.cellSize);
         BufferedImage image = null;
         switch (direction){
             case "up":
