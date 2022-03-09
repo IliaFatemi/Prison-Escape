@@ -1,6 +1,8 @@
 package com.group10.app.main;
 
 import com.group10.app.entity.Inmate;
+import com.group10.app.entity.Gaurd;
+import static java.lang.Math.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +29,12 @@ public class GamePanel extends JPanel implements Runnable{
     int playerY = 100;
     int playerSpeed = 4;
 
+    //set gaurds position
+    Gaurd gaurd = new Gaurd(this, 200, 200);
+
+    //The distance where the player and enemy will colide at
+    int COLLISION_DISTANCE = 40;
+
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -43,6 +51,17 @@ public class GamePanel extends JPanel implements Runnable{
 
     }
 
+
+    
+    //Setting up collision between two objects.This function takes two perameters as turtles.    
+    public boolean isCollision(Inmate inmate, Gaurd gaurd){   
+        double distance = sqrt(pow(inmate.getX() - gaurd.getX(), 2) + pow(inmate.getY() - gaurd.getY(), 2));
+            if (distance <= COLLISION_DISTANCE){
+                return true;
+            }
+            return false;
+    }
+
     public void run() {
         double drawInterval = 1000000000/ framePerSecond;
         double nextDrawTime = System.nanoTime() + drawInterval;
@@ -50,6 +69,12 @@ public class GamePanel extends JPanel implements Runnable{
         while(gameThread != null){
             update();
             repaint();
+            
+            //Testing for collision detection
+            if (isCollision(inmate, gaurd)){
+                System.out.println("COLLIDED");
+                System.out.println("===========colision========================");
+            }
 
             try {
                 double remainingTime = nextDrawTime - System.nanoTime();
@@ -76,6 +101,7 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(graphic);
         Graphics2D g2 = (Graphics2D) graphic;
 
+        gaurd.draw(g2, this);
         inmate.draw(g2);
 
         g2.dispose();

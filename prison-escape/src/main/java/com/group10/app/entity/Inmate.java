@@ -10,6 +10,8 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+
+
 public class Inmate extends Entity{
     GamePanel gp;
     KeyManager keyH;
@@ -27,6 +29,8 @@ public class Inmate extends Entity{
         speed = 4;
         direction = "down";
     }
+
+    
     public void getInmateImage(){
         try{
             up1 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkUp1.png"));
@@ -45,7 +49,6 @@ public class Inmate extends Entity{
         }catch(IOException e){
             e.printStackTrace();
         }
-
     }
 
     public void update(){
@@ -76,6 +79,14 @@ public class Inmate extends Entity{
                 spriteCounter = 0;
             }
         }
+    }
+
+    public double getX(){
+        return x;
+    }
+
+    public double getY(){
+        return y;
     }
 
     public void draw(Graphics2D g2){
