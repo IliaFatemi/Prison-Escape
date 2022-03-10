@@ -69,14 +69,12 @@ public class MouseManager implements MouseListener{
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(106)){
             if(mouseY >= gb.screenHeight/2-300 && mouseY <= gb.screenHeight/2-230){
                 GamePanel.state = GamePanel.STATE.GAME;
-                System.out.println(mouseY);
             }
         }
 
         //Continue button
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(106)){
             if(mouseY >= gb.screenHeight/2 - 200 && mouseY <= gb.screenHeight/2 - 130){
-                System.out.println(mouseY);
             }
         }
 
@@ -85,7 +83,6 @@ public class MouseManager implements MouseListener{
             if(mouseY >= gb.screenHeight/2 - 100 && mouseY <= gb.screenHeight/2 - 30){
                 //Close the screen
                 GameLauncher.window.dispatchEvent(new WindowEvent(GameLauncher.window, WindowEvent.WINDOW_CLOSING));
-                System.out.println(mouseY);
             }
         }
     }
@@ -95,14 +92,12 @@ public class MouseManager implements MouseListener{
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(103)){
             if(mouseY >= gb.screenHeight/2 - 130 && mouseY <= gb.screenHeight/2-60){
                 GamePanel.state = GamePanel.STATE.GAME;
-                System.out.println(mouseY);
             }
         }
         
         //Save game controls
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(103)){
             if(mouseY >= gb.screenHeight/2 -30 && mouseY <= gb.screenHeight/2 + 40){
-                System.out.println(mouseY);
             }
         }
 
@@ -110,7 +105,6 @@ public class MouseManager implements MouseListener{
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(103)){
             if(mouseY >= gb.screenHeight/2 + 70 && mouseY <= gb.screenHeight/2 + 140){
                 GamePanel.state = STATE.MENU;
-                System.out.println(mouseY);
             }
         }
     }

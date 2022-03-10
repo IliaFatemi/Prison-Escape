@@ -102,6 +102,8 @@ public class GamePanel extends JPanel implements Runnable{
         double nextDrawTime = System.nanoTime() + drawInterval;
 
         while(gameThread != null){
+            
+            //render graphics
             repaint();
 
             //Pause the game if pause menu is active

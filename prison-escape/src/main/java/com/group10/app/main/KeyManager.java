@@ -32,12 +32,15 @@ public class KeyManager implements KeyListener {
             pressedRight = true;
         }
         if(code == KeyEvent.VK_ESCAPE){
-            pressedEscape = true;
-            GamePanel.state = STATE.PAUSED;
-            keyCount++;
-            if (keyCount%2 == 0){
-                pressedEscape = false;
-                GamePanel.state = STATE.GAME;
+            if(GamePanel.state != STATE.MENU){
+
+                pressedEscape = true;
+                GamePanel.state = STATE.PAUSED;
+                keyCount++;
+                if (keyCount%2 == 0){
+                    pressedEscape = false;
+                    GamePanel.state = STATE.GAME;
+                }
             }
         }
     }
