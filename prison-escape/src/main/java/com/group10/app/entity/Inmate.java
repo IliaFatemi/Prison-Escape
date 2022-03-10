@@ -4,10 +4,8 @@ import com.group10.app.main.GamePanel;
 import com.group10.app.main.KeyManager;
 
 import javax.imageio.ImageIO;
-import javax.swing.plaf.basic.BasicTreeUI;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 
@@ -97,19 +95,39 @@ public class Inmate extends Entity{
     public void revertPosition(String pos){
         if(pos == "down"){
             y *= -1;
-            y += 100;
+            if(y >= 0){
+                y -= 1;
+            }
+            else{
+                y += 1;
+            }
         }
         else if(pos == "up"){
             y *= -1;
-            y += 100;
+            if(y >= 0){
+                y -= 100;
+            }
+            else{
+                y += 100;
+            }
         }
         else if(pos == "left"){
             x *= -1;
-            x += 100;
+            if(x >= 0){
+                x -= 100;
+            }
+            else{
+                x += 100;
+            }
         } 
         else if(pos == "right"){
             x *= -1;
-            x += 100;
+            if(x >= 0){
+                x -= 1;
+            }
+            else{
+                x += 1;
+            }
         }
     }
 

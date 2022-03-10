@@ -3,12 +3,7 @@ package com.group10.app.objects;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import com.group10.app.main.GamePanel;
-import javafx.scene.image.Image;
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import com.group10.app.main.GamePanel;
 
 public class TileManager {
     GamePanel gp;

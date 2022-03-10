@@ -5,7 +5,6 @@ import com.group10.app.entity.Gaurd;
 import com.group10.app.objects.TileManager;
 import com.group10.app.objects.WallManager;
 import com.group10.app.MenuPanel.MenuScreen;
-import com.group10.app.main.MouseManager;
 
 import static java.lang.Math.*;
 
