@@ -50,7 +50,7 @@ public class Inmate extends Entity{
     }
 
     public void update(){
-        if(keyH.pressedUp|| keyH.pressedDown || keyH.pressedLeft || keyH.pressedRight) {
+        if(keyH.pressedUp|| keyH.pressedDown || keyH.pressedLeft || keyH.pressedRight || keyH.pressedEscape) {
             if (keyH.pressedUp) {
                 direction = "up";
                 y -= speed;

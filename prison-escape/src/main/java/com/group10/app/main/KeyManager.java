@@ -3,8 +3,11 @@ package com.group10.app.main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import com.group10.app.main.GamePanel.STATE;
+
 public class KeyManager implements KeyListener {
-    public boolean pressedUp, pressedDown, pressedRight, pressedLeft;
+    public boolean pressedUp, pressedDown, pressedRight, pressedLeft, pressedEscape;
+    int keyCount = 0;
 
     public void keyTyped(KeyEvent e) {
 
@@ -28,7 +31,18 @@ public class KeyManager implements KeyListener {
         if(code == KeyEvent.VK_D){
             pressedRight = true;
         }
+        if(code == KeyEvent.VK_ESCAPE){
+            if(GamePanel.state != STATE.MENU){
 
+                pressedEscape = true;
+                GamePanel.state = STATE.PAUSED;
+                keyCount++;
+                if (keyCount%2 == 0){
+                    pressedEscape = false;
+                    GamePanel.state = STATE.GAME;
+                }
+            }
+        }
     }
 
     public void keyReleased(KeyEvent e) {
