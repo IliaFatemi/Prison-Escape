@@ -4,7 +4,11 @@ import com.group10.app.entity.Inmate;
 import com.group10.app.entity.Gaurd;
 import com.group10.app.objects.TileManager;
 import com.group10.app.objects.WallManager;
+
+import javafx.scene.input.KeyEvent;
+
 import com.group10.app.MenuPanel.MenuScreen;
+import com.group10.app.MenuPanel.PauseMenu;
 
 import static java.lang.Math.*;
 
@@ -52,7 +56,11 @@ public class GamePanel extends JPanel implements Runnable{
 
     //Set up the main menu screen 
     MenuScreen mainMenu = new MenuScreen(this);
-    public static enum STATE{MENU, GAME, EXIT}
+
+    //set up the pause menu
+    PauseMenu pauseMenu = new PauseMenu(this, keyH);
+
+    public static enum STATE{MENU, GAME, EXIT, PAUSED}
     public static STATE state = STATE.MENU;
 
 
@@ -151,6 +159,11 @@ public class GamePanel extends JPanel implements Runnable{
             //Draw the inmate
             inmate.draw(g2);
     
+            g2.dispose();
+            
+        }
+        else if(state == STATE.PAUSED){
+            pauseMenu.renderPauseMenu(g2);
             g2.dispose();
         }
         else{

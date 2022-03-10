@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyManager implements KeyListener {
-    public boolean pressedUp, pressedDown, pressedRight, pressedLeft;
+    public boolean pressedUp, pressedDown, pressedRight, pressedLeft, pressedEscape;
 
     public void keyTyped(KeyEvent e) {
 
@@ -28,7 +28,9 @@ public class KeyManager implements KeyListener {
         if(code == KeyEvent.VK_D){
             pressedRight = true;
         }
-
+        if(code == KeyEvent.VK_ESCAPE){
+            pressedEscape = true;
+        }
     }
 
     public void keyReleased(KeyEvent e) {
@@ -48,6 +50,9 @@ public class KeyManager implements KeyListener {
 
         if(code == KeyEvent.VK_D){
             pressedRight = false;
+        }
+        if(code == KeyEvent.VK_ESCAPE){
+            pressedEscape = false;
         }
     }
 }
