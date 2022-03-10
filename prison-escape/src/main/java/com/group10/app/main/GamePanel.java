@@ -4,6 +4,8 @@ import com.group10.app.entity.Inmate;
 import com.group10.app.entity.Gaurd;
 import com.group10.app.objects.TileManager;
 import com.group10.app.objects.WallManager;
+import com.group10.app.MenuPanel.MenuScreen;
+import com.group10.app.main.MouseManager;
 
 import static java.lang.Math.*;
 
@@ -12,22 +14,26 @@ import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{
    
-    // Screen settings
+    // Screen size settings
     final int originalCellSize = 16;
     final int scaleFactor = 3;
-
     public final int cellSize = originalCellSize * scaleFactor; //48x48 cells
     public final int screenColNumber = 20;
     public final int screenRowNumber = 14;
-    public final int screenWidth = cellSize * screenColNumber;
-    public final int screenHeight = cellSize * screenRowNumber;
+    public final int screenWidth = cellSize * screenColNumber;//960 pixels
+    public final int screenHeight = cellSize * screenRowNumber;//672 pixels
 
     final int framePerSecond = 60;
 
     //The distance where the player and enemy will colide at
     int ENEMY_COLLISION_DISTANCE = 40;
 
+    //Set up the keyboard keys
     KeyManager keyH = new KeyManager();
+
+    //Set up the Mouse Keys
+    MouseManager mouseK = new MouseManager(this);
+
     Thread gameThread;
 
     //setup the tiles
@@ -45,17 +51,24 @@ public class GamePanel extends JPanel implements Runnable{
     //set gaurds position
     Gaurd gaurd = new Gaurd(this, 200, 200);
 
+    //Set up the main menu screen 
+    MenuScreen mainMenu = new MenuScreen(this);
+    public static enum STATE{MENU, GAME, EXIT}
+    public static STATE state = STATE.MENU;
+
+
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
+        this.addMouseListener(mouseK);
         this.addKeyListener(keyH);
         this.setFocusable(true);
     }
 
     public void startGameThread(){
-        gameThread = new Thread(this);
-        gameThread.start();
+            gameThread = new Thread(this);
+            gameThread.start();
     }
 
     
@@ -87,7 +100,7 @@ public class GamePanel extends JPanel implements Runnable{
             update();
             repaint();
 
-           //Testing for collision detection with a gaurd
+            //Testing for collision detection with a gaurd
             if (isCollision(inmate, gaurd.getX(), gaurd.getY(), ENEMY_COLLISION_DISTANCE)){
                 System.out.println("ENEMY COLLIDED");
                 System.out.println("===================================");
@@ -124,19 +137,27 @@ public class GamePanel extends JPanel implements Runnable{
     public void paintComponent(Graphics graphic){
         super.paintComponent(graphic);
         Graphics2D g2 = (Graphics2D) graphic;
-
-        //draw tiles
-        tileManage.draw(g2);
-
-        //draw walls
-        wallmanager.drawBoarder(g2);
-
-        //Draw gaurd
-        gaurd.draw(g2, this);
-
-        //Draw the inmate
-        inmate.draw(g2);
-
-        g2.dispose();
+        
+        if (state == STATE.GAME){
+    
+            //draw tiles
+            tileManage.draw(g2);
+    
+            //draw walls
+            wallmanager.drawBoarder(g2);
+    
+            //Draw gaurd
+            gaurd.draw(g2, this);
+    
+            //Draw the inmate
+            inmate.draw(g2);
+    
+            g2.dispose();
+        }
+        else{
+            //Render the main menu
+            mainMenu.renderMain(g2);
+            g2.dispose();
+        }
     }
 }
