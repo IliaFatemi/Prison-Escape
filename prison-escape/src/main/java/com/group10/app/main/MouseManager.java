@@ -61,39 +61,36 @@ public class MouseManager implements MouseListener{
 
     //Main menu control
     public void MainMenuControls(int mouseX, int mouseY){
-        //Play button
-        if(mouseX >= gb.screenWidth/2-100 && mouseX <= gb.screenWidth/2+(106)){
-            if(mouseY >= 100 && mouseY <= 170){
+        /**
+        g2.drawImage(newGame,  gp.screenWidth/2-103, gp.screenHeight/2 - 300, 206, 70, null);
+        g2.drawImage(continue_, gp.screenWidth/2-103, gp.screenHeight/2 - 200, 206, 70, null);
+        g2.drawImage(quitGame, gp.screenWidth/2-103, gp.screenHeight/2 - 100, 206, 70, null); */
+        //new game button
+        if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(106)){
+            if(mouseY >= gb.screenHeight/2-300 && mouseY <= gb.screenHeight/2-230){
                 GamePanel.state = GamePanel.STATE.GAME;
                 System.out.println(mouseY);
             }
         }
 
         //Continue button
-        if(mouseX >= gb.screenWidth/2-100 && mouseX <= gb.screenWidth/2+(106)){
-            if(mouseY >= 200 && mouseY <= 270){
+        if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(106)){
+            if(mouseY >= gb.screenHeight/2 - 200 && mouseY <= gb.screenHeight/2 - 130){
                 System.out.println(mouseY);
             }
         }
 
         //Exit game button
-        if(mouseX >= gb.screenWidth/2-100 && mouseX <= gb.screenWidth/2+(106)){
-            if(mouseY >= 300 && mouseY <= 370){
+        if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(106)){
+            if(mouseY >= gb.screenHeight/2 - 100 && mouseY <= gb.screenHeight/2 - 30){
                 //Close the screen
                 GameLauncher.window.dispatchEvent(new WindowEvent(GameLauncher.window, WindowEvent.WINDOW_CLOSING));
                 System.out.println(mouseY);
-                
             }
         }
     }
 
     public void PauseMenuControls(int mouseX, int mouseY){
-        //Resume button
-        /**g2.drawImage(pauseTemplate, gp.screenWidth/2-350, gp.screenHeight/2-250, 700, 500, null);
-        g2.drawImage(resume, gp.screenWidth/2 - 103, gp.screenHeight/2 - 130, 206, 70, null);
-        g2.drawImage(saveGame,  gp.screenWidth/2-103, gp.screenHeight/2 - 30, 206, 70, null);
-        g2.drawImage(returnMenu, gp.screenWidth/2-103, gp.screenHeight/2 + 70, 206, 70, null); */
-
         //Resume button
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(103)){
             if(mouseY >= gb.screenHeight/2 - 130 && mouseY <= gb.screenHeight/2-60){

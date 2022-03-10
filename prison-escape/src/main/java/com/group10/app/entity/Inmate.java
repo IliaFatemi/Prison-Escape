@@ -2,7 +2,6 @@ package com.group10.app.entity;
 
 import com.group10.app.main.GamePanel;
 import com.group10.app.main.KeyManager;
-import com.group10.app.main.GamePanel.STATE;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -51,7 +50,7 @@ public class Inmate extends Entity{
     }
 
     public void update(){
-        if(keyH.pressedUp|| keyH.pressedDown || keyH.pressedLeft || keyH.pressedRight) {
+        if(keyH.pressedUp|| keyH.pressedDown || keyH.pressedLeft || keyH.pressedRight || keyH.pressedEscape) {
             if (keyH.pressedUp) {
                 direction = "up";
                 y -= speed;
@@ -77,9 +76,6 @@ public class Inmate extends Entity{
                 }
                 spriteCounter = 0;
             }
-        }
-        if(keyH.pressedEscape){
-            GamePanel.state = STATE.PAUSED;
         }
     }
 

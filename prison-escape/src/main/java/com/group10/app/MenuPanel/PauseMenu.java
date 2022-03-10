@@ -1,6 +1,5 @@
 package com.group10.app.MenuPanel;
 
-import java.awt.event.MouseAdapter;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;

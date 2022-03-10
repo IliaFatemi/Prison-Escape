@@ -5,8 +5,6 @@ import com.group10.app.entity.Gaurd;
 import com.group10.app.objects.TileManager;
 import com.group10.app.objects.WallManager;
 
-import javafx.scene.input.KeyEvent;
-
 import com.group10.app.MenuPanel.MenuScreen;
 import com.group10.app.MenuPanel.PauseMenu;
 
@@ -21,10 +19,10 @@ public class GamePanel extends JPanel implements Runnable{
     final int originalCellSize = 16;
     final int scaleFactor = 3;
     public final int cellSize = originalCellSize * scaleFactor; //48x48 cells
-    public final int screenColNumber = 20;
-    public final int screenRowNumber = 14;
-    public final int screenWidth = cellSize * screenColNumber;//960 pixels
-    public final int screenHeight = cellSize * screenRowNumber;//672 pixels
+    public final int screenColNumber = 40;
+    public final int screenRowNumber = 22;
+    public final int screenWidth = cellSize * screenColNumber;//1920 pixels
+    public final int screenHeight = cellSize * screenRowNumber;//1080 pixels
 
     final int framePerSecond = 60;
 
@@ -104,35 +102,38 @@ public class GamePanel extends JPanel implements Runnable{
         double nextDrawTime = System.nanoTime() + drawInterval;
 
         while(gameThread != null){
-            update();
             repaint();
 
-            //Testing for collision detection with a gaurd
-            if (isCollision(inmate, gaurd.getX(), gaurd.getY(), ENEMY_COLLISION_DISTANCE)){
-                System.out.println("ENEMY COLLIDED");
-                System.out.println("===================================");
-            }
-
-            //Testing collision with border boundary
-            if (isBoundary(inmate)){
-                System.out.println("BOUNDARY COLLLISION");
-                System.out.println("===================================");
-                inmate.revertPosition(inmate.getDirection());
-            }
-
-            try {
-                double remainingTime = nextDrawTime - System.nanoTime();
-                remainingTime /= 1000000;
-
-                if(remainingTime < 0){
-                    remainingTime = 0;
+            //Pause the game if pause menu is active
+            if(state != STATE.PAUSED){
+                update();
+                //Testing for collision detection with a gaurd
+                if (isCollision(inmate, gaurd.getX(), gaurd.getY(), ENEMY_COLLISION_DISTANCE)){
+                    System.out.println("ENEMY COLLIDED");
+                    System.out.println("===================================");
                 }
-
-                Thread.sleep((long) remainingTime);
-
-                nextDrawTime += drawInterval;
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+    
+                //Testing collision with border boundary
+                if (isBoundary(inmate)){
+                    System.out.println("BOUNDARY COLLLISION");
+                    System.out.println("===================================");
+                    inmate.revertPosition(inmate.getDirection());
+                }
+    
+                try {
+                    double remainingTime = nextDrawTime - System.nanoTime();
+                    remainingTime /= 1000000;
+    
+                    if(remainingTime < 0){
+                        remainingTime = 0;
+                    }
+    
+                    Thread.sleep((long) remainingTime);
+    
+                    nextDrawTime += drawInterval;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
