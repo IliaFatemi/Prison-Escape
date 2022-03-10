@@ -3,8 +3,10 @@ package com.group10.app.main;
 import javax.swing.*;
 
 public class GameLauncher {
-    public static void main(String[] args) {
-        JFrame window = new JFrame();
+    public static JFrame window;
+
+    public GameLauncher(){
+        window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
         window.setTitle("Prison Escape");
@@ -13,11 +15,14 @@ public class GameLauncher {
         window.add(gamePanel);
 
         window.pack();
-
-
+        
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-
+        
         gamePanel.startGameThread();
+    }
+
+    public static void main(String[] args) {
+        GameLauncher runGame = new GameLauncher();
     }
 }
