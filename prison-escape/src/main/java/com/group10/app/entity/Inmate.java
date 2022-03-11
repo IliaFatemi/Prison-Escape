@@ -166,18 +166,22 @@ public class Inmate extends Entity{
 
             switch (objectName){
                 case "Key":
+                    gp.playSE(1);
                     hasKey++;
                     gp.obj[i] = null;
                     break;
                 case "Timer":
+                    gp.playSE(2);
                     time += 20;
                     gp.obj[i] = null;
                     break;
                 case "Chicken":
+                    gp.playSE(3);
                     score += 100;
                     gp.obj[i] = null;
                     break;
                 case "Trap":
+                    gp.playSE(4);
                     score -= 50;
                     gp.obj[i] = null;
                     break;

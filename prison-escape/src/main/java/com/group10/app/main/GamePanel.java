@@ -68,6 +68,10 @@ public class GamePanel extends JPanel implements Runnable{
     // Set up UI
     public UI ui = new UI(this);
 
+    // Set up music and sound effect
+    Sound music = new Sound();
+    Sound soundEffect = new Sound();
+
     public static enum STATE{MENU, GAME, EXIT, PAUSED}
     public static STATE state = STATE.MENU;
 
@@ -81,7 +85,10 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void setUpAsset() {
+
         asset.setObject();
+        playMusic(0);
+
     }
 
     public void startGameThread(){
@@ -201,5 +208,24 @@ public class GamePanel extends JPanel implements Runnable{
             mainMenu.renderMain(g2);
             g2.dispose();
         }
+    }
+
+    public void playMusic (int i) {
+
+        music.setFile(i);
+        music.play();
+        music.loop();
+
+    }
+
+    public void stopMusic () {
+        music.stop();
+    }
+
+    public void playSE(int i) {
+
+        soundEffect.setFile(i);
+        soundEffect.play();
+
     }
 }
