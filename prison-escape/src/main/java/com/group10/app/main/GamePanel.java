@@ -46,9 +46,6 @@ public class GamePanel extends JPanel implements Runnable{
 
     //set player default position
     public Inmate inmate = new Inmate(this, keyH);
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 4;
 
     //set gaurds position
     Gaurd gaurd = new Gaurd(this, 200, 200);
@@ -58,18 +55,18 @@ public class GamePanel extends JPanel implements Runnable{
 
     //set up the pause menu
     PauseMenu pauseMenu = new PauseMenu(this, keyH);
+    
+    // Create object array;
+    public SuperObject obj[] = new SuperObject[10];
+    
+    // Set up asset;
+    public AssetSetter asset = new AssetSetter(this);
+    
+    // Set up collision check;
+    public Collision collisionCheck = new Collision(this);
 
     public static enum STATE{MENU, GAME, EXIT, PAUSED}
     public static STATE state = STATE.MENU;
-
-    // Create object array;
-    public SuperObject obj[] = new SuperObject[10];
-
-    // Set up asset;
-    public AssetSetter asset = new AssetSetter(this);
-
-    // Set up collision check;
-    public Collision collisionCheck = new Collision(this);
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -198,7 +195,5 @@ public class GamePanel extends JPanel implements Runnable{
             mainMenu.renderMain(g2);
             g2.dispose();
         }
-
-
     }
 }
