@@ -39,7 +39,7 @@ public class Inmate extends Entity{
     public void setInmateValues(){
         x = 100;
         y = 100;
-        speed = 4;
+        speed = 3;
         direction = "down";
     }
 
@@ -108,6 +108,15 @@ public class Inmate extends Entity{
 
     //Get player direction
     public String getDirection(){return direction;}
+
+    //set player position
+    public void setPos(int posX, int posY){x = posX; y = posY;}
+
+    //set player speed
+    public void setSpeed(int newSpeed){speed = newSpeed;}
+
+    //set players direction
+    public void setDirection(String newDir){direction = newDir;}
 
     //Setting the players position in the oposite direction
     public void revertPosition(String pos){
