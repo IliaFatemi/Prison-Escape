@@ -65,6 +65,9 @@ public class GamePanel extends JPanel implements Runnable{
     // Set up collision check;
     public Collision collisionCheck = new Collision(this);
 
+    // Set up UI
+    public UI ui = new UI(this);
+
     public static enum STATE{MENU, GAME, EXIT, PAUSED}
     public static STATE state = STATE.MENU;
 
@@ -182,7 +185,10 @@ public class GamePanel extends JPanel implements Runnable{
     
             //Draw the inmate
             inmate.draw(g2);
-    
+
+            // Draw UI
+            ui.draw(g2);
+
             g2.dispose();
             
         }

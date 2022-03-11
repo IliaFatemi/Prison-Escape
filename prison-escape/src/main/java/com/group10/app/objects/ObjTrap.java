@@ -3,14 +3,14 @@ package com.group10.app.objects;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-public class ObjTimer extends SuperObject {
+public class ObjTrap extends SuperObject {
 
-    public ObjTimer(){
+    public ObjTrap(){
 
-        name = "Timer";
+        name = "Trap";
 
         try {
-            image = ImageIO.read((getClass().getResourceAsStream("/collectibles/timer.png")));
+            image = ImageIO.read((getClass().getResourceAsStream("/trap/trap.png")));
 
         }catch (IOException e){
             e.printStackTrace();
