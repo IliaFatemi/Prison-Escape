@@ -13,10 +13,25 @@ import java.io.IOException;
 public class Inmate extends Entity{
     GamePanel gp;
     KeyManager keyH;
+    int hasKey = 0;
+    int score = 0;
+    int time = 0;
 
     public Inmate(GamePanel gp, KeyManager keyH){
         this.gp = gp;
         this.keyH = keyH;
+
+        solidArea = new Rectangle(8, 16, 32, 32);
+        solidArea.x = 8;
+        solidArea.y = 8;
+        solidX = solidArea.x;
+        solidY = solidArea.y;
+        solidArea.width = 32;
+        solidArea.height = 32;
+
+        solidX = 8;
+        solidY = 16;
+
         setInmateValues();
         getInmateImage();
     }
@@ -64,6 +79,9 @@ public class Inmate extends Entity{
                 direction = "right";
                 x += speed;
             }
+
+            int objectIndex = gp.collisionCheck.checkObject(this, true);
+            pickUpObject(objectIndex);
 
             spriteCounter++;
             if (spriteCounter > 11) {
@@ -127,6 +145,33 @@ public class Inmate extends Entity{
             }
             else{
                 x += 1;
+            }
+        }
+    }
+
+    public void pickUpObject (int i) {
+
+        if (i != 999){
+
+            String objectName = gp.obj[i].name;
+
+            switch (objectName){
+                case "Key":
+                    hasKey++;
+                    gp.obj[i] = null;
+                    System.out.println("Key: " + hasKey);
+                    break;
+                case "Timer":
+                    time += 10;
+                    gp.obj[i] = null;
+                    System.out.println("Time: " + hasKey);
+                    break;
+                case "Chicken":
+                    score += 100;
+                    gp.obj[i] = null;
+                    System.out.println("Score: " + hasKey);
+                    break;
+
             }
         }
     }

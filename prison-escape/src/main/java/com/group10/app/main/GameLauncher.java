@@ -18,7 +18,8 @@ public class GameLauncher {
         
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-        
+
+        gamePanel.setUpAsset();
         gamePanel.startGameThread();
     }
 

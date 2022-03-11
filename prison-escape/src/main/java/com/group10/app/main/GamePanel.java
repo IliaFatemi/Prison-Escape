@@ -2,6 +2,7 @@ package com.group10.app.main;
 
 import com.group10.app.entity.Inmate;
 import com.group10.app.entity.Gaurd;
+import com.group10.app.objects.SuperObject;
 import com.group10.app.objects.TileManager;
 import com.group10.app.objects.WallManager;
 
@@ -19,8 +20,8 @@ public class GamePanel extends JPanel implements Runnable{
     final int originalCellSize = 16;
     final int scaleFactor = 3;
     public final int cellSize = originalCellSize * scaleFactor; //48x48 cells
-    public final int screenColNumber = 40;
-    public final int screenRowNumber = 22;
+    public final int screenColNumber = 20;
+    public final int screenRowNumber = 15;
     public final int screenWidth = cellSize * screenColNumber;//1920 pixels
     public final int screenHeight = cellSize * screenRowNumber;//1080 pixels
 
@@ -44,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable{
     WallManager wallmanager = new WallManager(this);
 
     //set player default position
-    Inmate inmate = new Inmate(this, keyH);
+    public Inmate inmate = new Inmate(this, keyH);
     int playerX = 100;
     int playerY = 100;
     int playerSpeed = 4;
@@ -61,6 +62,14 @@ public class GamePanel extends JPanel implements Runnable{
     public static enum STATE{MENU, GAME, EXIT, PAUSED}
     public static STATE state = STATE.MENU;
 
+    // Create object array;
+    public SuperObject obj[] = new SuperObject[10];
+
+    // Set up asset;
+    public AssetSetter asset = new AssetSetter(this);
+
+    // Set up collision check;
+    public Collision collisionCheck = new Collision(this);
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -69,6 +78,10 @@ public class GamePanel extends JPanel implements Runnable{
         this.addMouseListener(mouseK);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+    }
+
+    public void setUpAsset() {
+        asset.setObject();
     }
 
     public void startGameThread(){
@@ -155,6 +168,13 @@ public class GamePanel extends JPanel implements Runnable{
     
             //draw walls
             wallmanager.drawBoarder(g2);
+
+            // Draw objects
+            for (int i = 0; i < obj.length; i++){
+                if (obj[i] != null){
+                    obj[i].draw(g2, this);
+                }
+            }
     
             //Draw gaurd
             gaurd.draw(g2, this);
@@ -174,5 +194,7 @@ public class GamePanel extends JPanel implements Runnable{
             mainMenu.renderMain(g2);
             g2.dispose();
         }
+
+
     }
 }
