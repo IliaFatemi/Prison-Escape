@@ -19,8 +19,8 @@ public class GamePanel extends JPanel implements Runnable{
     final int originalCellSize = 16;
     final int scaleFactor = 3;
     public final int cellSize = originalCellSize * scaleFactor; //48x48 cells
-    public final int screenColNumber = 40;
-    public final int screenRowNumber = 22;
+    public final int screenColNumber = 25;
+    public final int screenRowNumber = 15;
     public final int screenWidth = cellSize * screenColNumber;//1920 pixels
     public final int screenHeight = cellSize * screenRowNumber;//1080 pixels
 
@@ -152,9 +152,13 @@ public class GamePanel extends JPanel implements Runnable{
     
             //draw tiles
             tileManage.draw(g2);
+
+            //I think at this stage if any bug occures, best way to face the challenge
+            //is to take 5 deep breaths, masturbate in the washroom, then return to work. 
+            //If not found effective, try 5 more times then report the results.
     
             //draw walls
-            wallmanager.drawBoarder(g2);
+            //wallmanager.drawBoarder(g2);
     
             //Draw gaurd
             gaurd.draw(g2, this);

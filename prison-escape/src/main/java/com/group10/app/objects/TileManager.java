@@ -1,6 +1,13 @@
 package com.group10.app.objects;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import java.io.FileInputStream;  
+
+
 import javax.imageio.ImageIO;
 import com.group10.app.main.GamePanel;
 import java.awt.*;
@@ -8,11 +15,14 @@ import java.awt.*;
 public class TileManager {
     GamePanel gp;
     Tiles[] tile;
+    int mapTileNum[][];
 
     public TileManager(GamePanel gp){
         this.gp = gp;
         tile = new Tiles[10];
+        mapTileNum = new int[gp.screenColNumber][gp.screenRowNumber];
         registerImage();
+        loadMap();
     }
 
     public void registerImage(){
@@ -37,22 +47,63 @@ public class TileManager {
             //Wooden texture 
             tile[4] = new Tiles();
             tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tiles/WoodenGround.png"));
+
+             //horizontal wall texture 
+             tile[5] = new Tiles();
+             tile[5].image = ImageIO.read(getClass().getResourceAsStream("/tiles/horizontalWall.png"));
+ 
+             //vertical wall texture 
+             tile[6] = new Tiles();
+             tile[6].image = ImageIO.read(getClass().getResourceAsStream("/tiles/verticalWall.png"));
         } catch(IOException e){
             e.printStackTrace();
         }
     }
 
+    //Loading level
+    public void loadMap(){
+        try{
+            InputStream level = new FileInputStream("src/main/levels/Level1.txt");
+            System.out.println(level);
+            BufferedReader br = new BufferedReader(new InputStreamReader(level));
+            int col = 0;
+            int row = 0;
+
+            while(col < gp.screenColNumber && row < gp.screenRowNumber){
+                String line = br.readLine();
+                while(col < gp.screenColNumber){
+                    String numbers[] = line.split(" ");
+                    int num = Integer.parseInt(numbers[col]);
+                    mapTileNum[col][row] = num;
+                    col++;
+                }
+                if(col == gp.screenColNumber){
+                    col  = 0;
+                    row++;
+                }
+            }
+            br.close();
+
+        }catch(Exception e){
+
+        }
+    }
+
     //Draw the object
     public void draw(Graphics2D g2){
-        //Fill out the whole screen with concrete tiles
-        int nextCol = 0, nextRow = 0;
-        for(int row = 0; row < gp.cellSize; row++){
-            for(int col = 0; col < gp.cellSize; col++){
-                g2.drawImage(tile[0].image, nextCol, nextRow, gp.cellSize, gp.cellSize, null);
-                nextCol += gp.cellSize;
+        int nextCol = 0, nextRow = 0, x = 0, y = 0;
+        while(nextCol < gp.screenColNumber && nextRow < gp.screenRowNumber){
+            int tileNum = mapTileNum[nextCol][nextRow];
+            g2.drawImage(tile[tileNum].image, x, y, gp.cellSize, gp.cellSize, null);
+            nextCol++;
+            x += gp.cellSize;
+            if(nextCol == gp.screenColNumber){
+                nextCol = 0;
+                x = 0;
+                nextRow++;
+                y += gp.cellSize;
             }
-            nextRow += gp.cellSize;
-            nextCol = 0;
+
         }
     }
 }
