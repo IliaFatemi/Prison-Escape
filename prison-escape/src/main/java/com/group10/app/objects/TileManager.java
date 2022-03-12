@@ -14,8 +14,8 @@ import java.awt.*;
 
 public class TileManager {
     GamePanel gp;
-    Tiles[] tile;
-    int mapTileNum[][];
+    public Tiles[] tile;
+    public int mapTileNum[][];
 
     public TileManager(GamePanel gp){
         this.gp = gp;

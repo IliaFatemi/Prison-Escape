@@ -18,7 +18,7 @@ public class GamePanel extends JPanel implements Runnable{
    
     // Screen size settings
     final int originalCellSize = 12;
-    final int scaleFactor = 3;
+    final int scaleFactor = 4;
     public final int cellSize = originalCellSize * scaleFactor; //48x48 cells
     public final int screenColNumber = 30;
     public final int screenRowNumber = 18;
@@ -85,10 +85,8 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void setUpAsset() {
-
         asset.setObject();
         playMusic(0);
-
     }
 
     public void startGameThread(){
@@ -127,20 +125,15 @@ public class GamePanel extends JPanel implements Runnable{
             repaint();
 
             //Pause the game if pause menu is active
+            update();
             if(state != STATE.PAUSED){
-                update();
                 //Testing for collision detection with a gaurd
                 if (isCollision(inmate, gaurd.getX(), gaurd.getY(), ENEMY_COLLISION_DISTANCE)){
                     System.out.println("ENEMY COLLIDED");
                     System.out.println("===================================");
                 }
     
-                //Testing collision with border boundary
-                if (isBoundary(inmate)){
-                    System.out.println("BOUNDARY COLLLISION");
-                    System.out.println("===================================");
-                    inmate.revertPosition(inmate.getDirection());
-                }
+               
     
                 try {
                     double remainingTime = nextDrawTime - System.nanoTime();
@@ -211,11 +204,9 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void playMusic (int i) {
-
         music.setFile(i);
         music.play();
         music.loop();
-
     }
 
     public void stopMusic () {
@@ -223,9 +214,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void playSE(int i) {
-
         soundEffect.setFile(i);
         soundEffect.play();
-
     }
 }

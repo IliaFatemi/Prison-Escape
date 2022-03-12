@@ -21,8 +21,8 @@ public class Inmate extends Entity{
         this.keyH = keyH;
 
         solidArea = new Rectangle(8, 16, 32, 32);
-        solidArea.x = 8;
-        solidArea.y = 8;
+        solidArea.x = 0;
+        solidArea.y = 0;
         solidX = solidArea.x;
         solidY = solidArea.y;
         solidArea.width = 32;
@@ -67,20 +67,28 @@ public class Inmate extends Entity{
         if(keyH.pressedUp|| keyH.pressedDown || keyH.pressedLeft || keyH.pressedRight || keyH.pressedEscape) {
             if (keyH.pressedUp) {
                 direction = "up";
-                y -= speed;
             } else if (keyH.pressedDown) {
                 direction = "down";
-                y += speed;
             } else if (keyH.pressedLeft) {
                 direction = "left";
-                x -= speed;
             } else if (keyH.pressedRight) {
                 direction = "right";
-                x += speed;
             }
 
             int objectIndex = gp.collisionCheck.checkObject(this, true);
             pickUpObject(objectIndex);
+
+            collision = false;
+            gp.collisionCheck.wallCheck(this);
+
+            if(collision == false){
+                switch (direction) {
+                    case "up": y -= speed; break;
+                    case "down": y += speed; break;
+                    case "left": x -= speed; break;
+                    case "right": x += speed; break;
+                }
+            }
 
             spriteCounter++;
             if (spriteCounter > 11) {
@@ -241,6 +249,8 @@ public class Inmate extends Entity{
                     image = right3;
                 }
                 break;
+            default:
+            break;
         }
 
         g2.drawImage(image, x , y, gp.cellSize, gp.cellSize, null);
