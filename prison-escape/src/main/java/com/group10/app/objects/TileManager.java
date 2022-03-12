@@ -48,13 +48,17 @@ public class TileManager {
             tile[4] = new Tiles();
             tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tiles/WoodenGround.png"));
 
-             //horizontal wall texture 
-             tile[5] = new Tiles();
-             tile[5].image = ImageIO.read(getClass().getResourceAsStream("/tiles/horizontalWall.png"));
- 
-             //vertical wall texture 
-             tile[6] = new Tiles();
-             tile[6].image = ImageIO.read(getClass().getResourceAsStream("/tiles/verticalWall.png"));
+            //horizontal wall texture 
+            tile[5] = new Tiles();
+            tile[5].image = ImageIO.read(getClass().getResourceAsStream("/tiles/horizontalWall.png"));
+            tile[5].collision = true;
+
+            //vertical wall texture 
+            tile[6] = new Tiles();
+            tile[6].image = ImageIO.read(getClass().getResourceAsStream("/tiles/verticalWall.png"));
+            tile[6].collision = true;
+             
+
         } catch(IOException e){
             e.printStackTrace();
         }

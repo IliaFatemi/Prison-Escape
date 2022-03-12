@@ -9,7 +9,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 
-
 public class Inmate extends Entity{
     GamePanel gp;
     KeyManager keyH;
@@ -39,7 +38,7 @@ public class Inmate extends Entity{
     public void setInmateValues(){
         x = 100;
         y = 100;
-        speed = 3;
+        speed = 2;
         direction = "down";
     }
 
@@ -108,6 +107,12 @@ public class Inmate extends Entity{
 
     //Get player direction
     public String getDirection(){return direction;}
+
+    //Get number of keys collected
+    public int getNumKeys(){return hasKey;}
+
+    //Get the score collected 
+    public int getScore(){return score;}
 
     //set player position
     public void setPos(int posX, int posY){x = posX; y = posY;}

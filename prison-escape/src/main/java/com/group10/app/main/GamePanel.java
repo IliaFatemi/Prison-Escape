@@ -17,11 +17,11 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable{
    
     // Screen size settings
-    final int originalCellSize = 16;
+    final int originalCellSize = 12;
     final int scaleFactor = 3;
     public final int cellSize = originalCellSize * scaleFactor; //48x48 cells
-    public final int screenColNumber = 25;
-    public final int screenRowNumber = 15;
+    public final int screenColNumber = 30;
+    public final int screenRowNumber = 18;
     public final int screenWidth = cellSize * screenColNumber;//1920 pixels
     public final int screenHeight = cellSize * screenRowNumber;//1080 pixels
 
