@@ -7,7 +7,7 @@ public class ObjTimer extends SuperObject {
 
     public ObjTimer(){
 
-        name = "Key";
+        name = "Timer";
 
         try {
             image = ImageIO.read((getClass().getResourceAsStream("/collectibles/timer.png")));

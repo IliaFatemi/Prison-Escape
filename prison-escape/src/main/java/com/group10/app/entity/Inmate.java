@@ -12,9 +12,9 @@ import java.io.IOException;
 public class Inmate extends Entity{
     GamePanel gp;
     KeyManager keyH;
-    int hasKey = 0;
-    int score = 0;
-    int time = 0;
+    public int hasKey = 0;
+    public int score = 0;
+    public double time = 100;
 
     public Inmate(GamePanel gp, KeyManager keyH){
         this.gp = gp;
@@ -171,21 +171,25 @@ public class Inmate extends Entity{
 
             switch (objectName){
                 case "Key":
+                    gp.playSE(1);
                     hasKey++;
                     gp.obj[i] = null;
-                    System.out.println("Key: " + hasKey);
                     break;
                 case "Timer":
-                    time += 10;
+                    gp.playSE(2);
+                    time += 20;
                     gp.obj[i] = null;
-                    System.out.println("Time: " + hasKey);
                     break;
                 case "Chicken":
+                    gp.playSE(3);
                     score += 100;
                     gp.obj[i] = null;
-                    System.out.println("Score: " + hasKey);
                     break;
-
+                case "Trap":
+                    gp.playSE(4);
+                    score -= 50;
+                    gp.obj[i] = null;
+                    break;
             }
         }
     }

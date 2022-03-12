@@ -3,6 +3,7 @@ package com.group10.app.main;
 import com.group10.app.objects.ObjChicken;
 import com.group10.app.objects.ObjKey;
 import com.group10.app.objects.ObjTimer;
+import com.group10.app.objects.ObjTrap;
 
 public class AssetSetter {
 
@@ -43,7 +44,9 @@ public class AssetSetter {
         gp.obj[6].x = 17 * gp.cellSize;
         gp.obj[6].y = 2 * gp.cellSize;
 
-
+        gp.obj[7] = new ObjTrap();
+        gp.obj[7].x = 17 * gp.cellSize;
+        gp.obj[7].y = 9 * gp.cellSize;
 
     }
 }
