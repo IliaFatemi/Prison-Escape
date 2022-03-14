@@ -109,7 +109,6 @@ public class TileManager {
     public void loadMap(){
         try{
             InputStream level = new FileInputStream("src/main/levels/Level1.txt");
-            System.out.println(level);
             BufferedReader br = new BufferedReader(new InputStreamReader(level));
             int col = 0;
             int row = 0;
