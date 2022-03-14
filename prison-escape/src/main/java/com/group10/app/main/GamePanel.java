@@ -108,6 +108,15 @@ public class GamePanel extends JPanel implements Runnable{
             return false;
     }
 
+    //Checking the boundary for the guard
+    //If guard steps out of the screen area, the function will return true
+    public boolean isBoundary(Gaurd gaurd){
+        if(gaurd.getX() > screenWidth-2*cellSize || gaurd.getX() < 0 + cellSize || gaurd.getY() > screenHeight-2*cellSize || gaurd.getY() < 0 + cellSize){
+            return true;
+        }
+        return false;
+    }
+
     //Checking the boundary for the player
     //If player steps out of the screen area, the function will return true
     public boolean isBoundary(Inmate inmate){
@@ -141,6 +150,13 @@ public class GamePanel extends JPanel implements Runnable{
                     System.out.println("===================================");
                     inmate.revertPosition(inmate.getDirection());
                 }
+
+                //Testing guard collision with border boundary
+                if (isBoundary(gaurd)){
+                    System.out.println("GUARD BOUNDARY COLLISION");
+                    System.out.println("===================================");
+                    gaurd.revertPosition(gaurd.getDirection());
+                }
     
                 try {
                     double remainingTime = nextDrawTime - System.nanoTime();
@@ -162,6 +178,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void update(){
         inmate.update();
+        gaurd.update();
     }
 
     public void paintComponent(Graphics graphic){
