@@ -2,12 +2,16 @@ package com.group10.app.main;
 
 import com.group10.app.entity.Inmate;
 import com.group10.app.entity.Gaurd;
+
 import com.group10.app.objects.SuperObject;
 import com.group10.app.objects.TileManager;
 
 import com.group10.app.MenuPanel.MenuScreen;
 import com.group10.app.MenuPanel.PauseMenu;
 import com.group10.app.MenuPanel.WonMenu;
+
+import com.group10.app.SavedData.LoadGame;
+import com.group10.app.SavedData.SaveGame;
 
 import static java.lang.Math.*;
 
@@ -30,19 +34,29 @@ public class GamePanel extends JPanel implements Runnable{
     //The distance where the player and enemy will colide at
     int ENEMY_COLLISION_DISTANCE = 40;
 
+    //The level the player is on
+    int GAME_LEVEL = 1;
+    Boolean GAME_SAVED = false;
+
+    //Load saved data
+    LoadGame load = new LoadGame();
+
+    //set up save game
+    SaveGame saveGame = new SaveGame();
+
     //Set up the keyboard keys
     KeyManager keyH = new KeyManager();
 
-    //Set up the Mouse Keys
-    MouseManager mouseK = new MouseManager(this);
-
     Thread gameThread;
-
+    
     //setup the tiles
     TileManager tileManage = new TileManager(this);
-
+    
     //set player default position
     public Inmate inmate = new Inmate(this, keyH);
+
+    //Set up the Mouse Keys
+    MouseManager mouseK = new MouseManager(this);
 
     //set gaurds position
     Gaurd gaurd = new Gaurd(this, 200, 200);
@@ -124,19 +138,17 @@ public class GamePanel extends JPanel implements Runnable{
 
             //Pause the game if pause menu is active
             update();
-            if(state != STATE.PAUSED && state != STATE.MENU && state != STATE.GAMEWON){
+            if(state != STATE.PAUSED && state != STATE.MENU && state != STATE.GAMEWON && state != STATE.GAMEOVER){
                 //Testing for collision detection with a gaurd
                 if (isCollision(inmate, gaurd.getX(), gaurd.getY(), ENEMY_COLLISION_DISTANCE)){
                     System.out.println("ENEMY COLLIDED");
                     System.out.println("===================================");
                 }
 
-
                 if(inmate.getNumKeys() == 3 && reachedGate()){
                     state = STATE.GAMEWON;
                 }
 
-                System.out.println(inmate.getX() + ", " + inmate.getY());
     
                 try {
                     double remainingTime = nextDrawTime - System.nanoTime();
