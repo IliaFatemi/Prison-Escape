@@ -4,10 +4,10 @@ import com.group10.app.entity.Inmate;
 import com.group10.app.entity.Gaurd;
 import com.group10.app.objects.SuperObject;
 import com.group10.app.objects.TileManager;
-import com.group10.app.objects.WallManager;
 
 import com.group10.app.MenuPanel.MenuScreen;
 import com.group10.app.MenuPanel.PauseMenu;
+import com.group10.app.MenuPanel.WonMenu;
 
 import static java.lang.Math.*;
 
@@ -41,9 +41,6 @@ public class GamePanel extends JPanel implements Runnable{
     //setup the tiles
     TileManager tileManage = new TileManager(this);
 
-    //setup the walls
-    WallManager wallmanager = new WallManager(this);
-
     //set player default position
     public Inmate inmate = new Inmate(this, keyH);
 
@@ -55,6 +52,9 @@ public class GamePanel extends JPanel implements Runnable{
 
     //set up the pause menu
     PauseMenu pauseMenu = new PauseMenu(this, keyH);
+
+    //set up the win screen
+    WonMenu wonMenu = new WonMenu(this, keyH);
     
     // Create object array;
     public SuperObject obj[] = new SuperObject[10];
@@ -72,7 +72,7 @@ public class GamePanel extends JPanel implements Runnable{
     Sound music = new Sound();
     Sound soundEffect = new Sound();
 
-    public static enum STATE{MENU, GAME, EXIT, PAUSED}
+    public static enum STATE{MENU, GAME, EXIT, PAUSED, GAMEOVER, GAMEWON, RETRY}
     public static STATE state = STATE.MENU;
 
     public GamePanel(){
@@ -106,10 +106,8 @@ public class GamePanel extends JPanel implements Runnable{
             return false;
     }
 
-    //Checking the boundary for the player
-    //If player steps out of the screen area, the function will return true
-    public boolean isBoundary(Inmate inmate){
-        if(inmate.getX() > screenWidth-2*cellSize || inmate.getX() < 0 + cellSize || inmate.getY() > screenHeight-2*cellSize || inmate.getY() < 0 + cellSize){
+    public boolean reachedGate(){
+        if(inmate.getX() >= 1344 && inmate.getX() <= 1350 && inmate.getY() >= 292 && inmate.getY() <= 544){
             return true;
         }
         return false;
@@ -126,14 +124,24 @@ public class GamePanel extends JPanel implements Runnable{
 
             //Pause the game if pause menu is active
             update();
-            if(state != STATE.PAUSED){
+            if(state != STATE.PAUSED && state != STATE.MENU && state != STATE.GAMEWON){
                 //Testing for collision detection with a gaurd
                 if (isCollision(inmate, gaurd.getX(), gaurd.getY(), ENEMY_COLLISION_DISTANCE)){
                     System.out.println("ENEMY COLLIDED");
                     System.out.println("===================================");
                 }
     
-               
+                if(inmate.getTimer() == 95){
+                    System.out.println(inmate.getTimer());
+                    inmate.setTimer(100);
+                    System.out.println(inmate.getTimer());
+                }
+
+                if(inmate.getNumKeys() == 3 && reachedGate()){
+                    state = STATE.GAMEWON;
+                }
+
+                System.out.println(inmate.getX() + ", " + inmate.getY());
     
                 try {
                     double remainingTime = nextDrawTime - System.nanoTime();
@@ -165,14 +173,7 @@ public class GamePanel extends JPanel implements Runnable{
     
             //draw tiles
             tileManage.draw(g2);
-
-            //I think at this stage if any bug occures, best way to face the challenge
-            //is to take 5 deep breaths, masturbate in the washroom, then return to work. 
-            //If not found effective, try 5 more times then report the results.
     
-            //draw walls
-            wallmanager.drawBoarder(g2);
-
             // Draw objects
             for (int i = 0; i < obj.length; i++){
                 if (obj[i] != null){
@@ -196,9 +197,14 @@ public class GamePanel extends JPanel implements Runnable{
             pauseMenu.renderPauseMenu(g2);
             g2.dispose();
         }
-        else{
+        else if (state == STATE.MENU){
             //Render the main menu
             mainMenu.renderMain(g2);
+            g2.dispose();
+        }
+        else if (state == STATE.GAMEWON){
+            //render the game won menu
+            wonMenu.renderWonGraphics(g2);
             g2.dispose();
         }
     }
