@@ -8,8 +8,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-
-
 public class Inmate extends Entity{
     GamePanel gp;
     KeyManager keyH;
@@ -18,6 +16,7 @@ public class Inmate extends Entity{
     public double time = 100;
 
     public Inmate(GamePanel gp, KeyManager keyH){
+        super(gp);
         this.gp = gp;
         this.keyH = keyH;
 
@@ -43,7 +42,7 @@ public class Inmate extends Entity{
         direction = "down";
     }
 
-    
+
     public void getInmateImage(){
         try{
             up1 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkUp1.png"));
@@ -146,7 +145,7 @@ public class Inmate extends Entity{
             else{
                 x += 100;
             }
-        } 
+        }
         else if(pos == "right"){
             x *= -1;
             if(x >= 0){
@@ -168,24 +167,24 @@ public class Inmate extends Entity{
                 case "Key":
                     gp.playSE(1);
                     hasKey++;
-                    gp.obj[i] = null;
                     break;
                 case "Timer":
                     gp.playSE(2);
                     time += 20;
-                    gp.obj[i] = null;
                     break;
                 case "Chicken":
                     gp.playSE(3);
                     score += 100;
-                    gp.obj[i] = null;
                     break;
                 case "Trap":
                     gp.playSE(4);
                     score -= 50;
-                    gp.obj[i] = null;
                     break;
             }
+
+            String text = "Got a " + gp.obj[i].name + "!";
+            gp.obj[i] = null;
+            gp.ui.addMessage(text);
         }
     }
 

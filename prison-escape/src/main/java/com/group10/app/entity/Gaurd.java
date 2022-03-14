@@ -11,6 +11,7 @@ public class Gaurd extends Entity{
     GamePanel gp;
 
     public Gaurd(GamePanel gp, int setx, int sety){
+        super(gp);
         this.gp = gp;
         getGaurdImage();
         setgaurdValues(setx, sety);

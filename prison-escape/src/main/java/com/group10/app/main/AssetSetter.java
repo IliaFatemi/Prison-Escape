@@ -1,5 +1,6 @@
 package com.group10.app.main;
 
+import com.group10.app.entity.Entity;
 import com.group10.app.objects.ObjChicken;
 import com.group10.app.objects.ObjKey;
 import com.group10.app.objects.ObjTimer;
@@ -8,6 +9,7 @@ import com.group10.app.objects.ObjTrap;
 public class AssetSetter {
 
     GamePanel gp;
+    int objIndex = 0;
 
     public AssetSetter(GamePanel gp){
         this.gp = gp;
@@ -16,38 +18,27 @@ public class AssetSetter {
 
     public void setObject(){
 
-        gp.obj[0] = new ObjKey();
-        gp.obj[0].x = 11 * gp.cellSize;
-        gp.obj[0].y = 7 * gp.cellSize;
+//        gp.obj[1] = new ObjKey();
+//        gp.obj[1].x = 15 * gp.cellSize;
+//        gp.obj[1].y = 7 * gp.cellSize;
+//
+//        gp.obj[2] = new ObjKey();
+//        gp.obj[2].x = 10 * gp.cellSize;
+//        gp.obj[2].y = 10 * gp.cellSize;
 
-        gp.obj[1] = new ObjKey();
-        gp.obj[1].x = 15 * gp.cellSize;
-        gp.obj[1].y = 7 * gp.cellSize;
+        createObj(new ObjKey(gp), 11, 7);
+        createObj(new ObjKey(gp), 13, 7);
+        createObj(new ObjChicken(gp), 15, 6);
+        createObj(new ObjTimer(gp), 18, 6);
+        createObj(new ObjTrap(gp), 16, 10);
 
-        gp.obj[2] = new ObjKey();
-        gp.obj[2].x = 10 * gp.cellSize;
-        gp.obj[2].y = 10 * gp.cellSize;
+    }
 
-        gp.obj[3] = new ObjTimer();
-        gp.obj[3].x = 15 * gp.cellSize;
-        gp.obj[3].y = 3 * gp.cellSize;
-
-        gp.obj[4] = new ObjTimer();
-        gp.obj[4].x = 5 * gp.cellSize;
-        gp.obj[4].y = 10 * gp.cellSize;
-
-        gp.obj[5] = new ObjChicken();
-        gp.obj[5].x = 8 * gp.cellSize;
-        gp.obj[5].y = 11 * gp.cellSize;
-
-        gp.obj[6] = new ObjChicken();
-        gp.obj[6].x = 17 * gp.cellSize;
-        gp.obj[6].y = 2 * gp.cellSize;
-
-        gp.obj[7] = new ObjTrap();
-        gp.obj[7].x = 17 * gp.cellSize;
-        gp.obj[7].y = 9 * gp.cellSize;
-
+    public void createObj(Entity entity, int worldX, int worldY) {
+        gp.obj[objIndex] = entity;
+        gp.obj[objIndex].x = gp.cellSize * worldX;
+        gp.obj[objIndex].y = gp.cellSize * worldY;
+        objIndex++;
     }
 }
 

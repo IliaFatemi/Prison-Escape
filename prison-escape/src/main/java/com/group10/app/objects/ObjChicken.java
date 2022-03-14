@@ -1,20 +1,15 @@
 package com.group10.app.objects;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
+import com.group10.app.entity.Entity;
+import com.group10.app.main.GamePanel;
 
-public class ObjChicken extends SuperObject {
+public class ObjChicken extends Entity {
 
-    public ObjChicken(){
+    public ObjChicken(GamePanel gp){
+        super(gp);
 
         name = "Chicken";
-
-        try {
-            image = ImageIO.read((getClass().getResourceAsStream("/collectibles/chickenDrumStick.png")));
-
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        down1 = setup("/collectibles/chickenDrumStick", gp.cellSize, gp.cellSize);
     }
 
 }
