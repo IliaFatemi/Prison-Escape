@@ -57,14 +57,13 @@ public class Inmate extends Entity{
             right1 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkRight1.png"));
             right2 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkRight2.png"));
             right3 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkRight3.png"));
-
         }catch(IOException e){
             e.printStackTrace();
         }
     }
 
     public void update(){
-        if(keyH.pressedUp|| keyH.pressedDown || keyH.pressedLeft || keyH.pressedRight || keyH.pressedEscape) {
+        if(keyH.pressedUp|| keyH.pressedDown || keyH.pressedLeft || keyH.pressedRight) {
             if (keyH.pressedUp) {
                 direction = "up";
             } else if (keyH.pressedDown) {
@@ -122,14 +121,26 @@ public class Inmate extends Entity{
     //Get the score collected 
     public int getScore(){return score;}
 
+    //getting the current timer
+    public int getTimer(){return (int)time;}
+
+    //Set the timer
+    public void setTimer(double newTime){time = newTime;}
+
+    //set the score
+    public void setScore(int newScore){score = newScore;}
+
     //set player position
     public void setPos(int posX, int posY){x = posX; y = posY;}
 
     //set player speed
     public void setSpeed(int newSpeed){speed = newSpeed;}
-
+    
     //set players direction
     public void setDirection(String newDir){direction = newDir;}
+
+    //reset the keys
+    public void resetKeys(){hasKey = 0;}
 
     //Setting the players position in the oposite direction
     public void revertPosition(String pos){
