@@ -130,12 +130,7 @@ public class GamePanel extends JPanel implements Runnable{
                     System.out.println("ENEMY COLLIDED");
                     System.out.println("===================================");
                 }
-    
-                if(inmate.getTimer() == 95){
-                    System.out.println(inmate.getTimer());
-                    inmate.setTimer(100);
-                    System.out.println(inmate.getTimer());
-                }
+
 
                 if(inmate.getNumKeys() == 3 && reachedGate()){
                     state = STATE.GAMEWON;
