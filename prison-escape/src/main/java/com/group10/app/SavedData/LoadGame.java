@@ -18,10 +18,10 @@ public class LoadGame {
     int data[] = new int[8];
 
     public LoadGame(){
-        loadMap();
+        loadData();
     }
 
-    public void loadMap(){
+    public void loadData(){
         try{
             InputStream level = new FileInputStream("src/main/SavedGame/save0.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(level));

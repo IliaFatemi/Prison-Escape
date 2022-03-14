@@ -5,7 +5,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 
 import com.group10.app.SavedData.SaveGame;
-import com.group10.app.entity.Inmate;
 import com.group10.app.main.GamePanel.STATE;
 
 public class MouseManager implements MouseListener{
@@ -81,11 +80,12 @@ public class MouseManager implements MouseListener{
         //Continue button
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(106)){
             if(mouseY >= gb.screenHeight/2 - 200 && mouseY <= gb.screenHeight/2 - 130){
-                GamePanel.state = STATE.GAME;
+                gb.load.loadData();
                 gb.inmate.setPos(gb.load.loadPlayerX(), gb.load.loadPlayerY());
                 gb.inmate.setTimer(gb.load.loadTimer());
                 gb.inmate.setScore(gb.load.loadScore());
                 gb.inmate.setNumKeys(gb.load.loadNumKeys());
+                GamePanel.state = STATE.GAME;
             }
         }
 
@@ -115,8 +115,8 @@ public class MouseManager implements MouseListener{
         //return to main menu controls
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(103)){
             if(mouseY >= gb.screenHeight/2 + 70 && mouseY <= gb.screenHeight/2 + 140){
-                GamePanel.state = STATE.MENU;
                 gb.saveGame.save(1,(int) gb.inmate.getX(),(int) gb.inmate.getY(), gb.inmate.getTimer(), gb.inmate.getScore(), gb.inmate.getNumKeys(), 0, 0);       
+                GamePanel.state = STATE.MENU;
             }
         }
     }
