@@ -28,8 +28,7 @@ public class LoadGame {
             String line = br.readLine();
             int i = 0;
             String savedData[] = line.split(" ");
-            
-            System.out.println(savedData.length);
+
             while(i < data.length && savedData.length == data.length){
                 int num = Integer.parseInt(savedData[i]);
                 data[i] = num;
