@@ -139,8 +139,19 @@ public class Inmate extends Entity{
     //set players direction
     public void setDirection(String newDir){direction = newDir;}
 
+    //set key amount
+    public void setNumKeys(int newNumKeys){hasKey = newNumKeys;}
+
     //reset the keys
     public void resetKeys(){hasKey = 0;}
+
+    //reset everything
+    public void resetInmate(){
+        x = 100;
+        y = 100;
+        time = 100;
+        score = 0;
+    }
 
     //Setting the players position in the oposite direction
     public void revertPosition(String pos){
