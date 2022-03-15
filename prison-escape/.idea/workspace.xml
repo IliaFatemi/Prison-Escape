@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5980bed3-4a06-4122-9bc3-176987054f36" name="Changes" comment="Try to add Debug state, fails" />
+    <list default="true" id="5980bed3-4a06-4122-9bc3-176987054f36" name="Changes" comment="Commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/SavedGame/save0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/SavedGame/save0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Gaurd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Gaurd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Inmate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Inmate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/KeyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/KeyManager.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

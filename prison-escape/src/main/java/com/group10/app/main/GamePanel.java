@@ -1,5 +1,6 @@
 package com.group10.app.main;
 
+import com.group10.app.entity.Entity;
 import com.group10.app.entity.Inmate;
 import com.group10.app.entity.Gaurd;
 
@@ -45,7 +46,7 @@ public class GamePanel extends JPanel implements Runnable{
     SaveGame saveGame = new SaveGame();
 
     //Set up the keyboard keys
-    KeyManager keyH = new KeyManager();
+    KeyManager keyH = new KeyManager(this);
 
     Thread gameThread;
     
@@ -74,7 +75,7 @@ public class GamePanel extends JPanel implements Runnable{
     GameOverMenu gameOver = new GameOverMenu(this);
     
     // Create object array;
-    public SuperObject obj[] = new SuperObject[10];
+    public Entity obj[] = new Entity[10];
     
     // Set up asset;
     public AssetSetter asset = new AssetSetter(this);
@@ -188,7 +189,7 @@ public class GamePanel extends JPanel implements Runnable{
             // Draw objects
             for (int i = 0; i < obj.length; i++){
                 if (obj[i] != null){
-                    obj[i].draw(g2, this);
+                    obj[i].draw(g2);
                 }
             }
     
@@ -202,7 +203,25 @@ public class GamePanel extends JPanel implements Runnable{
             ui.draw(g2);
 
             g2.dispose();
-            
+
+            //Debug
+            if (keyH.showDebugText){
+                System.out.println("enter2");
+
+                g2.setFont(new Font("Arial", Font.PLAIN, 20));
+                g2.setColor(Color.white);
+                int x = 10;
+                int y = 400;
+                int lineHeight = 20;
+
+                g2.drawString("WorldX " + inmate.x, x, y);
+                y += lineHeight;
+                g2.drawString("WorldY " + inmate.y, x, y);
+                y += lineHeight;
+                g2.drawString("Col " + inmate.x / cellSize, x, y);
+                y += lineHeight;
+                g2.drawString("Row " + inmate.y / cellSize, x, y);
+            }
         }
         else if(state == STATE.PAUSED){
             pauseMenu.renderPauseMenu(g2);
