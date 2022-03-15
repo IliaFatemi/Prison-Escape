@@ -14,12 +14,12 @@ import java.awt.*;
 
 public class TileManager {
     GamePanel gp;
-    Tiles[] tile;
-    int mapTileNum[][];
+    public Tiles[] tile;
+    public int mapTileNum[][];
 
     public TileManager(GamePanel gp){
         this.gp = gp;
-        tile = new Tiles[10];
+        tile = new Tiles[20];
         mapTileNum = new int[gp.screenColNumber][gp.screenRowNumber];
         registerImage();
         loadMap();
@@ -27,7 +27,8 @@ public class TileManager {
 
     public void registerImage(){
         try{
-            //Creating 5 different tiles
+            //registering 
+
             //Concrete texture 
             tile[0] = new Tiles();
             tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/ConcreteBlock.png"));
@@ -48,13 +49,57 @@ public class TileManager {
             tile[4] = new Tiles();
             tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tiles/WoodenGround.png"));
 
-             //horizontal wall texture 
-             tile[5] = new Tiles();
-             tile[5].image = ImageIO.read(getClass().getResourceAsStream("/tiles/horizontalWall.png"));
- 
-             //vertical wall texture 
-             tile[6] = new Tiles();
-             tile[6].image = ImageIO.read(getClass().getResourceAsStream("/tiles/verticalWall.png"));
+            //horizontal wall texture 
+            tile[5] = new Tiles();
+            tile[5].image = ImageIO.read(getClass().getResourceAsStream("/tiles/horizontalWall.png"));
+            tile[5].collision = true;
+
+            //vertical wall texture 
+            tile[6] = new Tiles();
+            tile[6].image = ImageIO.read(getClass().getResourceAsStream("/tiles/verticalWall.png"));
+            tile[6].collision = true;
+
+            //ceramic ground texture
+            tile[7] = new Tiles();
+            tile[7].image = ImageIO.read(getClass().getResourceAsStream("/tiles/CeramicGround.png"));
+
+            //prison cell block
+            tile[8] = new Tiles();
+            tile[8].image = ImageIO.read(getClass().getResourceAsStream("/decorate/cell2.png"));
+            tile[8].collision = true;
+
+            //toilet
+            tile[9] = new Tiles();
+            tile[9].image = ImageIO.read(getClass().getResourceAsStream("/decorate/toilet.png"));
+            tile[9].collision = true;
+
+            //bed
+            tile[10] = new Tiles();
+            tile[10].image = ImageIO.read(getClass().getResourceAsStream("/decorate/bed.png"));
+            tile[10].collision = true;
+
+            //exit gate
+            tile[11] = new Tiles();
+            tile[11].image = ImageIO.read(getClass().getResourceAsStream("/decorate/exit1.png"));
+            tile[11].collision = true;
+
+            tile[12] = new Tiles();
+            tile[12].image = ImageIO.read(getClass().getResourceAsStream("/decorate/exit2.png"));
+            tile[12].collision = true;
+
+            tile[13] = new Tiles();
+            tile[13].image = ImageIO.read(getClass().getResourceAsStream("/decorate/exit3.png"));
+            tile[13].collision = true;
+
+            tile[14] = new Tiles();
+            tile[14].image = ImageIO.read(getClass().getResourceAsStream("/decorate/exit4.png"));
+            tile[14].collision = true;
+
+            tile[15] = new Tiles();
+            tile[15].image = ImageIO.read(getClass().getResourceAsStream("/decorate/exit5.png"));
+            tile[15].collision = true;
+             
+
         } catch(IOException e){
             e.printStackTrace();
         }
@@ -64,7 +109,6 @@ public class TileManager {
     public void loadMap(){
         try{
             InputStream level = new FileInputStream("src/main/levels/Level1.txt");
-            System.out.println(level);
             BufferedReader br = new BufferedReader(new InputStreamReader(level));
             int col = 0;
             int row = 0;

@@ -21,11 +21,11 @@ public class MenuScreen extends MouseAdapter {
 
     public void getMenuGraphics(){
         try{
-            gameTitle = ImageIO.read(getClass().getResourceAsStream("/menuInterface/PrisonEscapeTitle.png"));
-            newGame = ImageIO.read(getClass().getResourceAsStream("/menuInterface/newGameBtn.png"));
-            continue_ = ImageIO.read(getClass().getResourceAsStream("/menuInterface/continueBtn.png"));
-            quitGame = ImageIO.read(getClass().getResourceAsStream("/menuInterface/quitGameBtn.png"));
-            backgroundImg = ImageIO.read(getClass().getResourceAsStream("/menuInterface/backgroundMenuImg.png"));
+            gameTitle = ImageIO.read(getClass().getResourceAsStream("/menu/PrisonEscapeTitle.png"));
+            newGame = ImageIO.read(getClass().getResourceAsStream("/menu/newGameBtn.png"));
+            continue_ = ImageIO.read(getClass().getResourceAsStream("/menu/continueBtn.png"));
+            quitGame = ImageIO.read(getClass().getResourceAsStream("/menu/quitGameBtn.png"));
+            backgroundImg = ImageIO.read(getClass().getResourceAsStream("/menu/backgroundMenuImg.png"));
         }catch(IOException e){
             e.printStackTrace();
         }

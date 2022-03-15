@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+
 public class Inmate extends Entity{
     GamePanel gp;
     KeyManager keyH;
@@ -16,13 +17,12 @@ public class Inmate extends Entity{
     public double time = 100;
 
     public Inmate(GamePanel gp, KeyManager keyH){
-        super(gp);
         this.gp = gp;
         this.keyH = keyH;
 
         solidArea = new Rectangle(8, 16, 32, 32);
-        solidArea.x = 8;
-        solidArea.y = 8;
+        solidArea.x = 0;
+        solidArea.y = 0;
         solidX = solidArea.x;
         solidY = solidArea.y;
         solidArea.width = 32;
@@ -38,11 +38,11 @@ public class Inmate extends Entity{
     public void setInmateValues(){
         x = 100;
         y = 100;
-        speed = 3;
+        speed = 2;
         direction = "down";
     }
 
-
+    
     public void getInmateImage(){
         try{
             up1 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkUp1.png"));
@@ -57,30 +57,37 @@ public class Inmate extends Entity{
             right1 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkRight1.png"));
             right2 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkRight2.png"));
             right3 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkRight3.png"));
-
         }catch(IOException e){
             e.printStackTrace();
         }
     }
 
     public void update(){
-        if(keyH.pressedUp|| keyH.pressedDown || keyH.pressedLeft || keyH.pressedRight || keyH.pressedEscape) {
+        if(keyH.pressedUp|| keyH.pressedDown || keyH.pressedLeft || keyH.pressedRight) {
             if (keyH.pressedUp) {
                 direction = "up";
-                y -= speed;
             } else if (keyH.pressedDown) {
                 direction = "down";
-                y += speed;
             } else if (keyH.pressedLeft) {
                 direction = "left";
-                x -= speed;
             } else if (keyH.pressedRight) {
                 direction = "right";
-                x += speed;
             }
 
             int objectIndex = gp.collisionCheck.checkObject(this, true);
             pickUpObject(objectIndex);
+
+            collision = false;
+            gp.collisionCheck.wallCheck(this);
+
+            if(collision == false){
+                switch (direction) {
+                    case "up": y -= speed; break;
+                    case "down": y += speed; break;
+                    case "left": x -= speed; break;
+                    case "right": x += speed; break;
+                }
+            }
 
             spriteCounter++;
             if (spriteCounter > 11) {
@@ -108,14 +115,43 @@ public class Inmate extends Entity{
     //Get player direction
     public String getDirection(){return direction;}
 
+    //Get number of keys collected
+    public int getNumKeys(){return hasKey;}
+
+    //Get the score collected 
+    public int getScore(){return score;}
+
+    //getting the current timer
+    public int getTimer(){return (int)time;}
+
+    //Set the timer
+    public void setTimer(double newTime){time = newTime;}
+
+    //set the score
+    public void setScore(int newScore){score = newScore;}
+
     //set player position
     public void setPos(int posX, int posY){x = posX; y = posY;}
 
     //set player speed
     public void setSpeed(int newSpeed){speed = newSpeed;}
-
+    
     //set players direction
     public void setDirection(String newDir){direction = newDir;}
+
+    //set key amount
+    public void setNumKeys(int newNumKeys){hasKey = newNumKeys;}
+
+    //reset the keys
+    public void resetKeys(){hasKey = 0;}
+
+    //reset everything
+    public void resetInmate(){
+        x = 100;
+        y = 100;
+        time = 100;
+        score = 0;
+    }
 
     //Setting the players position in the oposite direction
     public void revertPosition(String pos){
@@ -145,7 +181,7 @@ public class Inmate extends Entity{
             else{
                 x += 100;
             }
-        }
+        } 
         else if(pos == "right"){
             x *= -1;
             if(x >= 0){
@@ -167,24 +203,24 @@ public class Inmate extends Entity{
                 case "Key":
                     gp.playSE(1);
                     hasKey++;
+                    gp.obj[i] = null;
                     break;
                 case "Timer":
                     gp.playSE(2);
                     time += 20;
+                    gp.obj[i] = null;
                     break;
                 case "Chicken":
                     gp.playSE(3);
                     score += 100;
+                    gp.obj[i] = null;
                     break;
                 case "Trap":
                     gp.playSE(4);
                     score -= 50;
+                    gp.obj[i] = null;
                     break;
             }
-
-            String text = "Got a " + gp.obj[i].name + "!";
-            gp.obj[i] = null;
-            gp.ui.addMessage(text);
         }
     }
 
@@ -235,6 +271,8 @@ public class Inmate extends Entity{
                     image = right3;
                 }
                 break;
+            default:
+            break;
         }
 
         g2.drawImage(image, x , y, gp.cellSize, gp.cellSize, null);

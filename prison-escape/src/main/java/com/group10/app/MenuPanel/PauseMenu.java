@@ -26,10 +26,10 @@ public class PauseMenu {
 
     public void getPausedGraphics(){
         try{
-            resume = ImageIO.read(getClass().getResourceAsStream("/menuInterface/resumeBtn.png"));
-            saveGame = ImageIO.read(getClass().getResourceAsStream("/menuInterface/saveGameBtn.png"));
-            returnMenu = ImageIO.read(getClass().getResourceAsStream("/menuInterface/returnToMenuBtn.png"));
-            pauseTemplate = ImageIO.read(getClass().getResourceAsStream("/menuInterface/pausedTemplate.png"));
+            resume = ImageIO.read(getClass().getResourceAsStream("/menu/resumeBtn.png"));
+            saveGame = ImageIO.read(getClass().getResourceAsStream("/menu/saveGameBtn.png"));
+            returnMenu = ImageIO.read(getClass().getResourceAsStream("/menu/returnToMenuBtn.png"));
+            pauseTemplate = ImageIO.read(getClass().getResourceAsStream("/menu/pausedTemplate.png"));
         }catch(IOException e){
             e.printStackTrace();
         }

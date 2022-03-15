@@ -10,6 +10,58 @@ public class Collision {
 
     }
 
+    public void wallCheck(Entity entity){
+        int entityLeftWorldX = entity.x + entity.solidArea.x;
+        int entityRightWorldX = entity.x + entity.solidArea.x + entity.solidArea.width;
+        int entityTopWorldY = entity.y + entity.solidArea.y;
+        int entityBottomWorldY = entity.y + entity.solidArea.y + entity.solidArea.height;
+
+        int LeftCol = entityLeftWorldX/gp.cellSize;
+        int RightCol = entityRightWorldX/gp.cellSize;
+        int TopRow = entityTopWorldY/gp.cellSize;
+        int BottomRow = entityBottomWorldY/gp.cellSize;
+
+        int tile1, tile2;
+        
+        switch (entity.direction) {
+            case "up":
+                TopRow = (entityTopWorldY - entity.speed)/gp.cellSize;
+                tile1 = gp.tileManage.mapTileNum[LeftCol][TopRow];
+                tile2 = gp.tileManage.mapTileNum[RightCol][TopRow];
+                if(gp.tileManage.tile[tile1].collision == true || gp.tileManage.tile[tile2].collision == true){
+                    entity.collision = true;
+                }
+                break;
+            case "down":
+                BottomRow = (entityBottomWorldY - entity.speed)/gp.cellSize;
+                tile1 = gp.tileManage.mapTileNum[LeftCol][BottomRow];
+                tile2 = gp.tileManage.mapTileNum[RightCol][BottomRow];
+                if(gp.tileManage.tile[tile1].collision == true || gp.tileManage.tile[tile2].collision == true){
+                    entity.collision = true;
+                }
+                break;
+
+            case "left":
+                LeftCol = (entityLeftWorldX + entity.speed)/gp.cellSize;
+                tile1 = gp.tileManage.mapTileNum[LeftCol][TopRow];
+                tile2 = gp.tileManage.mapTileNum[LeftCol][BottomRow];
+                if(gp.tileManage.tile[tile1].collision == true || gp.tileManage.tile[tile2].collision == true){
+                    entity.collision = true;
+                }
+                break;
+            case "right":
+                RightCol = (entityRightWorldX - entity.speed)/gp.cellSize;
+                tile1 = gp.tileManage.mapTileNum[RightCol][TopRow];
+                tile2 = gp.tileManage.mapTileNum[RightCol][BottomRow];
+                if(gp.tileManage.tile[tile1].collision == true || gp.tileManage.tile[tile2].collision == true){
+                    entity.collision = true;
+                }
+                break;
+        
+            
+        }
+    }
+
 
     public int checkObject(Entity entity, boolean player) {
 
