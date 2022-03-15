@@ -1,20 +1,15 @@
 package com.group10.app.objects;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
+import com.group10.app.entity.Entity;
+import com.group10.app.main.GamePanel;
 
-public class ObjTrap extends SuperObject {
+public class ObjTrap extends Entity {
 
-    public ObjTrap(){
+    public ObjTrap(GamePanel gp){
+        super(gp);
 
         name = "Trap";
-
-        try {
-            image = ImageIO.read((getClass().getResourceAsStream("/trap/trap.png")));
-
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        down1 = setup("/trap/trap", gp.cellSize, gp.cellSize);
     }
 
 }

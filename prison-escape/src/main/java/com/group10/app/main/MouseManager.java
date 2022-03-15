@@ -32,6 +32,7 @@ public class MouseManager implements MouseListener{
     public void mouseReleased(MouseEvent e) {
         int mouseX = e.getX();
         int mouseY = e.getY();
+        System.out.println(mouseX + ", " + mouseY);
 
         //Mouse control works only in main menu
         if(GamePanel.state != STATE.GAME && GamePanel.state != STATE.PAUSED && GamePanel.state != STATE.GAMEWON && GamePanel.state != STATE.GAMEOVER){

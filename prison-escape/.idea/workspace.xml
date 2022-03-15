@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5980bed3-4a06-4122-9bc3-176987054f36" name="Changes" comment="Commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/SavedGame/save0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/SavedGame/save0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Gaurd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Gaurd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Inmate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Inmate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/KeyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/KeyManager.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="Simon" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="Simon" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="25zVAEPw8GFgRuOZO5SSklARQes" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/font" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/font" />
+      <recent name="$PROJECT_DIR$/src/main/resources/sound" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.group10.app.main" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="GameLauncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.group10.app.main.GameLauncher" />
+      <module name="prison-escape" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.group10.app.main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.GameLauncher" />
+        <item itemvalue="Application.GameLauncher" />
+        <item itemvalue="Application.GameLauncher" />
+        <item itemvalue="Application.GameLauncher" />
+        <item itemvalue="Application.GameLauncher" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5980bed3-4a06-4122-9bc3-176987054f36" name="Changes" comment="" />
+      <created>1646529758833</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1646529758833</updated>
+      <workItem from="1646529760243" duration="2000" />
+      <workItem from="1646529910408" duration="699000" />
+      <workItem from="1646531973536" duration="597000" />
+      <workItem from="1646940106988" duration="3241000" />
+      <workItem from="1646951476287" duration="8868000" />
+      <workItem from="1646965448379" duration="1508000" />
+      <workItem from="1647003251409" duration="2592000" />
+      <workItem from="1647011290836" duration="387000" />
+      <workItem from="1647011689966" duration="4158000" />
+      <workItem from="1647095009080" duration="1264000" />
+      <workItem from="1647219542333" duration="3358000" />
+      <workItem from="1647222951647" duration="5578000" />
+      <workItem from="1647322454580" duration="967000" />
+      <workItem from="1647323441602" duration="1002000" />
+    </task>
+    <task id="LOCAL-00001" summary="Create Project">
+      <created>1646530149541</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1646530149541</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Create object key, chicken, timer, and inmate can pick up">
+      <created>1646964625707</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1646964625707</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add trap and UI (show score and time)">
+      <created>1647010992172</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1647010992172</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add trap and UI (show score and time)">
+      <created>1647011496014</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1647011496014</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Add trap and UI (show score and time)">
+      <created>1647011717848</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1647011717848</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add trap file">
+      <created>1647012853113</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1647012853113</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add music and sound effect">
+      <created>1647014088265</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1647014088265</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add messages when pick up objects">
+      <created>1647227384585</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1647227384585</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Try to add Debug state, fails">
+      <created>1647322900270</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1647322900270</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Create Project" />
+    <MESSAGE value="Create object key, chicken, timer, and inmate can pick up" />
+    <MESSAGE value="Add trap and UI (show score and time)" />
+    <MESSAGE value="Add trap file" />
+    <MESSAGE value="Add music and sound effect" />
+    <MESSAGE value="Add messages when pick up objects" />
+    <MESSAGE value="Try to add Debug state, fails" />
+    <option name="LAST_COMMIT_MESSAGE" value="Try to add Debug state, fails" />
+  </component>
+</project>

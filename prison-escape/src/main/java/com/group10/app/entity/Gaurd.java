@@ -11,6 +11,7 @@ public class Gaurd extends Entity{
     GamePanel gp;
 
     public Gaurd(GamePanel gp, int setx, int sety){
+        super(gp);
         this.gp = gp;
         getGaurdImage();
         setgaurdValues(setx, sety);
@@ -18,20 +19,18 @@ public class Gaurd extends Entity{
 
     //Registering the images
     public void getGaurdImage(){
-        try{
-        up1 = ImageIO.read(getClass().getResourceAsStream("/prisonGaurd/WalkUp1.png"));
-        up2 = ImageIO.read(getClass().getResourceAsStream("/prisonGaurd/WalkUp2.png"));
-        up3 = ImageIO.read(getClass().getResourceAsStream("/prisonGaurd/WalkUp3.png"));
-        down1 = ImageIO.read(getClass().getResourceAsStream("/prisonGaurd/WalkDown1.png"));
-        down2 = ImageIO.read(getClass().getResourceAsStream("/prisonGaurd/WalkDown2.png"));
-        down3 = ImageIO.read(getClass().getResourceAsStream("/prisonGaurd/WalkDown3.png"));
-        left1 = ImageIO.read(getClass().getResourceAsStream("/prisonGaurd/WalkLeft1.png"));
-        left2 = ImageIO.read(getClass().getResourceAsStream("/prisonGaurd/WalkLeft2.png"));
-        left3 = ImageIO.read(getClass().getResourceAsStream("/prisonGaurd/WalkLeft3.png"));
-        right1 = ImageIO.read(getClass().getResourceAsStream("/prisonGaurd/WalkRight1.png"));
-        right2 = ImageIO.read(getClass().getResourceAsStream("/prisonGaurd/WalkRight2.png"));
-        right3 = ImageIO.read(getClass().getResourceAsStream("/prisonGaurd/WalkDown3.png"));
-        }catch(IOException e){e.printStackTrace();}
+        up1 = setup("/prisonGaurd/WalkUp1", gp.cellSize, gp.cellSize);
+        up2 = setup("/prisonGaurd/WalkUp2", gp.cellSize, gp.cellSize);
+        up3 = setup("/prisonGaurd/WalkUp3", gp.cellSize, gp.cellSize);
+        down1 = setup("/prisonGaurd/WalkDown1", gp.cellSize, gp.cellSize);
+        down2 = setup("/prisonGaurd/WalkDown2", gp.cellSize, gp.cellSize);
+        down3 = setup("/prisonGaurd/WalkDown3", gp.cellSize, gp.cellSize);
+        left1 = setup("/prisonGaurd/WalkLeft1", gp.cellSize, gp.cellSize);
+        left2 = setup("/prisonGaurd/WalkLeft2", gp.cellSize, gp.cellSize);
+        left3 = setup("/prisonGaurd/WalkLeft3", gp.cellSize, gp.cellSize);
+        right1 = setup("/prisonGaurd/WalkRight1", gp.cellSize, gp.cellSize);
+        right2 = setup("/prisonGaurd/WalkRight2", gp.cellSize, gp.cellSize);
+        right3 = setup("/prisonGaurd/WalkRight3", gp.cellSize, gp.cellSize);
     }
 
     //Get Gaurds x position

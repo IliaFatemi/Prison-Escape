@@ -1,20 +1,15 @@
 package com.group10.app.objects;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
+import com.group10.app.entity.Entity;
+import com.group10.app.main.GamePanel;
 
-public class ObjTimer extends SuperObject {
+public class ObjTimer extends Entity {
 
-    public ObjTimer(){
+    public ObjTimer(GamePanel gp){
+        super(gp);
 
         name = "Timer";
-
-        try {
-            image = ImageIO.read((getClass().getResourceAsStream("/collectibles/timer.png")));
-
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        down1 = setup("/collectibles/timer", gp.cellSize, gp.cellSize);
     }
 
 }

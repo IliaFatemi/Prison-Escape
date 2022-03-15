@@ -3,10 +3,8 @@ package com.group10.app.entity;
 import com.group10.app.main.GamePanel;
 import com.group10.app.main.KeyManager;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 
 public class Inmate extends Entity{
@@ -17,6 +15,7 @@ public class Inmate extends Entity{
     public double time = 100;
 
     public Inmate(GamePanel gp, KeyManager keyH){
+        super(gp);
         this.gp = gp;
         this.keyH = keyH;
 
@@ -44,22 +43,18 @@ public class Inmate extends Entity{
 
     
     public void getInmateImage(){
-        try{
-            up1 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkUp1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkUp2.png"));
-            up3 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkUp3.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkDown1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkDown2.png"));
-            down3 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkDown3.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkLeft1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkLeft2.png"));
-            left3 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkLeft3.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkRight1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkRight2.png"));
-            right3 = ImageIO.read(getClass().getResourceAsStream("/inmate/walkRight3.png"));
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        up1 = setup("/inmate/walkUp1", gp.cellSize, gp.cellSize);
+        up2 = setup("/inmate/walkUp2", gp.cellSize, gp.cellSize);
+        up3 = setup("/inmate/walkUp3", gp.cellSize, gp.cellSize);
+        down1 = setup("/inmate/walkDown1", gp.cellSize, gp.cellSize);
+        down2 = setup("/inmate/walkDown2", gp.cellSize, gp.cellSize);
+        down3 = setup("/inmate/walkDown3", gp.cellSize, gp.cellSize);
+        left1 = setup("/inmate/walkLeft1", gp.cellSize, gp.cellSize);
+        left2 = setup("/inmate/walkLeft2", gp.cellSize, gp.cellSize);
+        left3 = setup("/inmate/walkLeft3", gp.cellSize, gp.cellSize);
+        right1 = setup("/inmate/walkRight1", gp.cellSize, gp.cellSize);
+        right2 = setup("/inmate/walkRight2", gp.cellSize, gp.cellSize);
+        right3 = setup("/inmate/walkRight3", gp.cellSize, gp.cellSize);
     }
 
     public void update(){
@@ -198,6 +193,8 @@ public class Inmate extends Entity{
         if (i != 999){
 
             String objectName = gp.obj[i].name;
+            String text = "Got a " + gp.obj[i].name + "!";;
+            gp.ui.addMessage(text);
 
             switch (objectName){
                 case "Key":

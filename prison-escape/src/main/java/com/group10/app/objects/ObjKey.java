@@ -1,20 +1,15 @@
 package com.group10.app.objects;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
+import com.group10.app.entity.Entity;
+import com.group10.app.main.GamePanel;
 
-public class ObjKey extends SuperObject {
+public class ObjKey extends Entity {
 
-    public ObjKey(){
+    public ObjKey(GamePanel gp){
+        super(gp);
 
         name = "Key";
-
-        try {
-            image = ImageIO.read((getClass().getResourceAsStream("/collectibles/key.png")));
-
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        down1 = setup("/collectibles/key", gp.cellSize, gp.cellSize);
     }
 
 }

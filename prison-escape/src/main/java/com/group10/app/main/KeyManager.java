@@ -6,8 +6,15 @@ import java.awt.event.KeyListener;
 import com.group10.app.main.GamePanel.STATE;
 
 public class KeyManager implements KeyListener {
+    GamePanel gp;
+
     public boolean pressedUp, pressedDown, pressedRight, pressedLeft, pressedEscape;
     int keyCount = 0;
+
+    //Debug
+    boolean showDebugText = false;
+
+    public KeyManager (GamePanel gp) {this.gp = gp;}
 
     public void keyTyped(KeyEvent e) {
 
@@ -16,21 +23,11 @@ public class KeyManager implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
 
-        if(code == KeyEvent.VK_W){
-            pressedUp = true;
-        }
+        if(code == KeyEvent.VK_W){pressedUp     = true;}
+        if(code == KeyEvent.VK_S){pressedDown   = true;}
+        if(code == KeyEvent.VK_A){pressedLeft   = true;}
+        if(code == KeyEvent.VK_D){pressedRight  = true;}
 
-        if(code == KeyEvent.VK_S){
-            pressedDown = true;
-        }
-
-        if(code == KeyEvent.VK_A){
-            pressedLeft = true;
-        }
-
-        if(code == KeyEvent.VK_D){
-            pressedRight = true;
-        }
         if(code == KeyEvent.VK_ESCAPE){
             if(GamePanel.state != STATE.MENU){
 
@@ -42,6 +39,12 @@ public class KeyManager implements KeyListener {
                     GamePanel.state = STATE.GAME;
                 }
             }
+        }
+
+        //Debug
+        if (code == KeyEvent.VK_T){
+            System.out.println("enter");
+            showDebugText = !showDebugText;
         }
     }
 
