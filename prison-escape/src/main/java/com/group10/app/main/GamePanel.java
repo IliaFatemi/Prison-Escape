@@ -5,7 +5,7 @@ import com.group10.app.entity.Gaurd;
 
 import com.group10.app.objects.SuperObject;
 import com.group10.app.objects.TileManager;
-
+import com.group10.app.MenuPanel.GameOverMenu;
 import com.group10.app.MenuPanel.MenuScreen;
 import com.group10.app.MenuPanel.PauseMenu;
 import com.group10.app.MenuPanel.WonMenu;
@@ -69,6 +69,9 @@ public class GamePanel extends JPanel implements Runnable{
 
     //set up the win screen
     WonMenu wonMenu = new WonMenu(this, keyH);
+
+    //set up game over screen
+    GameOverMenu gameOver = new GameOverMenu(this);
     
     // Create object array;
     public SuperObject obj[] = new SuperObject[10];
@@ -143,6 +146,7 @@ public class GamePanel extends JPanel implements Runnable{
                 if (isCollision(inmate, gaurd.getX(), gaurd.getY(), ENEMY_COLLISION_DISTANCE)){
                     System.out.println("ENEMY COLLIDED");
                     System.out.println("===================================");
+                    state = STATE.GAMEOVER;
                 }
 
                 if(inmate.getNumKeys() == 3 && reachedGate()){
@@ -212,6 +216,11 @@ public class GamePanel extends JPanel implements Runnable{
         else if (state == STATE.GAMEWON){
             //render the game won menu
             wonMenu.renderWonGraphics(g2);
+            g2.dispose();
+        }
+        else if (state == STATE.GAMEOVER){
+            //render game over menu
+            gameOver.renderGameOverMenu(g2);
             g2.dispose();
         }
     }
