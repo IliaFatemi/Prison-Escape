@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable{
     int ENEMY_COLLISION_DISTANCE = 40;
 
     //Set up the keyboard keys
-    KeyManager keyH = new KeyManager();
+    KeyManager keyH = new KeyManager(this);
 
     //Set up the Mouse Keys
     MouseManager mouseK = new MouseManager(this);
@@ -197,7 +197,24 @@ public class GamePanel extends JPanel implements Runnable{
             ui.draw(g2);
 
             g2.dispose();
-            
+
+            //Debug
+            if (keyH.showDebugText){
+                //Can not work
+                g2.setFont(new Font("Arial", Font.PLAIN, 20));
+                g2.setColor(Color.white);
+                int x = 10;
+                int y = 400;
+                int lineHeight = 20;
+
+                g2.drawString("WorldX " + inmate.worldX, x, y);
+                y += lineHeight;
+                g2.drawString("WorldY " + inmate.worldY, x, y);
+                y += lineHeight;
+                g2.drawString("Col " + (inmate.worldX + inmate.solidArea.x) / cellSize, x, y);
+                y += lineHeight;
+                g2.drawString("Row " + (inmate.worldY + inmate.solidArea.y) / cellSize, x, y);
+            }
         }
         else if(state == STATE.PAUSED){
             pauseMenu.renderPauseMenu(g2);
