@@ -26,7 +26,7 @@ public class AssetSetter {
 //        gp.obj[2].x = 10 * gp.cellSize;
 //        gp.obj[2].y = 10 * gp.cellSize;
 
-        createObj(new ObjKey(gp), 11, 7);
+        createObj(new ObjKey(gp), 2, 16);
         createObj(new ObjKey(gp), 13, 7);
         createObj(new ObjChicken(gp), 15, 6);
         createObj(new ObjTimer(gp), 18, 6);
