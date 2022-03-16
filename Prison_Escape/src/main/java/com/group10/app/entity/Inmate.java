@@ -21,22 +21,18 @@ public class Inmate extends Entity{
         this.keyH = keyH;
 
         solidArea = new Rectangle(8, 16, 32, 32);
-        solidArea.x = 0;
-        solidArea.y = 0;
-        solidArea.width = 32;
-        solidArea.height = 32;
 
-        solidX = 8;
-        solidY = 16;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
 
         setInmateValues();
         getInmateImage();
     }
 
     public void setInmateValues(){
-        x = 100;
-        y = 100;
-        speed = 2;
+        x = gp.cellSize * 5;
+        y = gp.cellSize * 5;
+        speed = 3;
         direction = "down";
     }
 
@@ -67,18 +63,19 @@ public class Inmate extends Entity{
                 direction = "right";
             }
 
-            int objectIndex = gp.collisionCheck.checkObject(this, true);
-            pickUpObject(objectIndex);
-
             collision = false;
             gp.collisionCheck.wallCheck(this);
 
+            int objectIndex = gp.collisionCheck.checkObject(this, true);
+            System.out.println("objectIndex is " + objectIndex);
+            pickUpObject(objectIndex);
+
             if(!collision){
                 switch (direction) {
-                    case "up": y -= speed; break;
-                    case "down": y += speed; break;
-                    case "left": x -= speed; break;
-                    case "right": x += speed; break;
+                    case "up" -> y -= speed;
+                    case "down" -> y += speed;
+                    case "left" -> x -= speed;
+                    case "right" -> x += speed;
                 }
             }
 
@@ -203,80 +200,80 @@ public class Inmate extends Entity{
             String text = "Got a " + gp.obj[i].name + "!";;
             gp.ui.addMessage(text);
 
-            switch (objectName){
-                case "Key":
+            switch (objectName) {
+                case "Key" -> {
                     gp.playSE(1);
                     hasKey++;
                     gp.obj[i] = null;
-                    break;
-                case "Timer":
+                }
+                case "Timer" -> {
                     gp.playSE(2);
                     time += 20;
                     gp.obj[i] = null;
-                    break;
-                case "Chicken":
+                }
+                case "Chicken" -> {
                     gp.playSE(3);
                     score += 100;
                     gp.obj[i] = null;
-                    break;
-                case "Trap":
+                }
+                case "Trap" -> {
                     gp.playSE(4);
                     score -= 50;
                     gp.obj[i] = null;
-                    break;
+                }
             }
         }
     }
 
     public void draw(Graphics2D g2){
         BufferedImage image = null;
-        switch (direction){
-            case "up":
-                if(spriteNum == 1){
+        switch (direction) {
+            case "up" -> {
+                if (spriteNum == 1) {
                     image = up1;
                 }
-                if(spriteNum == 2){
+                if (spriteNum == 2) {
                     image = up2;
                 }
-                if(spriteNum == 3){
+                if (spriteNum == 3) {
                     image = up3;
                 }
-                break;
-            case "down":
-                if(spriteNum == 1){
+            }
+            case "down" -> {
+                if (spriteNum == 1) {
                     image = down1;
                 }
-                if(spriteNum == 2){
+                if (spriteNum == 2) {
                     image = down2;
                 }
-                if(spriteNum == 3){
+                if (spriteNum == 3) {
                     image = down3;
                 }
-                break;
-            case "left":
-                if(spriteNum == 1){
+            }
+            case "left" -> {
+                if (spriteNum == 1) {
                     image = left1;
                 }
-                if(spriteNum == 2){
+                if (spriteNum == 2) {
                     image = left2;
                 }
-                if(spriteNum == 3){
+                if (spriteNum == 3) {
                     image = left3;
                 }
-                break;
-            case "right":
-                if(spriteNum == 1){
+            }
+            case "right" -> {
+                if (spriteNum == 1) {
                     image = right1;
                 }
-                if(spriteNum == 2){
+                if (spriteNum == 2) {
                     image = right2;
                 }
-                if(spriteNum == 3){
+                if (spriteNum == 3) {
                     image = right3;
                 }
-                break;
-            default:
-            break;
+            }
+            default -> {
+            }
         }
 
         g2.drawImage(image, x , y, gp.cellSize, gp.cellSize, null);

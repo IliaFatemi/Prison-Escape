@@ -74,7 +74,7 @@ public class GamePanel extends JPanel implements Runnable{
     GameOverMenu gameOver = new GameOverMenu(this);
     
     // Create object array;
-    public Entity obj[] = new Entity[10];
+    public Entity[] obj = new Entity[30];
     
     // Set up asset;
     public AssetSetter asset = new AssetSetter(this);
@@ -187,9 +187,9 @@ public class GamePanel extends JPanel implements Runnable{
             tileManage.draw(g2);
     
             // Draw objects
-            for (int i = 0; i < obj.length; i++){
-                if (obj[i] != null){
-                    obj[i].draw(g2);
+            for (Entity entity : obj) {
+                if (entity != null) {
+                    entity.draw(g2);
                 }
             }
     
