@@ -15,6 +15,7 @@ public class Inmate extends Entity{
     public double time = 100;
     public final int screenX;
     public final int screenY;
+    int standCounter = 0;
 
     public Inmate(GamePanel gp, KeyManager keyH){
         super(gp);
@@ -94,6 +95,14 @@ public class Inmate extends Entity{
                     spriteNum = 1;
                 }
                 spriteCounter = 0;
+            }
+        }
+        else {
+            standCounter++;
+
+            if (standCounter > 10){
+                spriteNum = 2;
+                standCounter = 0;
             }
         }
     }
