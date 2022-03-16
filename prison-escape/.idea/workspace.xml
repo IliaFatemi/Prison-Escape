@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5980bed3-4a06-4122-9bc3-176987054f36" name="Changes" comment="Commit">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/SavedGame/save0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/SavedGame/save0.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Gaurd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Gaurd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Inmate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Inmate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/KeyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/KeyManager.java" afterDir="false" />
+    <list default="true" id="5980bed3-4a06-4122-9bc3-176987054f36" name="Changes" comment="Redefined map and resource loading">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Entity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +20,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="Simon" />
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
@@ -36,7 +31,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="Simon" />
+        <entry key="$PROJECT_DIR$/.." value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -69,6 +64,10 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/font" />
       <recent name="$PROJECT_DIR$/src/main/resources/sound" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources/tiles" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.group10.app.main" />
@@ -120,6 +119,7 @@
       <workItem from="1647222951647" duration="5578000" />
       <workItem from="1647322454580" duration="967000" />
       <workItem from="1647323441602" duration="1002000" />
+      <workItem from="1647413788103" duration="4509000" />
     </task>
     <task id="LOCAL-00001" summary="Create Project">
       <created>1646530149541</created>
@@ -184,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647322900270</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Redefined map and resource loading">
+      <created>1647408434357</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1647408434357</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,6 +243,7 @@
     <MESSAGE value="Add music and sound effect" />
     <MESSAGE value="Add messages when pick up objects" />
     <MESSAGE value="Try to add Debug state, fails" />
-    <option name="LAST_COMMIT_MESSAGE" value="Try to add Debug state, fails" />
+    <MESSAGE value="Redefined map and resource loading" />
+    <option name="LAST_COMMIT_MESSAGE" value="Redefined map and resource loading" />
   </component>
 </project>

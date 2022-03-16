@@ -35,27 +35,31 @@ public class Gaurd extends Entity{
 
     //Get Gaurds x position
     public double getX(){
-        return x;
+        return worldX;
     }
     
     //Get gaurds Y position
     public double getY(){
-        return y;
+        return worldY;
     }
 
     //set the value for gaurd
     public void setgaurdValues(int setx, int sety){
-        x = setx;
-        y = sety;
+        worldX = setx;
+        worldY = sety;
         speed = 4;
         direction = "down";
     }
 
-    
-    public void draw(Graphics2D g2, GamePanel gP){
-        BufferedImage image = down1;
+    public void update() {
 
+        setAction();
+        boolean contactPlayer = gp.collisionCheck.checkPlayer(this);
 
-        g2.drawImage(image, x , y, gp.cellSize, gp.cellSize, null);
+        if (contactPlayer){
+            GamePanel.state = GamePanel.STATE.GAMEOVER;
+        }
     }
+
+    public void setAction() {}
 }
