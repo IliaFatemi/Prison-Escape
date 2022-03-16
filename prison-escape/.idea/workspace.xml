@@ -5,12 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5980bed3-4a06-4122-9bc3-176987054f36" name="Changes" comment="Commit">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/font/x12y16pxMaruMonica.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/levels/Level1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/SavedGame/save0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/SavedGame/save0.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Gaurd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Gaurd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Inmate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Inmate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/KeyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/KeyManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/objects/SuperObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/objects/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/objects/TileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/levels/Level1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/bed.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/bed.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/cell1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/cell1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/cell2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/cell2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/exit1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/exit1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/exit2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/exit2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/exit3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/exit3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/exit4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/exit4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/exit5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/exit5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/exitGate.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/exitGate.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/toilet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/toilet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/decorate/bed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/decorate/cell1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/decorate/cell2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/decorate/exit1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/decorate/exit2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/decorate/exit3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/decorate/exit4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/decorate/exit5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/decorate/exitGate.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/decorate/toilet.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +47,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="Simon" />
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
@@ -36,7 +58,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="Simon" />
+        <entry key="$PROJECT_DIR$/.." value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -69,6 +91,10 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/font" />
       <recent name="$PROJECT_DIR$/src/main/resources/sound" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources/tiles" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.group10.app.main" />

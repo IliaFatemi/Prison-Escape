@@ -4,7 +4,6 @@ import com.group10.app.entity.Entity;
 import com.group10.app.entity.Inmate;
 import com.group10.app.entity.Gaurd;
 
-import com.group10.app.objects.SuperObject;
 import com.group10.app.objects.TileManager;
 import com.group10.app.MenuPanel.GameOverMenu;
 import com.group10.app.MenuPanel.MenuScreen;
@@ -206,7 +205,6 @@ public class GamePanel extends JPanel implements Runnable{
 
             //Debug
             if (keyH.showDebugText){
-                System.out.println("enter2");
 
                 g2.setFont(new Font("Arial", Font.PLAIN, 20));
                 g2.setColor(Color.white);

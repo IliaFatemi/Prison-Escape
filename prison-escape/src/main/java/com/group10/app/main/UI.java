@@ -18,9 +18,6 @@ public class UI {
     BufferedImage keyImage;
     ArrayList<String> message = new ArrayList<>();
     ArrayList<Integer> messageCounter = new ArrayList<>();
-//    public String currentDialogue = "";
-//    public int commandNum = 0;
-//    public int titleScreenState = 0; //0: the first screen, 1: the second screen
 
     DecimalFormat dFormat = new DecimalFormat("#0.0");
 
@@ -28,12 +25,12 @@ public class UI {
 
         this.gp = gp;
 
-        try {
-            InputStream is = getClass().getResourceAsStream("/font/x12y16pxMaruMonica.ttf");
-            maruMonica = Font.createFont(Font.TRUETYPE_FONT, is);
-        } catch (FontFormatException | IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            InputStream is = getClass().getResourceAsStream("/font/x12y16pxMaruMonica.ttf");
+//            maruMonica = Font.createFont(Font.TRUETYPE_FONT, is);
+//        } catch (FontFormatException | IOException e) {
+//            e.printStackTrace();
+//        }
 
         arial_40 = new Font("Arial", Font.PLAIN, 40);
 
