@@ -15,6 +15,7 @@ public class Inmate extends Entity{
     public double time = 100;
     public final int screenX;
     public final int screenY;
+    int standCounter = 0;
 
     public Inmate(GamePanel gp, KeyManager keyH){
         super(gp);
@@ -36,7 +37,7 @@ public class Inmate extends Entity{
     public void setInmateValues(){
         worldX = gp.cellSize * 11;
         worldY = gp.cellSize * 2;
-        speed = 2;
+        speed = 4;
         direction = "down";
     }
 
@@ -96,6 +97,14 @@ public class Inmate extends Entity{
                 spriteCounter = 0;
             }
         }
+        else {
+            standCounter++;
+
+            if (standCounter > 10){
+                spriteNum = 2;
+                standCounter = 0;
+            }
+        }
     }
 
     //Get the x position of the player
@@ -142,8 +151,8 @@ public class Inmate extends Entity{
 
     //reset everything
     public void resetInmate(){
-        worldX = gp.cellSize * 11;
-        worldY = gp.cellSize * 11;
+        worldX = gp.cellSize * 8;
+        worldY = gp.cellSize * 8;
         time = 100;
         score = 0;
     }

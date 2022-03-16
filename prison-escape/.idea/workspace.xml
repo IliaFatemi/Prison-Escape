@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5980bed3-4a06-4122-9bc3-176987054f36" name="Changes" comment="Redefined map and resource loading">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Entity.java" afterDir="false" />
+    <list default="true" id="5980bed3-4a06-4122-9bc3-176987054f36" name="Changes" comment="Chicken appears randomly and disappears after a while">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/SavedGame/save0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/SavedGame/save0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Inmate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Inmate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/Collision.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/Collision.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +34,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="master" />
+        <entry key="$PROJECT_DIR$/.." value="Simon" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -191,7 +194,21 @@
       <option name="project" value="LOCAL" />
       <updated>1647408434357</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Add camera (incomplete)">
+      <created>1647418686431</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1647418686431</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Chicken appears randomly and disappears after a while">
+      <created>1647461094770</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1647461094770</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,6 +261,8 @@
     <MESSAGE value="Add messages when pick up objects" />
     <MESSAGE value="Try to add Debug state, fails" />
     <MESSAGE value="Redefined map and resource loading" />
-    <option name="LAST_COMMIT_MESSAGE" value="Redefined map and resource loading" />
+    <MESSAGE value="Add camera (incomplete)" />
+    <MESSAGE value="Chicken appears randomly and disappears after a while" />
+    <option name="LAST_COMMIT_MESSAGE" value="Chicken appears randomly and disappears after a while" />
   </component>
 </project>

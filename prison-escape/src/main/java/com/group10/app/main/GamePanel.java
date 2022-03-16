@@ -31,8 +31,8 @@ public class GamePanel extends JPanel implements Runnable{
     public final int screenHeight = cellSize * screenRowNumber;//1080 pixels
 
     //World setting
-    public final int maxWorldCol = 30;
-    public final int maxWorldRow = 18;
+    public final int maxWorldCol = 35;
+    public final int maxWorldRow = 22;
     public final int worldWidth = cellSize * maxWorldCol;
     public final int worldHeight = cellSize * maxWorldRow;
 
@@ -66,7 +66,7 @@ public class GamePanel extends JPanel implements Runnable{
     MouseManager mouseK = new MouseManager(this);
 
     //set gaurds position
-    Gaurd gaurd = new Gaurd(this, 200, 200);
+    Gaurd gaurd = new Gaurd(this, cellSize * 7, cellSize * 7);
 
     //Set up the main menu screen 
     MenuScreen mainMenu = new MenuScreen(this);
@@ -81,7 +81,7 @@ public class GamePanel extends JPanel implements Runnable{
     GameOverMenu gameOver = new GameOverMenu(this);
     
     // Create object array;
-    public Entity obj[] = new Entity[10];
+    public Entity[] obj = new Entity[50];
     
     // Set up asset;
     public AssetSetter asset = new AssetSetter(this);
@@ -171,6 +171,7 @@ public class GamePanel extends JPanel implements Runnable{
         if (state == STATE.GAME){
             inmate.update();
             gaurd.update();
+            asset.update();
         }
         if (state == STATE.PAUSED){
             //nothing
@@ -192,7 +193,7 @@ public class GamePanel extends JPanel implements Runnable{
                     entity.draw(g2);
                 }
             }
-    
+
             //Draw gaurd
             gaurd.draw(g2);
     

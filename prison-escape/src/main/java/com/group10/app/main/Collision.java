@@ -7,7 +7,6 @@ public class Collision {
 
     public Collision (GamePanel gp){
         this.gp = gp;
-
     }
 
     public void wallCheck(Entity entity){
