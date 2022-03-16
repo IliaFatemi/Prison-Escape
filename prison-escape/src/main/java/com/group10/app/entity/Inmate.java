@@ -36,7 +36,7 @@ public class Inmate extends Entity{
     public void setInmateValues(){
         worldX = gp.cellSize * 11;
         worldY = gp.cellSize * 2;
-        speed = 2;
+        speed = 4;
         direction = "down";
     }
 
@@ -142,8 +142,8 @@ public class Inmate extends Entity{
 
     //reset everything
     public void resetInmate(){
-        worldX = gp.cellSize * 11;
-        worldY = gp.cellSize * 11;
+        worldX = gp.cellSize * 8;
+        worldY = gp.cellSize * 8;
         time = 100;
         score = 0;
     }

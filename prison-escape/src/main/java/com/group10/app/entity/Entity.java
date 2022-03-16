@@ -25,6 +25,9 @@ public class Entity {
     public String name;
     public int speed;
 
+    // Counter
+    public int disappears = 0;
+
     // Type
     public int type;
 

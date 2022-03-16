@@ -2,36 +2,56 @@ package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
 import com.group10.app.objects.ObjChicken;
-import com.group10.app.objects.ObjKey;
-import com.group10.app.objects.ObjTimer;
-import com.group10.app.objects.ObjTrap;
+
+import java.util.Objects;
+import java.util.Random;
 
 public class AssetSetter {
 
     GamePanel gp;
     int objIndex = 0;
+    int randomObjCounter = 0;
 
     public AssetSetter(GamePanel gp){
         this.gp = gp;
-
     }
 
-    public void setObject(){
+    public void setObject(){}
 
-//        gp.obj[1] = new ObjKey();
-//        gp.obj[1].x = 15 * gp.cellSize;
-//        gp.obj[1].y = 7 * gp.cellSize;
-//
-//        gp.obj[2] = new ObjKey();
-//        gp.obj[2].x = 10 * gp.cellSize;
-//        gp.obj[2].y = 10 * gp.cellSize;
+    public void update(){
+        createRandomObj(new ObjChicken(gp));
+        deleteExpiredObj(1200);
+    }
 
-        createObj(new ObjKey(gp), 11, 7);
-        createObj(new ObjKey(gp), 13, 7);
-        createObj(new ObjChicken(gp), 15, 6);
-        createObj(new ObjTimer(gp), 18, 6);
-        createObj(new ObjTrap(gp), 16, 10);
+    public void createRandomObj(Entity entity) {
+        System.out.println("random1");
 
+        randomObjCounter++;
+
+        if (randomObjCounter > 400) {
+
+            Random random = new Random();
+
+            while (true) {
+                System.out.println("random2");
+
+                int randomX;
+                int randomY;
+
+                randomX = random.nextInt(gp.maxWorldCol);
+                randomY = random.nextInt(gp.maxWorldRow);
+
+                int tileNum = gp.tileManage.mapTileNum[randomX][randomY];
+
+                if (!gp.tileManage.tile[tileNum].collision) {
+                    System.out.println("random3");
+                    createObj(entity, randomX, randomY);
+                    break;
+                }
+            }
+
+            randomObjCounter = 0;
+        }
     }
 
     public void createObj(Entity entity, int worldX, int worldY) {
@@ -40,5 +60,22 @@ public class AssetSetter {
         gp.obj[objIndex].worldY = gp.cellSize * worldY;
         objIndex++;
     }
+
+    public void deleteExpiredObj(int expiredTime) {
+
+        for (int i = 0; i < objIndex; i++){
+
+            if (gp.obj[i] != null){
+                if (Objects.equals(gp.obj[i].name, "Chicken")){
+                    gp.obj[i].disappears++;
+
+                    if (gp.obj[i].disappears > expiredTime){
+                        gp.obj[i] = null;
+                    }
+                }
+            }
+        }
+    }
+
 }
 
