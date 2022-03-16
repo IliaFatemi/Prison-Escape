@@ -22,7 +22,7 @@ public class TileManager {
     public TileManager(GamePanel gp){
         this.gp = gp;
         tile = new Tiles[50];
-        mapTileNum = new int[gp.screenColNumber][gp.screenRowNumber];
+        mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         registerImage();
         loadMap("/levels/Level1.txt");
     }
@@ -165,15 +165,15 @@ public class TileManager {
             int col = 0;
             int row = 0;
 
-            while(col < gp.screenColNumber && row < gp.screenRowNumber){
+            while(col < gp.maxWorldCol && row < gp.maxWorldRow){
                 String line = br.readLine();
-                while(col < gp.screenColNumber){
+                while(col < gp.maxWorldCol){
                     String[] numbers = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
                     mapTileNum[col][row] = num;
                     col++;
                 }
-                if(col == gp.screenColNumber){
+                if(col == gp.maxWorldCol){
                     col  = 0;
                     row++;
                 }
@@ -186,20 +186,59 @@ public class TileManager {
     }
 
     //Draw the object
-    public void draw(Graphics2D g2){
-        int nextCol = 0, nextRow = 0, x = 0, y = 0;
-        while(nextCol < gp.screenColNumber && nextRow < gp.screenRowNumber){
-            int tileNum = mapTileNum[nextCol][nextRow];
-            g2.drawImage(tile[tileNum].image, x, y, gp.cellSize, gp.cellSize, null);
-            nextCol++;
-            x += gp.cellSize;
-            if(nextCol == gp.screenColNumber){
-                nextCol = 0;
-                x = 0;
-                nextRow++;
-                y += gp.cellSize;
+    public void draw(Graphics2D g2) {
+
+        int worldCol = 0;
+        int worldRow = 0;
+
+        while (worldCol < gp.maxWorldCol && worldRow <gp.maxWorldRow){
+
+            int tileNum = mapTileNum[worldCol][worldRow];
+
+            int worldX = worldCol * gp.cellSize;
+            int worldY = worldRow * gp.cellSize;
+            int screenX = worldX - gp.inmate.worldX + gp.inmate.screenX;
+            int screenY = worldY - gp.inmate.worldY + gp.inmate.screenY;
+
+
+            //Stop moving the camera at the edge
+            if (gp.inmate.screenX > gp.inmate.worldX){
+                screenX = worldX;
+            }
+            if (gp.inmate.screenY > gp.inmate.worldY) {
+                screenY = worldY;
             }
 
+            int rightOffset = gp.screenWidth - gp.inmate.screenX;
+            if (rightOffset > gp.worldWidth - gp.inmate.worldX){
+                screenX = gp.screenWidth - (gp.worldWidth - worldX);
+            }
+
+            int bottomOffset = gp.screenHeight - gp.inmate.screenY;
+            if (bottomOffset > gp.worldHeight - gp.inmate.worldY){
+                screenY = gp.screenHeight - (gp.worldHeight - worldY);
+            }
+
+            if (worldX + gp.cellSize > gp.inmate.worldX - gp.inmate.screenX &&
+                    worldX - gp.cellSize < gp.inmate.worldX + gp.inmate.screenX &&
+                    worldY + gp.cellSize > gp.inmate.worldY - gp.inmate.screenY &&
+                    worldY - gp.cellSize < gp.inmate.worldY + gp.inmate.screenY){
+
+                g2.drawImage(tile[tileNum].image, screenX, screenY, null);
+
+            }
+            else if (gp.inmate.screenX > gp.inmate.worldX ||
+                    gp.inmate.screenY > gp.inmate.worldY ||
+                    rightOffset > gp.worldWidth - gp.inmate.worldX ||
+                    bottomOffset > gp.worldHeight - gp.inmate.worldY){
+                g2.drawImage(tile[tileNum].image, screenX, screenY, null);
+            }
+            worldCol++;
+
+            if (worldCol == gp.maxWorldCol){
+                worldCol = 0;
+                worldRow++;
+            }
         }
     }
 }

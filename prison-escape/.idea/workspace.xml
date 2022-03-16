@@ -4,35 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5980bed3-4a06-4122-9bc3-176987054f36" name="Changes" comment="Commit">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/font/x12y16pxMaruMonica.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/levels/Level1.txt" afterDir="false" />
+    <list default="true" id="5980bed3-4a06-4122-9bc3-176987054f36" name="Changes" comment="Redefined map and resource loading">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/prison-escape.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/prison-escape.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Gaurd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Gaurd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Inmate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Inmate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/AssetSetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/Collision.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/Collision.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/objects/SuperObject.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/objects/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/objects/TileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/levels/Level1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/bed.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/bed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/cell1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/cell1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/cell2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/cell2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/exit1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/exit1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/exit2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/exit2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/exit3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/exit3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/exit4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/exit4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/exit5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/exit5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/exitGate.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/exitGate.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/decorate/toilet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiles/toilet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/decorate/bed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/decorate/cell1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/decorate/cell2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/decorate/exit1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/decorate/exit2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/decorate/exit3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/decorate/exit4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/decorate/exit5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/decorate/exitGate.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/decorate/toilet.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,6 +130,7 @@
       <workItem from="1647222951647" duration="5578000" />
       <workItem from="1647322454580" duration="967000" />
       <workItem from="1647323441602" duration="1002000" />
+      <workItem from="1647413788103" duration="4509000" />
     </task>
     <task id="LOCAL-00001" summary="Create Project">
       <created>1646530149541</created>
@@ -210,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647322900270</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Redefined map and resource loading">
+      <created>1647408434357</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1647408434357</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,6 +254,7 @@
     <MESSAGE value="Add music and sound effect" />
     <MESSAGE value="Add messages when pick up objects" />
     <MESSAGE value="Try to add Debug state, fails" />
-    <option name="LAST_COMMIT_MESSAGE" value="Try to add Debug state, fails" />
+    <MESSAGE value="Redefined map and resource loading" />
+    <option name="LAST_COMMIT_MESSAGE" value="Redefined map and resource loading" />
   </component>
 </project>

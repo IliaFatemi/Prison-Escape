@@ -5,8 +5,6 @@ import com.group10.app.objects.ObjKey;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -24,13 +22,6 @@ public class UI {
     public UI (GamePanel gp) {
 
         this.gp = gp;
-
-//        try {
-//            InputStream is = getClass().getResourceAsStream("/font/x12y16pxMaruMonica.ttf");
-//            maruMonica = Font.createFont(Font.TRUETYPE_FONT, is);
-//        } catch (FontFormatException | IOException e) {
-//            e.printStackTrace();
-//        }
 
         arial_40 = new Font("Arial", Font.PLAIN, 40);
 

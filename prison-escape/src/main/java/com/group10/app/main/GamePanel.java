@@ -21,13 +21,20 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable{
    
     // Screen size settings
-    final int originalCellSize = 12;
-    final int scaleFactor = 4;
+    final int originalCellSize = 16;
+    final int scaleFactor = 3;
+
     public final int cellSize = originalCellSize * scaleFactor; //48x48 cells
-    public final int screenColNumber = 30;
-    public final int screenRowNumber = 18;
+    public final int screenColNumber = 16;
+    public final int screenRowNumber = 12;
     public final int screenWidth = cellSize * screenColNumber;//1920 pixels
     public final int screenHeight = cellSize * screenRowNumber;//1080 pixels
+
+    //World setting
+    public final int maxWorldCol = 30;
+    public final int maxWorldRow = 18;
+    public final int worldWidth = cellSize * maxWorldCol;
+    public final int worldHeight = cellSize * maxWorldRow;
 
     final int framePerSecond = 60;
 
@@ -107,8 +114,8 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void startGameThread(){
-            gameThread = new Thread(this);
-            gameThread.start();
+        gameThread = new Thread(this);
+        gameThread.start();
     }
 
     
@@ -130,50 +137,44 @@ public class GamePanel extends JPanel implements Runnable{
         return false;
     }
 
+    @Override
     public void run() {
         double drawInterval = 1000000000/ framePerSecond;
         double nextDrawTime = System.nanoTime() + drawInterval;
 
         while(gameThread != null){
-            
-            //render graphics
-            repaint();
 
             //Pause the game if pause menu is active
             update();
-            if(state != STATE.PAUSED && state != STATE.MENU && state != STATE.GAMEWON && state != STATE.GAMEOVER){
-                //Testing for collision detection with a gaurd
-                if (isCollision(inmate, gaurd.getX(), gaurd.getY(), ENEMY_COLLISION_DISTANCE)){
-                    System.out.println("ENEMY COLLIDED");
-                    System.out.println("===================================");
-                    state = STATE.GAMEOVER;
+            //render graphics
+            repaint();
+    
+            try {
+                double remainingTime = nextDrawTime - System.nanoTime();
+                remainingTime /= 1000000;
+
+                if(remainingTime < 0){
+                    remainingTime = 0;
                 }
 
-                if(inmate.getNumKeys() == 3 && reachedGate()){
-                    state = STATE.GAMEWON;
-                }
+                Thread.sleep((long) remainingTime);
 
-    
-                try {
-                    double remainingTime = nextDrawTime - System.nanoTime();
-                    remainingTime /= 1000000;
-    
-                    if(remainingTime < 0){
-                        remainingTime = 0;
-                    }
-    
-                    Thread.sleep((long) remainingTime);
-    
-                    nextDrawTime += drawInterval;
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                nextDrawTime += drawInterval;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
 
     public void update(){
-        inmate.update();
+
+        if (state == STATE.GAME){
+            inmate.update();
+            gaurd.update();
+        }
+        if (state == STATE.PAUSED){
+            //nothing
+        }
     }
 
     public void paintComponent(Graphics graphic){
@@ -186,60 +187,36 @@ public class GamePanel extends JPanel implements Runnable{
             tileManage.draw(g2);
     
             // Draw objects
-            for (int i = 0; i < obj.length; i++){
-                if (obj[i] != null){
-                    obj[i].draw(g2);
+            for (Entity entity : obj) {
+                if (entity != null) {
+                    entity.draw(g2);
                 }
             }
     
             //Draw gaurd
-            gaurd.draw(g2, this);
+            gaurd.draw(g2);
     
             //Draw the inmate
             inmate.draw(g2);
 
             // Draw UI
             ui.draw(g2);
-
-            g2.dispose();
-
-            //Debug
-            if (keyH.showDebugText){
-
-                g2.setFont(new Font("Arial", Font.PLAIN, 20));
-                g2.setColor(Color.white);
-                int x = 10;
-                int y = 400;
-                int lineHeight = 20;
-
-                g2.drawString("WorldX " + inmate.x, x, y);
-                y += lineHeight;
-                g2.drawString("WorldY " + inmate.y, x, y);
-                y += lineHeight;
-                g2.drawString("Col " + inmate.x / cellSize, x, y);
-                y += lineHeight;
-                g2.drawString("Row " + inmate.y / cellSize, x, y);
-            }
         }
         else if(state == STATE.PAUSED){
-            pauseMenu.renderPauseMenu(g2);
-            g2.dispose();
-        }
+            pauseMenu.renderPauseMenu(g2);}
         else if (state == STATE.MENU){
             //Render the main menu
             mainMenu.renderMain(g2);
-            g2.dispose();
         }
         else if (state == STATE.GAMEWON){
             //render the game won menu
             wonMenu.renderWonGraphics(g2);
-            g2.dispose();
         }
         else if (state == STATE.GAMEOVER){
             //render game over menu
             gameOver.renderGameOverMenu(g2);
-            g2.dispose();
         }
+        g2.dispose();
     }
 
     public void playMusic (int i) {

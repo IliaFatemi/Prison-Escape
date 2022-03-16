@@ -36,8 +36,8 @@ public class AssetSetter {
 
     public void createObj(Entity entity, int worldX, int worldY) {
         gp.obj[objIndex] = entity;
-        gp.obj[objIndex].x = gp.cellSize * worldX;
-        gp.obj[objIndex].y = gp.cellSize * worldY;
+        gp.obj[objIndex].worldX = gp.cellSize * worldX;
+        gp.obj[objIndex].worldY = gp.cellSize * worldY;
         objIndex++;
     }
 }
