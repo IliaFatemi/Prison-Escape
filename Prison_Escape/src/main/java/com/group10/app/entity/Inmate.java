@@ -25,15 +25,7 @@ public class Inmate extends Entity{
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
-        setInmateValues();
         getInmateImage();
-    }
-
-    public void setInmateValues(){
-        x = gp.cellSize * 5;
-        y = gp.cellSize * 5;
-        speed = 3;
-        direction = "down";
     }
 
     public void getInmateImage(){
@@ -67,15 +59,14 @@ public class Inmate extends Entity{
             gp.collisionCheck.wallCheck(this);
 
             int objectIndex = gp.collisionCheck.checkObject(this, true);
-            System.out.println("objectIndex is " + objectIndex);
             pickUpObject(objectIndex);
 
             if(!collision){
                 switch (direction) {
-                    case "up" -> y -= speed;
-                    case "down" -> y += speed;
-                    case "left" -> x -= speed;
-                    case "right" -> x += speed;
+                    case "up": y -= speed; break;
+                    case "down": y += speed; break;
+                    case "left": x -= speed; break;
+                    case "right": x += speed; break;
                 }
             }
 
@@ -144,10 +135,14 @@ public class Inmate extends Entity{
     //reset the keys
     public void resetKeys(){hasKey = 0;}
 
+    //reset the timer
+    public void resetScore(){score = 0;}
+
     //reset everything
     public void resetInmate(){
         x = 100;
         y = 100;
+        speed = 2;
         time = 100;
         score = 0;
     }
@@ -161,26 +156,26 @@ public class Inmate extends Entity{
             gp.ui.addMessage(text);
 
             switch (objectName) {
-                case "Key" -> {
+                case "Key":
                     gp.playSE(1);
                     hasKey++;
                     gp.obj[i] = null;
-                }
-                case "Timer" -> {
+                break;
+                case "Timer":
                     gp.playSE(2);
                     time += 20;
                     gp.obj[i] = null;
-                }
-                case "Chicken" -> {
+                break;
+                case "Chicken":
                     gp.playSE(3);
                     score += 100;
                     gp.obj[i] = null;
-                }
-                case "Trap" -> {
+                break;
+                case "Trap":
                     gp.playSE(4);
                     score -= 50;
                     gp.obj[i] = null;
-                }
+                break;
             }
         }
     }
@@ -188,7 +183,7 @@ public class Inmate extends Entity{
     public void draw(Graphics2D g2){
         BufferedImage image = null;
         switch (direction) {
-            case "up" -> {
+            case "up":
                 if (spriteNum == 1) {
                     image = up1;
                 }
@@ -198,8 +193,8 @@ public class Inmate extends Entity{
                 if (spriteNum == 3) {
                     image = up3;
                 }
-            }
-            case "down" -> {
+            break;
+            case "down":
                 if (spriteNum == 1) {
                     image = down1;
                 }
@@ -209,8 +204,8 @@ public class Inmate extends Entity{
                 if (spriteNum == 3) {
                     image = down3;
                 }
-            }
-            case "left" -> {
+            break;
+            case "left":
                 if (spriteNum == 1) {
                     image = left1;
                 }
@@ -220,8 +215,8 @@ public class Inmate extends Entity{
                 if (spriteNum == 3) {
                     image = left3;
                 }
-            }
-            case "right" -> {
+            break;
+            case "right":
                 if (spriteNum == 1) {
                     image = right1;
                 }
@@ -231,9 +226,9 @@ public class Inmate extends Entity{
                 if (spriteNum == 3) {
                     image = right3;
                 }
-            }
-            default -> {
-            }
+            break;
+            default: break;
+            
         }
         g2.drawImage(image, x , y, gp.cellSize, gp.cellSize, null);
     }

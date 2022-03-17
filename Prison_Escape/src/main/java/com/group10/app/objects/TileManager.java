@@ -23,7 +23,6 @@ public class TileManager {
         tile = new Tiles[30];
         mapTileNum = new int[gp.screenColNumber][gp.screenRowNumber];
         registerImage();
-        loadMap("/levels/Level1.txt");
     }
 
     public void registerImage(){
@@ -56,6 +55,7 @@ public class TileManager {
         setup(23, "exit3", true);
         setup(24, "exit4", true);
         setup(25, "exit5", true);
+        setup(26, "cell1", true);
     }
 
     public void setup(int index, String imageName, boolean collision) {
