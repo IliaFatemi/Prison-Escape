@@ -35,7 +35,7 @@ public class GamePanel extends JPanel implements Runnable{
     int ENEMY_COLLISION_DISTANCE = 40;
 
     //The level the player is on
-    int GAME_LEVEL = 1;
+    public static int GAME_LEVEL = 1;
     Boolean GAME_SAVED = false;
 
     //Load saved data
@@ -102,7 +102,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void setUpAsset() {
-        asset.setObject();
+        if (GAME_LEVEL == 1){asset.setObjectLevel1();}
         playMusic(0);
     }
 
@@ -129,10 +129,9 @@ public class GamePanel extends JPanel implements Runnable{
         double nextDrawTime = System.nanoTime() + drawInterval;
 
         while(gameThread != null){
-            
             //render graphics
             repaint();
-
+    
             //Pause the game if pause menu is active
             update();
             if(state != STATE.PAUSED && state != STATE.MENU && state != STATE.GAMEWON && state != STATE.GAMEOVER){
@@ -197,25 +196,6 @@ public class GamePanel extends JPanel implements Runnable{
             ui.draw(g2);
 
             g2.dispose();
-
-            //Debug
-            if (keyH.showDebugText){
-                System.out.println("enter2");
-
-                g2.setFont(new Font("Arial", Font.PLAIN, 20));
-                g2.setColor(Color.white);
-                int x = 10;
-                int y = 400;
-                int lineHeight = 20;
-
-                g2.drawString("WorldX " + inmate.x, x, y);
-                y += lineHeight;
-                g2.drawString("WorldY " + inmate.y, x, y);
-                y += lineHeight;
-                g2.drawString("Col " + inmate.x / cellSize, x, y);
-                y += lineHeight;
-                g2.drawString("Row " + inmate.y / cellSize, x, y);
-            }
         }
         else if(state == STATE.PAUSED){
             pauseMenu.renderPauseMenu(g2);
@@ -251,5 +231,21 @@ public class GamePanel extends JPanel implements Runnable{
     public void playSE(int i) {
         soundEffect.setFile(i);
         soundEffect.play();
+    }
+
+    public void levelCheck(){
+        if(GAME_LEVEL == 1){
+            tileManage.loadMap("/levels/Level1.txt");
+            inmate.setPos(279, 717);
+        }else if (GamePanel.GAME_LEVEL == 2){
+            inmate.setPos(610, 562);
+            inmate.resetKeys();
+            inmate.resetScore();
+            inmate.setTimer(100);
+            tileManage.loadMap("/levels/Level2.txt");
+        }else if (GamePanel.GAME_LEVEL == 3){
+            tileManage.loadMap("/levels/Level3.txt");
+        }
+        GamePanel.state = STATE.GAME;
     }
 }

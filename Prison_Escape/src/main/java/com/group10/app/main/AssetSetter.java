@@ -17,11 +17,10 @@ public class AssetSetter {
         this.gp = gp;
     }
 
-    public void setObject(){
+    public void setObjectLevel1(){
         createObj(new ObjKey(gp), 11, 11);
-        createObj(new ObjKey(gp), 12, 11);
-        createObj(new ObjKey(gp), 14, 11);
-
+        createObj(new ObjKey(gp), 2, 15);
+        createObj(new ObjKey(gp), 18, 11);
     }
 
     public void update(){
