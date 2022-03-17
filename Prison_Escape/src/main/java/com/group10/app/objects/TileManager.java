@@ -4,15 +4,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
-import java.io.FileInputStream;  
-
-
+ 
 import javax.imageio.ImageIO;
 import com.group10.app.main.GamePanel;
 import com.group10.app.main.UtilityTool;
 
 import java.awt.*;
+import java.util.Objects;
 
 public class TileManager {
     GamePanel gp;
@@ -65,7 +63,7 @@ public class TileManager {
 
         try {
             tile[index] = new Tiles();
-            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/" + imageName + ".png"));
+            tile[index].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/" + imageName + ".png")));
             tile[index].image = uTool.scaleImage(tile[index].image, gp.cellSize, gp.cellSize);
             tile[index].collision = collision;
 

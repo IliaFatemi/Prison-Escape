@@ -5,8 +5,6 @@ import com.group10.app.objects.ObjKey;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -18,9 +16,6 @@ public class UI {
     BufferedImage keyImage;
     ArrayList<String> message = new ArrayList<>();
     ArrayList<Integer> messageCounter = new ArrayList<>();
-//    public String currentDialogue = "";
-//    public int commandNum = 0;
-//    public int titleScreenState = 0; //0: the first screen, 1: the second screen
 
     DecimalFormat dFormat = new DecimalFormat("#0.0");
 

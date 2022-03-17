@@ -4,6 +4,8 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
+
 import com.group10.app.main.GamePanel;
 
 public class GameOverMenu {
@@ -18,9 +20,9 @@ public class GameOverMenu {
 
     public void getGameOverGraphics(){
         try{
-            gameOverTemplate = ImageIO.read(getClass().getResourceAsStream("/menu/gameOver.png"));
-            retry = ImageIO.read(getClass().getResourceAsStream("/menu/retryBtn.png"));
-            returnMenu = ImageIO.read(getClass().getResourceAsStream("/menu/returnToMenuBtn.png"));
+            gameOverTemplate = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/gameOver.png")));
+            retry = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/retryBtn.png")));
+            returnMenu = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/returnToMenuBtn.png")));
         }catch(IOException e){
             e.printStackTrace();
         }

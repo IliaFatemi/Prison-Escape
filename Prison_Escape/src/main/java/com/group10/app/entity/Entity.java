@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Entity {
 
@@ -26,9 +27,6 @@ public class Entity {
 
     // Counter
     public int disappears = 0;
-
-    // Type
-    public int type;
 
     //
     public int x, y;
@@ -51,7 +49,7 @@ public class Entity {
         BufferedImage image = null;
 
         try {
-            image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(imagePath + ".png")));
             image = uTool.scaleImage(image, width, height);
         } catch (IOException e) {
             e.printStackTrace();

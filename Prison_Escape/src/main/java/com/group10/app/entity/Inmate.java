@@ -152,52 +152,12 @@ public class Inmate extends Entity{
         score = 0;
     }
 
-    //Setting the players position in the oposite direction
-    public void revertPosition(String pos){
-        if(pos == "down"){
-            y *= -1;
-            if(y >= 0){
-                y -= 1;
-            }
-            else{
-                y += 1;
-            }
-        }
-        else if(pos == "up"){
-            y *= -1;
-            if(y >= 0){
-                y -= 100;
-            }
-            else{
-                y += 100;
-            }
-        }
-        else if(pos == "left"){
-            x *= -1;
-            if(x >= 0){
-                x -= 100;
-            }
-            else{
-                x += 100;
-            }
-        } 
-        else if(pos == "right"){
-            x *= -1;
-            if(x >= 0){
-                x -= 1;
-            }
-            else{
-                x += 1;
-            }
-        }
-    }
-
     public void pickUpObject (int i) {
 
         if (i != 999){
 
             String objectName = gp.obj[i].name;
-            String text = "Got a " + gp.obj[i].name + "!";;
+            String text = "Got a " + gp.obj[i].name + "!";
             gp.ui.addMessage(text);
 
             switch (objectName) {
@@ -275,7 +235,6 @@ public class Inmate extends Entity{
             default -> {
             }
         }
-
         g2.drawImage(image, x , y, gp.cellSize, gp.cellSize, null);
     }
 }
