@@ -13,6 +13,7 @@ public class Entity {
 
     GamePanel gp;
     public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, left3, right1, right2, right3;
+    public BufferedImage door1, door2, door3, door4, door5;
     public BufferedImage image;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
@@ -40,6 +41,8 @@ public class Entity {
     }
 
     public void draw(Graphics2D g2) {
+
+
         g2.drawImage(down1, x, y, gp.cellSize, gp.cellSize, null);
     }
 

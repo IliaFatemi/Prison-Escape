@@ -179,6 +179,9 @@ public class GamePanel extends JPanel implements Runnable{
     
             //draw tiles
             tileManage.draw(g2);
+
+            // Draw door
+
     
             // Draw objects
             for (Entity entity : obj) {
@@ -197,25 +200,6 @@ public class GamePanel extends JPanel implements Runnable{
             ui.draw(g2);
 
             g2.dispose();
-
-            //Debug
-            if (keyH.showDebugText){
-                System.out.println("enter2");
-
-                g2.setFont(new Font("Arial", Font.PLAIN, 20));
-                g2.setColor(Color.white);
-                int x = 10;
-                int y = 400;
-                int lineHeight = 20;
-
-                g2.drawString("WorldX " + inmate.x, x, y);
-                y += lineHeight;
-                g2.drawString("WorldY " + inmate.y, x, y);
-                y += lineHeight;
-                g2.drawString("Col " + inmate.x / cellSize, x, y);
-                y += lineHeight;
-                g2.drawString("Row " + inmate.y / cellSize, x, y);
-            }
         }
         else if(state == STATE.PAUSED){
             pauseMenu.renderPauseMenu(g2);

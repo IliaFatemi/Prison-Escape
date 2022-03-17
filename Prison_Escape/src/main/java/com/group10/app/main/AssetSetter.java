@@ -2,6 +2,7 @@ package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
 import com.group10.app.objects.ObjChicken;
+import com.group10.app.objects.ObjDoor;
 import com.group10.app.objects.ObjKey;
 
 import java.util.Objects;
@@ -21,7 +22,11 @@ public class AssetSetter {
         createObj(new ObjKey(gp), 11, 11);
         createObj(new ObjKey(gp), 12, 11);
         createObj(new ObjKey(gp), 14, 11);
-
+        createObj(new ObjDoor(gp), 8, 30);
+        createObj(new ObjDoor(gp), 9, 30);
+        createObj(new ObjDoor(gp), 10, 30);
+        createObj(new ObjDoor(gp), 11, 30);
+        createObj(new ObjDoor(gp), 12, 30);
     }
 
     public void update(){

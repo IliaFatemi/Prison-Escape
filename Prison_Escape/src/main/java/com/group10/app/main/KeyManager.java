@@ -40,12 +40,6 @@ public class KeyManager implements KeyListener {
                 }
             }
         }
-
-        //Debug
-        if (code == KeyEvent.VK_T){
-            System.out.println("enter");
-            showDebugText = !showDebugText;
-        }
     }
 
     public void keyReleased(KeyEvent e) {

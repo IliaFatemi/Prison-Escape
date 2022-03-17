@@ -16,6 +16,7 @@ public class TileManager {
     GamePanel gp;
     public Tiles[] tile;
     public int[][] mapTileNum;
+    int doorCounter = 0;
 
     public TileManager(GamePanel gp){
         this.gp = gp;
@@ -102,6 +103,7 @@ public class TileManager {
 
     //Draw the object
     public void draw(Graphics2D g2){
+
         int nextCol = 0, nextRow = 0, x = 0, y = 0;
         while(nextCol < gp.screenColNumber && nextRow < gp.screenRowNumber){
             int tileNum = mapTileNum[nextCol][nextRow];
@@ -115,5 +117,31 @@ public class TileManager {
                 y += gp.cellSize;
             }
         }
+
+        int i = 5;
+
+        if (gp.inmate.hasKey == 3) {
+
+            if (doorCounter < i) {
+                changeAlpha(g2, 0.5f);
+            }
+
+            g2.drawImage(tile[21].image, gp.cellSize * 8, gp.cellSize * 30, gp.cellSize, gp.cellSize, null);
+            g2.drawImage(tile[22].image, gp.cellSize * 9, gp.cellSize * 30, gp.cellSize, gp.cellSize, null);
+            g2.drawImage(tile[23].image, gp.cellSize * 10, gp.cellSize * 30, gp.cellSize, gp.cellSize, null);
+            g2.drawImage(tile[24].image, gp.cellSize * 11, gp.cellSize * 30, gp.cellSize, gp.cellSize, null);
+            g2.drawImage(tile[25].image, gp.cellSize * 12, gp.cellSize * 30, gp.cellSize, gp.cellSize, null);
+
+            changeAlpha(g2, 1f);
+
+            doorCounter++;
+            if (doorCounter > 10){
+                doorCounter = 0;
+            }
+        }
+    }
+
+    public void changeAlpha(Graphics2D g2, float alphaValue) {
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }
 }
