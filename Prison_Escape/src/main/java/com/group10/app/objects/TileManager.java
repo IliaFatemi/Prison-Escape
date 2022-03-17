@@ -19,7 +19,7 @@ public class TileManager {
 
     public TileManager(GamePanel gp){
         this.gp = gp;
-        tile = new Tiles[30];
+        tile = new Tiles[31];
         mapTileNum = new int[gp.screenColNumber][gp.screenRowNumber];
         registerImage();
     }
@@ -55,6 +55,10 @@ public class TileManager {
         setup(24, "exit4", true);
         setup(25, "exit5", true);
         setup(26, "cell1", true);
+        setup(27, "cornerTopLeft", true);
+        setup(28, "cornerTopRight", true);
+        setup(29, "cornerBottomLeft", true);
+        setup(30, "cornerBottomRight", true);
     }
 
     public void setup(int index, String imageName, boolean collision) {
