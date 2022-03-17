@@ -6,7 +6,6 @@ import java.awt.event.WindowEvent;
 
 import com.group10.app.SavedData.SaveGame;
 import com.group10.app.main.GamePanel.STATE;
-import com.group10.app.objects.TileManager;
 import com.group10.app.App;
 
 public class MouseManager implements MouseListener{
@@ -154,10 +153,12 @@ public class MouseManager implements MouseListener{
     }
 
     public void GameOverMenuControls(int mouseX, int mouseY){
-        //next level button
+        //Retry level button
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(106)){
             if(mouseY >= gb.screenHeight/2-130 && mouseY <= gb.screenHeight/2-60){
                 System.out.println(mouseX + " "+ mouseY + ": Retry Level");
+                gb.levelCheck();
+                GamePanel.state = STATE.GAME;
             }
         }
 
