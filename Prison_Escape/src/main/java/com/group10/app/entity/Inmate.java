@@ -5,6 +5,7 @@ import com.group10.app.main.KeyManager;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Objects;
 
 
 public class Inmate extends Entity{
@@ -153,7 +154,10 @@ public class Inmate extends Entity{
 
             String objectName = gp.obj[i].name;
             String text = "Got a " + gp.obj[i].name + "!";
-            gp.ui.addMessage(text);
+
+            if (!Objects.equals(gp.obj[i].name, "Door")){
+                gp.ui.addMessage(text);
+            }
 
             switch (objectName) {
                 case "Key":

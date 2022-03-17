@@ -9,6 +9,7 @@ public class ObjDoor extends Entity {
         super(gp);
 
         name = "Door";
+
         door1 = setup("/tiles/exit1", gp.cellSize, gp.cellSize);
         door2 = setup("/tiles/exit2", gp.cellSize, gp.cellSize);
         door3 = setup("/tiles/exit3", gp.cellSize, gp.cellSize);
@@ -23,9 +24,5 @@ public class ObjDoor extends Entity {
         solidArea.height = 32;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-    }
-
-    public void drawDoor() {
-
     }
 }
