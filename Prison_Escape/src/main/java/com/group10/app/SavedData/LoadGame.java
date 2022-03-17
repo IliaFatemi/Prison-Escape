@@ -15,7 +15,7 @@ public class LoadGame {
     // index 5: number of keys
     // index 6: enemy x cor
     // index 7: enemy y cor
-    int data[] = new int[8];
+    int[] data = new int[8];
 
     public LoadGame(){
         loadData();
@@ -27,7 +27,7 @@ public class LoadGame {
             BufferedReader br = new BufferedReader(new InputStreamReader(level));
             String line = br.readLine();
             int i = 0;
-            String savedData[] = line.split(" ");
+            String[] savedData = line.split(" ");
 
             while(i < data.length && savedData.length == data.length){
                 int num = Integer.parseInt(savedData[i]);

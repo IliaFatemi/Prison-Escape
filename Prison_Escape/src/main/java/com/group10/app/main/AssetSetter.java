@@ -3,8 +3,6 @@ package com.group10.app.main;
 import com.group10.app.entity.Entity;
 import com.group10.app.objects.ObjChicken;
 import com.group10.app.objects.ObjKey;
-import com.group10.app.objects.ObjTimer;
-import com.group10.app.objects.ObjTrap;
 
 import java.util.Objects;
 import java.util.Random;
@@ -21,6 +19,9 @@ public class AssetSetter {
 
     public void setObject(){
         createObj(new ObjKey(gp), 11, 11);
+        createObj(new ObjKey(gp), 12, 11);
+        createObj(new ObjKey(gp), 14, 11);
+
     }
 
     public void update(){

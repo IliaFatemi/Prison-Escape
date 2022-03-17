@@ -2,7 +2,7 @@ package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
 import com.group10.app.entity.Inmate;
-import com.group10.app.entity.Gaurd;
+import com.group10.app.entity.Guard;
 
 import com.group10.app.objects.TileManager;
 import com.group10.app.menu.GameOverMenu;
@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     final int framePerSecond = 60;
 
-    //The distance where the player and enemy will colide at
+    //The distance where the player and enemy will collide at
     int ENEMY_COLLISION_DISTANCE = 40;
 
     //The level the player is on
@@ -49,7 +49,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     Thread gameThread;
     
-    //setup the tiles
+    //set up the tiles
     TileManager tileManage = new TileManager(this);
     
     //set player default position
@@ -58,8 +58,8 @@ public class GamePanel extends JPanel implements Runnable{
     //Set up the Mouse Keys
     MouseManager mouseK = new MouseManager(this);
 
-    //set gaurds position
-    Gaurd gaurd = new Gaurd(this, 200, 200);
+    //set guards position
+    Guard guard = new Guard(this, 200, 200);
 
     //Set up the main menu screen 
     MenuScreen mainMenu = new MenuScreen(this);
@@ -112,22 +112,16 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     
-    //Setting up collision between two objects.This function takes two perameters as turtles. 
+    //Setting up collision between two objects.This function takes two parameters as turtles.
     //Input: (Inmate:Obj, ObjectX: int, ObjectY: int: collision_type:int)   
     public boolean isCollision(Inmate inmate, double objectX, double objectY, int collision_type){   
         double distance = sqrt(pow(inmate.getX() - objectX, 2) + pow(inmate.getY() - objectY, 2));
         //System.out.println(distance);
-            if (distance <= collision_type){
-                return true;
-            }
-            return false;
+        return distance <= collision_type;
     }
 
     public boolean reachedGate(){
-        if(inmate.getX() >= 1344 && inmate.getX() <= 1350 && inmate.getY() >= 292 && inmate.getY() <= 544){
-            return true;
-        }
-        return false;
+        return inmate.getX() >= 1344 && inmate.getX() <= 1350 && inmate.getY() >= 292 && inmate.getY() <= 544;
     }
 
     public void run() {
@@ -142,8 +136,8 @@ public class GamePanel extends JPanel implements Runnable{
             //Pause the game if pause menu is active
             update();
             if(state != STATE.PAUSED && state != STATE.MENU && state != STATE.GAMEWON && state != STATE.GAMEOVER){
-                //Testing for collision detection with a gaurd
-                if (isCollision(inmate, gaurd.getX(), gaurd.getY(), ENEMY_COLLISION_DISTANCE)){
+                //Testing for collision detection with a guard
+                if (isCollision(inmate, guard.getX(), guard.getY(), ENEMY_COLLISION_DISTANCE)){
                     System.out.println("ENEMY COLLIDED");
                     System.out.println("===================================");
                     state = STATE.GAMEOVER;
@@ -193,8 +187,8 @@ public class GamePanel extends JPanel implements Runnable{
                 }
             }
     
-            //Draw gaurd
-            gaurd.draw(g2, this);
+            //Draw guard
+            guard.draw(g2);
     
             //Draw the inmate
             inmate.draw(g2);

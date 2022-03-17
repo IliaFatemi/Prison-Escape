@@ -5,6 +5,8 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
+
 import com.group10.app.main.GamePanel;
 
 public class MenuScreen extends MouseAdapter {
@@ -21,11 +23,11 @@ public class MenuScreen extends MouseAdapter {
 
     public void getMenuGraphics(){
         try{
-            gameTitle = ImageIO.read(getClass().getResourceAsStream("/menu/PrisonEscapeTitle.png"));
-            newGame = ImageIO.read(getClass().getResourceAsStream("/menu/newGameBtn.png"));
-            continue_ = ImageIO.read(getClass().getResourceAsStream("/menu/continueBtn.png"));
-            quitGame = ImageIO.read(getClass().getResourceAsStream("/menu/quitGameBtn.png"));
-            backgroundImg = ImageIO.read(getClass().getResourceAsStream("/menu/backgroundMenuImg.png"));
+            gameTitle = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/PrisonEscapeTitle.png")));
+            newGame = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/newGameBtn.png")));
+            continue_ = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/continueBtn.png")));
+            quitGame = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/quitGameBtn.png")));
+            backgroundImg = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/backgroundMenuImg.png")));
         }catch(IOException e){
             e.printStackTrace();
         }

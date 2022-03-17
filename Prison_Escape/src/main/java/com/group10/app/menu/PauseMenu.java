@@ -4,6 +4,8 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
+
 import com.group10.app.main.GamePanel;
 import com.group10.app.main.KeyManager;
 
@@ -26,10 +28,10 @@ public class PauseMenu {
 
     public void getPausedGraphics(){
         try{
-            resume = ImageIO.read(getClass().getResourceAsStream("/menu/resumeBtn.png"));
-            saveGame = ImageIO.read(getClass().getResourceAsStream("/menu/saveGameBtn.png"));
-            returnMenu = ImageIO.read(getClass().getResourceAsStream("/menu/returnToMenuBtn.png"));
-            pauseTemplate = ImageIO.read(getClass().getResourceAsStream("/menu/pausedTemplate.png"));
+            resume = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/resumeBtn.png")));
+            saveGame = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/saveGameBtn.png")));
+            returnMenu = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/returnToMenuBtn.png")));
+            pauseTemplate = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/pausedTemplate.png")));
         }catch(IOException e){
             e.printStackTrace();
         }
