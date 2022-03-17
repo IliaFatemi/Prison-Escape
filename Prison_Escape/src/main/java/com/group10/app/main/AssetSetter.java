@@ -17,10 +17,11 @@ public class AssetSetter {
 
     public AssetSetter(GamePanel gp){
         this.gp = gp;
-
     }
 
-    public void setObject(){}
+    public void setObject(){
+        createObj(new ObjKey(gp), 11, 11);
+    }
 
     public void update(){
         createRandomObj(new ObjChicken(gp));
@@ -30,7 +31,6 @@ public class AssetSetter {
     public void createRandomObj(Entity entity) {
 
         randomObjCounter++;
-
 
         if (randomObjCounter > 400) {
 
@@ -58,8 +58,8 @@ public class AssetSetter {
 
     public void createObj(Entity entity, int worldX, int worldY) {
         gp.obj[objIndex] = entity;
-        gp.obj[objIndex].worldX = gp.cellSize * worldX;
-        gp.obj[objIndex].worldY = gp.cellSize * worldY;
+        gp.obj[objIndex].x = gp.cellSize * worldX;
+        gp.obj[objIndex].y = gp.cellSize * worldY;
         objIndex++;
     }
 

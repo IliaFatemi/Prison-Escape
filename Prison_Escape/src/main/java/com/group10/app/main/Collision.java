@@ -7,7 +7,6 @@ public class Collision {
 
     public Collision (GamePanel gp){
         this.gp = gp;
-
     }
 
     public void wallCheck(Entity entity){
@@ -62,8 +61,7 @@ public class Collision {
         }
     }
 
-
-    public int checkObject(Entity entity, boolean player) {
+    public int checkObject(Entity entity, boolean inmate) {
 
         int index = 999;
 
@@ -78,50 +76,50 @@ public class Collision {
                 gp.obj[i].solidArea.y = gp.obj[i].y + gp.obj[i].solidArea.y;
 
                 switch (entity.direction) {
-                    case "up":
+                    case "up" -> {
                         entity.solidArea.y -= entity.speed;
-                        if (entity.solidArea.intersects(gp.obj[i].solidArea)){
-                            if (gp.obj[i].collision){
+                        if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
+                            if (gp.obj[i].collision) {
                                 entity.collision = true;
                             }
-                            if (player){
+                            if (inmate) {
                                 index = i;
                             }
                         }
-                        break;
-                    case "down":
+                    }
+                    case "down" -> {
                         entity.solidArea.y += entity.speed;
-                        if (entity.solidArea.intersects(gp.obj[i].solidArea)){
-                            if (gp.obj[i].collision){
+                        if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
+                            if (gp.obj[i].collision) {
                                 entity.collision = true;
                             }
-                            if (player){
+                            if (inmate) {
                                 index = i;
                             }
                         }
-                        break;
-                    case "left":
+                    }
+                    case "left" -> {
                         entity.solidArea.x -= entity.speed;
-                        if (entity.solidArea.intersects(gp.obj[i].solidArea)){
-                            if (gp.obj[i].collision){
+                        if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
+                            if (gp.obj[i].collision) {
                                 entity.collision = true;
                             }
-                            if (player){
+                            if (inmate) {
                                 index = i;
                             }
                         }
-                        break;
-                    case "right":
+                    }
+                    case "right" -> {
                         entity.solidArea.x += entity.speed;
-                        if (entity.solidArea.intersects(gp.obj[i].solidArea)){
-                            if (gp.obj[i].collision){
+                        if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
+                            if (gp.obj[i].collision) {
                                 entity.collision = true;
                             }
-                            if (player){
+                            if (inmate) {
                                 index = i;
                             }
                         }
-                        break;
+                    }
                 }
 
                 entity.solidArea.x = entity.solidX;
@@ -132,6 +130,15 @@ public class Collision {
         }
 
         return index;
+    }
+
+    private void nextSolidArea(Entity entity) {
+        switch (entity.direction) {
+            case "up" -> entity.solidArea.y -= entity.speed;
+            case "down" -> entity.solidArea.y += entity.speed;
+            case "left" -> entity.solidArea.x -= entity.speed;
+            case "right" -> entity.solidArea.x += entity.speed;
+        }
     }
 
 }

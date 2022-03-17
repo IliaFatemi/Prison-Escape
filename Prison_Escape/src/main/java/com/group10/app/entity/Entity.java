@@ -18,7 +18,6 @@ public class Entity {
     public boolean collision = false;
 
     // State
-    public int worldX, worldY;
     public String direction = "down";
 
     // Character Status
@@ -43,7 +42,7 @@ public class Entity {
     }
 
     public void draw(Graphics2D g2) {
-        g2.drawImage(down1, worldX, worldY, gp.cellSize, gp.cellSize, null);
+        g2.drawImage(down1, x, y, gp.cellSize, gp.cellSize, null);
     }
 
     public BufferedImage setup(String imagePath, int width, int height) {
