@@ -70,11 +70,11 @@ public class TileManager {
         }catch (IOException e){
             e.printStackTrace();
         }
-
     }
 
     //Loading level
     public void loadMap(String filePath){
+
         try{
             InputStream level = getClass().getResourceAsStream(filePath);
             assert level != null;
@@ -97,9 +97,7 @@ public class TileManager {
             }
             br.close();
 
-        }catch(Exception ignored){
-
-        }
+        }catch(Exception ignored){}
     }
 
     //Draw the object
@@ -116,7 +114,6 @@ public class TileManager {
                 nextRow++;
                 y += gp.cellSize;
             }
-
         }
     }
 }

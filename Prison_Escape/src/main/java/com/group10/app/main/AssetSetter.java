@@ -58,15 +58,21 @@ public class AssetSetter {
     }
 
     public void createObj(Entity entity, int worldX, int worldY) {
-        gp.obj[objIndex] = entity;
-        gp.obj[objIndex].x = gp.cellSize * worldX;
-        gp.obj[objIndex].y = gp.cellSize * worldY;
-        objIndex++;
+
+        int i = 0;
+
+        while (gp.obj[i] != null){
+            i++;
+        }
+
+        gp.obj[i] = entity;
+        gp.obj[i].x = gp.cellSize * worldX;
+        gp.obj[i].y = gp.cellSize * worldY;
     }
 
     public void deleteExpiredObj(int expiredTime) {
 
-        for (int i = 0; i < objIndex; i++){
+        for (int i = 0; i < gp.obj.length; i++){
 
             if (gp.obj[i] != null){
                 if (Objects.equals(gp.obj[i].name, "Chicken")){
