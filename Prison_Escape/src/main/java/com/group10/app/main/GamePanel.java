@@ -178,7 +178,7 @@ public class GamePanel extends JPanel implements Runnable{
     
             //draw tiles
             tileManage.draw(g2);
-    
+
             // Draw objects
             for (Entity entity : obj) {
                 if (entity != null) {

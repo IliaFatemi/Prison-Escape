@@ -106,6 +106,7 @@ public class TileManager {
 
     //Draw the object
     public void draw(Graphics2D g2){
+
         int nextCol = 0, nextRow = 0, x = 0, y = 0;
         while(nextCol < gp.screenColNumber && nextRow < gp.screenRowNumber){
             int tileNum = mapTileNum[nextCol][nextRow];
@@ -120,4 +121,5 @@ public class TileManager {
             }
         }
     }
+
 }
