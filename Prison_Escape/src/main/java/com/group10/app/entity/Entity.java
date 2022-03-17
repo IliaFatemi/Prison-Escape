@@ -22,7 +22,7 @@ public class Entity {
 
     // Character Status
     public String name;
-    public int speed;
+    public int speed = 2;
 
     // Counter
     public int disappears = 0;
