@@ -19,16 +19,37 @@ public class AssetSetter {
     }
 
     public void setObjectLevel1(){
+
+        for (int i = 0; i < gp.obj.length; i++){
+            if (gp.obj[i] != null){
+                gp.obj[i] = null;
+            }
+        }
+
+        // Create Key
         createObj(new ObjKey(gp), 11, 11);
         createObj(new ObjKey(gp), 2, 15);
         createObj(new ObjKey(gp), 18, 11);
 
-        createObj(new ObjDoor(gp), 29, 7);
-        createObj(new ObjDoor(gp), 29, 8);
-        createObj(new ObjDoor(gp), 29, 9);
-        createObj(new ObjDoor(gp), 29, 10);
-        createObj(new ObjDoor(gp), 29, 11);
+        // Create Door
+        createDoor();
+    }
 
+    public void setObjectLevel2(){
+
+        for (int i = 0; i < gp.obj.length; i++){
+            if (gp.obj[i] != null){
+                gp.obj[i] = null;
+            }
+        }
+
+        // Create Key
+        createObj(new ObjKey(gp), 27, 8);
+        createObj(new ObjKey(gp), 27, 9);
+        createObj(new ObjKey(gp), 27, 10);
+
+        // Create Door
+        createDoor();
     }
 
     public void update(){
@@ -80,7 +101,7 @@ public class AssetSetter {
             doorIndex++;
 
             if (doorIndex > 5) {
-                doorIndex = 0;
+                doorIndex = 1;
             }
         }
 
@@ -105,17 +126,13 @@ public class AssetSetter {
         }
     }
 
-    public void deleteDoor(int hasKey) {
+    public void createDoor() {
 
-        if (gp.inmate.hasKey == hasKey) {
-            for (int i = 0; i < gp.obj.length; i++) {
-                if (gp.obj[i] != null){
-                    if (Objects.equals(gp.obj[i].name, "Door")) {
-                        gp.obj[i] = null;
-                    }
-                }
-            }
-        }
+        createObj(new ObjDoor(gp), 29, 7);
+        createObj(new ObjDoor(gp), 29, 8);
+        createObj(new ObjDoor(gp), 29, 9);
+        createObj(new ObjDoor(gp), 29, 10);
+        createObj(new ObjDoor(gp), 29, 11);
     }
 }
 

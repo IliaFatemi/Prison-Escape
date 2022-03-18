@@ -103,6 +103,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void setUpAsset() {
         if (GAME_LEVEL == 1){asset.setObjectLevel1();}
+        else if (GAME_LEVEL == 2){asset.setObjectLevel2();}
         playMusic(0);
     }
 
@@ -247,5 +248,6 @@ public class GamePanel extends JPanel implements Runnable{
             tileManage.loadMap("/levels/Level3.txt");
         }
         GamePanel.state = STATE.GAME;
+        setUpAsset();
     }
 }
