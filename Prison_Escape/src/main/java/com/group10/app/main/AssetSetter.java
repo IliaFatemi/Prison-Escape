@@ -49,9 +49,14 @@ public class AssetSetter {
         }
 
         // Create Key
-        createObj(new ObjKey(gp), 27, 8);
-        createObj(new ObjKey(gp), 27, 9);
-        createObj(new ObjKey(gp), 27, 10);
+        createObj(new ObjKey(gp), 8, 11);
+        createObj(new ObjKey(gp), 16, 11);
+        createObj(new ObjKey(gp), 27, 15);
+        createObj(new ObjKey(gp), 26, 2);
+        createObj(new ObjTimer(gp), 2, 7);
+        createObj(new ObjTrap(gp), 6, 9);
+        createObj(new ObjTrap(gp), 7, 9);
+        createObj(new ObjTrap(gp), 8, 9);
 
         // Create Door
         createDoor();
@@ -66,9 +71,19 @@ public class AssetSetter {
 
         // Create Key
         createObj(new ObjKey(gp), 8, 8);
-        createObj(new ObjKey(gp), 14, 19);
+        createObj(new ObjKey(gp), 9, 16);
         createObj(new ObjKey(gp), 22, 7);
-
+        createObj(new ObjKey(gp), 4, 10);
+        createObj(new ObjKey(gp), 18, 13);
+        createObj(new ObjTimer(gp), 17, 7);
+        createObj(new ObjTrap(gp), 16, 10);
+        createObj(new ObjTrap(gp), 16, 11);
+        createObj(new ObjTrap(gp), 16, 5);
+        createObj(new ObjTrap(gp), 15, 5);
+        createObj(new ObjTrap(gp), 25, 2);
+        createObj(new ObjTrap(gp), 25, 3);
+        createObj(new ObjTrap(gp), 19, 15);
+        createObj(new ObjTrap(gp), 19, 16);
         // Create Door
         createDoor();
     }

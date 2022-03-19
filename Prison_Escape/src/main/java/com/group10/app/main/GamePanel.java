@@ -133,7 +133,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public boolean isTimeOver(){
-        if(inmate.getTimer() < 0){
+        if(inmate.getTimer() <= 0){
             System.out.println("Time reached zero");
             return true;
         }
@@ -152,11 +152,12 @@ public class GamePanel extends JPanel implements Runnable{
             update();
             if(state != STATE.PAUSED && state != STATE.MENU && state != STATE.GAMEWON && state != STATE.GAMEOVER){
 
-                //Testing for collision detection with a guard
+                //guard collision or time is up
                 if (isCollision(inmate, guard.getX(), guard.getY(), ENEMY_COLLISION_DISTANCE) || isTimeOver()){state = STATE.GAMEOVER;}
+
+                //got all keys and reached the gate
                 if(gotAllKeys(GAME_LEVEL) && reachedGate()){state = STATE.GAMEWON;}
 
-    
                 try {
                     double remainingTime = nextDrawTime - System.nanoTime();
                     remainingTime /= 1000000;
