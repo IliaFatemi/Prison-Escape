@@ -34,6 +34,7 @@ public class MouseManager implements MouseListener{
         int mouseX = e.getX();
         int mouseY = e.getY();
         System.out.println(mouseX + ", " + mouseY);
+        System.out.println("col: "+mouseX/gb.cellSize + ", " + "row: "+mouseY/gb.cellSize);
 
         //Mouse control works only in main menu
         if(GamePanel.state != STATE.GAME && GamePanel.state != STATE.PAUSED && GamePanel.state != STATE.GAMEWON && GamePanel.state != STATE.GAMEOVER){
@@ -77,8 +78,10 @@ public class MouseManager implements MouseListener{
             if(mouseY >= gb.screenHeight/2-300 && mouseY <= gb.screenHeight/2-230){
                 System.out.println(mouseX + " "+ mouseY + ": Starting new game");
                 gb.levelCheck();
-                //gb.inmate.setPos(279, 717);
                 gb.inmate.resetKeys();
+                gb.inmate.resetScore();
+                gb.inmate.setTimer(100);
+                System.out.println("Resetting number of keys");
                 GamePanel.state = GamePanel.STATE.GAME;
             }
         }
@@ -94,6 +97,7 @@ public class MouseManager implements MouseListener{
                 gb.inmate.setScore(gb.load.loadScore());
                 gb.inmate.setNumKeys(gb.load.loadNumKeys());
                 GamePanel.state = STATE.GAME;
+                System.out.println("loading Complete");
                 gb.levelCheck();
             }
         }
@@ -141,6 +145,7 @@ public class MouseManager implements MouseListener{
             if(mouseY >= gb.screenHeight/2-130 && mouseY <= gb.screenHeight/2-60){
                 System.out.println(mouseX + " "+ mouseY + ": Next level");
                 GamePanel.GAME_LEVEL++;
+                System.out.println("(Update) Level: "+GamePanel.GAME_LEVEL);
                 if(GamePanel.GAME_LEVEL > 3){
                     GamePanel.GAME_LEVEL = 1;
                 }
@@ -152,6 +157,7 @@ public class MouseManager implements MouseListener{
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(106)){
             if(mouseY >= gb.screenHeight/2 - 30 && mouseY <= gb.screenHeight/2 + 40){
                 GamePanel.GAME_LEVEL++;
+                System.out.println("(Update) Level: "+GamePanel.GAME_LEVEL);
                 gb.saveGame.save(GamePanel.GAME_LEVEL,(int) gb.inmate.getX(),(int) gb.inmate.getY(), gb.inmate.getTimer(), gb.inmate.getScore(), gb.inmate.getNumKeys(), 0, 0);   
                 System.out.println(mouseX + " "+ mouseY + ": returning to Main menu");
                 GamePanel.state = STATE.MENU;

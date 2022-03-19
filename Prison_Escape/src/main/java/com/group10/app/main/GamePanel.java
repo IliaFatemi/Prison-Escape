@@ -240,6 +240,9 @@ public class GamePanel extends JPanel implements Runnable{
         if(GAME_LEVEL == 1){
             tileManage.loadMap("/levels/Level1.txt");
             inmate.setPos(279, 717);
+            inmate.resetKeys();
+            inmate.resetScore();
+            inmate.setTimer(100);
         }else if (GamePanel.GAME_LEVEL == 2){
             inmate.setPos(610, 562);
             inmate.resetKeys();
@@ -247,6 +250,7 @@ public class GamePanel extends JPanel implements Runnable{
             inmate.setTimer(100);
             tileManage.loadMap("/levels/Level2.txt");
         }else if (GamePanel.GAME_LEVEL == 3){
+            inmate.setPos(110, 101);
             inmate.resetKeys();
             inmate.resetScore();
             inmate.setTimer(100);

@@ -136,7 +136,7 @@ public class Inmate extends Entity{
     //reset the keys
     public void resetKeys(){hasKey = 0;}
 
-    //reset the timer
+    //reset the score
     public void resetScore(){score = 0;}
 
     //reset everything
