@@ -118,12 +118,26 @@ public class GamePanel extends JPanel implements Runnable{
     //Input: (Inmate:Obj, ObjectX: int, ObjectY: int: collision_type:int)   
     public boolean isCollision(Inmate inmate, double objectX, double objectY, int collision_type){   
         double distance = sqrt(pow(inmate.getX() - objectX, 2) + pow(inmate.getY() - objectY, 2));
-        //System.out.println(distance);
         return distance <= collision_type;
     }
 
     public boolean reachedGate(){
         return inmate.getX() >= 1344 && inmate.getX() <= 1350 && inmate.getY() >= 292 && inmate.getY() <= 544;
+    }
+
+    public boolean gotAllKeys(int level){
+        if(level == 1 && inmate.getNumKeys() == 3){return true;}
+        else if(level == 2 && inmate.getNumKeys() == 4){return true;}
+        else if(level == 3 && inmate.getNumKeys() == 5){return true;}
+        return false;
+    }
+
+    public boolean isTimeOver(){
+        if(inmate.getTimer() < 0){
+            System.out.println("Time reached zero");
+            return true;
+        }
+        return false;
     }
 
     public void run() {
@@ -137,16 +151,10 @@ public class GamePanel extends JPanel implements Runnable{
             //Pause the game if pause menu is active
             update();
             if(state != STATE.PAUSED && state != STATE.MENU && state != STATE.GAMEWON && state != STATE.GAMEOVER){
-                //Testing for collision detection with a guard
-                if (isCollision(inmate, guard.getX(), guard.getY(), ENEMY_COLLISION_DISTANCE)){
-                    System.out.println("ENEMY COLLIDED");
-                    System.out.println("===================================");
-                    state = STATE.GAMEOVER;
-                }
 
-                if(inmate.getNumKeys() == 3 && reachedGate()){
-                    state = STATE.GAMEWON;
-                }
+                //Testing for collision detection with a guard
+                if (isCollision(inmate, guard.getX(), guard.getY(), ENEMY_COLLISION_DISTANCE) || isTimeOver()){state = STATE.GAMEOVER;}
+                if(gotAllKeys(GAME_LEVEL) && reachedGate()){state = STATE.GAMEWON;}
 
     
                 try {
