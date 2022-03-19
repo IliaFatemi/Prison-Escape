@@ -52,6 +52,23 @@ public class AssetSetter {
         createDoor();
     }
 
+    public void setObjectLevel3(){
+
+        for (int i = 0; i < gp.obj.length; i++){
+            if (gp.obj[i] != null){
+                gp.obj[i] = null;
+            }
+        }
+
+        // Create Key
+        createObj(new ObjKey(gp), 27, 8);
+        createObj(new ObjKey(gp), 27, 9);
+        createObj(new ObjKey(gp), 27, 10);
+
+        // Create Door
+        createDoor();
+    }
+
     public void update(){
         createRandomObj(new ObjChicken(gp));
         deleteExpiredObj(1200);
