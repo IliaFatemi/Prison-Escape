@@ -131,9 +131,9 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public boolean gotAllKeys(int level){
-        if(level == 1 && inmate.getNumKeys() == 3){return true;}
-        else if(level == 2 && inmate.getNumKeys() == 4){return true;}
-        else if(level == 3 && inmate.getNumKeys() == 5){return true;}
+        if(level == 1 && inmate.getNumKeys() >= 3){return true;}
+        else if(level == 2 && inmate.getNumKeys() >= 4){return true;}
+        else if(level == 3 && inmate.getNumKeys() >= 5){return true;}
         return false;
     }
 
