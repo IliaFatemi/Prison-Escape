@@ -34,6 +34,7 @@ public class MouseManager implements MouseListener{
         int mouseX = e.getX();
         int mouseY = e.getY();
         System.out.println(mouseX + ", " + mouseY);
+        System.out.println("col: "+mouseX/gb.cellSize + ", " + "row: "+mouseY/gb.cellSize);
 
         //Mouse control works only in main menu
         if(GamePanel.state != STATE.GAME && GamePanel.state != STATE.PAUSED && GamePanel.state != STATE.GAMEWON && GamePanel.state != STATE.GAMEOVER){
@@ -75,10 +76,12 @@ public class MouseManager implements MouseListener{
         //new game button
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(106)){
             if(mouseY >= gb.screenHeight/2-300 && mouseY <= gb.screenHeight/2-230){
-                System.out.println(mouseX + " "+ mouseY + ": Starting new game");
+                System.out.println("Starting new game");
                 gb.levelCheck();
-                //gb.inmate.setPos(279, 717);
                 gb.inmate.resetKeys();
+                gb.inmate.resetScore();
+                gb.inmate.setTimer(100);
+                System.out.println("Resetting number of keys");
                 GamePanel.state = GamePanel.STATE.GAME;
             }
         }
@@ -86,13 +89,16 @@ public class MouseManager implements MouseListener{
         //Continue button
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(106)){
             if(mouseY >= gb.screenHeight/2 - 200 && mouseY <= gb.screenHeight/2 - 130){
-                System.out.println(mouseX + " "+ mouseY + ": Continuing game");
+                System.out.println("Continuing game");
                 gb.load.loadData();
+                GamePanel.GAME_LEVEL = gb.load.loadLevel();
                 gb.inmate.setPos(gb.load.loadPlayerX(), gb.load.loadPlayerY());
                 gb.inmate.setTimer(gb.load.loadTimer());
                 gb.inmate.setScore(gb.load.loadScore());
                 gb.inmate.setNumKeys(gb.load.loadNumKeys());
                 GamePanel.state = STATE.GAME;
+                System.out.println("loading Complete");
+                gb.levelCheck();
             }
         }
 
@@ -100,7 +106,7 @@ public class MouseManager implements MouseListener{
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(106)){
             if(mouseY >= gb.screenHeight/2 - 100 && mouseY <= gb.screenHeight/2 - 30){
                 //Close the screen
-                System.out.println(mouseX + " "+ mouseY + ": Exiting game");
+                System.out.println("Exiting game");
                 App.window.dispatchEvent(new WindowEvent(App.window, WindowEvent.WINDOW_CLOSING));
             }
         }
@@ -110,7 +116,7 @@ public class MouseManager implements MouseListener{
         //Resume button
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(103)){
             if(mouseY >= gb.screenHeight/2 - 130 && mouseY <= gb.screenHeight/2-60){
-                System.out.println(mouseX + " "+ mouseY + ": resuming game");
+                System.out.println("resuming game");
                 GamePanel.state = GamePanel.STATE.GAME;
             }
         }
@@ -118,26 +124,31 @@ public class MouseManager implements MouseListener{
         //Save game controls
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(103)){
             if(mouseY >= gb.screenHeight/2 -30 && mouseY <= gb.screenHeight/2 + 40){
+                gb.saveGame.save(GamePanel.GAME_LEVEL,(int) gb.inmate.getX(),(int) gb.inmate.getY(), gb.inmate.getTimer(), gb.inmate.getScore(), gb.inmate.getNumKeys(), 0, 0);   
+                System.out.println("Saving game");
             }
         }
 
         //return to main menu controls
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(103)){
             if(mouseY >= gb.screenHeight/2 + 70 && mouseY <= gb.screenHeight/2 + 140){
-                gb.saveGame.save(1,(int) gb.inmate.getX(),(int) gb.inmate.getY(), gb.inmate.getTimer(), gb.inmate.getScore(), gb.inmate.getNumKeys(), 0, 0);       
-                System.out.println(mouseX + " "+ mouseY + ": returning to Main menu");
+                gb.saveGame.save(GamePanel.GAME_LEVEL,(int) gb.inmate.getX(),(int) gb.inmate.getY(), gb.inmate.getTimer(), gb.inmate.getScore(), gb.inmate.getNumKeys(), 0, 0);       
+                System.out.println("returning to Main menu");
                 GamePanel.state = STATE.MENU;
             }
         }
     }
 
     public void GameWonMenuControls(int mouseX, int mouseY){
-        
         //next level button
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(106)){
             if(mouseY >= gb.screenHeight/2-130 && mouseY <= gb.screenHeight/2-60){
-                System.out.println(mouseX + " "+ mouseY + ": Next level");
+                System.out.println("Next level");
                 GamePanel.GAME_LEVEL++;
+                System.out.println("(Update) Level: "+ GamePanel.GAME_LEVEL);
+                if(GamePanel.GAME_LEVEL > 3){
+                    GamePanel.GAME_LEVEL = 1;
+                }
                 gb.levelCheck();
             }
         }
@@ -145,7 +156,9 @@ public class MouseManager implements MouseListener{
         //return to main menu button
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(106)){
             if(mouseY >= gb.screenHeight/2 - 30 && mouseY <= gb.screenHeight/2 + 40){
-                gb.saveGame.save(1,(int) gb.inmate.getX(),(int) gb.inmate.getY(), gb.inmate.getTimer(), gb.inmate.getScore(), gb.inmate.getNumKeys(), 0, 0);   
+                GamePanel.GAME_LEVEL++;
+                System.out.println("(Update) Level: "+GamePanel.GAME_LEVEL);
+                gb.saveGame.save(GamePanel.GAME_LEVEL,(int) gb.inmate.getX(),(int) gb.inmate.getY(), gb.inmate.getTimer(), gb.inmate.getScore(), gb.inmate.getNumKeys(), 0, 0);   
                 System.out.println(mouseX + " "+ mouseY + ": returning to Main menu");
                 GamePanel.state = STATE.MENU;
             }
@@ -156,7 +169,7 @@ public class MouseManager implements MouseListener{
         //Retry level button
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(106)){
             if(mouseY >= gb.screenHeight/2-130 && mouseY <= gb.screenHeight/2-60){
-                System.out.println(mouseX + " "+ mouseY + ": Retry Level");
+                System.out.println("Retry Level");
                 gb.levelCheck();
                 GamePanel.state = STATE.GAME;
             }
@@ -165,7 +178,7 @@ public class MouseManager implements MouseListener{
         //return to main menu button
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(106)){
             if(mouseY >= gb.screenHeight/2 - 30 && mouseY <= gb.screenHeight/2 + 40){
-                System.out.println(mouseX + " "+ mouseY + ": returning to Main menu");
+                System.out.println("returning to Main menu");
                 gb.inmate.resetInmate();
                 GamePanel.state = STATE.MENU;
             }   
