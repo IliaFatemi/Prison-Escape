@@ -34,6 +34,11 @@ public class GamePanel extends JPanel implements Runnable{
     //The distance where the player and enemy will collide at
     int ENEMY_COLLISION_DISTANCE = 40;
 
+    //Level files in the game
+    String LEVEL1 = "/levels/Level1.txt";
+    String LEVEL2 = "/levels/Level2.txt";
+    String LEVEL3 = "/levels/Level3.txt";
+
     //The level the player is on
     public static int GAME_LEVEL = 1;
     Boolean GAME_SAVED = false;
@@ -247,7 +252,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void levelCheck(){
         if(GAME_LEVEL == 1){
-            tileManage.loadMap("/levels/Level1.txt");
+            tileManage.loadMap(LEVEL1);
             inmate.setPos(279, 717);
             inmate.resetKeys();
             inmate.resetScore();
@@ -257,13 +262,13 @@ public class GamePanel extends JPanel implements Runnable{
             inmate.resetKeys();
             inmate.resetScore();
             inmate.setTimer(100);
-            tileManage.loadMap("/levels/Level2.txt");
+            tileManage.loadMap(LEVEL2);
         }else if (GamePanel.GAME_LEVEL == 3){
             inmate.setPos(110, 101);
             inmate.resetKeys();
             inmate.resetScore();
             inmate.setTimer(100);
-            tileManage.loadMap("/levels/Level3.txt");
+            tileManage.loadMap(LEVEL3);
         }
         GamePanel.state = STATE.GAME;
         setUpAsset();
