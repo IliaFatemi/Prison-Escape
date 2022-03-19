@@ -104,6 +104,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void setUpAsset() {
         if (GAME_LEVEL == 1){asset.setObjectLevel1();}
         else if (GAME_LEVEL == 2){asset.setObjectLevel2();}
+        else if (GAME_LEVEL == 3){asset.setObjectLevel3();}
         playMusic(0);
     }
 
@@ -199,6 +200,7 @@ public class GamePanel extends JPanel implements Runnable{
             g2.dispose();
         }
         else if(state == STATE.PAUSED){
+            //render the pause menu
             pauseMenu.renderPauseMenu(g2);
             g2.dispose();
         }
@@ -245,6 +247,9 @@ public class GamePanel extends JPanel implements Runnable{
             inmate.setTimer(100);
             tileManage.loadMap("/levels/Level2.txt");
         }else if (GamePanel.GAME_LEVEL == 3){
+            inmate.resetKeys();
+            inmate.resetScore();
+            inmate.setTimer(100);
             tileManage.loadMap("/levels/Level3.txt");
         }
         GamePanel.state = STATE.GAME;
