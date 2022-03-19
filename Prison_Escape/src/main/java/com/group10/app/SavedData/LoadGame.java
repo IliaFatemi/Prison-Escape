@@ -23,8 +23,6 @@ public class LoadGame {
 
     public void loadData(){
         try{
-            System.out.println("Loading level...");
-            System.out.println("getting saved data");
             InputStream level = new FileInputStream("src/main/SavedGame/save0.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(level));
             String line = br.readLine();
@@ -37,7 +35,6 @@ public class LoadGame {
                 i++;
             }
             br.close();
-            System.out.println("Data loaded");
 
         }catch(Exception e){
             System.out.println("Failed to load save file");
@@ -45,12 +42,12 @@ public class LoadGame {
         }
     }
     
-    public int loadLevel(){System.out.println("loading level");return data[0];}
-    public int loadPlayerX(){System.out.println("loading position X");return data[1];}
-    public int loadPlayerY(){System.out.println("loading position Y");return data[2];}
-    public int loadTimer(){System.out.println("loading timer");return data[3];}
-    public int loadScore(){System.out.println("loading score");return data[4];}
-    public int loadNumKeys(){System.out.println("loading keys");return data[5];}
-    public int loadEnemyX(){System.out.println("loading Enemy pos X");return data[6];}
-    public int loadEnemyY(){System.out.println("loading Enemy pos Y");return data[7];}
+    public int loadLevel(){return data[0];}
+    public int loadPlayerX(){return data[1];}
+    public int loadPlayerY(){return data[2];}
+    public int loadTimer(){return data[3];}
+    public int loadScore(){return data[4];}
+    public int loadNumKeys(){return data[5];}
+    public int loadEnemyX(){return data[6];}
+    public int loadEnemyY(){return data[7];}
 }
