@@ -4,6 +4,8 @@ import com.group10.app.entity.Entity;
 import com.group10.app.objects.ObjChicken;
 import com.group10.app.objects.ObjDoor;
 import com.group10.app.objects.ObjKey;
+import com.group10.app.objects.ObjTimer;
+import com.group10.app.objects.ObjTrap;
 
 import java.util.Objects;
 import java.util.Random;
@@ -30,6 +32,9 @@ public class AssetSetter {
         createObj(new ObjKey(gp), 11, 11);
         createObj(new ObjKey(gp), 2, 15);
         createObj(new ObjKey(gp), 18, 11);
+        createObj(new ObjTimer(gp), 3, 3);
+        createObj(new ObjTrap(gp), 19, 10);
+        createObj(new ObjTrap(gp), 19, 9);
 
         // Create Door
         createDoor();
@@ -44,10 +49,41 @@ public class AssetSetter {
         }
 
         // Create Key
-        createObj(new ObjKey(gp), 27, 8);
-        createObj(new ObjKey(gp), 27, 9);
-        createObj(new ObjKey(gp), 27, 10);
+        createObj(new ObjKey(gp), 8, 11);
+        createObj(new ObjKey(gp), 16, 11);
+        createObj(new ObjKey(gp), 27, 15);
+        createObj(new ObjKey(gp), 26, 2);
+        createObj(new ObjTimer(gp), 2, 7);
+        createObj(new ObjTrap(gp), 6, 9);
+        createObj(new ObjTrap(gp), 7, 9);
+        createObj(new ObjTrap(gp), 8, 9);
 
+        // Create Door
+        createDoor();
+    }
+
+    public void setObjectLevel3(){
+        for (int i = 0; i < gp.obj.length; i++){
+            if (gp.obj[i] != null){
+                gp.obj[i] = null;
+            }
+        }
+
+        // Create Key
+        createObj(new ObjKey(gp), 8, 8);
+        createObj(new ObjKey(gp), 9, 16);
+        createObj(new ObjKey(gp), 22, 7);
+        createObj(new ObjKey(gp), 4, 10);
+        createObj(new ObjKey(gp), 18, 13);
+        createObj(new ObjTimer(gp), 17, 7);
+        createObj(new ObjTrap(gp), 16, 10);
+        createObj(new ObjTrap(gp), 16, 11);
+        createObj(new ObjTrap(gp), 16, 5);
+        createObj(new ObjTrap(gp), 15, 5);
+        createObj(new ObjTrap(gp), 25, 2);
+        createObj(new ObjTrap(gp), 25, 3);
+        createObj(new ObjTrap(gp), 19, 15);
+        createObj(new ObjTrap(gp), 19, 16);
         // Create Door
         createDoor();
     }
@@ -55,7 +91,6 @@ public class AssetSetter {
     public void update(){
         createRandomObj(new ObjChicken(gp));
         deleteExpiredObj(1200);
-        //deleteDoor(3);
     }
 
     public void createRandomObj(Entity entity) {
@@ -95,7 +130,6 @@ public class AssetSetter {
         }
 
         if (Objects.equals(entity.name, "Door")) {
-            System.out.println("Door index: " + doorIndex);
 
             entity.down1 = entity.setup("/tiles/exit" + doorIndex, gp.cellSize, gp.cellSize);
             doorIndex++;
