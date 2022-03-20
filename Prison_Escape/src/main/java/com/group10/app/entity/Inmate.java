@@ -222,7 +222,7 @@ public class Inmate extends Entity{
     public void resetInmate(){
         x = 100;
         y = 100;
-        speed = 4;
+        speed = 2;
         time = 100;
         score = 0;
     }
