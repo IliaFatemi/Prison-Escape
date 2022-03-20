@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c4764ef-1f4f-45aa-b74c-178f8418422a" name="Changes" comment="fix the random create object index">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/AssetSetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GameDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/objects/ObjChicken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/objects/Chicken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/objects/ObjDoor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/objects/Door.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/objects/ObjKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/objects/Key.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/objects/ObjTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/objects/Timer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/objects/ObjTrap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/objects/Trap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/ObjectManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647551942505</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fix the guard move pictures and music">
+      <created>1647738651524</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1647738651524</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +156,7 @@
     <MESSAGE value="fix pick up objects" />
     <MESSAGE value="show the score and time in WonMenu" />
     <MESSAGE value="fix the random create object index" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix the random create object index" />
+    <MESSAGE value="fix the guard move pictures and music" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix the guard move pictures and music" />
   </component>
 </project>
