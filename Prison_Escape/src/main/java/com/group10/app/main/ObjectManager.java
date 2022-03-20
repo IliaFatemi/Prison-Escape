@@ -11,18 +11,32 @@ import java.util.Objects;
 import java.util.Random;
 
 /**
- *
+ * This is for create and delete objects.
  */
-public class AssetSetter {
+
+public class ObjectManager {
 
     GamePanel gp;
     int doorIndex = 1;
     int randomObjCounter = 0;
 
-    public AssetSetter(GamePanel gp){
+    /**
+     * This is the constructor for the AssetSetter class.
+     *
+     * @param gp
+     */
+    public ObjectManager(GamePanel gp){
         this.gp = gp;
     }
 
+    /**
+     * This is for create objects at level 1
+     *
+     * <p>
+     *     This method will find a empty index in obj, then create
+     *     object(Keys, Timer and Traps) by using createObj method.
+     * </p>
+     */
     public void setObjectLevel1(){
 
         for (int i = 0; i < gp.obj.length; i++){
@@ -43,6 +57,14 @@ public class AssetSetter {
         createDoor();
     }
 
+    /**
+     * This is for create objects at level 2
+     *
+     * <p>
+     *     This method will find a empty index in obj, then create
+     *     object(Keys, Timer and Traps) by using createObj method.
+     * </p>
+     */
     public void setObjectLevel2(){
 
         for (int i = 0; i < gp.obj.length; i++){
@@ -65,7 +87,14 @@ public class AssetSetter {
         createDoor();
     }
 
-    public void setObjectLevel3(){
+    /**
+     * This is for create objects at level 3
+     *
+     * <p>
+     *     This method will find a empty index in obj, then create
+     *     object(Keys, Timer and Traps) by using createObj method.
+     * </p>
+     */    public void setObjectLevel3(){
         for (int i = 0; i < gp.obj.length; i++){
             if (gp.obj[i] != null){
                 gp.obj[i] = null;
@@ -91,11 +120,30 @@ public class AssetSetter {
         createDoor();
     }
 
+    /**
+     * This is for update the random objects
+     *
+     * <p>
+     *     This method will create objects periodic by using createRandomObj,
+     *     and delete object that over the expired time by using deleteExpiredObj.
+     * </p>
+     */
     public void update(){
         createRandomObj(new Chicken(gp));
         deleteExpiredObj(1200);
     }
 
+    /**
+     * This is for create random objects that not locate in any walls
+     *
+     * <p>
+     *     This method will create a random position object periodic.
+     *     Before it create the object, it will check whether current position
+     *     is valid. If it is invalid position (any collision tile), it will
+     *     find a new random position, until the position is valid.
+     * </p>
+     * @param entity passing in objects of entity
+     */
     public void createRandomObj(Entity entity) {
 
         randomObjCounter++;
@@ -124,6 +172,20 @@ public class AssetSetter {
         }
     }
 
+    /**
+     * This is for create object at position(worldX, worldY)
+     *
+     * <p>
+     *     This method will find a empty index of obj, then create this object
+     *     in this index and set the object's position(worldX, worldY).
+     *     If the object is door, also reset the image since the door consists
+     *     of five pictures.
+     * </p>
+     *
+     * @param entity passing in objects of entity
+     * @param worldX the object's x coordination
+     * @param worldY the object's y coordination
+     */
     public void createObj(Entity entity, int worldX, int worldY) {
 
         int i = 0;
@@ -147,6 +209,16 @@ public class AssetSetter {
         gp.obj[i].y = gp.cellSize * worldY;
     }
 
+    /**
+     * This is for counting random objects disappears time and delete if expired
+     *
+     * <p>
+     *     Scan the whole obj, find the all objects named Chicken.
+     *     Check each Chicken's disappear time, if it is larger than expired time, delete the object.
+     * </p>
+     *
+     * @param expiredTime the random objects will be deleted after expiredTime
+     */
     public void deleteExpiredObj(int expiredTime) {
 
         for (int i = 0; i < gp.obj.length; i++){
@@ -163,6 +235,13 @@ public class AssetSetter {
         }
     }
 
+    /**
+     * This is for create door
+     *
+     * <p>
+     *     This method create the whole door.
+     * </p>
+     */
     public void createDoor() {
 
         createObj(new Door(gp), 29, 7);
@@ -172,4 +251,5 @@ public class AssetSetter {
         createObj(new Door(gp), 29, 11);
     }
 }
+
 
