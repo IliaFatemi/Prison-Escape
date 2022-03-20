@@ -108,7 +108,9 @@ public class GamePanel extends JPanel implements Runnable{
     MouseManager mouseK = new MouseManager(this);
 
     //set guards position
-    Guard guard = new Guard(this, 200, 200);
+    Guard guard = new Guard(this, 302, 160);
+    Guard guard1 = new Guard(this, 565, 424);
+    Guard guard2 = new Guard(this, 565, 424);
 
     //Set up the main menu screen 
     MenuScreen mainMenu = new MenuScreen(this);
@@ -251,7 +253,24 @@ public class GamePanel extends JPanel implements Runnable{
             if(state != STATE.PAUSED && state != STATE.MENU && state != STATE.GAMEWON && state != STATE.GAMEOVER){
 
                 //guard collision or time is up
-                if (isCollision(inmate, guard.getX(), guard.getY(), ENEMY_COLLISION_DISTANCE) || isTimeOver() || isScoreNegative()){state = STATE.GAMEOVER;}
+                if (isCollision(inmate, guard.getX(), guard.getY(), ENEMY_COLLISION_DISTANCE) || isTimeOver() || isScoreNegative()){
+                    System.out.println("ENEMY COLLIDED");
+                    System.out.println("===================================");
+                    state = STATE.GAMEOVER;
+                    inmate.resetKeys();
+                }
+                else if (isCollision(inmate, guard1.getX(), guard1.getY(), ENEMY_COLLISION_DISTANCE)){
+                    System.out.println("ENEMY COLLIDED");
+                    System.out.println("===================================");
+                    state = STATE.GAMEOVER;
+                    inmate.resetKeys();
+                }
+                else if (isCollision(inmate, guard2.getX(), guard2.getY(), ENEMY_COLLISION_DISTANCE)){
+                    System.out.println("ENEMY COLLIDED");
+                    System.out.println("===================================");
+                    state = STATE.GAMEOVER;
+                    inmate.resetKeys();
+                }
 
                 //got all keys and reached the gate
                 if(gotAllKeys(GAME_LEVEL) && reachedGate()){state = STATE.GAMEWON;}
@@ -282,6 +301,8 @@ public class GamePanel extends JPanel implements Runnable{
             inmate.update();
             asset.update();
             guard.update(inmate.x, inmate.y);
+            guard1.update(inmate.x, inmate.y);
+            guard2.update(inmate.x, inmate.y);
         }
     }
 
@@ -303,6 +324,8 @@ public class GamePanel extends JPanel implements Runnable{
     
             //Draw guard
             guard.draw(g2);
+            guard1.draw(g2);
+            guard2.draw(g2);
     
             //Draw the inmate
             inmate.draw(g2);
@@ -360,6 +383,9 @@ public class GamePanel extends JPanel implements Runnable{
             inmate.resetKeys();
             inmate.resetScore();
             inmate.setTimer(100);
+            guard.setGuardValues(302, 160);
+            guard1.setGuardValues(1297, 115);
+            guard2.setGuardValues(250, 365);
         }else if (GamePanel.GAME_LEVEL == 2){
             inmate.setPos(610, 562);
             inmate.resetKeys();

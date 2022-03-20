@@ -79,6 +79,7 @@ public class ObjectManager {
         createObj(new Key(gp), 27, 15);
         createObj(new Key(gp), 26, 2);
         createObj(new Timer(gp), 2, 7);
+        createObj(new Timer(gp), 22, 14);
         createObj(new Trap(gp), 6, 9);
         createObj(new Trap(gp), 7, 9);
         createObj(new Trap(gp), 8, 9);

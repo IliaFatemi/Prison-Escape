@@ -21,11 +21,10 @@ public class PauseMenu {
 
     /**
      * resume: will register the resume button
-     * saveGame: will register the save game button
      * returnMenu: will register the return to main menu button
      * pauseTemplate: will register the background image
      */ 
-    public BufferedImage resume, saveGame, returnMenu, pauseTemplate;
+    public BufferedImage resume, returnMenu, pauseTemplate;
 
     /**
      * <p>The contructor for PauseMenu will setup the registered images</p>
@@ -42,7 +41,6 @@ public class PauseMenu {
     public void gregisterPausedGraphics(){
         try{
             resume = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/resumeBtn.png")));
-            saveGame = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/saveGameBtn.png")));
             returnMenu = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/returnToMenuBtn.png")));
             pauseTemplate = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/pausedTemplate.png")));
         }catch(IOException e){
@@ -57,7 +55,6 @@ public class PauseMenu {
     public void renderPauseMenu(Graphics2D g2){
         g2.drawImage(pauseTemplate, gp.screenWidth/2-350, gp.screenHeight/2-250, 700, 500, null);
         g2.drawImage(resume, gp.screenWidth/2 - 103, gp.screenHeight/2 - 130, 206, 70, null);
-        g2.drawImage(saveGame,  gp.screenWidth/2-103, gp.screenHeight/2 - 30, 206, 70, null);
         g2.drawImage(returnMenu, gp.screenWidth/2-103, gp.screenHeight/2 + 70, 206, 70, null);
     }
 }
