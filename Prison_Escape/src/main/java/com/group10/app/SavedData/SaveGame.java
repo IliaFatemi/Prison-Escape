@@ -3,15 +3,22 @@ package com.group10.app.SavedData;
 import java.io.FileWriter; 
 import java.io.IOException;
 
+/**
+ * SaveGame will save the players position, timer, score, number of keys collected, enemies position, and the players current level.
+ * @author Ilia Fatemi
+ */
 public class SaveGame {
-    // index 0: level
-    // index 1: player x cor
-    // index 2: player y cor
-    // index 3: timer
-    // index 4: score
-    // index 5: number of keys
-    // index 6: enemy x cor
-    // index 7: enemy y cor
+    /**
+     * save will collect the players information at the current state and will save it into a text file called save0.txt
+     * @param level An integer for the level
+     * @param playerX An integer for players X position
+     * @param playerY An integer for players Y position
+     * @param timer An integer for the timer 
+     * @param score An integer for the score
+     * @param numKeys An integer for the number of keys collected on the map
+     * @param enemyX An integer for the ememies X position
+     * @param enemyY An integer for the enemies Y position 
+     */
     public void save(int level, int playerX, int playerY, int timer, int score, int numKeys, int enemyX, int enemyY){
         try {
             FileWriter myWriter = new FileWriter("src/main/SavedGame/save0.txt");
