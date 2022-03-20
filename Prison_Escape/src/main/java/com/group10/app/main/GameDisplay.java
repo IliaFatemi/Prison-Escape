@@ -8,6 +8,14 @@ import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+/**
+ * GameDisplay class is for show information in screen when game state.
+ *
+ * <p>
+ *     This class includes methods that shows the inmate's information.
+ *     And messages that show objects that inmate gets.
+ * </p>
+ */
 public class GameDisplay {
 
     GamePanel gp;
@@ -19,6 +27,11 @@ public class GameDisplay {
 
     DecimalFormat dFormat = new DecimalFormat("#0.0");
 
+    /**
+     * The constructor for the GameDisplay class
+     *
+     * @param gp passing gp to charge as a parameter
+     */
     public GameDisplay(GamePanel gp) {
 
         this.gp = gp;
@@ -29,11 +42,12 @@ public class GameDisplay {
         keyImage = key.down1;
     }
 
-    public void addMessage (String text) {
-        message.add(text);
-        messageCounter.add(0);
-    }
-
+    /**
+     * If the GamePanel State is Game, show inmate's information by using drawScoreTimeKey
+     * and show messages by using drawMessage
+     *
+     * @param g2 passing gp to charge as a parameter
+     */
     public void draw (Graphics2D g2) {
 
         this.g2 = g2;
@@ -46,9 +60,22 @@ public class GameDisplay {
             drawScoreTimeKey();
             drawMessage();
         }
-
     }
 
+    /**
+     * Add text into the message list,
+     * and set the corresponding showtime counting into messageCounter list.
+     *
+     * @param text the message
+     */
+    public void addMessage (String text) {
+        message.add(text);
+        messageCounter.add(0);
+    }
+
+    /**
+     * Show the inmate's Score, Time and the number of keys.
+     */
     public void drawScoreTimeKey() {
 
         // Draw the Score
@@ -66,7 +93,20 @@ public class GameDisplay {
 
     }
 
+    /**
+     * Show message when inmate get an object.
+     *
+     * <p>
+     *     This method will show messages one by one in message list.
+     *     Each time the message show in the screen, the corresponding time plus one.
+     *     The contain time of each message is determined by the corresponding
+     *     time in messageCounter list.
+     *     When the time large than 180 (3 seconds), the message will be deleted in message list.
+     *     The next message will always show the down of the previous message.
+     * </p>
+     */
     public void drawMessage() {
+
         int messageX = gp.cellSize;
         int messageY = gp.cellSize * 4;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32F));
