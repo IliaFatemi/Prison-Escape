@@ -306,6 +306,16 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
 
+    /**
+     * Draw for different State.
+     *
+     * <p>
+     *     For STATE GAME, draw tiles first by using tileManage.draw
+     *                      then draw objects, guards and inmate in the screen.
+     *     For STATE PAUSE, MENU, GAMEWON, GAMEOVER, draw corresponding picture.
+     * </p>
+     * @param graphic passing graphic to charge as a parameter
+     */
     public void paintComponent(Graphics graphic){
         super.paintComponent(graphic);
         Graphics2D g2 = (Graphics2D) graphic;
@@ -357,6 +367,10 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
 
+    /**
+     * Get the music we need by using setFile, and play it forever.
+     * @param i the index of soundURL
+     */
     public void playMusic (int i) {
         music.setFile(i);
         music.play();
@@ -364,10 +378,17 @@ public class GamePanel extends JPanel implements Runnable{
 
     }
 
+    /**
+     * Stop Music
+     */
     public void stopMusic () {
         music.stop();
     }
 
+    /**
+     * Play sound effect that index i in soundURL
+     * @param i the index of soundURL
+     */
     public void playSE(int i) {
         soundEffect.setFile(i);
         soundEffect.play();
