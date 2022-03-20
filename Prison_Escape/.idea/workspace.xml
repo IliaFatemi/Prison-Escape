@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1c4764ef-1f4f-45aa-b74c-178f8418422a" name="Changes" comment="fix the random create object index">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/ObjectManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/ObjectManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
