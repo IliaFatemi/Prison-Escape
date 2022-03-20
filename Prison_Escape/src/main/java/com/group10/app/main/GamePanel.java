@@ -70,10 +70,10 @@ public class GamePanel extends JPanel implements Runnable{
     MenuScreen mainMenu = new MenuScreen(this);
 
     //set up the pause menu
-    PauseMenu pauseMenu = new PauseMenu(this, keyH);
+    PauseMenu pauseMenu = new PauseMenu(this);
 
     //set up the win screen
-    WonMenu wonMenu = new WonMenu(this, keyH);
+    WonMenu wonMenu = new WonMenu(this);
 
     //set up game over screen
     GameOverMenu gameOver = new GameOverMenu(this);

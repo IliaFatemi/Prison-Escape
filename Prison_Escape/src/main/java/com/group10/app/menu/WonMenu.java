@@ -8,22 +8,44 @@ import java.text.DecimalFormat;
 import java.util.Objects;
 
 import com.group10.app.main.GamePanel;
-import com.group10.app.main.KeyManager;
 
+
+/**
+ * WonMenu will create an object for win menu.
+ * @author Ilia Fatemi
+ */
 public class WonMenu {
+    /**
+     * Game panel will be used to access it's contacts
+     */
     GamePanel gp;
-    KeyManager keyH;
+
+    /**
+     * Creates a DecimalFormat using the given pattern and the symbols for the default FORMAT locale.
+     */
     DecimalFormat dFormat = new DecimalFormat("#0.0");
 
+    /**
+     * nextLevel: will register the next level button
+     * returnMenu: will register the return to main menu button
+     * gameWonTemp: will register the background image
+     */ 
     public BufferedImage returnMenu, gameWonTemp, nextLevel;
 
-    public WonMenu(GamePanel gp, KeyManager keyH){
+
+    /**
+     * <p>The contructor for WonMenu will setup the registered images</p>
+     * @param gp the GamePanel object
+     */
+    public WonMenu(GamePanel gp){
         this.gp = gp;
-        this.keyH = keyH;
-        getGameWonGraphics();
+        registerGameWonGraphics();
     }
 
-    public void getGameWonGraphics(){
+    /**
+     * <p>Registering the images for the background, next level button, return to main menu button.</p>
+     */
+    public void registerGameWonGraphics(){
         try{
             gameWonTemp = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/gameWon.png")));
             returnMenu = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/returnToMenuBtn.png")));
@@ -33,6 +55,10 @@ public class WonMenu {
         }
     }
 
+    /**
+     * <p>Registering the images for the background, next level button, return to main menu button.
+     * This method will also display the time the player finished the level at and will display the score.</p>
+     */
     public void renderWonGraphics(Graphics2D g2){
         g2.drawImage(gameWonTemp,  0, 0, gp.screenWidth, gp.screenHeight, null);
         g2.drawImage(nextLevel,  gp.screenWidth/2 - 103, gp.screenHeight/2 - 130, 206, 70, null);
