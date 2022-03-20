@@ -3,9 +3,10 @@ package com.group10.app.objects;
 import com.group10.app.entity.Entity;
 import com.group10.app.main.GamePanel;
 
-public class ObjChicken extends Entity {
 
-    public ObjChicken(GamePanel gp){
+public class Chicken extends Entity {
+
+    public Chicken(GamePanel gp){
         super(gp);
 
         name = "Chicken";

@@ -1,14 +1,14 @@
 package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
-import com.group10.app.objects.ObjKey;
+import com.group10.app.objects.Key;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class UI {
+public class GameDisplay {
 
     GamePanel gp;
     Graphics2D g2;
@@ -19,13 +19,13 @@ public class UI {
 
     DecimalFormat dFormat = new DecimalFormat("#0.0");
 
-    public UI (GamePanel gp) {
+    public GameDisplay(GamePanel gp) {
 
         this.gp = gp;
 
         arial_40 = new Font("Arial", Font.PLAIN, 40);
 
-        Entity key = new ObjKey(gp);
+        Entity key = new Key(gp);
         keyImage = key.down1;
     }
 

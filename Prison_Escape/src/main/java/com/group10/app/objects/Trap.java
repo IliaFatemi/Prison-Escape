@@ -3,9 +3,9 @@ package com.group10.app.objects;
 import com.group10.app.entity.Entity;
 import com.group10.app.main.GamePanel;
 
-public class ObjTrap extends Entity {
+public class Trap extends Entity {
 
-    public ObjTrap(GamePanel gp){
+    public Trap(GamePanel gp){
         super(gp);
 
         name = "Trap";

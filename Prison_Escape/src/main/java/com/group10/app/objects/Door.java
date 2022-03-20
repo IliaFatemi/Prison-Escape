@@ -3,9 +3,9 @@ package com.group10.app.objects;
 import com.group10.app.entity.Entity;
 import com.group10.app.main.GamePanel;
 
-public class ObjDoor extends Entity {
+public class Door extends Entity {
 
-    public ObjDoor(GamePanel gp){
+    public Door(GamePanel gp){
         super(gp);
 
         name = "Door";
