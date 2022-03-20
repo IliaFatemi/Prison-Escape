@@ -10,16 +10,28 @@ import com.group10.app.objects.ObjTrap;
 import java.util.Objects;
 import java.util.Random;
 
-public class AssetSetter {
+/**
+ * This is for create and delete objects
+ */
+
+public class ObjectManager {
 
     GamePanel gp;
     int doorIndex = 1;
     int randomObjCounter = 0;
 
-    public AssetSetter(GamePanel gp){
+    /**
+     * This is the constructor for the AssetSetter class
+     *
+     * @param gp
+     */
+    public ObjectManager(GamePanel gp){
         this.gp = gp;
     }
 
+    /**
+     * This is for create objects at level 1
+     */
     public void setObjectLevel1(){
 
         for (int i = 0; i < gp.obj.length; i++){
@@ -40,6 +52,9 @@ public class AssetSetter {
         createDoor();
     }
 
+    /**
+     * This is for create objects at level 2
+     */
     public void setObjectLevel2(){
 
         for (int i = 0; i < gp.obj.length; i++){
@@ -62,6 +77,9 @@ public class AssetSetter {
         createDoor();
     }
 
+    /**
+     * This is for create objects at level 2
+     */
     public void setObjectLevel3(){
         for (int i = 0; i < gp.obj.length; i++){
             if (gp.obj[i] != null){
@@ -88,11 +106,19 @@ public class AssetSetter {
         createDoor();
     }
 
+    /**
+     * This is for update the random objects, including create objects and delete the expired objects
+     */
     public void update(){
         createRandomObj(new ObjChicken(gp));
         deleteExpiredObj(1200);
     }
 
+    /**
+     * This is for create random objects that not locate in any walls
+     *
+     * @param entity passing in objects of entity
+     */
     public void createRandomObj(Entity entity) {
 
         randomObjCounter++;
@@ -121,6 +147,13 @@ public class AssetSetter {
         }
     }
 
+    /**
+     * This is for create object at position(worldX, worldY)
+     *
+     * @param entity passing in objects  of entity
+     * @param worldX the object's x coordination
+     * @param worldY the object's y coordination
+     */
     public void createObj(Entity entity, int worldX, int worldY) {
 
         int i = 0;
@@ -144,6 +177,11 @@ public class AssetSetter {
         gp.obj[i].y = gp.cellSize * worldY;
     }
 
+    /**
+     * This is for counting random objects disappears time and delete if expired
+     *
+     * @param expiredTime the random objects will be deleted after expiredTime
+     */
     public void deleteExpiredObj(int expiredTime) {
 
         for (int i = 0; i < gp.obj.length; i++){
@@ -160,6 +198,9 @@ public class AssetSetter {
         }
     }
 
+    /**
+     * This is for create door
+     */
     public void createDoor() {
 
         createObj(new ObjDoor(gp), 29, 7);
