@@ -224,6 +224,18 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     /**
+     * isScoreNegative will be true if the score has reached a negative number
+     * @return boolean
+     */
+    public boolean isScoreNegative(){
+        if(inmate.getScore() < 0){
+            System.out.println("Score is negative");
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * <p>The run method is the main loop for the game.</p>
      */
     public void run() {
@@ -239,7 +251,7 @@ public class GamePanel extends JPanel implements Runnable{
             if(state != STATE.PAUSED && state != STATE.MENU && state != STATE.GAMEWON && state != STATE.GAMEOVER){
 
                 //guard collision or time is up
-                if (isCollision(inmate, guard.getX(), guard.getY(), ENEMY_COLLISION_DISTANCE) || isTimeOver()){state = STATE.GAMEOVER;}
+                if (isCollision(inmate, guard.getX(), guard.getY(), ENEMY_COLLISION_DISTANCE) || isTimeOver() || isScoreNegative()){state = STATE.GAMEOVER;}
 
                 //got all keys and reached the gate
                 if(gotAllKeys(GAME_LEVEL) && reachedGate()){state = STATE.GAMEWON;}
