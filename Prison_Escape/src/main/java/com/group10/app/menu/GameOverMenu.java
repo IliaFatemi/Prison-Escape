@@ -49,7 +49,7 @@ public class GameOverMenu {
     }
 
     /**
-     * <p>Display the graphics onto the screen. This method will display the baground image, retry button, return menu button.</p>
+     * <p>Display the graphics onto the screen. This method will display the background image, retry button, return menu button.</p>
      * @param g2 using the Graphics2D to draw the registered images onto the display
      */
     public void renderGameOverMenu(Graphics2D g2){

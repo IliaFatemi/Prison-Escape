@@ -27,10 +27,14 @@ public class Inmate extends Entity{
 
     /**
      * Constructor of the Inmate class
-     * in charge of initializations of the inmate
      *
-     * @param gp
-     * @param keyH
+     * <p>
+     *     In charge of initializing the position of the Inmate with respect to the
+     *     game panel gp
+     * </p>
+     *
+     * @param gp main game panel
+     * @param keyH used for managing user key input
      */
     public Inmate(GamePanel gp, KeyManager keyH){
         super(gp);
@@ -46,7 +50,7 @@ public class Inmate extends Entity{
     }
 
     /**
-     * getIn
+     * getInmateImage method is in charge of registering the image directories for the Inmate enemy
      */
     public void getInmateImage(){
         up1 = setup("/inmate/walkUp1", gp.cellSize, gp.cellSize);
@@ -63,6 +67,16 @@ public class Inmate extends Entity{
         right3 = setup("/inmate/walkRight3", gp.cellSize, gp.cellSize);
     }
 
+    /**
+     * update method for the player position/movement with respect to the users input
+     * <p>
+     *     The update method in the inmate class is responsible for the position/
+     *     movement of the inmate with respect to the users input on the WASD commands.
+     *     This method manages the collisions, the movement speed for the inmate, and the
+     *     movement sprites for the inmate.
+     * </p>
+     *
+     */
     public void update(){
         if(keyH.pressedUp|| keyH.pressedDown || keyH.pressedLeft || keyH.pressedRight) {
             if (keyH.pressedUp) {
@@ -113,52 +127,98 @@ public class Inmate extends Entity{
 
     }
 
-    //Get the x position of the player
+    /**
+     * Get the x position of the player
+     * @return x the x position of the inmate
+     */
     public double getX(){return x;}
 
-    //Get the Y position of the player
+    /**
+     * Get the y position of the player
+     * @return y the y position of the inmate
+     */
     public double getY(){return y;}
 
-    //Get player speed
+    /**
+     * Get player speed
+     * @return speed
+     */
     public double getSpeed(){return speed;}
 
-    //Get player direction
+    /**
+     * Get player direction
+     * @return String
+     */
     public String getDirection(){return direction;}
 
-    //Get number of keys collected
+    /**
+     * Get number of keys collected
+     * @return hasKey which is the number of keys collected
+     */
     public int getNumKeys(){return hasKey;}
 
-    //Get the score collected 
+    /**
+     * Get the score collected
+     * @return score which is the score maintained throughout the game/round
+     */
     public int getScore(){return score;}
 
-    //getting the current timer
+    /**
+     * getting the current timer
+     * @return time converted from double to int
+     */
     public int getTimer(){return (int)time;}
 
-    //Set the timer
+    /**
+     * Set the timer
+     * @param newTime
+     */
     public void setTimer(double newTime){time = newTime;}
 
-    //set the score
+    /**
+     * set the score
+     * @param newScore
+     */
     public void setScore(int newScore){score = newScore;}
 
-    //set player position
+    /**
+     * set player position
+     * @param posX
+     * @param posY
+     */
     public void setPos(int posX, int posY){x = posX; y = posY;}
 
-    //set player speed
+    /**
+     * set player speed
+     * @param newSpeed
+     */
     public void setSpeed(int newSpeed){speed = newSpeed;}
-    
-    //set players direction
+
+    /**
+     * set players direction
+     * @param newDir
+     */
     public void setDirection(String newDir){direction = newDir;}
 
-    //set key amount
+    /**
+     * set key amount
+     * @param newNumKeys
+     */
     public void setNumKeys(int newNumKeys){hasKey = newNumKeys;}
 
-    //reset the keys
+    /**
+     * reset the keys
+     */
     public void resetKeys(){hasKey = 0;}
 
-    //reset the score
+    /**
+     * reset the score
+     */
     public void resetScore(){score = 0;}
 
-    //reset everything
+    /**
+     * reset the position, speed, score, and time
+     */
     public void resetInmate(){
         x = 100;
         y = 100;
@@ -167,6 +227,17 @@ public class Inmate extends Entity{
         score = 0;
     }
 
+    /**
+     * pickUpObject is responsible for the managing the objects inmate
+     * picks up
+     *
+     * <p>
+     *    the method is responsible for handling the objects the inmate
+     *    picks up. The int i corresponds to the index of an objects in
+     *    the object array.
+     * </p>
+     * @param i index of the corresponding object in the obj array
+     */
     public void pickUpObject (int i) {
 
         if (i != 999){
@@ -203,6 +274,10 @@ public class Inmate extends Entity{
         }
     }
 
+    /**
+     * in charge of drawing the inmate and changing the inmates current sprite
+     * @param g2 used for drawing the 2D sprites
+     */
     public void draw(Graphics2D g2){
         BufferedImage image = null;
         switch (direction) {
