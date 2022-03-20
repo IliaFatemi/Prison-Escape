@@ -242,6 +242,7 @@ public class GamePanel extends JPanel implements Runnable{
         music.setFile(i);
         music.play();
         music.loop();
+
     }
 
     public void stopMusic () {
@@ -274,6 +275,11 @@ public class GamePanel extends JPanel implements Runnable{
             tileManage.loadMap(LEVEL3);
         }
         GamePanel.state = STATE.GAME;
+
+        if (music.clip != null){
+            stopMusic();
+        }
+
         setUpAsset();
     }
 }

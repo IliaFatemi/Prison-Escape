@@ -112,19 +112,12 @@ public class Guard extends Entity{
                 spriteNum = 3;
             } else if (spriteNum == 3) {
                 spriteNum = 4;
-            }else if (spriteNum == 4) {
+            } else if (spriteNum == 4) {
                 spriteNum = 5;
-            }else if (spriteNum == 5) {
+            } else if (spriteNum == 5) {
                 spriteNum = 1;
             }
             spriteCounter = 0;
-        } else {
-            standCounter++;
-
-            if (standCounter > 10) {
-                spriteNum = 2;
-                standCounter = 0;
-            }
         }
     }
 
