@@ -8,11 +8,26 @@ import com.group10.app.SavedData.SaveGame;
 import com.group10.app.main.GamePanel.STATE;
 import com.group10.app.App;
 
+/**
+ * Mouse manager will be the control for the mouse on the screen. MouseManager implements MouseListener. This class is used only for the Menu screens.
+ * @author Ilia Fatemi
+ */
 public class MouseManager implements MouseListener{
 
+    /**
+     * Using the objects in GamePanel
+     */
     GamePanel gb;
+
+    /**
+     * Using the saveGame when quitting or saving
+     */
     SaveGame saveGame;
 
+    /**
+     * The MouseManager constructor will activate the mouse controls
+     * @param gb the GamePanel object
+     */
     public MouseManager(GamePanel gb){
         this.gb = gb;
     }
@@ -29,6 +44,9 @@ public class MouseManager implements MouseListener{
 
     }
 
+    /**
+     * <p>The mouseReleased method will be control all the Menu screens. The mouseReleased can be used in the game to only displaye the pixel and column/row location on the console terminal</p>
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         int mouseX = e.getX();
@@ -70,7 +88,11 @@ public class MouseManager implements MouseListener{
         
     }
 
-    //Main menu control
+    /**
+     * <p>MainMenuControls will only work on the main menu screen if the state of the game is GAME</p>
+     * @param mouseX integer location for mouse X position
+     * @param mouseY integer location for mouse Y position
+     */
     public void MainMenuControls(int mouseX, int mouseY){
 
         //new game button
@@ -112,6 +134,11 @@ public class MouseManager implements MouseListener{
         }
     }
 
+    /**
+     * <p>PauseMenuControls will only work on the pause menu screen if the state of the game is PAUSE</p>
+     * @param mouseX integer location for mouse X position
+     * @param mouseY integer location for mouse Y position
+     */
     public void PauseMenuControls(int mouseX, int mouseY){
         //Resume button
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(103)){
@@ -139,6 +166,11 @@ public class MouseManager implements MouseListener{
         }
     }
 
+    /**
+     * <p>GameWonMenuControls will only work on the Winning menu screen if the state of the game is GAMEWON</p>
+     * @param mouseX integer location for mouse X position
+     * @param mouseY integer location for mouse Y position
+     */
     public void GameWonMenuControls(int mouseX, int mouseY){
         //next level button
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(106)){
@@ -165,6 +197,11 @@ public class MouseManager implements MouseListener{
         }
     }
 
+    /**
+     * <p>GameOverMenuControls will only work on the gamae over menu screen if the state of the game is GAMEOVER</p>
+     * @param mouseX integer location for mouse X position
+     * @param mouseY integer location for mouse Y position
+     */
     public void GameOverMenuControls(int mouseX, int mouseY){
         //Retry level button
         if(mouseX >= gb.screenWidth/2-103 && mouseX <= gb.screenWidth/2+(106)){
@@ -184,6 +221,4 @@ public class MouseManager implements MouseListener{
             }   
         }
     }
-
-
 }

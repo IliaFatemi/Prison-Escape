@@ -77,31 +77,31 @@ public class LoadGame {
     public int loadPlayerY(){System.out.println("loading position Y");return data[2];}
 
     /**
-     * loadTimer will load the timer from the save file
+     * <p>loadTimer will load the timer from the save file</p>
      * @return will return an integer.
      */
     public int loadTimer(){System.out.println("loading timer");return data[3];}
 
     /**
-     * loadScore will load the score from the save file
+     * <p>loadScore will load the score from the save file</p>
      * @return will return an integer.
      */
     public int loadScore(){System.out.println("loading score");return data[4];}
 
     /**
-     * loadNumKeys will return the number of keys collected from the save file
+     * <p>loadNumKeys will return the number of keys collected from the save file</p>
      * @return will return an integer.
      */
     public int loadNumKeys(){System.out.println("loading keys");return data[5];}
 
     /**
-     * loadEnemyX will load up the enemies X position
+     * <p>loadEnemyX will load up the enemies X position</p>
      * @return will return an integer.
      */
     public int loadEnemyX(){System.out.println("loading Enemy pos X");return data[6];}
 
     /**
-     * loadEnemyY will load up the enemies Y position
+     * <p>loadEnemyY will load up the enemies Y position</p>
      * @return will return an integer.
      */
     public int loadEnemyY(){System.out.println("loading Enemy pos Y");return data[7];}

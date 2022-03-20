@@ -9,7 +9,7 @@ import java.io.IOException;
  */
 public class SaveGame {
     /**
-     * save will collect the players information at the current state and will save it into a text file called save0.txt
+     * <p>save will collect the players information at the current state and will save it into a text file called save0.txt</p>
      * @param level An integer for the level
      * @param playerX An integer for players X position
      * @param playerY An integer for players Y position
