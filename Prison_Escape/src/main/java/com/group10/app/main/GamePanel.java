@@ -18,25 +18,69 @@ import static java.lang.Math.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * GamePanel is resposible for running all of the game.
+ */
 public class GamePanel extends JPanel implements Runnable{
    
-    // Screen size settings
+    /**
+     * originalCellSize pixel
+     */
     final int originalCellSize = 12;
-    final int scaleFactor = 4;
-    public final int cellSize = originalCellSize * scaleFactor; //48x48 cells
-    public final int screenColNumber = 30;
-    public final int screenRowNumber = 18;
-    public final int screenWidth = cellSize * screenColNumber;//1920 pixels
-    public final int screenHeight = cellSize * screenRowNumber;//1080 pixels
 
+    /**
+     * scaleFactor is set to 4
+     */
+    final int scaleFactor = 4;
+
+    /**
+     * Each block is 48x48
+     */
+    public final int cellSize = originalCellSize * scaleFactor;
+
+    /**
+     * Screen column size of the window is 30
+     */
+    public final int screenColNumber = 30;
+
+    /**
+     * Screen rows size of the window is 18
+     */
+    public final int screenRowNumber = 18;
+
+    /**
+     * scrennWidth is 1440 pixels
+     */
+    public final int screenWidth = cellSize * screenColNumber;
+
+    /**
+     * scrennWidth is 864 pixels
+     */
+    public final int screenHeight = cellSize * screenRowNumber;
+
+    /**
+     * FPS 
+     */
     final int framePerSecond = 60;
 
-    //The distance where the player and enemy will collide at
+    /**
+     * The distance where the player and enemy will collide at
+     */
     int ENEMY_COLLISION_DISTANCE = 40;
 
-    //Level files in the game
+    /**
+     * Level 1 file location
+     */
     String LEVEL1 = "/levels/Level1.txt";
+
+    /**
+     * Level 2 file location
+     */
     String LEVEL2 = "/levels/Level2.txt";
+
+    /**
+     * Level 3 file location
+     */
     String LEVEL3 = "/levels/Level3.txt";
 
     //The level the player is on
@@ -94,9 +138,19 @@ public class GamePanel extends JPanel implements Runnable{
     Sound music = new Sound();
     Sound soundEffect = new Sound();
 
+    /**
+     * The different states throughout the game
+     */
     public static enum STATE{MENU, GAME, EXIT, PAUSED, GAMEOVER, GAMEWON, RETRY}
+
+    /**
+     * Initial state of the game will start at the main menu
+     */
     public static STATE state = STATE.MENU;
 
+    /**
+     * Initializing the background, mouse keys, keyboard, screen size, 
+     */
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
@@ -106,6 +160,9 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
     }
 
+    /**
+     * <p>Setting up the objects such as timer, keys, traps and drum sticks for each level in the game.</p>
+     */
     public void setUpAsset() {
         if (GAME_LEVEL == 1){asset.setObjectLevel1();}
         else if (GAME_LEVEL == 2){asset.setObjectLevel2();}
@@ -113,23 +170,40 @@ public class GamePanel extends JPanel implements Runnable{
         playMusic(0);
     }
 
+    /**
+     * Setting up the game thread
+     */
     public void startGameThread(){
             gameThread = new Thread(this);
             gameThread.start();
     }
-
-    
-    //Setting up collision between two objects.This function takes two parameters as turtles.
-    //Input: (Inmate:Obj, ObjectX: int, ObjectY: int: collision_type:int)   
+ 
+    /**
+     * Setting up collision between two objects. 
+     * @param inmate The player object
+     * @param objectX position X of the object
+     * @param objectY position Y of the object
+     * @param collision_type The collision distance between the player and the object
+     * @return boolean
+     */
     public boolean isCollision(Inmate inmate, double objectX, double objectY, int collision_type){   
         double distance = sqrt(pow(inmate.getX() - objectX, 2) + pow(inmate.getY() - objectY, 2));
         return distance <= collision_type;
     }
 
+    /**
+     * <p>if the player is within the area of the gate the mehtod will return true, otherwise false</p>
+     * @return boolean
+     */
     public boolean reachedGate(){
         return inmate.getX() >= 1344 && inmate.getX() <= 1350 && inmate.getY() >= 292 && inmate.getY() <= 544;
     }
 
+    /**
+     * <p>Based on the level of the player, the gotAllKeys will check if the player collect the right amount of keys for a specific level</p>
+     * @param level The level where to check the constraint
+     * @return boolean
+     */
     public boolean gotAllKeys(int level){
         if(level == 1 && inmate.getNumKeys() >= 3){return true;}
         else if(level == 2 && inmate.getNumKeys() >= 4){return true;}
@@ -137,6 +211,10 @@ public class GamePanel extends JPanel implements Runnable{
         return false;
     }
 
+    /**
+     * <p>If the time has reached zero, the method will return true.</p>
+     * @return boolean
+     */
     public boolean isTimeOver(){
         if(inmate.getTimer() <= 0){
             System.out.println("Time reached zero");
@@ -145,6 +223,9 @@ public class GamePanel extends JPanel implements Runnable{
         return false;
     }
 
+    /**
+     * <p>The run method is the main loop for the game.</p>
+     */
     public void run() {
         double drawInterval = 1000000000/ framePerSecond;
         double nextDrawTime = System.nanoTime() + drawInterval;
@@ -181,6 +262,9 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
 
+    /**
+     * <p>Updating the player, enemy and the world objects when the state of the game is GAME.</p>
+     */
     public void update(){
         if(state == STATE.GAME){
             inmate.update();
@@ -254,6 +338,9 @@ public class GamePanel extends JPanel implements Runnable{
         soundEffect.play();
     }
 
+    /**
+     * <p>Setting up the level accordingly to each level. This method can be used to check the level after states of the has been updated</p>
+     */
     public void levelCheck(){
         if(GAME_LEVEL == 1){
             tileManage.loadMap(LEVEL1);
@@ -279,7 +366,6 @@ public class GamePanel extends JPanel implements Runnable{
         if (music.clip != null){
             stopMusic();
         }
-
         setUpAsset();
     }
 }
