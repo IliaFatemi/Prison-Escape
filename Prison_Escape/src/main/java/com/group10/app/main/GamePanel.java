@@ -82,7 +82,7 @@ public class GamePanel extends JPanel implements Runnable{
     public Entity[] obj = new Entity[30];
     
     // Set up asset;
-    public AssetSetter asset = new AssetSetter(this);
+    public ObjectManager asset = new ObjectManager(this);
     
     // Set up collision check;
     public Collision collisionCheck = new Collision(this);
