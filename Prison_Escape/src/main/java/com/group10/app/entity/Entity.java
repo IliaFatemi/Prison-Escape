@@ -1,7 +1,6 @@
 package com.group10.app.entity;
 
 import com.group10.app.main.GamePanel;
-import com.group10.app.main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -101,12 +100,10 @@ public class Entity {
      */
     public BufferedImage setup(String imagePath, int width, int height) {
 
-        UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
 
         try {
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(imagePath + ".png")));
-            image = uTool.scaleImage(image, width, height);
         } catch (IOException e) {
             e.printStackTrace();
         }
