@@ -67,7 +67,7 @@ public class Entity {
 
         int i = 25;
 
-        if (gp.inmate.hasKey == 3){
+        if (gp.inmate.hasKey == 2 + gp.GAME_LEVEL){
 
             if (Objects.equals(name, "Door")) {
 

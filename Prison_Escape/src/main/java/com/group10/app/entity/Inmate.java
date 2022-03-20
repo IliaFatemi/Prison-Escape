@@ -252,6 +252,7 @@ public class Inmate extends Entity{
             switch (objectName) {
                 case "Key":
                     gp.playSE(1);
+                    score += 50;
                     hasKey++;
                     gp.obj[i] = null;
                 break;
