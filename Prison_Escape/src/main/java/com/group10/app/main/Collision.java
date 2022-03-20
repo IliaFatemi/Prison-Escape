@@ -73,7 +73,21 @@ public class Collision {
         }
     }
 
-    public int checkObject(Entity entity, boolean inmate) {
+    /**
+     * To check if any object in obj list collide with inmate.
+     *
+     * <p>
+     *     Check objects one by one in obj list.
+     *     Get each object's solidArea, and inmate's solidArea by direction.
+     *     Judge the object if collide with inmate.
+     *     If any of object collide with inmate, return the object index.
+     *     Otherwise, return 999 means no object touch inmate.
+     * </p>
+     *
+     * @param entity passing entity to charge as a parameter
+     * @return       index of the object if anyone collides with inmate, or 999
+     */
+    public int checkObject(Entity entity) {
 
         int index = 999;
 
@@ -94,9 +108,7 @@ public class Collision {
                             if (gp.obj[i].collision) {
                                 entity.collision = true;
                             }
-                            if (inmate) {
-                                index = i;
-                            }
+                            index = i;
                         }
                     }
                     case "down" : {
@@ -105,9 +117,7 @@ public class Collision {
                             if (gp.obj[i].collision) {
                                 entity.collision = true;
                             }
-                            if (inmate) {
-                                index = i;
-                            }
+                            index = i;
                         }
                     }
                     case "left" : {
@@ -116,9 +126,7 @@ public class Collision {
                             if (gp.obj[i].collision) {
                                 entity.collision = true;
                             }
-                            if (inmate) {
-                                index = i;
-                            }
+                            index = i;
                         }
                     }
                     case "right" : {
@@ -127,9 +135,7 @@ public class Collision {
                             if (gp.obj[i].collision) {
                                 entity.collision = true;
                             }
-                            if (inmate) {
-                                index = i;
-                            }
+                            index = i;
                         }
                     }
                 }

@@ -92,7 +92,7 @@ public class Inmate extends Entity{
             collision = false;
             gp.collisionCheck.wallCheck(this);
 
-            int objectIndex = gp.collisionCheck.checkObject(this, true);
+            int objectIndex = gp.collisionCheck.checkObject(this);
             pickUpObject(objectIndex);
 
             if(!collision){

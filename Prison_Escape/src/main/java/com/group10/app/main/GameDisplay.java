@@ -66,6 +66,7 @@ public class GameDisplay {
      * Add text into the message list,
      * and set the corresponding showtime counting into messageCounter list.
      *
+     * @param text the message
      */
     public void addMessage (String text) {
         message.add(text);
