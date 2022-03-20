@@ -2,13 +2,28 @@ package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
 
+/**
+ * Collision class for wall collision and object collision.
+ */
 public class Collision {
+
+    /**
+     * Game panel will be used to access it's methods and variables
+     */
     GamePanel gp;
 
+    /**
+     * @param gp the GamePanel object
+     */
     public Collision (GamePanel gp){
         this.gp = gp;
     }
 
+
+    /**
+     * wallCheck will check to see if the player is within a certain range of the block and will set the entity collision to true if the condiiton is true.
+     * @param entity The entity that will be interacting with walls of the map
+     */
     public void wallCheck(Entity entity){
         int entityLeftWorldX = entity.x + entity.solidArea.x;
         int entityRightWorldX = entity.x + entity.solidArea.x + entity.solidArea.width;

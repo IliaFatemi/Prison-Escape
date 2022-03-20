@@ -15,7 +15,7 @@ import com.group10.app.main.GamePanel;
  */
 public class GameOverMenu {
     /**
-     * Game panel will be used to access it's contacts
+     * Game panel will be used to access it's methods and variables
      */
     GamePanel gp;
 
