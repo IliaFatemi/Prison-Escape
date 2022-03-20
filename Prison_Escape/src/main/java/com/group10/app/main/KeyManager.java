@@ -5,21 +5,28 @@ import java.awt.event.KeyListener;
 
 import com.group10.app.main.GamePanel.STATE;
 
+/**
+ * KeyManager is responsible for managing the user keyboard inputs
+ * KeyManager implements from the KeyListener interface
+ */
 public class KeyManager implements KeyListener {
     GamePanel gp;
 
     public boolean pressedUp, pressedDown, pressedRight, pressedLeft, pressedEscape;
     int keyCount = 0;
 
-    //Debug
-    boolean showDebugText = false;
-
+    /**
+     * KeyManager is a constructor responsible to initializing the game panel for this class
+     * @param gp main game panel for game
+     */
     public KeyManager (GamePanel gp) {this.gp = gp;}
 
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent e) {}
 
-    }
-
+    /**
+     * keyPressed is a method that tracks what key is pressed by the user
+     * @param e the event of a key being pressed
+     */
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
 
@@ -42,6 +49,10 @@ public class KeyManager implements KeyListener {
         }
     }
 
+    /**
+     * keyReleased is a method that tracks what key was just released by the user
+     * @param e the event of a key being released
+     */
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
 
