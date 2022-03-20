@@ -7,7 +7,16 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Objects;
 
-
+/**
+ * Inmate class responsible for the Inmates game implementation
+ * inherits from the super class Entity
+ *
+ * <p>
+ *     This class implements the guard functionality for the game
+ *     manages the inmates movements (with respect to the user),
+ *     interactions, and drawing the players sprites
+ * </p>
+ */
 public class Inmate extends Entity{
     GamePanel gp;
     KeyManager keyH;
@@ -16,6 +25,13 @@ public class Inmate extends Entity{
     public double time = 100;
     int standCounter = 0;
 
+    /**
+     * Constructor of the Inmate class
+     * in charge of initializations of the inmate
+     *
+     * @param gp
+     * @param keyH
+     */
     public Inmate(GamePanel gp, KeyManager keyH){
         super(gp);
         this.gp = gp;
@@ -29,6 +45,9 @@ public class Inmate extends Entity{
         getInmateImage();
     }
 
+    /**
+     * getIn
+     */
     public void getInmateImage(){
         up1 = setup("/inmate/walkUp1", gp.cellSize, gp.cellSize);
         up2 = setup("/inmate/walkUp2", gp.cellSize, gp.cellSize);

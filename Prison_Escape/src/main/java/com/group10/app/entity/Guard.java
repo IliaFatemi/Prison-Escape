@@ -4,11 +4,32 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import com.group10.app.main.GamePanel;
 
-
+/**
+ * The guard class in charge of the Guard implementation
+ *
+ * <p>
+ *     This class implements the guard functionality for the game
+ *     manages the guards movements, interactions, drawing the sprites and
+ *     changing them with the guards movements.
+ * </p>
+ *
+ */
 public class Guard extends Entity{
     GamePanel gp;
     int standCounter = 0;
 
+    /**
+     * The constructor for the Guard class
+     *
+     * <p>
+     *     In charge of initializing the position of the guard with respect to the
+     *     game panel gp
+     * </p>
+     *
+     * @param gp main game panel
+     * @param setX x position for the guard
+     * @param setY y position for the guard
+     */
     public Guard(GamePanel gp, int setX, int setY){
         super(gp);
         this.gp = gp;
@@ -20,7 +41,9 @@ public class Guard extends Entity{
         solidAreaDefaultY = solidArea.y;
     }
 
-    //Registering the images
+    /**
+     * getGuardImage method is in charge of registering the image directories for the guard enemy
+     */
     public void getGuardImage(){
         up1 = setup("/prisonGuard/WalkUp1", gp.cellSize, gp.cellSize);
         up2 = setup("/prisonGuard/WalkUp2", gp.cellSize, gp.cellSize);
@@ -44,29 +67,54 @@ public class Guard extends Entity{
         right5 = setup("/prisonGuard/WalkRight5", gp.cellSize, gp.cellSize);
     }
 
-    //Get Guards x position
+    /**
+     * Get Guards x position
+     * @return x of type int
+     */
     public double getX(){
         return x;
     }
-    
-    //Get Guards Y position
+
+    /**
+     * Get Guards y position
+     * @return y of type int
+     */
     public double getY(){
         return y;
     }
 
-    //Get guard direction
+    /**
+     * Gets guard direction
+     * @return direction of type String
+     */
     public String getDirection(){
         return direction;
     }
 
-    //set the value for guard
+    /**
+     * set the value for guard
+     *
+     * @param setX x value to set guards x position
+     * @param setY y value to set guards y position
+     */
     public void setGuardValues(int setX, int setY){
         x = setX;
         y = setY;
         speed = 1;
-        direction = "vishaal";
+        direction = "default";
     }
 
+    /**
+     * update method is in charge of updating the position of the guard
+     * <p>
+     *     The update method in the Guard class is responsible for the movement
+     *     of the guard when the inmate comes within range of the guard. Once the inmate
+     *     is in range the guard will follow the player
+     * </p>
+     *
+     * @param xcor x coordinate of the player being passed into the method
+     * @param ycor y coordinate of the player being passed into the method
+     */
     public void update(int xcor, int ycor) {
         if (xcor < x) {
             direction = "left";
@@ -121,6 +169,10 @@ public class Guard extends Entity{
         }
     }
 
+    /**
+     * in charge of drawing the guard and changing the guards current sprite
+     * @param g2 used for drawing the 2D sprites
+     */
     public void draw(Graphics2D g2){
         BufferedImage image = null;
         switch (direction) {
