@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1c4764ef-1f4f-45aa-b74c-178f8418422a" name="Changes" comment="delete UtilityTool.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Inmate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Inmate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/Collision.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/Collision.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GameDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GameDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Entity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,6 +173,7 @@
     <MESSAGE value="fix the guard move pictures and music" />
     <MESSAGE value="javaDoc for Sound" />
     <MESSAGE value="delete UtilityTool.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete UtilityTool.java" />
+    <MESSAGE value="javaDoc Collision checkObject" />
+    <option name="LAST_COMMIT_MESSAGE" value="javaDoc Collision checkObject" />
   </component>
 </project>
