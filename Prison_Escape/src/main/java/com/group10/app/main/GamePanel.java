@@ -182,8 +182,11 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void update(){
-        inmate.update();
-        asset.update();
+        if(state == STATE.GAME){
+            inmate.update();
+            asset.update();
+            guard.update(inmate.x, inmate.y);
+        }
     }
 
     public void paintComponent(Graphics graphic){
