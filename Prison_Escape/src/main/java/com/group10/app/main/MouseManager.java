@@ -171,8 +171,10 @@ public class MouseManager implements MouseListener{
                 System.out.println("(Update) Level: "+ GamePanel.GAME_LEVEL);
                 if(GamePanel.GAME_LEVEL > 3){
                     GamePanel.GAME_LEVEL = 1;
+                    GamePanel.state = STATE.MENU; 
+                }else{
+                    gb.levelCheck();
                 }
-                gb.levelCheck();
             }
         }
 
