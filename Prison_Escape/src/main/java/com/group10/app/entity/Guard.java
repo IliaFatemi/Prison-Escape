@@ -35,7 +35,7 @@ public class Guard extends Entity{
         this.gp = gp;
         getGuardImage();
         setGuardValues(setX, setY);
-        solidArea = new Rectangle(0, 0, 48, 48);
+        solidArea = new Rectangle(8, 16, 32, 32);
 
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
