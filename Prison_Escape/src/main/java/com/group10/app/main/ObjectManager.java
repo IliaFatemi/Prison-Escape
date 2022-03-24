@@ -95,7 +95,8 @@ public class ObjectManager {
      *     This method will find a empty index in obj, then create
      *     object(Keys, Timer and Traps) by using createObj method.
      * </p>
-     */    public void setObjectLevel3(){
+     */
+    public void setObjectLevel3(){
         for (int i = 0; i < gp.obj.length; i++){
             if (gp.obj[i] != null){
                 gp.obj[i] = null;
