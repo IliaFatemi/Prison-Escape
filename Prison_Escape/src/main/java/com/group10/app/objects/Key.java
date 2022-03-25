@@ -26,7 +26,7 @@ public class Key extends Entity {
         super(gp);
 
         name = "Key";
-        down1 = setup("/collectibles/key", gp.cellSize, gp.cellSize);
+        down1 = setup("/collectibles/key");
     }
 
 }

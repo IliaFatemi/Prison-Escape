@@ -1,16 +1,18 @@
 package com.group10.app.SavedData;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import com.group10.app.main.GamePanel;
 
-import java.io.FileInputStream;  
+import java.io.*;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * LoadGame loads the last position of the player, the level, player position, time on the timer, the score, number of keys collected and enemy position. Load game will read up on a text file called save0.txt.
  * @author Ilia Fatemi
  */
 public class LoadGame {
+    GamePanel gp;
+
     /**
      * All the data from the text file will be stored in the data array.
      * index 0: level
@@ -27,8 +29,8 @@ public class LoadGame {
     /**
      * LoadGame constructor will load up the save file and it's contents
      */
-    public LoadGame(){
-        loadData();
+    public LoadGame(GamePanel gp){
+        this.gp = gp;
     }
 
     /**
@@ -44,11 +46,37 @@ public class LoadGame {
             int i = 0;
             String[] savedData = line.split(" ");
 
-            while(i < data.length && savedData.length == data.length){
-                int num = Integer.parseInt(savedData[i]);
-                data[i] = num;
-                i++;
+            GamePanel.GAME_LEVEL = Integer.parseInt(savedData[0]);
+            gp.inmate.x = Integer.parseInt(savedData[1]);
+            gp.inmate.y = Integer.parseInt(savedData[2]);
+            gp.inmate.time = Double.parseDouble(savedData[3]);
+            gp.inmate.score = Integer.parseInt(savedData[4]);
+            gp.inmate.hasKey = Integer.parseInt(savedData[5]);
+
+            br.close();
+
+            Arrays.fill(gp.obj, null);
+            Arrays.fill(gp.guard, null);
+
+            br = new BufferedReader(new FileReader("src/main/SavedGame/saveEntity.txt"));
+
+            int objLength = Integer.parseInt(br.readLine());
+            for (int j = 0; j < objLength; j++) {
+                gp.obj[i].name = br.readLine();
+                gp.obj[i].x = Integer.parseInt(br.readLine());
+                gp.obj[i].y = Integer.parseInt(br.readLine());
+
+                if (Objects.equals(gp.obj[i].name, "Chicken")) {
+                    gp.obj[i].disappears = Integer.parseInt(br.readLine());
+                }
             }
+
+            int guardLength = Integer.parseInt(br.readLine());
+            for (int j = 0; j < guardLength; j++) {
+                gp.guard[i].x = Integer.parseInt(br.readLine());
+                gp.guard[i].y = Integer.parseInt(br.readLine());
+            }
+
             br.close();
             System.out.println("Data loaded");
 
@@ -68,7 +96,7 @@ public class LoadGame {
      * <p>loadPlayerX will load up the players X position on the map</p>
      * @return will return an Integer which will indicate the position. The number is based on pixels.
      */
-    public int loadPlayerX(){System.out.println("loading position X");return data[1];}
+    public int loadPlayerX(){System.out.println("loading position X " + data[1]);return data[1];}
 
     /**
      * <p>loadPlayerY will load up the players Y position on the map</p>

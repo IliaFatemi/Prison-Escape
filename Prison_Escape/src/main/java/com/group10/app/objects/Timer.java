@@ -25,6 +25,6 @@ public class Timer extends Entity {
     public Timer(GamePanel gp){
         super(gp);
         name = "Timer";
-        down1 = setup("/collectibles/timer", gp.cellSize, gp.cellSize);
+        down1 = setup("/collectibles/timer");
     }
 }

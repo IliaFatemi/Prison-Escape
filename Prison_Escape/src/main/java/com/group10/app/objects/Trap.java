@@ -25,7 +25,7 @@ public class Trap extends Entity {
         super(gp);
 
         name = "Trap";
-        down1 = setup("/trap/trap", gp.cellSize, gp.cellSize);
+        down1 = setup("/trap/trap");
     }
 
 }

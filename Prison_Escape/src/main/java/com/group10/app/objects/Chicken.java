@@ -25,7 +25,7 @@ public class Chicken extends Entity {
         super(gp);
 
         name = "Chicken";
-        down1 = setup("/collectibles/chickenDrumStick", gp.cellSize, gp.cellSize);
+        down1 = setup("/collectibles/chickenDrumStick");
     }
 
 }

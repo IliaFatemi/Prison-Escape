@@ -2,7 +2,6 @@ package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
 import com.group10.app.entity.Inmate;
-import com.group10.app.entity.Guard;
 
 import com.group10.app.objects.TileManager;
 import com.group10.app.menu.GameOverMenu;
@@ -17,9 +16,10 @@ import static java.lang.Math.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 /**
- * GamePanel is resposible for running all of the game.
+ * GamePanel is responsible for running all the game.
  */
 public class GamePanel extends JPanel implements Runnable{
    
@@ -49,12 +49,12 @@ public class GamePanel extends JPanel implements Runnable{
     public final int screenRowNumber = 18;
 
     /**
-     * scrennWidth is 1440 pixels
+     * screenWidth is 1440 pixels
      */
     public final int screenWidth = cellSize * screenColNumber;
 
     /**
-     * scrennWidth is 864 pixels
+     * screenWidth is 864 pixels
      */
     public final int screenHeight = cellSize * screenRowNumber;
 
@@ -88,7 +88,7 @@ public class GamePanel extends JPanel implements Runnable{
     Boolean GAME_SAVED = false;
 
     //Load saved data
-    LoadGame load = new LoadGame();
+    LoadGame load = new LoadGame(this);
 
     //set up save game
     SaveGame saveGame = new SaveGame();
@@ -107,11 +107,6 @@ public class GamePanel extends JPanel implements Runnable{
     //Set up the Mouse Keys
     MouseManager mouseK = new MouseManager(this);
 
-    //set guards position
-    Guard guard = new Guard(this, 302, 160);
-    Guard guard1 = new Guard(this, 565, 424);
-    Guard guard2 = new Guard(this, 565, 424);
-
     //Set up the main menu screen 
     MenuScreen mainMenu = new MenuScreen(this);
 
@@ -123,12 +118,15 @@ public class GamePanel extends JPanel implements Runnable{
 
     //set up game over screen
     GameOverMenu gameOver = new GameOverMenu(this);
-    
+
+    // Create guard array;
+    public Entity[] guard = new Entity[5];
+
     // Create object array;
     public Entity[] obj = new Entity[30];
     
     // Set up asset;
-    public ObjectManager asset = new ObjectManager(this);
+    public EntityManager asset = new EntityManager(this);
     
     // Set up collision check;
     public Collision collisionCheck = new Collision(this);
@@ -137,8 +135,7 @@ public class GamePanel extends JPanel implements Runnable{
     public GameDisplay ui = new GameDisplay(this);
 
     // Set up music and sound effect
-    Sound music = new Sound();
-    Sound soundEffect = new Sound();
+    public Sound music = new Sound();
 
     /**
      * The different states throughout the game
@@ -163,78 +160,11 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     /**
-     * <p>Setting up the objects such as timer, keys, traps and drum sticks for each level in the game.</p>
-     */
-    public void setUpAsset() {
-        if (GAME_LEVEL == 1){asset.setObjectLevel1();}
-        else if (GAME_LEVEL == 2){asset.setObjectLevel2();}
-        else if (GAME_LEVEL == 3){asset.setObjectLevel3();}
-        playMusic(0);
-    }
-
-    /**
      * Setting up the game thread
      */
     public void startGameThread(){
-            gameThread = new Thread(this);
-            gameThread.start();
-    }
- 
-    /**
-     * Setting up collision between two objects. 
-     * @param inmate The player object
-     * @param objectX position X of the object
-     * @param objectY position Y of the object
-     * @param collision_type The collision distance between the player and the object
-     * @return boolean
-     */
-    public boolean isCollision(Inmate inmate, double objectX, double objectY, int collision_type){   
-        double distance = sqrt(pow(inmate.getX() - objectX, 2) + pow(inmate.getY() - objectY, 2));
-        return distance <= collision_type;
-    }
-
-    /**
-     * <p>if the player is within the area of the gate the mehtod will return true, otherwise false</p>
-     * @return boolean
-     */
-    public boolean reachedGate(){
-        return inmate.getX() >= 1344 && inmate.getX() <= 1350 && inmate.getY() >= 292 && inmate.getY() <= 544;
-    }
-
-    /**
-     * <p>Based on the level of the player, the gotAllKeys will check if the player collect the right amount of keys for a specific level</p>
-     * @param level The level where to check the constraint
-     * @return boolean
-     */
-    public boolean gotAllKeys(int level){
-        if(level == 1 && inmate.getNumKeys() >= 3){return true;}
-        else if(level == 2 && inmate.getNumKeys() >= 4){return true;}
-        else if(level == 3 && inmate.getNumKeys() >= 5){return true;}
-        return false;
-    }
-
-    /**
-     * <p>If the time has reached zero, the method will return true.</p>
-     * @return boolean
-     */
-    public boolean isTimeOver(){
-        if(inmate.getTimer() <= 0){
-            System.out.println("Time reached zero");
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * isScoreNegative will be true if the score has reached a negative number
-     * @return boolean
-     */
-    public boolean isScoreNegative(){
-        if(inmate.getScore() < 0){
-            System.out.println("Score is negative");
-            return true;
-        }
-        return false;
+        gameThread = new Thread(this);
+        gameThread.start();
     }
 
     /**
@@ -245,65 +175,61 @@ public class GamePanel extends JPanel implements Runnable{
         double nextDrawTime = System.nanoTime() + drawInterval;
 
         while(gameThread != null){
+            update();
             //render graphics
             repaint();
-    
-            //Pause the game if pause menu is active
-            update();
-            if(state != STATE.PAUSED && state != STATE.MENU && state != STATE.GAMEWON && state != STATE.GAMEOVER){
 
-                //guard collision or time is up
-                if (isCollision(inmate, guard.getX(), guard.getY(), ENEMY_COLLISION_DISTANCE) || isTimeOver() || isScoreNegative()){
-                    System.out.println("ENEMY COLLIDED");
-                    System.out.println("===================================");
-                    state = STATE.GAMEOVER;
-                    inmate.resetKeys();
-                }
-                else if (isCollision(inmate, guard1.getX(), guard1.getY(), ENEMY_COLLISION_DISTANCE)){
-                    System.out.println("ENEMY COLLIDED");
-                    System.out.println("===================================");
-                    state = STATE.GAMEOVER;
-                    inmate.resetKeys();
-                }
-                else if (isCollision(inmate, guard2.getX(), guard2.getY(), ENEMY_COLLISION_DISTANCE)){
-                    System.out.println("ENEMY COLLIDED");
-                    System.out.println("===================================");
-                    state = STATE.GAMEOVER;
-                    inmate.resetKeys();
+            try {
+                double remainingTime = nextDrawTime - System.nanoTime();
+                remainingTime /= 1000000;
+
+                if(remainingTime < 0){
+                    remainingTime = 0;
                 }
 
-                //got all keys and reached the gate
-                if(gotAllKeys(GAME_LEVEL) && reachedGate()){state = STATE.GAMEWON;}
+                Thread.sleep((long) remainingTime);
 
-                try {
-                    double remainingTime = nextDrawTime - System.nanoTime();
-                    remainingTime /= 1000000;
-    
-                    if(remainingTime < 0){
-                        remainingTime = 0;
-                    }
-    
-                    Thread.sleep((long) remainingTime);
-    
-                    nextDrawTime += drawInterval;
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                nextDrawTime += drawInterval;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
 
     /**
-     * <p>Updating the player, enemy and the world objects when the state of the game is GAME.</p>
+     * <p>Updating the player, objects and guards when the state of the game is GAME.</p>
      */
     public void update(){
         if(state == STATE.GAME){
             inmate.update();
             asset.update();
-            guard.update(inmate.x, inmate.y);
-            guard1.update(inmate.x, inmate.y);
-            guard2.update(inmate.x, inmate.y);
+            // Guard
+            for (Entity entity : guard) {
+                if (entity != null) {
+                    entity.update();
+                }
+            }
+
+            // Guard collision
+            for (Entity entity : guard) {
+                if (entity != null){
+                    if (collisionCheck.checkGuard(inmate, entity.x, entity.y, ENEMY_COLLISION_DISTANCE)) {
+                        System.out.println("ENEMY COLLIDED");
+                        System.out.println("===================================");
+                        state = STATE.GAMEOVER;
+                    }
+                }
+            }
+
+            // Time is up or score is negative
+            if (inmate.isTimeOver() || inmate.isScoreNegative()) {
+                state = STATE.GAMEOVER;
+            }
+
+            // Got all keys and reached the gate
+            if(inmate.gotAllKeys() && inmate.reachedGate()){state = STATE.GAMEWON;}
         }
+
     }
 
     /**
@@ -332,10 +258,12 @@ public class GamePanel extends JPanel implements Runnable{
                 }
             }
     
-            //Draw guard
-            guard.draw(g2);
-            guard1.draw(g2);
-            guard2.draw(g2);
+            // Draw guards
+            for (Entity entity : guard) {
+                if (entity != null){
+                    entity.draw(g2);
+                }
+            }
     
             //Draw the inmate
             inmate.draw(g2);
@@ -368,63 +296,33 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     /**
-     * Get the music we need by using setFile, and play it forever.
-     * @param i the index of soundURL
-     */
-    public void playMusic (int i) {
-        music.setFile(i);
-        music.play();
-        music.loop();
-
-    }
-
-    /**
-     * Stop Music
-     */
-    public void stopMusic () {
-        music.stop();
-    }
-
-    /**
-     * Play sound effect that index i in soundURL
-     * @param i the index of soundURL
-     */
-    public void playSE(int i) {
-        soundEffect.setFile(i);
-        soundEffect.play();
-    }
-
-    /**
-     * <p>Setting up the level accordingly to each level. This method can be used to check the level after states of the has been updated</p>
+     * <p>
+     *     Setting up the level accordingly to each level.
+     *     Setting up inmate's position for different level
+     *     This method can be used to New Game and Restart
+     * </p>
      */
     public void levelCheck(){
-        if(GAME_LEVEL == 1){
-            tileManage.loadMap(LEVEL1);
-            inmate.setPos(279, 717);
-            inmate.resetKeys();
-            inmate.resetScore();
-            inmate.setTimer(100);
-            guard.setGuardValues(302, 160);
-            guard1.setGuardValues(1297, 115);
-            guard2.setGuardValues(250, 365);
-        }else if (GamePanel.GAME_LEVEL == 2){
-            inmate.setPos(610, 562);
-            inmate.resetKeys();
-            inmate.resetScore();
-            inmate.setTimer(100);
-            tileManage.loadMap(LEVEL2);
-        }else if (GamePanel.GAME_LEVEL == 3){
-            inmate.setPos(110, 101);
-            inmate.resetKeys();
-            inmate.resetScore();
-            inmate.setTimer(100);
-            tileManage.loadMap(LEVEL3);
-        }
         GamePanel.state = STATE.GAME;
 
-        if (music.clip != null){
-            stopMusic();
+        inmate.resetInmate();
+        if(GAME_LEVEL == 1){
+            inmate.setPos(279, 717);
+        }else if (GamePanel.GAME_LEVEL == 2){
+            inmate.setPos(610, 562);
+        }else if (GamePanel.GAME_LEVEL == 3){
+            inmate.setPos(110, 101);
         }
-        setUpAsset();
+
+        tileManage.loadMap("/levels/Level" + GAME_LEVEL + ".txt");
+
+        if (music.clip != null){
+            music.stopMusic();
+        }
+
+        Arrays.fill(obj, null);
+        Arrays.fill(guard, null);
+
+        asset.setUpAsset();
     }
 }

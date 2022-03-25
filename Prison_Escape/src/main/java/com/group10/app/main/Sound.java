@@ -69,4 +69,31 @@ public class Sound {
     public void stop() {
         clip.stop();
     }
+
+
+    /**
+     * Get the music we need by using setFile, and play it forever.
+     * @param i the index of soundURL
+     */
+    public void playMusic (int i) {
+        setFile(i);
+        play();
+        loop();
+    }
+
+    /**
+     * Stop Music
+     */
+    public void stopMusic () {
+        stop();
+    }
+
+    /**
+     * Play sound effect that index i in soundURL
+     * @param i the index of soundURL
+     */
+    public void playSE(int i) {
+        setFile(i);
+        play();
+    }
 }

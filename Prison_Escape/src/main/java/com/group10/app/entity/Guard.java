@@ -16,25 +16,29 @@ import com.group10.app.main.GamePanel;
  */
 public class Guard extends Entity{
     GamePanel gp;
-    int standCounter = 0;
+    boolean moving = false;
+    int pixelCounter = 0;
 
     /**
      * The constructor for the Guard class
      *
      * <p>
-     *     In charge of initializing the position of the guard with respect to the
-     *     game panel gp
+     *     Default setting include: direction = down
+     *                              speed = 1
+     *                              SolidArea(8, 16, 32, 32)
+     *                              Get guard's images
      * </p>
      *
      * @param gp main game panel
-     * @param setX x position for the guard
-     * @param setY y position for the guard
      */
-    public Guard(GamePanel gp, int setX, int setY){
+    public Guard(GamePanel gp){
         super(gp);
         this.gp = gp;
+
+        direction = "down";
+        speed = 1;
+
         getGuardImage();
-        setGuardValues(setX, setY);
         solidArea = new Rectangle(8, 16, 32, 32);
 
         solidAreaDefaultX = solidArea.x;
@@ -45,26 +49,26 @@ public class Guard extends Entity{
      * getGuardImage method is in charge of registering the image directories for the guard enemy
      */
     public void getGuardImage(){
-        up1 = setup("/prisonGuard/WalkUp1", gp.cellSize, gp.cellSize);
-        up2 = setup("/prisonGuard/WalkUp2", gp.cellSize, gp.cellSize);
-        up3 = setup("/prisonGuard/WalkUp3", gp.cellSize, gp.cellSize);
-        up4 = setup("/prisonGuard/WalkUp4", gp.cellSize, gp.cellSize);
-        up5 = setup("/prisonGuard/WalkUp5", gp.cellSize, gp.cellSize);
-        down1 = setup("/prisonGuard/WalkDown1", gp.cellSize, gp.cellSize);
-        down2 = setup("/prisonGuard/WalkDown2", gp.cellSize, gp.cellSize);
-        down3 = setup("/prisonGuard/WalkDown3", gp.cellSize, gp.cellSize);
-        down4 = setup("/prisonGuard/WalkDown4", gp.cellSize, gp.cellSize);
-        down5 = setup("/prisonGuard/WalkDown5", gp.cellSize, gp.cellSize);
-        left1 = setup("/prisonGuard/WalkLeft1", gp.cellSize, gp.cellSize);
-        left2 = setup("/prisonGuard/WalkLeft2", gp.cellSize, gp.cellSize);
-        left3 = setup("/prisonGuard/WalkLeft3", gp.cellSize, gp.cellSize);
-        left4 = setup("/prisonGuard/WalkLeft4", gp.cellSize, gp.cellSize);
-        left5 = setup("/prisonGuard/WalkLeft5", gp.cellSize, gp.cellSize);
-        right1 = setup("/prisonGuard/WalkRight1", gp.cellSize, gp.cellSize);
-        right2 = setup("/prisonGuard/WalkRight2", gp.cellSize, gp.cellSize);
-        right3 = setup("/prisonGuard/WalkRight3", gp.cellSize, gp.cellSize);
-        right4 = setup("/prisonGuard/WalkRight4", gp.cellSize, gp.cellSize);
-        right5 = setup("/prisonGuard/WalkRight5", gp.cellSize, gp.cellSize);
+        up1 = setup("/prisonGuard/WalkUp1");
+        up2 = setup("/prisonGuard/WalkUp2");
+        up3 = setup("/prisonGuard/WalkUp3");
+        up4 = setup("/prisonGuard/WalkUp4");
+        up5 = setup("/prisonGuard/WalkUp5");
+        down1 = setup("/prisonGuard/WalkDown1");
+        down2 = setup("/prisonGuard/WalkDown2");
+        down3 = setup("/prisonGuard/WalkDown3");
+        down4 = setup("/prisonGuard/WalkDown4");
+        down5 = setup("/prisonGuard/WalkDown5");
+        left1 = setup("/prisonGuard/WalkLeft1");
+        left2 = setup("/prisonGuard/WalkLeft2");
+        left3 = setup("/prisonGuard/WalkLeft3");
+        left4 = setup("/prisonGuard/WalkLeft4");
+        left5 = setup("/prisonGuard/WalkLeft5");
+        right1 = setup("/prisonGuard/WalkRight1");
+        right2 = setup("/prisonGuard/WalkRight2");
+        right3 = setup("/prisonGuard/WalkRight3");
+        right4 = setup("/prisonGuard/WalkRight4");
+        right5 = setup("/prisonGuard/WalkRight5");
     }
 
     /**
@@ -111,27 +115,29 @@ public class Guard extends Entity{
      *     of the guard when the inmate comes within range of the guard. Once the inmate
      *     is in range the guard will follow the player
      * </p>
-     *
-     * @param xcor x coordinate of the player being passed into the method
-     * @param ycor y coordinate of the player being passed into the method
      */
-    public void update(int xcor, int ycor) {
-        if (xcor < x) {
-            direction = "left";
-        }
-        else if (xcor > x) {
-            direction = "right";
-        }
+    public void update() {
 
-        if (xcor - x < (gp.cellSize/2) && x - xcor < (gp.cellSize/2)){
-            if (ycor < y) {
-                direction = "up";
-            }
-            else if (ycor > y) {
-                direction = "down";
-            }
-        }
+        if (!moving) {
 
+            if (gp.inmate.x < x) {
+                direction = "left";
+            }
+            else if (gp.inmate.x > x) {
+                direction = "right";
+            }
+
+            if (gp.inmate.x - x < (gp.cellSize/2) && x - gp.inmate.x < (gp.cellSize/2)){
+                if (gp.inmate.y < y) {
+                    direction = "up";
+                }
+                else if (gp.inmate.y > y) {
+                    direction = "down";
+                }
+            }
+
+            moving = true;
+        }
 
         collision = false;
         gp.collisionCheck.wallCheck(this);
@@ -166,6 +172,13 @@ public class Guard extends Entity{
                 spriteNum = 1;
             }
             spriteCounter = 0;
+        }
+
+        pixelCounter += speed;
+
+        if (pixelCounter == 48) {
+            moving = false;
+            pixelCounter = 0;
         }
     }
 

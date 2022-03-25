@@ -1,6 +1,10 @@
 package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
+import com.group10.app.entity.Inmate;
+
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
 
 /**
  * Collision class for wall collision and object collision.
@@ -148,5 +152,19 @@ public class Collision {
         }
 
         return index;
+    }
+
+
+    /**
+     * Setting up collision between two objects.
+     * @param inmate The player object
+     * @param objectX position X of the object
+     * @param objectY position Y of the object
+     * @param collision_type The collision distance between the player and the object
+     * @return boolean
+     */
+    public boolean checkGuard(Inmate inmate, double objectX, double objectY, int collision_type){
+        double distance = sqrt(pow(inmate.getX() - objectX, 2) + pow(inmate.getY() - objectY, 2));
+        return distance <= collision_type;
     }
 }

@@ -1,6 +1,9 @@
 package com.group10.app.SavedData;
 
-import java.io.FileWriter; 
+import com.group10.app.entity.Entity;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -16,14 +19,58 @@ public class SaveGame {
      * @param timer An integer for the timer 
      * @param score An integer for the score
      * @param numKeys An integer for the number of keys collected on the map
-     * @param enemyX An integer for the ememies X position
-     * @param enemyY An integer for the enemies Y position 
      */
-    public void save(int level, int playerX, int playerY, int timer, int score, int numKeys, int enemyX, int enemyY){
+    public void save(int level, int playerX, int playerY, double timer, int score, int numKeys, Entity[] objects, Entity[] guards){
         try {
             FileWriter myWriter = new FileWriter("src/main/SavedGame/save0.txt");
-            myWriter.write(level + " " + playerX + " " + playerY + " " + timer + " " + score + " " + numKeys + " " + enemyX + " " + enemyY);
+            myWriter.write(level + " " + playerX + " " + playerY + " " + timer + " " + score + " " + numKeys + " ");
             myWriter.close();
+
+            BufferedWriter bw = new BufferedWriter( new FileWriter("src/main/SavedGame/saveEntity.txt"));
+            int i = 0;
+            for (Entity object : objects) {
+                if (object != null){
+                    i++;
+                }
+            }
+            bw.write("" + i);
+            bw.newLine();
+            for (Entity object : objects) {
+
+                if (object != null){
+                    bw.write(object.name);
+                    bw.newLine();
+                    bw.write("" + object.x);
+                    bw.newLine();
+                    bw.write("" + object.y);
+                    bw.newLine();
+
+                    if (object.name == "Chicken"){
+                        bw.write("" + object.disappears);
+                        bw.newLine();
+                    }
+                }
+            }
+
+            i = 0;
+            for (Entity object : guards) {
+                if (object != null){
+                    i++;
+                }
+            }
+            bw.write("" + i);
+            bw.newLine();
+            for (Entity object : guards) {
+                if (object != null){
+                    bw.write("" + object.x);
+                    bw.newLine();
+                    bw.write("" + object.y);
+                    bw.newLine();
+                }
+            }
+
+            bw.close();
+
           } catch (IOException e) {
             System.out.println("An error occurred. Could not save game.");
             e.printStackTrace();

@@ -31,7 +31,6 @@ public class App{
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
-        gamePanel.setUpAsset();
         gamePanel.startGameThread();
     }
 

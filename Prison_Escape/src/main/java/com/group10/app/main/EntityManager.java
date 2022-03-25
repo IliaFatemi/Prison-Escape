@@ -1,6 +1,7 @@
 package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
+import com.group10.app.entity.Guard;
 import com.group10.app.objects.Chicken;
 import com.group10.app.objects.Door;
 import com.group10.app.objects.Key;
@@ -11,10 +12,10 @@ import java.util.Objects;
 import java.util.Random;
 
 /**
- * This is for create and delete objects.
+ * This is for create and delete entities.
  */
 
-public class ObjectManager {
+public class EntityManager {
 
     GamePanel gp;
     int doorIndex = 1;
@@ -23,9 +24,9 @@ public class ObjectManager {
     /**
      * This is the constructor for the AssetSetter class.
      *
-     * @param gp
+     * @param gp passing the GamePanel to use GamePanel's variables
      */
-    public ObjectManager(GamePanel gp){
+    public EntityManager(GamePanel gp){
         this.gp = gp;
     }
 
@@ -33,19 +34,13 @@ public class ObjectManager {
      * This is for create objects at level 1
      *
      * <p>
-     *     This method will find a empty index in obj, then create
-     *     object(Keys, Timer and Traps) by using createObj method.
+     *     This method create object(Keys, Timer and Traps)
+     *     and guards by using createObj/createGuard method.
      * </p>
      */
-    public void setObjectLevel1(){
+    public void setEntityLevel1(){
 
-        for (int i = 0; i < gp.obj.length; i++){
-            if (gp.obj[i] != null){
-                gp.obj[i] = null;
-            }
-        }
-
-        // Create Key
+        // Create Objects
         createObj(new Key(gp), 11, 11);
         createObj(new Key(gp), 2, 15);
         createObj(new Key(gp), 18, 11);
@@ -55,25 +50,26 @@ public class ObjectManager {
 
         // Create Door
         createDoor();
+
+        // Create Guard
+        createGuard(new Guard(gp), 6, 8);
+        createGuard(new Guard(gp), 7, 8);
+        createGuard(new Guard(gp), 8, 8);
+
+        System.out.println("Creat lvl1 obj");
     }
 
     /**
      * This is for create objects at level 2
      *
      * <p>
-     *     This method will find a empty index in obj, then create
-     *     object(Keys, Timer and Traps) by using createObj method.
+     *     This method create object(Keys, Timer and Traps)
+     *     and guards by using createObj/createGuard method.
      * </p>
      */
-    public void setObjectLevel2(){
+    public void setEntityLevel2(){
 
-        for (int i = 0; i < gp.obj.length; i++){
-            if (gp.obj[i] != null){
-                gp.obj[i] = null;
-            }
-        }
-
-        // Create Key
+        // Create Objects
         createObj(new Key(gp), 8, 11);
         createObj(new Key(gp), 16, 11);
         createObj(new Key(gp), 27, 15);
@@ -86,24 +82,29 @@ public class ObjectManager {
 
         // Create Door
         createDoor();
+
+        // Create Guard
+        createGuard(new Guard(gp), 6, 8);
+        createGuard(new Guard(gp), 7, 8);
+        createGuard(new Guard(gp), 8, 8);
     }
 
     /**
      * This is for create objects at level 3
      *
      * <p>
-     *     This method will find a empty index in obj, then create
-     *     object(Keys, Timer and Traps) by using createObj method.
+     *     This method create object(Keys, Timer and Traps)
+     *     and guards by using createObj/createGuard method.
      * </p>
      */
-    public void setObjectLevel3(){
+    public void setEntityLevel3(){
         for (int i = 0; i < gp.obj.length; i++){
             if (gp.obj[i] != null){
                 gp.obj[i] = null;
             }
         }
 
-        // Create Key
+        // Create Objects
         createObj(new Key(gp), 8, 8);
         createObj(new Key(gp), 9, 16);
         createObj(new Key(gp), 22, 7);
@@ -118,8 +119,14 @@ public class ObjectManager {
         createObj(new Trap(gp), 25, 3);
         createObj(new Trap(gp), 19, 15);
         createObj(new Trap(gp), 19, 16);
+
         // Create Door
         createDoor();
+
+        // Create Guards
+        createGuard(new Guard(gp), 6, 8);
+        createGuard(new Guard(gp), 7, 8);
+        createGuard(new Guard(gp), 8, 8);
     }
 
     /**
@@ -198,7 +205,7 @@ public class ObjectManager {
 
         if (Objects.equals(entity.name, "Door")) {
 
-            entity.down1 = entity.setup("/tiles/exit" + doorIndex, gp.cellSize, gp.cellSize);
+            entity.down1 = entity.setup("/tiles/exit" + doorIndex);
             doorIndex++;
 
             if (doorIndex > 5) {
@@ -209,6 +216,31 @@ public class ObjectManager {
         gp.obj[i] = entity;
         gp.obj[i].x = gp.cellSize * worldX;
         gp.obj[i].y = gp.cellSize * worldY;
+    }
+
+    /**
+     * This is for create guard at position(worldX, worldY)
+     *
+     * <p>
+     *     This method will find a empty index in guard list, then create a guard
+     *     in this index and set the guard's position(worldX, worldY).
+     * </p>
+     *
+     * @param entity passing in guard of entity
+     * @param worldX the guard's x coordination
+     * @param worldY the guard's y coordination
+     */
+    public void createGuard(Entity entity, int worldX, int worldY) {
+
+        int i = 0;
+
+        while (gp.guard[i] != null){
+            i++;
+        }
+
+        gp.guard[i] = entity;
+        gp.guard[i].x = gp.cellSize * worldX;
+        gp.guard[i].y = gp.cellSize * worldY;
     }
 
     /**
@@ -251,6 +283,15 @@ public class ObjectManager {
         createObj(new Door(gp), 29, 9);
         createObj(new Door(gp), 29, 10);
         createObj(new Door(gp), 29, 11);
+    }
+
+    /**
+     * <p>Setting up the objects such as timer, keys, traps and drum sticks for each level in the game.</p>
+     */
+    public void setUpAsset() {
+        if (GamePanel.GAME_LEVEL == 1){setEntityLevel1();}
+        else if (GamePanel.GAME_LEVEL == 2){setEntityLevel2();}
+        else if (GamePanel.GAME_LEVEL == 3){setEntityLevel3();}
     }
 }
 

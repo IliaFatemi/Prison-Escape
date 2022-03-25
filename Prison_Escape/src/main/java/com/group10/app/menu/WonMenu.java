@@ -32,9 +32,8 @@ public class WonMenu {
      */ 
     public BufferedImage returnMenu, gameWonTemp, nextLevel;
 
-
     /**
-     * <p>The contructor for WonMenu will setup the registered images</p>
+     * <p>The contractor for WonMenu will setup the registered images</p>
      * @param gp the GamePanel object
      */
     public WonMenu(GamePanel gp){

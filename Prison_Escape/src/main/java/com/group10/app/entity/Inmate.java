@@ -53,18 +53,18 @@ public class Inmate extends Entity{
      * getInmateImage method is in charge of registering the image directories for the Inmate enemy
      */
     public void getInmateImage(){
-        up1 = setup("/inmate/walkUp1", gp.cellSize, gp.cellSize);
-        up2 = setup("/inmate/walkUp2", gp.cellSize, gp.cellSize);
-        up3 = setup("/inmate/walkUp3", gp.cellSize, gp.cellSize);
-        down1 = setup("/inmate/walkDown1", gp.cellSize, gp.cellSize);
-        down2 = setup("/inmate/walkDown2", gp.cellSize, gp.cellSize);
-        down3 = setup("/inmate/walkDown3", gp.cellSize, gp.cellSize);
-        left1 = setup("/inmate/walkLeft1", gp.cellSize, gp.cellSize);
-        left2 = setup("/inmate/walkLeft2", gp.cellSize, gp.cellSize);
-        left3 = setup("/inmate/walkLeft3", gp.cellSize, gp.cellSize);
-        right1 = setup("/inmate/walkRight1", gp.cellSize, gp.cellSize);
-        right2 = setup("/inmate/walkRight2", gp.cellSize, gp.cellSize);
-        right3 = setup("/inmate/walkRight3", gp.cellSize, gp.cellSize);
+        up1 = setup("/inmate/walkUp1");
+        up2 = setup("/inmate/walkUp2");
+        up3 = setup("/inmate/walkUp3");
+        down1 = setup("/inmate/walkDown1");
+        down2 = setup("/inmate/walkDown2");
+        down3 = setup("/inmate/walkDown3");
+        left1 = setup("/inmate/walkLeft1");
+        left2 = setup("/inmate/walkLeft2");
+        left3 = setup("/inmate/walkLeft3");
+        right1 = setup("/inmate/walkRight1");
+        right2 = setup("/inmate/walkRight2");
+        right3 = setup("/inmate/walkRight3");
     }
 
     /**
@@ -97,15 +97,15 @@ public class Inmate extends Entity{
 
             if(!collision){
                 switch (direction) {
-                    case "up": y -= speed; break;
-                    case "down": y += speed; break;
-                    case "left": x -= speed; break;
-                    case "right": x += speed; break;
+                    case "up":      y -= speed; break;
+                    case "down":    y += speed; break;
+                    case "left":    x -= speed; break;
+                    case "right":   x += speed; break;
                 }
             }
 
             spriteCounter++;
-            if (spriteCounter > 11) {
+            if (spriteCounter > 10) {
                 if (spriteNum == 1) {
                     spriteNum = 2;
                 } else if (spriteNum == 2) {
@@ -124,7 +124,6 @@ public class Inmate extends Entity{
                 standCounter = 0;
             }
         }
-
     }
 
     /**
@@ -217,14 +216,13 @@ public class Inmate extends Entity{
     public void resetScore(){score = 0;}
 
     /**
-     * reset the position, speed, score, and time
+     * reset the speed, time, score, and hasKey(Key number)
      */
     public void resetInmate(){
-        x = 100;
-        y = 100;
         speed = 2;
         time = 100;
         score = 0;
+        hasKey = 0;
     }
 
     /**
@@ -251,23 +249,23 @@ public class Inmate extends Entity{
 
             switch (objectName) {
                 case "Key":
-                    gp.playSE(1);
+                    gp.music.playSE(1);
                     score += 50;
                     hasKey++;
                     gp.obj[i] = null;
                 break;
                 case "Timer":
-                    gp.playSE(2);
+                    gp.music.playSE(2);
                     time += 20;
                     gp.obj[i] = null;
                 break;
                 case "Chicken":
-                    gp.playSE(3);
+                    gp.music.playSE(3);
                     score += 100;
                     gp.obj[i] = null;
                 break;
                 case "Trap":
-                    gp.playSE(4);
+                    gp.music.playSE(4);
                     score -= 50;
                     gp.obj[i] = null;
                 break;
@@ -330,5 +328,48 @@ public class Inmate extends Entity{
             
         }
         g2.drawImage(image, x , y, gp.cellSize, gp.cellSize, null);
+    }
+
+    /**
+     * <p>if the player is within the area of the gate the mehtod will return true, otherwise false</p>
+     * @return boolean
+     */
+    public boolean reachedGate(){
+        return x >= 1344 && x <= 1350 && y >= 292 && y <= 544;
+    }
+
+    /**
+     * <p>Based on the level of the player, the gotAllKeys will check if the player collect the right amount of keys for a specific level</p>
+     * @return boolean
+     */
+    public boolean gotAllKeys(){
+        if(GamePanel.GAME_LEVEL == 1 && hasKey >= 3){return true;}
+        else if(GamePanel.GAME_LEVEL == 2 && hasKey >= 4){return true;}
+        else if(GamePanel.GAME_LEVEL == 3 && hasKey >= 5){return true;}
+        return false;
+    }
+
+    /**
+     * <p>If the time has reached zero, the method will return true.</p>
+     * @return boolean
+     */
+    public boolean isTimeOver(){
+        if(time <= 0){
+            System.out.println("Time reached zero");
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * isScoreNegative will be true if the score has reached a negative number
+     * @return boolean
+     */
+    public boolean isScoreNegative(){
+        if(score < 0){
+            System.out.println("Score is negative");
+            return true;
+        }
+        return false;
     }
 }

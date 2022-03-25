@@ -33,11 +33,11 @@ public class Entity {
 
     // Character Status
     public String name;
-    public int speed = 2;
+    public int speed;
 
     // Counter
     public int disappears = 0;
-    int doorLightly = 0;
+    public int doorLightly = 0;
 
     //
     public int x, y;
@@ -48,7 +48,7 @@ public class Entity {
 
     /**
      * The constructor for the Entity class
-     * @param gp used for building entites on the gamepanel
+     * @param gp used for building entities on the game panel
      */
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -61,45 +61,21 @@ public class Entity {
      *     keys for the round and then changes the appearance of the door (lessen the brightness)
      *     of it
      * </p>
-     * @param g2
+     * @param g2 passing the GamePanel's Graphics2D
      */
     public void draw(Graphics2D g2) {
-
-        int i = 25;
-
-        if (gp.inmate.hasKey == 2 + GamePanel.GAME_LEVEL){
-
-            if (Objects.equals(name, "Door")) {
-
-                if (doorLightly < i) {
-                    changeAlpha(g2, 0.5f);
-                    System.out.println("GAME_LEVEL is " + GamePanel.GAME_LEVEL);
-                }
-                else {
-                    changeAlpha(g2, 1f);
-                }
-
-                doorLightly++;
-
-                if (doorLightly > 50){
-                    doorLightly = 0;
-                }
-            }
-        }
-
         g2.drawImage(down1, x, y, gp.cellSize, gp.cellSize, null);
-        changeAlpha(g2, 1f);
     }
+
+    public void update(){}
 
     /**
      * The method setup is in charge of registering the image directories for the objects/characters
      *
-     * @param imagePath
-     * @param width
-     * @param height
+     * @param imagePath the image's path
      * @return image which is of type BufferedImage
      */
-    public BufferedImage setup(String imagePath, int width, int height) {
+    public BufferedImage setup(String imagePath) {
 
         BufferedImage image = null;
 
@@ -112,16 +88,16 @@ public class Entity {
         return image;
     }
 
-    /**
-     * changes the brightness of the door based off the value of alphavalue after
-     * all keys have been collected
-     *
-     * @param g2
-     * @param alphaValue (scale factor for adjusting the brightness of the door)
-     */
-
-    public void changeAlpha(Graphics2D g2, float alphaValue) {
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
+    public boolean reachedGate(){
+        return false;
     }
-
+    public boolean gotAllKeys(){
+        return false;
+    }
+    public boolean isTimeOver() {
+        return false;
+    }
+    public boolean isScoreNegative() {
+        return false;
+    }
 }
