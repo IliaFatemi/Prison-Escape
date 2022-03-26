@@ -99,7 +99,7 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
     
     //set up the tiles
-    TileManager tileManage = new TileManager(this);
+    public TileManager tileManage = new TileManager(this);
     
     //set player default position
     public Inmate inmate = new Inmate(this, keyH);

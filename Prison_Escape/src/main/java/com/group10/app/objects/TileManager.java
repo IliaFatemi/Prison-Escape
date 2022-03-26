@@ -147,6 +147,7 @@ public class TileManager {
                     row++;
                 }
             }
+
             br.close();
 
         }catch(Exception ignored){}
