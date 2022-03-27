@@ -113,6 +113,7 @@ public class Collision {
                                 entity.collision = true;
                             }
                             index = i;
+
                         }
                     }
                     case "down" : {
