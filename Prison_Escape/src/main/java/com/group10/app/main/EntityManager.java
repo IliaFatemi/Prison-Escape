@@ -17,6 +17,7 @@ import java.util.Random;
 
 public class EntityManager {
 
+
     GamePanel gp;
     int doorIndex = 1;
     int randomObjCounter = 0;
