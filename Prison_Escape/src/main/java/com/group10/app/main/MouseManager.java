@@ -143,7 +143,7 @@ public class MouseManager implements MouseListener{
         if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(103)){
             if(mouseY >= gp.screenHeight/2 + 70 && mouseY <= gp.screenHeight/2 + 140){
                 gp.saveGame.save(GamePanel.GAME_LEVEL, gp.inmate.x, gp.inmate.y,
-                        gp.inmate.speed, gp.inmate.time, gp.inmate.score, gp.inmate.hasKey,
+                        gp.inmate.getSpeed(), gp.inmate.time, gp.inmate.score, gp.inmate.hasKey,
                         gp.obj, gp.guard);
                 System.out.println("returning to Main menu");
                 GamePanel.state = MENU;
@@ -178,7 +178,7 @@ public class MouseManager implements MouseListener{
                 GamePanel.GAME_LEVEL++;
                 System.out.println("(Update) Level: "+GamePanel.GAME_LEVEL);
                 gp.saveGame.save(GamePanel.GAME_LEVEL, gp.inmate.x, gp.inmate.y,
-                        gp.inmate.speed, gp.inmate.time, gp.inmate.score, gp.inmate.hasKey,
+                        gp.inmate.getSpeed(), gp.inmate.time, gp.inmate.score, gp.inmate.hasKey,
                         gp.obj, gp.guard);
                 System.out.println(mouseX + " "+ mouseY + ": returning to Main menu");
                 GamePanel.state = MENU;

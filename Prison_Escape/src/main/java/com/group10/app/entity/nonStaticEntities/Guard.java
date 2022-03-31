@@ -37,8 +37,8 @@ public class Guard extends MovingActor {
         super(gp);
         this.gp = gp;
 
-        direction = "down";
-        speed = 1;
+        setDirection("down");
+        setSpeed(1);
 
         getGuardImage();
         solidArea = new Rectangle(8, 16, 32, 32);
@@ -82,14 +82,6 @@ public class Guard extends MovingActor {
     }
 
     /**
-     * Gets guard direction
-     * @return direction of type String
-     */
-    public String getDirection(){
-        return direction;
-    }
-
-    /**
      * set the value for guard
      *
      * @param setX x value to set guards x position
@@ -98,8 +90,8 @@ public class Guard extends MovingActor {
     public void setGuardValues(int setX, int setY){
         x = setX;
         y = setY;
-        speed = 1;
-        direction = "default";
+        setSpeed(1);
+        setDirection("default");
     }
 
     /**
@@ -115,18 +107,18 @@ public class Guard extends MovingActor {
         if (!moving) {
 
             if (gp.inmate.x < x) {
-                direction = "left";
+                setDirection("left");
             }
             else if (gp.inmate.x > x) {
-                direction = "right";
+                setDirection("right");
             }
 
             if (gp.inmate.x - x < (gp.cellSize/2) && x - gp.inmate.x < (gp.cellSize/2)){
                 if (gp.inmate.y < y) {
-                    direction = "up";
+                    setDirection("up");
                 }
                 else if (gp.inmate.y > y) {
-                    direction = "down";
+                    setDirection("down");
                 }
             }
 
@@ -135,26 +127,28 @@ public class Guard extends MovingActor {
 
         collision = false;
         gp.collisionCheck.wallCheck(this);
+
+        int guardSpeed = getSpeed();
         if (!collision) {
-            switch (direction) {
+            switch (getDirection()) {
                 case "up":
-                    y -= speed;
+                    y -= guardSpeed;
                     break;
                 case "down":
-                    y += speed;
+                    y += guardSpeed;
                     break;
                 case "left":
-                    x -= speed;
+                    x -= guardSpeed;
                     break;
                 case "right":
-                    x += speed;
+                    x += guardSpeed;
                     break;
             }
         }
         collisionUpdate();
         spriteUpdate();
 
-        pixelCounter += speed;
+        pixelCounter += guardSpeed;
 
         if (pixelCounter == 48) {
             moving = false;
