@@ -1,14 +1,12 @@
 package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
-import com.group10.app.entity.staticEntities.Key;
+import com.group10.app.objects.Key;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-
-import static com.group10.app.main.GameStates.*;
 
 /**
  * GameDisplay class is for show information in screen when game state.
@@ -58,7 +56,7 @@ public class GameDisplay {
         g2.setColor(Color.white);
 
         //Play state
-        if (GamePanel.state == GAME){
+        if (GamePanel.state == GamePanel.STATE.GAME){
             drawScoreTimeKey();
             drawMessage();
         }

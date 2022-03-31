@@ -1,6 +1,5 @@
-package com.group10.app.entity.nonStatisEntities;
+package com.group10.app.entity;
 
-import com.group10.app.entity.Entity;
 import com.group10.app.main.GamePanel;
 import com.group10.app.main.KeyManager;
 
@@ -18,7 +17,7 @@ import java.util.Objects;
  *     interactions, and drawing the players sprites
  * </p>
  */
-public class Inmate extends Entity {
+public class Inmate extends Entity{
     GamePanel gp;
     KeyManager keyH;
     public int hasKey = 0;

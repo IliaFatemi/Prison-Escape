@@ -1,12 +1,12 @@
 package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
-import com.group10.app.entity.nonStatisEntities.Guard;
-import com.group10.app.entity.staticEntities.Chicken;
-import com.group10.app.entity.staticEntities.Door;
-import com.group10.app.entity.staticEntities.Key;
-import com.group10.app.entity.staticEntities.Timer;
-import com.group10.app.entity.staticEntities.Trap;
+import com.group10.app.entity.Guard;
+import com.group10.app.objects.Chicken;
+import com.group10.app.objects.Door;
+import com.group10.app.objects.Key;
+import com.group10.app.objects.Timer;
+import com.group10.app.objects.Trap;
 
 import java.util.Objects;
 import java.util.Random;

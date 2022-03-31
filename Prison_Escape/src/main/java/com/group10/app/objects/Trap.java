@@ -1,4 +1,4 @@
-package com.group10.app.entity.staticEntities;
+package com.group10.app.objects;
 
 import com.group10.app.entity.Entity;
 import com.group10.app.main.GamePanel;

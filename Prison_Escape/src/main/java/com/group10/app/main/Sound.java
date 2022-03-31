@@ -9,7 +9,7 @@ import java.net.URL;
  * This is class for music and sound effects
  */
 
-public class SoundManager {
+public class Sound {
     Clip clip;
     URL[] soundURL = new URL[10];
 
@@ -21,7 +21,7 @@ public class SoundManager {
      * </p>
      *
      */
-    public SoundManager() {
+    public Sound() {
 
         soundURL[0] = getClass().getResource("/sound/bgm.wav");
         soundURL[1] = getClass().getResource("/sound/getKey.wav");

@@ -1,0 +1,148 @@
+Index: src/main/java/com/group10/app/main/GamePanel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.group10.app.main;\n\nimport com.group10.app.entity.Entity;\nimport com.group10.app.entity.Inmate;\nimport com.group10.app.entity.Guard;\n\nimport com.group10.app.objects.TileManager;\nimport com.group10.app.menu.GameOverMenu;\nimport com.group10.app.menu.MenuScreen;\nimport com.group10.app.menu.PauseMenu;\nimport com.group10.app.menu.WonMenu;\n\nimport com.group10.app.SavedData.LoadGame;\nimport com.group10.app.SavedData.SaveGame;\n\nimport static java.lang.Math.*;\n\nimport javax.swing.*;\nimport java.awt.*;\n\npublic class GamePanel extends JPanel implements Runnable{\n   \n    // Screen size settings\n    final int originalCellSize = 12;\n    final int scaleFactor = 4;\n    public final int cellSize = originalCellSize * scaleFactor; //48x48 cells\n    public final int screenColNumber = 30;\n    public final int screenRowNumber = 18;\n    public final int screenWidth = cellSize * screenColNumber;//1920 pixels\n    public final int screenHeight = cellSize * screenRowNumber;//1080 pixels\n\n    final int framePerSecond = 60;\n\n    //The distance where the player and enemy will collide at\n    int ENEMY_COLLISION_DISTANCE = 40;\n\n    //Level files in the game\n    String LEVEL1 = \"/levels/Level1.txt\";\n    String LEVEL2 = \"/levels/Level2.txt\";\n    String LEVEL3 = \"/levels/Level3.txt\";\n\n    //The level the player is on\n    public static int GAME_LEVEL = 1;\n    Boolean GAME_SAVED = false;\n\n    //Load saved data\n    LoadGame load = new LoadGame();\n\n    //set up save game\n    SaveGame saveGame = new SaveGame();\n\n    //Set up the keyboard keys\n    KeyManager keyH = new KeyManager(this);\n\n    Thread gameThread;\n    \n    //set up the tiles\n    TileManager tileManage = new TileManager(this);\n    \n    //set player default position\n    public Inmate inmate = new Inmate(this, keyH);\n\n    //Set up the Mouse Keys\n    MouseManager mouseK = new MouseManager(this);\n\n    //set guards position\n    Guard guard = new Guard(this, 200, 200);\n\n    //Set up the main menu screen \n    MenuScreen mainMenu = new MenuScreen(this);\n\n    //set up the pause menu\n    PauseMenu pauseMenu = new PauseMenu(this, keyH);\n\n    //set up the win screen\n    WonMenu wonMenu = new WonMenu(this, keyH);\n\n    //set up game over screen\n    GameOverMenu gameOver = new GameOverMenu(this);\n    \n    // Create object array;\n    public Entity[] obj = new Entity[30];\n    \n    // Set up asset;\n    public AssetSetter asset = new AssetSetter(this);\n    \n    // Set up collision check;\n    public Collision collisionCheck = new Collision(this);\n\n    // Set up UI\n    public UI ui = new UI(this);\n\n    // Set up music and sound effect\n    Sound music = new Sound();\n    Sound soundEffect = new Sound();\n\n    public static enum STATE{MENU, GAME, EXIT, PAUSED, GAMEOVER, GAMEWON, RETRY}\n    public static STATE state = STATE.MENU;\n\n    public GamePanel(){\n        this.setPreferredSize(new Dimension(screenWidth, screenHeight));\n        this.setBackground(Color.black);\n        this.setDoubleBuffered(true);\n        this.addMouseListener(mouseK);\n        this.addKeyListener(keyH);\n        this.setFocusable(true);\n    }\n\n    public void setUpAsset() {\n        if (GAME_LEVEL == 1){asset.setObjectLevel1();}\n        else if (GAME_LEVEL == 2){asset.setObjectLevel2();}\n        else if (GAME_LEVEL == 3){asset.setObjectLevel3();}\n        playMusic(0);\n    }\n\n    public void startGameThread(){\n            gameThread = new Thread(this);\n            gameThread.start();\n    }\n\n    \n    //Setting up collision between two objects.This function takes two parameters as turtles.\n    //Input: (Inmate:Obj, ObjectX: int, ObjectY: int: collision_type:int)   \n    public boolean isCollision(Inmate inmate, double objectX, double objectY, int collision_type){   \n        double distance = sqrt(pow(inmate.getX() - objectX, 2) + pow(inmate.getY() - objectY, 2));\n        return distance <= collision_type;\n    }\n\n    public boolean reachedGate(){\n        return inmate.getX() >= 1344 && inmate.getX() <= 1350 && inmate.getY() >= 292 && inmate.getY() <= 544;\n    }\n\n    public boolean gotAllKeys(int level){\n        if(level == 1 && inmate.getNumKeys() >= 3){return true;}\n        else if(level == 2 && inmate.getNumKeys() >= 4){return true;}\n        else if(level == 3 && inmate.getNumKeys() >= 5){return true;}\n        return false;\n    }\n\n    public boolean isTimeOver(){\n        if(inmate.getTimer() <= 0){\n            System.out.println(\"Time reached zero\");\n            return true;\n        }\n        return false;\n    }\n\n    public void run() {\n        double drawInterval = 1000000000/ framePerSecond;\n        double nextDrawTime = System.nanoTime() + drawInterval;\n\n        while(gameThread != null){\n            //render graphics\n            repaint();\n    \n            //Pause the game if pause menu is active\n            update();\n            if(state != STATE.PAUSED && state != STATE.MENU && state != STATE.GAMEWON && state != STATE.GAMEOVER){\n\n                //guard collision or time is up\n                if (isCollision(inmate, guard.getX(), guard.getY(), ENEMY_COLLISION_DISTANCE) || isTimeOver()){state = STATE.GAMEOVER;}\n\n                //got all keys and reached the gate\n                if(gotAllKeys(GAME_LEVEL) && reachedGate()){state = STATE.GAMEWON;}\n\n                try {\n                    double remainingTime = nextDrawTime - System.nanoTime();\n                    remainingTime /= 1000000;\n    \n                    if(remainingTime < 0){\n                        remainingTime = 0;\n                    }\n    \n                    Thread.sleep((long) remainingTime);\n    \n                    nextDrawTime += drawInterval;\n                } catch (InterruptedException e) {\n                    e.printStackTrace();\n                }\n            }\n        }\n    }\n\n    public void update(){\n        inmate.update();\n        asset.update();\n    }\n\n    public void paintComponent(Graphics graphic){\n        super.paintComponent(graphic);\n        Graphics2D g2 = (Graphics2D) graphic;\n        \n        if (state == STATE.GAME){\n    \n            //draw tiles\n            tileManage.draw(g2);\n\n            // Draw objects\n            for (Entity entity : obj) {\n                if (entity != null) {\n                    entity.draw(g2);\n                }\n            }\n    \n            //Draw guard\n            guard.draw(g2);\n    \n            //Draw the inmate\n            inmate.draw(g2);\n\n            // Draw UI\n            ui.draw(g2);\n\n            g2.dispose();\n        }\n        else if(state == STATE.PAUSED){\n            //render the pause menu\n            pauseMenu.renderPauseMenu(g2);\n            g2.dispose();\n        }\n        else if (state == STATE.MENU){\n            //Render the main menu\n            mainMenu.renderMain(g2);\n            g2.dispose();\n        }\n        else if (state == STATE.GAMEWON){\n            //render the game won menu\n            wonMenu.renderWonGraphics(g2);\n            g2.dispose();\n        }\n        else if (state == STATE.GAMEOVER){\n            //render game over menu\n            gameOver.renderGameOverMenu(g2);\n            g2.dispose();\n        }\n    }\n\n    public void playMusic (int i) {\n        music.setFile(i);\n        music.play();\n        music.loop();\n    }\n\n    public void stopMusic () {\n        music.stop();\n    }\n\n    public void playSE(int i) {\n        soundEffect.setFile(i);\n        soundEffect.play();\n    }\n\n    public void levelCheck(){\n        if(GAME_LEVEL == 1){\n            tileManage.loadMap(LEVEL1);\n            inmate.setPos(279, 717);\n            inmate.resetKeys();\n            inmate.resetScore();\n            inmate.setTimer(100);\n        }else if (GamePanel.GAME_LEVEL == 2){\n            inmate.setPos(610, 562);\n            inmate.resetKeys();\n            inmate.resetScore();\n            inmate.setTimer(100);\n            tileManage.loadMap(LEVEL2);\n        }else if (GamePanel.GAME_LEVEL == 3){\n            inmate.setPos(110, 101);\n            inmate.resetKeys();\n            inmate.resetScore();\n            inmate.setTimer(100);\n            tileManage.loadMap(LEVEL3);\n        }\n        GamePanel.state = STATE.GAME;\n        setUpAsset();\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/group10/app/main/GamePanel.java b/src/main/java/com/group10/app/main/GamePanel.java
+--- a/src/main/java/com/group10/app/main/GamePanel.java	(revision 2ba2c59ac6ef76d35605fd08187a9148e4b71830)
++++ b/src/main/java/com/group10/app/main/GamePanel.java	(date 1647732853479)
+@@ -64,7 +64,7 @@
+     MouseManager mouseK = new MouseManager(this);
+ 
+     //set guards position
+-    Guard guard = new Guard(this, 200, 200);
++    Guard guard = new Guard(this, cellSize * 6, cellSize * 7);
+ 
+     //Set up the main menu screen 
+     MenuScreen mainMenu = new MenuScreen(this);
+@@ -182,8 +182,11 @@
+     }
+ 
+     public void update(){
+-        inmate.update();
+-        asset.update();
++        if (state == STATE.GAME){
++            inmate.update();
++            asset.update();
++            guard.update();
++        }
+     }
+ 
+     public void paintComponent(Graphics graphic){
+Index: src/main/java/com/group10/app/entity/Guard.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.group10.app.entity;\n\nimport java.awt.*;\nimport java.awt.image.BufferedImage;\nimport com.group10.app.main.GamePanel;\n\n\npublic class Guard extends Entity{\n    GamePanel gp;\n\n    public Guard(GamePanel gp, int setX, int setY){\n        super(gp);\n        this.gp = gp;\n        getGuardImage();\n        setGuardValues(setX, setY);\n    }\n\n    //Registering the images\n    public void getGuardImage(){\n        up1 = setup(\"/prisonGuard/WalkUp1\", gp.cellSize, gp.cellSize);\n        up2 = setup(\"/prisonGuard/WalkUp2\", gp.cellSize, gp.cellSize);\n        up3 = setup(\"/prisonGuard/WalkUp3\", gp.cellSize, gp.cellSize);\n        down1 = setup(\"/prisonGuard/WalkDown1\", gp.cellSize, gp.cellSize);\n        down2 = setup(\"/prisonGuard/WalkDown2\", gp.cellSize, gp.cellSize);\n        down3 = setup(\"/prisonGuard/WalkDown3\", gp.cellSize, gp.cellSize);\n        left1 = setup(\"/prisonGuard/WalkLeft1\", gp.cellSize, gp.cellSize);\n        left2 = setup(\"/prisonGuard/WalkLeft2\", gp.cellSize, gp.cellSize);\n        left3 = setup(\"/prisonGuard/WalkLeft3\", gp.cellSize, gp.cellSize);\n        right1 = setup(\"/prisonGuard/WalkRight1\", gp.cellSize, gp.cellSize);\n        right2 = setup(\"/prisonGuard/WalkRight2\", gp.cellSize, gp.cellSize);\n        right3 = setup(\"/prisonGuard/WalkRight3\", gp.cellSize, gp.cellSize);\n    }\n\n    //Get Guards x position\n    public double getX(){\n        return x;\n    }\n    \n    //Get Guards Y position\n    public double getY(){\n        return y;\n    }\n\n    //set the value for guard\n    public void setGuardValues(int setX, int setY){\n        x = setX;\n        y = setY;\n        speed = 4;\n        direction = \"down\";\n    }\n\n    public void draw(Graphics2D g2){\n        BufferedImage image = down1;\n        g2.drawImage(image, x , y, gp.cellSize, gp.cellSize, null);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/group10/app/entity/Guard.java b/src/main/java/com/group10/app/entity/Guard.java
+--- a/src/main/java/com/group10/app/entity/Guard.java	(revision 2ba2c59ac6ef76d35605fd08187a9148e4b71830)
++++ b/src/main/java/com/group10/app/entity/Guard.java	(date 1647732853505)
+@@ -49,6 +49,36 @@
+         direction = "down";
+     }
+ 
++    public void update(){
++        direction = "up";
++
++        collision = false;
++        gp.collisionCheck.wallCheck(this);
++
++
++        //If collision is false, player can move
++        if (!collision){
++            switch (direction) {
++                case "up" -> y -= speed;
++                case "down" -> y += speed;
++                case "left" -> x -= speed;
++                case "right" -> x += speed;
++            }
++        }
++
++        spriteCounter++;
++        if (spriteCounter > 11) {
++            if (spriteNum == 1) {
++                spriteNum = 2;
++            } else if (spriteNum == 2) {
++                spriteNum = 3;
++            } else if (spriteNum == 3) {
++                spriteNum = 1;
++            }
++            spriteCounter = 0;
++        }
++    }
++
+     public void draw(Graphics2D g2){
+         BufferedImage image = down1;
+         g2.drawImage(image, x , y, gp.cellSize, gp.cellSize, null);
+Index: .idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml
+===================================================================
+diff --git a/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml b/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml
+deleted file mode 100644
+--- a/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml	(revision 2ba2c59ac6ef76d35605fd08187a9148e4b71830)
++++ /dev/null	(revision 2ba2c59ac6ef76d35605fd08187a9148e4b71830)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Maven: org.hamcrest:hamcrest-core:1.3">
+-    <CLASSES>
+-      <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"1c4764ef-1f4f-45aa-b74c-178f8418422a\" name=\"Changes\" comment=\"fix the random create object index\">\n      <change afterPath=\"$PROJECT_DIR$/.idea/encodings.xml\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.idea/jarRepositories.xml\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/compiler.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/compiler.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/modules.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/modules.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/group10/app/main/AssetSetter.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/group10/app/main/AssetSetter.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$/..\" value=\"Simon\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"MavenImportPreferences\">\n    <option name=\"generalSettings\">\n      <MavenGeneralSettings>\n        <option name=\"useMavenConfig\" value=\"true\" />\n      </MavenGeneralSettings>\n    </option>\n  </component>\n  <component name=\"ProjectId\" id=\"26UHL8Qcuyyp5M4hb5nBTkM1Z7N\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"App\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.group10.app.App\" />\n      <module name=\"Prison_Escape\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"com.group10.app.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.App\" />\n        <item itemvalue=\"Application.App\" />\n        <item itemvalue=\"Application.App\" />\n        <item itemvalue=\"Application.App\" />\n        <item itemvalue=\"Application.App\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"1c4764ef-1f4f-45aa-b74c-178f8418422a\" name=\"Changes\" comment=\"\" />\n      <created>1647471188570</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1647471188570</updated>\n      <workItem from=\"1647471190526\" duration=\"2546000\" />\n      <workItem from=\"1647473846887\" duration=\"261000\" />\n      <workItem from=\"1647474150134\" duration=\"588000\" />\n      <workItem from=\"1647543655953\" duration=\"71000\" />\n      <workItem from=\"1647543755966\" duration=\"295000\" />\n      <workItem from=\"1647544121525\" duration=\"7548000\" />\n      <workItem from=\"1647552085205\" duration=\"4429000\" />\n      <workItem from=\"1647629124932\" duration=\"212000\" />\n      <workItem from=\"1647629368156\" duration=\"727000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"fix pick up objects\">\n      <created>1647473606541</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1647473606542</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"fix pick up objects\">\n      <created>1647474361140</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1647474361140</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"show the score and time in WonMenu\">\n      <created>1647547581469</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1647547581469</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"fix the random create object index\">\n      <created>1647548494316</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1647548494316</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"fix the random create object index\">\n      <created>1647551942505</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1647551942505</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"6\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"fix pick up objects\" />\n    <MESSAGE value=\"show the score and time in WonMenu\" />\n    <MESSAGE value=\"fix the random create object index\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"fix the random create object index\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 2ba2c59ac6ef76d35605fd08187a9148e4b71830)
++++ b/.idea/workspace.xml	(date 1647737334095)
+@@ -4,15 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="1c4764ef-1f4f-45aa-b74c-178f8418422a" name="Changes" comment="fix the random create object index">
+-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
++    <list default="true" id="1c4764ef-1f4f-45aa-b74c-178f8418422a" name="Changes" comment="create different objects for each level">
++      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/AssetSetter.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Guard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Guard.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -99,6 +94,7 @@
+       <workItem from="1647552085205" duration="4429000" />
+       <workItem from="1647629124932" duration="212000" />
+       <workItem from="1647629368156" duration="727000" />
++      <workItem from="1647637620906" duration="4805000" />
+     </task>
+     <task id="LOCAL-00001" summary="fix pick up objects">
+       <created>1647473606541</created>
+@@ -156,6 +152,7 @@
+     <MESSAGE value="fix pick up objects" />
+     <MESSAGE value="show the score and time in WonMenu" />
+     <MESSAGE value="fix the random create object index" />
+-    <option name="LAST_COMMIT_MESSAGE" value="fix the random create object index" />
++    <MESSAGE value="create different objects for each level" />
++    <option name="LAST_COMMIT_MESSAGE" value="create different objects for each level" />
+   </component>
+ </project>
+\ No newline at end of file

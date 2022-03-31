@@ -1,9 +1,7 @@
-package com.group10.app.entity.nonStatisEntities;
+package com.group10.app.entity;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
-import com.group10.app.entity.Entity;
 import com.group10.app.main.GamePanel;
 
 /**
@@ -16,7 +14,7 @@ import com.group10.app.main.GamePanel;
  * </p>
  *
  */
-public class Guard extends Entity {
+public class Guard extends Entity{
     GamePanel gp;
     boolean moving = false;
     int pixelCounter = 0;
