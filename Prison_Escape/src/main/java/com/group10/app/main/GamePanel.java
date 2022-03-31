@@ -1,9 +1,9 @@
 package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
-import com.group10.app.entity.Inmate;
+import com.group10.app.entity.nonStatisEntities.Inmate;
 
-import com.group10.app.objects.TileManager;
+import com.group10.app.entity.staticEntities.TileManager;
 import com.group10.app.menu.GameOverMenu;
 import com.group10.app.menu.MenuScreen;
 import com.group10.app.menu.PauseMenu;
@@ -12,11 +12,11 @@ import com.group10.app.menu.WonMenu;
 import com.group10.app.SavedData.LoadGame;
 import com.group10.app.SavedData.SaveGame;
 
-import static java.lang.Math.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
+
+import static com.group10.app.main.GameStates.*;
 
 /**
  * GamePanel is responsible for running all the game.
@@ -129,23 +129,15 @@ public class GamePanel extends JPanel implements Runnable{
     public EntityManager asset = new EntityManager(this);
     
     // Set up collision check;
-    public Collision collisionCheck = new Collision(this);
+    public CollisionManager collisionCheck = new CollisionManager(this);
 
     // Set up UI
     public GameDisplay ui = new GameDisplay(this);
 
     // Set up music and sound effect
-    public Sound music = new Sound();
+    public SoundManager music = new SoundManager();
 
-    /**
-     * The different states throughout the game
-     */
-    public static enum STATE{MENU, GAME, EXIT, PAUSED, GAMEOVER, GAMEWON, RETRY}
-
-    /**
-     * Initial state of the game will start at the main menu
-     */
-    public static STATE state = STATE.MENU;
+    public static GameStates state = MENU;
 
     /**
      * Initializing the background, mouse keys, keyboard, screen size, 
@@ -200,7 +192,7 @@ public class GamePanel extends JPanel implements Runnable{
      * <p>Updating the player, objects and guards when the state of the game is GAME.</p>
      */
     public void update(){
-        if(state == STATE.GAME){
+        if(state == GAME){
             inmate.update();
             asset.update();
             // Guard
@@ -216,18 +208,18 @@ public class GamePanel extends JPanel implements Runnable{
                     if (collisionCheck.checkGuard(inmate, entity.x, entity.y, ENEMY_COLLISION_DISTANCE)) {
                         System.out.println("ENEMY COLLIDED");
                         System.out.println("===================================");
-                        state = STATE.GAMEOVER;
+                        state = GAMEOVER;
                     }
                 }
             }
 
             // Time is up or score is negative
             if (inmate.isTimeOver() || inmate.isScoreNegative()) {
-                state = STATE.GAMEOVER;
+                state = GAMEOVER;
             }
 
             // Got all keys and reached the gate
-            if(inmate.gotAllKeys() && inmate.reachedGate()){state = STATE.GAMEWON;}
+            if(inmate.gotAllKeys() && inmate.reachedGate()){state = GAMEWON;}
         }
 
     }
@@ -246,7 +238,7 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(graphic);
         Graphics2D g2 = (Graphics2D) graphic;
         
-        if (state == STATE.GAME){
+        if (state == GAME){
     
             //draw tiles
             tileManage.draw(g2);
@@ -273,22 +265,22 @@ public class GamePanel extends JPanel implements Runnable{
 
             g2.dispose();
         }
-        else if(state == STATE.PAUSED){
+        else if(state == PAUSED){
             //render the pause menu
             pauseMenu.renderPauseMenu(g2);
             g2.dispose();
         }
-        else if (state == STATE.MENU){
+        else if (state == MENU){
             //Render the main menu
             mainMenu.renderMain(g2);
             g2.dispose();
         }
-        else if (state == STATE.GAMEWON){
+        else if (state == GAMEWON){
             //render the game won menu
             wonMenu.renderWonGraphics(g2);
             g2.dispose();
         }
-        else if (state == STATE.GAMEOVER){
+        else if (state == GAMEOVER){
             //render game over menu
             gameOver.renderGameOverMenu(g2);
             g2.dispose();
@@ -303,7 +295,7 @@ public class GamePanel extends JPanel implements Runnable{
      * </p>
      */
     public void levelCheck(){
-        GamePanel.state = STATE.GAME;
+        GamePanel.state = GAME;
 
         inmate.resetInmate();
         if(GAME_LEVEL == 1){

@@ -1,7 +1,7 @@
 package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
-import com.group10.app.entity.Inmate;
+import com.group10.app.entity.nonStatisEntities.Inmate;
 
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
@@ -9,7 +9,7 @@ import static java.lang.Math.sqrt;
 /**
  * Collision class for wall collision and object collision.
  */
-public class Collision {
+public class CollisionManager {
 
     /**
      * Game panel will be used to access it's methods and variables
@@ -19,7 +19,7 @@ public class Collision {
     /**
      * @param gp the GamePanel object
      */
-    public Collision (GamePanel gp){
+    public CollisionManager(GamePanel gp){
         this.gp = gp;
     }
 

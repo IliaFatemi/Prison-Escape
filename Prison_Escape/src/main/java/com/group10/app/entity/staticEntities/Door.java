@@ -1,10 +1,9 @@
-package com.group10.app.objects;
+package com.group10.app.entity.staticEntities;
 
 import com.group10.app.entity.Entity;
 import com.group10.app.main.GamePanel;
 
 import java.awt.*;
-import java.util.Objects;
 
 /**
  * This class embodies the door through which the player escapes at the end of each level.

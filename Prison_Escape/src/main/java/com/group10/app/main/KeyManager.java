@@ -3,7 +3,9 @@ package com.group10.app.main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import com.group10.app.main.GamePanel.STATE;
+//import com.group10.app.main.GamePanel.STATE;
+
+import static com.group10.app.main.GameStates.*;
 
 /**
  * KeyManager is responsible for managing the user keyboard inputs
@@ -36,14 +38,14 @@ public class KeyManager implements KeyListener {
         if(code == KeyEvent.VK_D){pressedRight  = true;}
 
         if(code == KeyEvent.VK_ESCAPE){
-            if(GamePanel.state != STATE.MENU){
+            if(GamePanel.state != MENU){
 
                 pressedEscape = true;
-                GamePanel.state = STATE.PAUSED;
+                GamePanel.state = PAUSED;
                 keyCount++;
                 if (keyCount%2 == 0){
                     pressedEscape = false;
-                    GamePanel.state = STATE.GAME;
+                    GamePanel.state = GAME;
                 }
             }
         }

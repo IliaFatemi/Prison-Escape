@@ -5,8 +5,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 
 import com.group10.app.SavedData.SaveGame;
-import com.group10.app.main.GamePanel.STATE;
 import com.group10.app.App;
+
+import static com.group10.app.main.GameStates.*;
 
 /**
  * Mouse manager will be the control for the mouse on the screen. MouseManager implements MouseListener. This class is used only for the Menu screens.
@@ -55,22 +56,22 @@ public class MouseManager implements MouseListener{
         System.out.println("col: "+mouseX/gp.cellSize + ", " + "row: "+mouseY/gp.cellSize);
 
         //Mouse control works only in main menu
-        if(GamePanel.state != STATE.GAME && GamePanel.state != STATE.PAUSED && GamePanel.state != STATE.GAMEWON && GamePanel.state != STATE.GAMEOVER){
+        if(GamePanel.state != GAME && GamePanel.state != PAUSED && GamePanel.state != GAMEWON && GamePanel.state != GAMEOVER){
             MainMenuControls(mouseX, mouseY);
         }
 
         //Mouse control works only in pause menu
-        if(GamePanel.state != STATE.GAME && GamePanel.state != STATE.MENU && GamePanel.state != STATE.GAMEWON && GamePanel.state != STATE.GAMEOVER){
+        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEWON && GamePanel.state != GAMEOVER){
             PauseMenuControls(mouseX, mouseY);
         }
 
         //Mouse control for game won menu
-        if(GamePanel.state != STATE.GAME && GamePanel.state != STATE.MENU && GamePanel.state != STATE.GAMEOVER && GamePanel.state != STATE.PAUSED){
+        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEOVER && GamePanel.state != PAUSED){
             GameWonMenuControls(mouseX, mouseY);
         }
 
         //Mouse control for game over menu
-        if(GamePanel.state != STATE.GAME && GamePanel.state != STATE.MENU && GamePanel.state != STATE.GAMEWON && GamePanel.state != STATE.PAUSED){
+        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEWON && GamePanel.state != PAUSED){
             GameOverMenuControls(mouseX, mouseY);
         }
         
@@ -101,7 +102,7 @@ public class MouseManager implements MouseListener{
                 System.out.println("Starting new game");
                 gp.levelCheck();
                 System.out.println("Resetting number of keys");
-                GamePanel.state = GamePanel.STATE.GAME;
+                GamePanel.state = GAME;
             }
         }
 
@@ -109,7 +110,7 @@ public class MouseManager implements MouseListener{
         if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(106)){
             if(mouseY >= gp.screenHeight/2 - 200 && mouseY <= gp.screenHeight/2 - 130){
                 System.out.println("Continuing game");
-                GamePanel.state = STATE.GAME;
+                GamePanel.state = GAME;
                 System.out.println("loading Complete");
                 gp.tileManage.loadMap("/levels/Level" + GamePanel.GAME_LEVEL + ".txt");
             }
@@ -135,7 +136,7 @@ public class MouseManager implements MouseListener{
         if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(103)){
             if(mouseY >= gp.screenHeight/2 - 130 && mouseY <= gp.screenHeight/2-60){
                 System.out.println("resuming game");
-                GamePanel.state = GamePanel.STATE.GAME;
+                GamePanel.state = PAUSED;
             }
         }
         //return to main menu controls
@@ -145,7 +146,7 @@ public class MouseManager implements MouseListener{
                         gp.inmate.time, gp.inmate.score, gp.inmate.hasKey,
                         gp.obj, gp.guard);
                 System.out.println("returning to Main menu");
-                GamePanel.state = STATE.MENU;
+                GamePanel.state = MENU;
             }
         }
     }
@@ -164,7 +165,7 @@ public class MouseManager implements MouseListener{
                 System.out.println("(Update) Level: "+ GamePanel.GAME_LEVEL);
                 if(GamePanel.GAME_LEVEL > 3){
                     GamePanel.GAME_LEVEL = 1;
-                    GamePanel.state = STATE.MENU; 
+                    GamePanel.state = MENU;
                 }else{
                     gp.levelCheck();
                 }
@@ -178,7 +179,7 @@ public class MouseManager implements MouseListener{
                 System.out.println("(Update) Level: "+GamePanel.GAME_LEVEL);
                 gp.saveGame.save(GamePanel.GAME_LEVEL,(int) gp.inmate.getX(),(int) gp.inmate.getY(), gp.inmate.getTimer(), gp.inmate.getScore(), gp.inmate.getNumKeys(), gp.obj, gp.guard);   
                 System.out.println(mouseX + " "+ mouseY + ": returning to Main menu");
-                GamePanel.state = STATE.MENU;
+                GamePanel.state = MENU;
             }
         }
     }
@@ -194,7 +195,7 @@ public class MouseManager implements MouseListener{
             if(mouseY >= gp.screenHeight/2-130 && mouseY <= gp.screenHeight/2-60){
                 System.out.println("Retry Level");
                 gp.levelCheck();
-                GamePanel.state = STATE.GAME;
+                GamePanel.state = GAME;
             }
         }
 
@@ -203,7 +204,7 @@ public class MouseManager implements MouseListener{
             if(mouseY >= gp.screenHeight/2 - 30 && mouseY <= gp.screenHeight/2 + 40){
                 System.out.println("returning to Main menu");
                 gp.inmate.resetInmate();
-                GamePanel.state = STATE.MENU;
+                GamePanel.state = MENU;
             }   
         }
     }
