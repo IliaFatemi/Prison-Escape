@@ -12,6 +12,40 @@ public class MovingActor extends Entity {
     private GamePanel gp;
     private int spriteNum;
 
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    public void setGp(GamePanel gp) {
+        this.gp = gp;
+    }
+
+    public void setSpriteNum(int spriteNum) {
+        this.spriteNum = spriteNum;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public GamePanel getGp() {
+        return gp;
+    }
+
+    public int getSpriteNum() {
+        return spriteNum;
+    }
+
+
+
     /**
      * The constructor for the Entity class
      *

@@ -50,7 +50,7 @@ public class LoadGame {
             GamePanel.GAME_LEVEL = Integer.parseInt(savedData[0]);
             gp.inmate.x = Integer.parseInt(savedData[1]);
             gp.inmate.y = Integer.parseInt(savedData[2]);
-            gp.inmate.speed = Integer.parseInt(savedData[3]);
+            gp.inmate.setSpeed(Integer.parseInt(savedData[3]));
             gp.inmate.time = Double.parseDouble(savedData[4]);
             gp.inmate.score = Integer.parseInt(savedData[5]);
             gp.inmate.hasKey = Integer.parseInt(savedData[6]);

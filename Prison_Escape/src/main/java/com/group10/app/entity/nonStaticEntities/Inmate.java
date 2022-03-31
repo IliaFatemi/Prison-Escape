@@ -81,13 +81,13 @@ public class Inmate extends MovingActor {
     public void update(){
         if(keyH.pressedUp|| keyH.pressedDown || keyH.pressedLeft || keyH.pressedRight) {
             if (keyH.pressedUp) {
-                direction = "up";
+                setDirection("up");
             } else if (keyH.pressedDown) {
-                direction = "down";
+                setDirection("down");
             } else if (keyH.pressedLeft) {
-                direction = "left";
+                setDirection("left");
             } else {
-                direction = "right";
+                setDirection("right");
             }
             int objectIndex = gp.collisionCheck.checkObject(this);
             pickUpObject(objectIndex);
@@ -97,7 +97,7 @@ public class Inmate extends MovingActor {
         else {
             standCounter++;
             if (standCounter > 10){
-                spriteNum = 2;
+                setSpriteNum(2);
                 standCounter = 0;
             }
         }
@@ -115,18 +115,6 @@ public class Inmate extends MovingActor {
      * @return y the y position of the inmate
      */
     public double getY(){return y;}
-
-    /**
-     * Get player speed
-     * @return speed
-     */
-    public double getSpeed(){return speed;}
-
-    /**
-     * Get player direction
-     * @return String
-     */
-    public String getDirection(){return direction;}
 
     /**
      * Get number of keys collected
@@ -166,18 +154,6 @@ public class Inmate extends MovingActor {
     public void setPos(int posX, int posY){x = posX; y = posY;}
 
     /**
-     * set player speed
-     * @param newSpeed
-     */
-    public void setSpeed(int newSpeed){speed = newSpeed;}
-
-    /**
-     * set players direction
-     * @param newDir
-     */
-    public void setDirection(String newDir){direction = newDir;}
-
-    /**
      * set key amount
      * @param newNumKeys
      */
@@ -197,7 +173,7 @@ public class Inmate extends MovingActor {
      * reset the speed, time, score, and hasKey(Key number)
      */
     public void resetInmate(){
-        speed = 2;
+        setSpeed(2);
         time = 100;
         score = 0;
         hasKey = 0;
@@ -251,62 +227,6 @@ public class Inmate extends MovingActor {
         }
     }
 
-    /**
-     * in charge of drawing the inmate and changing the inmates current sprite
-     * @param g2 used for drawing the 2D sprites
-     */
-    public void draw(Graphics2D g2){
-        BufferedImage image = null;
-        switch (direction) {
-            case "up":
-                if (spriteNum == 1) {
-                    image = up1;
-                }
-                if (spriteNum == 2) {
-                    image = up2;
-                }
-                if (spriteNum == 3) {
-                    image = up3;
-                }
-            break;
-            case "down":
-                if (spriteNum == 1) {
-                    image = down1;
-                }
-                if (spriteNum == 2) {
-                    image = down2;
-                }
-                if (spriteNum == 3) {
-                    image = down3;
-                }
-            break;
-            case "left":
-                if (spriteNum == 1) {
-                    image = left1;
-                }
-                if (spriteNum == 2) {
-                    image = left2;
-                }
-                if (spriteNum == 3) {
-                    image = left3;
-                }
-            break;
-            case "right":
-                if (spriteNum == 1) {
-                    image = right1;
-                }
-                if (spriteNum == 2) {
-                    image = right2;
-                }
-                if (spriteNum == 3) {
-                    image = right3;
-                }
-            break;
-            default: break;
-            
-        }
-        g2.drawImage(image, x , y, gp.cellSize, gp.cellSize, null);
-    }
 
     /**
      * <p>if the player is within the area of the gate the mehtod will return true, otherwise false</p>
