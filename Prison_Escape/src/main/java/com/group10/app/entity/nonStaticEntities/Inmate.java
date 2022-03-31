@@ -1,4 +1,4 @@
-package com.group10.app.entity.nonStatisEntities;
+package com.group10.app.entity.nonStaticEntities;
 
 import com.group10.app.entity.Entity;
 import com.group10.app.main.GamePanel;
@@ -18,7 +18,7 @@ import java.util.Objects;
  *     interactions, and drawing the players sprites
  * </p>
  */
-public class Inmate extends Entity {
+public class Inmate extends MovingEntities {
     GamePanel gp;
     KeyManager keyH;
     public int hasKey = 0;
@@ -81,13 +81,13 @@ public class Inmate extends Entity {
     public void update(){
         if(keyH.pressedUp|| keyH.pressedDown || keyH.pressedLeft || keyH.pressedRight) {
             if (keyH.pressedUp) {
-                direction = "up";
+                setDirection("up");
             } else if (keyH.pressedDown) {
-                direction = "down";
+                setDirection("down");
             } else if (keyH.pressedLeft) {
-                direction = "left";
+                setDirection("left");
             } else {
-                direction = "right";
+                setDirection("right");
             }
 
             collision = false;
@@ -187,23 +187,23 @@ public class Inmate extends Entity {
      * @param posY
      */
     public void setPos(int posX, int posY){x = posX; y = posY;}
-
-    /**
-     * set player speed
-     * @param newSpeed
-     */
-    public void setSpeed(int newSpeed){speed = newSpeed;}
-
-    /**
-     * set players direction
-     * @param newDir
-     */
-    public void setDirection(String newDir){direction = newDir;}
-
-    /**
-     * set key amount
-     * @param newNumKeys
-     */
+//
+//    /**
+//     * set player speed
+//     * @param newSpeed
+//     */
+//    public void setSpeed(int newSpeed){speed = newSpeed;}
+//
+//    /**
+//     * set players direction
+//     * @param newDir
+//     */
+//    public void setDirection(String newDir){direction = newDir;}
+//
+//    /**
+//     * set key amount
+//     * @param newNumKeys
+//     */
     public void setNumKeys(int newNumKeys){hasKey = newNumKeys;}
 
     /**
@@ -280,6 +280,7 @@ public class Inmate extends Entity {
      */
     public void draw(Graphics2D g2){
         BufferedImage image = null;
+
         switch (direction) {
             case "up":
                 if (spriteNum == 1) {

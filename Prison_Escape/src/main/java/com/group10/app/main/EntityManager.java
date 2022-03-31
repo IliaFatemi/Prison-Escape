@@ -1,9 +1,9 @@
 package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
-import com.group10.app.entity.nonStatisEntities.Guard;
+import com.group10.app.entity.nonStaticEntities.Guard;
 import com.group10.app.entity.staticEntities.Chicken;
-import com.group10.app.entity.staticEntities.Door;
+import com.group10.app.entity.staticEntities.Gate;
 import com.group10.app.entity.staticEntities.Key;
 import com.group10.app.entity.staticEntities.Timer;
 import com.group10.app.entity.staticEntities.Trap;
@@ -278,11 +278,11 @@ public class EntityManager {
      */
     public void createDoor() {
 
-        createObj(new Door(gp), 29, 7);
-        createObj(new Door(gp), 29, 8);
-        createObj(new Door(gp), 29, 9);
-        createObj(new Door(gp), 29, 10);
-        createObj(new Door(gp), 29, 11);
+        createObj(new Gate(gp), 29, 7);
+        createObj(new Gate(gp), 29, 8);
+        createObj(new Gate(gp), 29, 9);
+        createObj(new Gate(gp), 29, 10);
+        createObj(new Gate(gp), 29, 11);
     }
 
     /**

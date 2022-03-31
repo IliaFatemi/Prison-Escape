@@ -1,4 +1,4 @@
-package com.group10.app.entity.nonStatisEntities;
+package com.group10.app.entity.nonStaticEntities;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,7 +16,7 @@ import com.group10.app.main.GamePanel;
  * </p>
  *
  */
-public class Guard extends Entity {
+public class Guard extends MovingEntities {
     GamePanel gp;
     boolean moving = false;
     int pixelCounter = 0;
@@ -106,8 +106,8 @@ public class Guard extends Entity {
     public void setGuardValues(int setX, int setY){
         x = setX;
         y = setY;
-        speed = 1;
-        direction = "default";
+        setSpeed(1);
+        setDirection("default");
     }
 
     /**
@@ -123,18 +123,18 @@ public class Guard extends Entity {
         if (!moving) {
 
             if (gp.inmate.x < x) {
-                direction = "left";
+                setDirection("left");
             }
             else if (gp.inmate.x > x) {
-                direction = "right";
+                setDirection("right");
             }
 
             if (gp.inmate.x - x < (gp.cellSize/2) && x - gp.inmate.x < (gp.cellSize/2)){
                 if (gp.inmate.y < y) {
-                    direction = "up";
+                    setDirection("up");
                 }
                 else if (gp.inmate.y > y) {
-                    direction = "down";
+                    setDirection("down");
                 }
             }
 
@@ -143,10 +143,11 @@ public class Guard extends Entity {
 
         collision = false;
         gp.collisionCheck.wallCheck(this);
+        int i = getSpeed();
         if (!collision) {
-            switch (direction) {
+            switch (getDirection()) {
                 case "up":
-                    y -= speed;
+                    y -= i;
                     break;
                 case "down":
                     y += speed;

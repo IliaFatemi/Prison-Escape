@@ -13,7 +13,7 @@ import java.awt.*;
  *     continue to the next level.
  * </p>
  */
-public class Door extends Entity {
+public class Gate extends Entity {
 
     GamePanel gp;
 
@@ -26,7 +26,7 @@ public class Door extends Entity {
      * </p>
      * @param gp
      */
-    public Door(GamePanel gp){
+    public Gate(GamePanel gp){
         super(gp);
 
         this.gp = gp;
