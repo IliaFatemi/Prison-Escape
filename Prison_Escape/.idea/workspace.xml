@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1c4764ef-1f4f-45aa-b74c-178f8418422a" name="Changes" comment="delete UtilityTool.java">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Inmate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Inmate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/GamePanel.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="Simon" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="26UHL8Qcuyyp5M4hb5nBTkM1Z7N" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.group10.app.App" />
+      <module name="Prison_Escape" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.group10.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.App" />
+        <item itemvalue="Application.App" />
+        <item itemvalue="Application.App" />
+        <item itemvalue="Application.App" />
+        <item itemvalue="Application.App" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1c4764ef-1f4f-45aa-b74c-178f8418422a" name="Changes" comment="" />
+      <created>1647471188570</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1647471188570</updated>
+      <workItem from="1647471190526" duration="2546000" />
+      <workItem from="1647473846887" duration="261000" />
+      <workItem from="1647474150134" duration="588000" />
+      <workItem from="1647543655953" duration="71000" />
+      <workItem from="1647543755966" duration="295000" />
+      <workItem from="1647544121525" duration="7548000" />
+      <workItem from="1647552085205" duration="4429000" />
+      <workItem from="1647629124932" duration="212000" />
+      <workItem from="1647629368156" duration="727000" />
+    </task>
+    <task id="LOCAL-00001" summary="fix pick up objects">
+      <created>1647473606541</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1647473606542</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fix pick up objects">
+      <created>1647474361140</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1647474361140</updated>
+    </task>
+    <task id="LOCAL-00003" summary="show the score and time in WonMenu">
+      <created>1647547581469</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1647547581469</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix the random create object index">
+      <created>1647548494316</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1647548494316</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix the random create object index">
+      <created>1647551942505</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1647551942505</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix the guard move pictures and music">
+      <created>1647738651524</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1647738651524</updated>
+    </task>
+    <task id="LOCAL-00007" summary="javaDoc for Sound">
+      <created>1647749376290</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1647749376291</updated>
+    </task>
+    <task id="LOCAL-00008" summary="javaDoc GameDisplay">
+      <created>1647752461311</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1647752461311</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix the door flashes in the round 2 and 3&#10;add 50 score when collect keys">
+      <created>1647755243840</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1647755243840</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix pick up objects" />
+    <MESSAGE value="show the score and time in WonMenu" />
+    <MESSAGE value="fix the random create object index" />
+    <MESSAGE value="fix the guard move pictures and music" />
+    <MESSAGE value="javaDoc for Sound" />
+    <MESSAGE value="delete UtilityTool.java" />
+    <MESSAGE value="javaDoc Collision checkObject" />
+    <option name="LAST_COMMIT_MESSAGE" value="javaDoc Collision checkObject" />
+  </component>
+</project>
