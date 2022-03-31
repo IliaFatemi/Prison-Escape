@@ -112,7 +112,7 @@ public class MouseManager implements MouseListener{
                 System.out.println("Continuing game");
                 GamePanel.state = GAME;
                 System.out.println("loading Complete");
-                gp.tileManage.loadMap("/levels/Level" + GamePanel.GAME_LEVEL + ".txt");
+                gp.load.loadData();
             }
         }
 
@@ -143,7 +143,7 @@ public class MouseManager implements MouseListener{
         if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(103)){
             if(mouseY >= gp.screenHeight/2 + 70 && mouseY <= gp.screenHeight/2 + 140){
                 gp.saveGame.save(GamePanel.GAME_LEVEL, gp.inmate.x, gp.inmate.y,
-                        gp.inmate.time, gp.inmate.score, gp.inmate.hasKey,
+                        gp.inmate.speed, gp.inmate.time, gp.inmate.score, gp.inmate.hasKey,
                         gp.obj, gp.guard);
                 System.out.println("returning to Main menu");
                 GamePanel.state = MENU;
@@ -177,7 +177,9 @@ public class MouseManager implements MouseListener{
             if(mouseY >= gp.screenHeight/2 - 30 && mouseY <= gp.screenHeight/2 + 40){
                 GamePanel.GAME_LEVEL++;
                 System.out.println("(Update) Level: "+GamePanel.GAME_LEVEL);
-                gp.saveGame.save(GamePanel.GAME_LEVEL,(int) gp.inmate.getX(),(int) gp.inmate.getY(), gp.inmate.getTimer(), gp.inmate.getScore(), gp.inmate.getNumKeys(), gp.obj, gp.guard);   
+                gp.saveGame.save(GamePanel.GAME_LEVEL, gp.inmate.x, gp.inmate.y,
+                        gp.inmate.speed, gp.inmate.time, gp.inmate.score, gp.inmate.hasKey,
+                        gp.obj, gp.guard);
                 System.out.println(mouseX + " "+ mouseY + ": returning to Main menu");
                 GamePanel.state = MENU;
             }

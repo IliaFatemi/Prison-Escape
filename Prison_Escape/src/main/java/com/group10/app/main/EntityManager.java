@@ -41,20 +41,20 @@ public class EntityManager {
     public void setEntityLevel1(){
 
         // Create Objects
-        createObj(new Key(gp), 11, 11);
-        createObj(new Key(gp), 2, 15);
-        createObj(new Key(gp), 18, 11);
-        createObj(new Timer(gp), 3, 3);
-        createObj(new Trap(gp), 19, 10);
-        createObj(new Trap(gp), 19, 9);
+        createObj(new Key(gp), 11 * gp.cellSize, 11 * gp.cellSize);
+        createObj(new Key(gp), 2 * gp.cellSize, 15 * gp.cellSize);
+        createObj(new Key(gp), 18 * gp.cellSize, 11 * gp.cellSize);
+        createObj(new Timer(gp), 3 * gp.cellSize, 3 * gp.cellSize);
+        createObj(new Trap(gp), 19 * gp.cellSize, 10 * gp.cellSize);
+        createObj(new Trap(gp), 19 * gp.cellSize, 9 * gp.cellSize);
 
         // Create Door
         createDoor();
 
         // Create Guard
-        createGuard(new Guard(gp), 6, 8);
-        createGuard(new Guard(gp), 7, 8);
-        createGuard(new Guard(gp), 8, 8);
+        createGuard(new Guard(gp), 6 * gp.cellSize, 8 * gp.cellSize);
+        createGuard(new Guard(gp), 7 * gp.cellSize, 8 * gp.cellSize);
+        createGuard(new Guard(gp), 8 * gp.cellSize, 8 * gp.cellSize);
 
         System.out.println("Creat lvl1 obj");
     }
@@ -70,23 +70,23 @@ public class EntityManager {
     public void setEntityLevel2(){
 
         // Create Objects
-        createObj(new Key(gp), 8, 11);
-        createObj(new Key(gp), 16, 11);
-        createObj(new Key(gp), 27, 15);
-        createObj(new Key(gp), 26, 2);
-        createObj(new Timer(gp), 2, 7);
-        createObj(new Timer(gp), 22, 14);
-        createObj(new Trap(gp), 6, 9);
-        createObj(new Trap(gp), 7, 9);
-        createObj(new Trap(gp), 8, 9);
+        createObj(new Key(gp), 8 * gp.cellSize, 11 * gp.cellSize);
+        createObj(new Key(gp), 16 * gp.cellSize, 11 * gp.cellSize);
+        createObj(new Key(gp), 27 * gp.cellSize, 15 * gp.cellSize);
+        createObj(new Key(gp), 26 * gp.cellSize, 2 * gp.cellSize);
+        createObj(new Timer(gp), 2 * gp.cellSize, 7 * gp.cellSize);
+        createObj(new Timer(gp), 22 * gp.cellSize, 14 * gp.cellSize);
+        createObj(new Trap(gp), 6 * gp.cellSize, 9 * gp.cellSize);
+        createObj(new Trap(gp), 7 * gp.cellSize, 9 * gp.cellSize);
+        createObj(new Trap(gp), 8 * gp.cellSize, 9 * gp.cellSize);
 
         // Create Door
         createDoor();
 
         // Create Guard
-        createGuard(new Guard(gp), 6, 8);
-        createGuard(new Guard(gp), 7, 8);
-        createGuard(new Guard(gp), 8, 8);
+        createGuard(new Guard(gp), 6 * gp.cellSize, 8 * gp.cellSize);
+        createGuard(new Guard(gp), 7 * gp.cellSize, 8 * gp.cellSize);
+        createGuard(new Guard(gp), 8 * gp.cellSize, 8 * gp.cellSize);
     }
 
     /**
@@ -105,28 +105,28 @@ public class EntityManager {
         }
 
         // Create Objects
-        createObj(new Key(gp), 8, 8);
-        createObj(new Key(gp), 9, 16);
-        createObj(new Key(gp), 22, 7);
-        createObj(new Key(gp), 4, 10);
-        createObj(new Key(gp), 18, 13);
-        createObj(new Timer(gp), 17, 7);
-        createObj(new Trap(gp), 16, 10);
-        createObj(new Trap(gp), 16, 11);
-        createObj(new Trap(gp), 16, 5);
-        createObj(new Trap(gp), 15, 5);
-        createObj(new Trap(gp), 25, 2);
-        createObj(new Trap(gp), 25, 3);
-        createObj(new Trap(gp), 19, 15);
-        createObj(new Trap(gp), 19, 16);
+        createObj(new Key(gp), 8 * gp.cellSize, 8 * gp.cellSize);
+        createObj(new Key(gp), 9 * gp.cellSize, 16 * gp.cellSize);
+        createObj(new Key(gp), 22 * gp.cellSize, 7 * gp.cellSize);
+        createObj(new Key(gp), 4 * gp.cellSize, 10 * gp.cellSize);
+        createObj(new Key(gp), 18 * gp.cellSize, 13 * gp.cellSize);
+        createObj(new Timer(gp), 17 * gp.cellSize, 7 * gp.cellSize);
+        createObj(new Trap(gp), 16 * gp.cellSize, 10 * gp.cellSize);
+        createObj(new Trap(gp), 16 * gp.cellSize, 11 * gp.cellSize);
+        createObj(new Trap(gp), 16 * gp.cellSize, 5 * gp.cellSize);
+        createObj(new Trap(gp), 15 * gp.cellSize, 5 * gp.cellSize);
+        createObj(new Trap(gp), 25 * gp.cellSize, 2 * gp.cellSize);
+        createObj(new Trap(gp), 25 * gp.cellSize, 3 * gp.cellSize);
+        createObj(new Trap(gp), 19 * gp.cellSize, 15 * gp.cellSize);
+        createObj(new Trap(gp), 19 * gp.cellSize, 16 * gp.cellSize);
 
         // Create Door
         createDoor();
 
         // Create Guards
-        createGuard(new Guard(gp), 6, 8);
-        createGuard(new Guard(gp), 7, 8);
-        createGuard(new Guard(gp), 8, 8);
+        createGuard(new Guard(gp), 6 * gp.cellSize, 8 * gp.cellSize);
+        createGuard(new Guard(gp), 7 * gp.cellSize, 8 * gp.cellSize);
+        createGuard(new Guard(gp), 8 * gp.cellSize, 8 * gp.cellSize);
     }
 
     /**
@@ -172,7 +172,7 @@ public class EntityManager {
                 int tileNum = gp.tileManage.mapTileNum[randomX][randomY];
 
                 if (!gp.tileManage.tile[tileNum].collision) {
-                    createObj(entity, randomX, randomY);
+                    createObj(entity, randomX * gp.cellSize, randomY * gp.cellSize);
                     break;
                 }
             }
@@ -214,8 +214,8 @@ public class EntityManager {
         }
 
         gp.obj[i] = entity;
-        gp.obj[i].x = gp.cellSize * worldX;
-        gp.obj[i].y = gp.cellSize * worldY;
+        gp.obj[i].x = worldX;
+        gp.obj[i].y = worldY;
     }
 
     /**
@@ -239,8 +239,8 @@ public class EntityManager {
         }
 
         gp.guard[i] = entity;
-        gp.guard[i].x = gp.cellSize * worldX;
-        gp.guard[i].y = gp.cellSize * worldY;
+        gp.guard[i].x = worldX;
+        gp.guard[i].y = worldY;
     }
 
     /**
@@ -278,11 +278,11 @@ public class EntityManager {
      */
     public void createDoor() {
 
-        createObj(new Door(gp), 29, 7);
-        createObj(new Door(gp), 29, 8);
-        createObj(new Door(gp), 29, 9);
-        createObj(new Door(gp), 29, 10);
-        createObj(new Door(gp), 29, 11);
+        createObj(new Door(gp), 29 * gp.cellSize, 7 * gp.cellSize);
+        createObj(new Door(gp), 29 * gp.cellSize, 8 * gp.cellSize);
+        createObj(new Door(gp), 29 * gp.cellSize, 9 * gp.cellSize);
+        createObj(new Door(gp), 29 * gp.cellSize, 10 * gp.cellSize);
+        createObj(new Door(gp), 29 * gp.cellSize, 11 * gp.cellSize);
     }
 
     /**

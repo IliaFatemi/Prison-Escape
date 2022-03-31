@@ -1,6 +1,8 @@
 package com.group10.app.SavedData;
 
+import com.group10.app.entity.Guard;
 import com.group10.app.main.GamePanel;
+import com.group10.app.objects.*;
 
 import java.io.*;
 import java.util.Arrays;
@@ -49,32 +51,63 @@ public class LoadGame {
             GamePanel.GAME_LEVEL = Integer.parseInt(savedData[0]);
             gp.inmate.x = Integer.parseInt(savedData[1]);
             gp.inmate.y = Integer.parseInt(savedData[2]);
-            gp.inmate.time = Double.parseDouble(savedData[3]);
-            gp.inmate.score = Integer.parseInt(savedData[4]);
-            gp.inmate.hasKey = Integer.parseInt(savedData[5]);
+            gp.inmate.speed = Integer.parseInt(savedData[3]);
+            gp.inmate.time = Double.parseDouble(savedData[4]);
+            gp.inmate.score = Integer.parseInt(savedData[5]);
+            gp.inmate.hasKey = Integer.parseInt(savedData[6]);
 
             br.close();
 
             Arrays.fill(gp.obj, null);
             Arrays.fill(gp.guard, null);
 
+            int objNum = 0;
+            for (int j = 0; j < gp.obj.length; j++){
+                if (gp.obj[j] != null){
+                    objNum++;
+                }
+            }
+            System.out.println("before load, there are " + objNum + " objects");
+
+            gp.tileManage.loadMap("/levels/Level" + GamePanel.GAME_LEVEL + ".txt");
+            System.out.println("load map");
+
             br = new BufferedReader(new FileReader("src/main/SavedGame/saveEntity.txt"));
 
             int objLength = Integer.parseInt(br.readLine());
-            for (int j = 0; j < objLength; j++) {
-                gp.obj[i].name = br.readLine();
-                gp.obj[i].x = Integer.parseInt(br.readLine());
-                gp.obj[i].y = Integer.parseInt(br.readLine());
+            System.out.println("will load " + objLength + " objects");
 
-                if (Objects.equals(gp.obj[i].name, "Chicken")) {
-                    gp.obj[i].disappears = Integer.parseInt(br.readLine());
+            for (int j = 0; j < objLength; j++) {
+
+                String name = br.readLine();
+                int posX = Integer.parseInt(br.readLine());
+                int posY = Integer.parseInt(br.readLine());
+
+                switch (name) {
+                    case "Chicken":
+                        gp.asset.createObj(new Chicken(gp), posX, posY);
+                        gp.obj[j].disappears = Integer.parseInt(br.readLine());
+                        break;
+                    case "Key":
+                        gp.asset.createObj(new Key(gp), posX, posY);
+                        break;
+                    case "Timer":
+                        gp.asset.createObj(new Timer(gp), posX, posY);
+                        break;
+                    case "Trap":
+                        gp.asset.createObj(new Trap(gp), posX, posY);
+                        break;
+                    case "Door":
+                        gp.asset.createObj(new Door(gp), posX, posY);
+                        break;
                 }
             }
 
             int guardLength = Integer.parseInt(br.readLine());
             for (int j = 0; j < guardLength; j++) {
-                gp.guard[i].x = Integer.parseInt(br.readLine());
-                gp.guard[i].y = Integer.parseInt(br.readLine());
+                int posX = Integer.parseInt(br.readLine());
+                int posY = Integer.parseInt(br.readLine());
+                gp.asset.createGuard(new Guard(gp), posX, posY);
             }
 
             br.close();
