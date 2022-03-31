@@ -1,8 +1,8 @@
 package com.group10.app.SavedData;
 
-import com.group10.app.entity.Guard;
+import com.group10.app.entity.nonStatisEntities.Guard;
 import com.group10.app.main.GamePanel;
-import com.group10.app.objects.*;
+import com.group10.app.entity.staticEntities.*;
 
 import java.io.*;
 import java.util.Arrays;
