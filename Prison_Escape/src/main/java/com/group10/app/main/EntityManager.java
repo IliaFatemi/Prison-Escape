@@ -1,7 +1,7 @@
 package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
-import com.group10.app.entity.nonStatisEntities.Guard;
+import com.group10.app.entity.nonStaticEntities.Guard;
 import com.group10.app.entity.staticEntities.Chicken;
 import com.group10.app.entity.staticEntities.Door;
 import com.group10.app.entity.staticEntities.Key;

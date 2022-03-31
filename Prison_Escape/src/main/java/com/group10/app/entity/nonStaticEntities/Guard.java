@@ -1,4 +1,4 @@
-package com.group10.app.entity.nonStatisEntities;
+package com.group10.app.entity.nonStaticEntities;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,7 +16,7 @@ import com.group10.app.main.GamePanel;
  * </p>
  *
  */
-public class Guard extends Entity {
+public class Guard extends MovingActor {
     GamePanel gp;
     boolean moving = false;
     int pixelCounter = 0;
@@ -151,18 +151,8 @@ public class Guard extends Entity {
                     break;
             }
         }
-
-        spriteCounter++;
-        if (spriteCounter > 10) {
-            if (spriteNum == 1) {
-                spriteNum = 2;
-            } else if (spriteNum == 2) {
-                spriteNum = 3;
-            } else if (spriteNum == 3) {
-                spriteNum = 1;
-            }
-            spriteCounter = 0;
-        }
+        collisionUpdate();
+        spriteUpdate();
 
         pixelCounter += speed;
 
@@ -172,60 +162,4 @@ public class Guard extends Entity {
         }
     }
 
-    /**
-     * in charge of drawing the guard and changing the guards current sprite
-     * @param g2 used for drawing the 2D sprites
-     */
-    public void draw(Graphics2D g2){
-        BufferedImage image = null;
-        switch (direction) {
-            case "up":
-                if (spriteNum == 1) {
-                    image = up1;
-                }
-                if (spriteNum == 2) {
-                    image = up2;
-                }
-                if (spriteNum == 3) {
-                    image = up3;
-                }
-                break;
-            case "down":
-                if (spriteNum == 1) {
-                    image = down1;
-                }
-                if (spriteNum == 2) {
-                    image = down2;
-                }
-                if (spriteNum == 3) {
-                    image = down3;
-                }
-                break;
-            case "left":
-                if (spriteNum == 1) {
-                    image = left1;
-                }
-                if (spriteNum == 2) {
-                    image = left3;
-                }
-                if (spriteNum == 3) {
-                    image = left3;
-                }
-                break;
-            case "right":
-                if (spriteNum == 1) {
-                    image = right1;
-                }
-                if (spriteNum == 2) {
-                    image = right2;
-                }
-                if (spriteNum == 3) {
-                    image = right3;
-                }
-                break;
-            default: break;
-
-        }
-        g2.drawImage(image, x , y, gp.cellSize, gp.cellSize, null);
-    }
 }

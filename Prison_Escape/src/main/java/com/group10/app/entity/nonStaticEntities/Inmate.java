@@ -1,4 +1,4 @@
-package com.group10.app.entity.nonStatisEntities;
+package com.group10.app.entity.nonStaticEntities;
 
 import com.group10.app.entity.Entity;
 import com.group10.app.main.GamePanel;
@@ -18,7 +18,7 @@ import java.util.Objects;
  *     interactions, and drawing the players sprites
  * </p>
  */
-public class Inmate extends Entity {
+public class Inmate extends MovingActor {
     GamePanel gp;
     KeyManager keyH;
     public int hasKey = 0;
@@ -103,42 +103,6 @@ public class Inmate extends Entity {
         }
     }
 
-    /**
-     * Updating the sprite on the player
-     * <p>
-     * The spriteUpdate method is responsible for updating the sprite png while 
-     * the player is moving around. 
-     * </p>
-     */
-    public void spriteUpdate(){
-        spriteCounter++;
-        if (spriteCounter > 10) {
-            if (spriteNum == 1) {
-                spriteNum = 2;
-            } else if (spriteNum == 2) {
-                spriteNum = 3;
-            } else if (spriteNum == 3) {
-                spriteNum = 1;
-            }
-            spriteCounter = 0;
-        }
-    }
-
-    /**
-     * 
-     */
-    public void collisionUpdate(){
-        collision = false;
-        gp.collisionCheck.wallCheck(this);
-        if(!collision){
-            switch (direction) {
-                case "up":      y -= speed; break;
-                case "down":    y += speed; break;
-                case "left":    x -= speed; break;
-                case "right":   x += speed; break;
-            }
-        }
-    }
 
     /**
      * Get the x position of the player

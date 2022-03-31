@@ -21,7 +21,7 @@ public class Entity {
 
     GamePanel gp;
 
-    public BufferedImage up1, up2, up3, up4, up5, down1, down2, down3, down4, down5, left1, left2, left3, left4, left5, right1, right2, right3, right4, right5;
+    public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, left3, right1, right2, right3;
     public BufferedImage door1, door2, door3, door4, door5;
     public BufferedImage image;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
