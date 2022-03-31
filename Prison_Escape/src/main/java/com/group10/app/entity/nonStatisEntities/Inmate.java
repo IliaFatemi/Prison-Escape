@@ -89,40 +89,53 @@ public class Inmate extends Entity {
             } else {
                 direction = "right";
             }
-
-            collision = false;
-            gp.collisionCheck.wallCheck(this);
-
             int objectIndex = gp.collisionCheck.checkObject(this);
             pickUpObject(objectIndex);
-
-            if(!collision){
-                switch (direction) {
-                    case "up":      y -= speed; break;
-                    case "down":    y += speed; break;
-                    case "left":    x -= speed; break;
-                    case "right":   x += speed; break;
-                }
-            }
-
-            spriteCounter++;
-            if (spriteCounter > 10) {
-                if (spriteNum == 1) {
-                    spriteNum = 2;
-                } else if (spriteNum == 2) {
-                    spriteNum = 3;
-                } else if (spriteNum == 3) {
-                    spriteNum = 1;
-                }
-                spriteCounter = 0;
-            }
+            collisionUpdate();
+            spriteUpdate();
         }
         else {
             standCounter++;
-
             if (standCounter > 10){
                 spriteNum = 2;
                 standCounter = 0;
+            }
+        }
+    }
+
+    /**
+     * Updating the sprite on the player
+     * <p>
+     * The spriteUpdate method is responsible for updating the sprite png while 
+     * the player is moving around. 
+     * </p>
+     */
+    public void spriteUpdate(){
+        spriteCounter++;
+        if (spriteCounter > 10) {
+            if (spriteNum == 1) {
+                spriteNum = 2;
+            } else if (spriteNum == 2) {
+                spriteNum = 3;
+            } else if (spriteNum == 3) {
+                spriteNum = 1;
+            }
+            spriteCounter = 0;
+        }
+    }
+
+    /**
+     * 
+     */
+    public void collisionUpdate(){
+        collision = false;
+        gp.collisionCheck.wallCheck(this);
+        if(!collision){
+            switch (direction) {
+                case "up":      y -= speed; break;
+                case "down":    y += speed; break;
+                case "left":    x -= speed; break;
+                case "right":   x += speed; break;
             }
         }
     }
