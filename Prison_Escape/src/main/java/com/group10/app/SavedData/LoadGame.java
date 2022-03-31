@@ -1,12 +1,11 @@
 package com.group10.app.SavedData;
 
-import com.group10.app.entity.nonStatisEntities.Guard;
+import com.group10.app.entity.nonStaticEntities.Guard;
 import com.group10.app.main.GamePanel;
 import com.group10.app.entity.staticEntities.*;
 
 import java.io.*;
 import java.util.Arrays;
-import java.util.Objects;
 
 /**
  * LoadGame loads the last position of the player, the level, player position, time on the timer, the score, number of keys collected and enemy position. Load game will read up on a text file called save0.txt.
