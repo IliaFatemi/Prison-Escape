@@ -54,23 +54,15 @@ public class Guard extends Entity {
         up1 = setup("/prisonGuard/WalkUp1");
         up2 = setup("/prisonGuard/WalkUp2");
         up3 = setup("/prisonGuard/WalkUp3");
-        up4 = setup("/prisonGuard/WalkUp4");
-        up5 = setup("/prisonGuard/WalkUp5");
         down1 = setup("/prisonGuard/WalkDown1");
         down2 = setup("/prisonGuard/WalkDown2");
         down3 = setup("/prisonGuard/WalkDown3");
-        down4 = setup("/prisonGuard/WalkDown4");
-        down5 = setup("/prisonGuard/WalkDown5");
         left1 = setup("/prisonGuard/WalkLeft1");
         left2 = setup("/prisonGuard/WalkLeft2");
         left3 = setup("/prisonGuard/WalkLeft3");
-        left4 = setup("/prisonGuard/WalkLeft4");
-        left5 = setup("/prisonGuard/WalkLeft5");
         right1 = setup("/prisonGuard/WalkRight1");
         right2 = setup("/prisonGuard/WalkRight2");
         right3 = setup("/prisonGuard/WalkRight3");
-        right4 = setup("/prisonGuard/WalkRight4");
-        right5 = setup("/prisonGuard/WalkRight5");
     }
 
     /**
@@ -161,16 +153,12 @@ public class Guard extends Entity {
         }
 
         spriteCounter++;
-        if (spriteCounter > 20) {
+        if (spriteCounter > 10) {
             if (spriteNum == 1) {
                 spriteNum = 2;
             } else if (spriteNum == 2) {
                 spriteNum = 3;
             } else if (spriteNum == 3) {
-                spriteNum = 4;
-            } else if (spriteNum == 4) {
-                spriteNum = 5;
-            } else if (spriteNum == 5) {
                 spriteNum = 1;
             }
             spriteCounter = 0;
@@ -201,12 +189,6 @@ public class Guard extends Entity {
                 if (spriteNum == 3) {
                     image = up3;
                 }
-                if (spriteNum == 4) {
-                    image = up4;
-                }
-                if (spriteNum == 5) {
-                    image = up5;
-                }
                 break;
             case "down":
                 if (spriteNum == 1) {
@@ -218,28 +200,16 @@ public class Guard extends Entity {
                 if (spriteNum == 3) {
                     image = down3;
                 }
-                if (spriteNum == 4) {
-                    image = down4;
-                }
-                if (spriteNum == 5) {
-                    image = down5;
-                }
                 break;
             case "left":
                 if (spriteNum == 1) {
                     image = left1;
                 }
                 if (spriteNum == 2) {
-                    image = left2;
+                    image = left3;
                 }
                 if (spriteNum == 3) {
                     image = left3;
-                }
-                if (spriteNum == 4) {
-                    image = left4;
-                }
-                if (spriteNum == 5) {
-                    image = left5;
                 }
                 break;
             case "right":
@@ -251,12 +221,6 @@ public class Guard extends Entity {
                 }
                 if (spriteNum == 3) {
                     image = right3;
-                }
-                if (spriteNum == 4) {
-                    image = right4;
-                }
-                if (spriteNum == 5) {
-                    image = right5;
                 }
                 break;
             default: break;
