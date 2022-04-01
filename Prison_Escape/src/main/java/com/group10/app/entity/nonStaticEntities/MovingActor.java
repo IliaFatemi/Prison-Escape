@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 
 public class MovingActor extends Entity {
     private int speed;
-    private String direction;
+    private String direction = "down";
     private GamePanel gp;
     private int spriteNum;
 
@@ -53,6 +53,7 @@ public class MovingActor extends Entity {
      */
     public MovingActor(GamePanel gp) {
         super(gp);
+        this.gp = gp;
     }
 
     public void collisionUpdate(){
@@ -146,5 +147,4 @@ public class MovingActor extends Entity {
         }
         g2.drawImage(image, x , y, gp.cellSize, gp.cellSize, null);
     }
-
 }
