@@ -17,9 +17,33 @@ import java.util.Random;
 
 public class EntityManager {
 
-    GamePanel gp;
-    int doorIndex = 1;
-    int randomObjCounter = 0;
+    private GamePanel gp;
+    private int doorIndex = 1;
+    private int randomObjCounter = 0;
+
+    public void setGp(GamePanel gp) {
+        this.gp = gp;
+    }
+
+    public void setDoorIndex(int doorIndex) {
+        this.doorIndex = doorIndex;
+    }
+
+    public void setRandomObjCounter(int randomObjCounter) {
+        this.randomObjCounter = randomObjCounter;
+    }
+
+    public GamePanel getGp() {
+        return gp;
+    }
+
+    public int getDoorIndex() {
+        return doorIndex;
+    }
+
+    public int getRandomObjCounter() {
+        return randomObjCounter;
+    }
 
     /**
      * This is the constructor for the AssetSetter class.

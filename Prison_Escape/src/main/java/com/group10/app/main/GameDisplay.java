@@ -20,12 +20,41 @@ import static com.group10.app.main.GameStates.*;
  */
 public class GameDisplay {
 
-    GamePanel gp;
-    Graphics2D g2;
-    Font arial_40;
-    BufferedImage keyImage;
-    ArrayList<String> message = new ArrayList<>();
-    ArrayList<Integer> messageCounter = new ArrayList<>();
+    private GamePanel gp;
+    private Graphics2D g2;
+    private Font arial_40;
+    private BufferedImage keyImage;
+    private ArrayList<String> message = new ArrayList<>();
+    private ArrayList<Integer> messageCounter = new ArrayList<>();
+
+
+    public GamePanel getGp() {
+        return gp;
+    }
+
+    public Graphics2D getG2() {
+        return g2;
+    }
+
+    public Font getArial_40() {
+        return arial_40;
+    }
+
+    public BufferedImage getKeyImage() {
+        return keyImage;
+    }
+
+    public ArrayList<String> getMessage() {
+        return message;
+    }
+
+    public ArrayList<Integer> getMessageCounter() {
+        return messageCounter;
+    }
+
+    public DecimalFormat getdFormat() {
+        return dFormat;
+    }
 
     DecimalFormat dFormat = new DecimalFormat("#0.0");
 
