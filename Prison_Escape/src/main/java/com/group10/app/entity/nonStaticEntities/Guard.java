@@ -38,13 +38,12 @@ public class Guard extends MovingActor {
         this.gp = gp;
 
         setDirection("down");
-        setSpeed(1);
+        setSpeed(0);
 
         getGuardImage();
-        solidArea = new Rectangle(8, 16, 32, 32);
 
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
+        solidAreaDefaultX = getSolidArea().x;
+        solidAreaDefaultY = getSolidArea().y;
     }
 
     /**
