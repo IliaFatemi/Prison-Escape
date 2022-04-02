@@ -9,8 +9,11 @@ import com.group10.app.entity.staticEntities.Key;
 import com.group10.app.entity.staticEntities.Timer;
 import com.group10.app.entity.staticEntities.Trap;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Objects;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * This is for create and delete entities.
@@ -39,102 +42,48 @@ public class EntityManager {
      *     and guards by using createObj/createGuard method.
      * </p>
      */
-    public void setEntityLevel1(){
+    public void setEntityLevel(int level){
 
-        // Create Objects
-        createObj(new Key(gp), 2 * gp.cellSize, 7 * gp.cellSize);
-        createObj(new Key(gp), 22 * gp.cellSize, 16 * gp.cellSize);
-        createObj(new Key(gp), 18 * gp.cellSize, 11 * gp.cellSize);
-        createObj(new Timer(gp), 3 * gp.cellSize, 3 * gp.cellSize);
-        createObj(new Trap(gp), 19 * gp.cellSize, 10 * gp.cellSize);
-        createObj(new Trap(gp), 19 * gp.cellSize, 9 * gp.cellSize);
-        createObj(new Trap(gp), 26 * gp.cellSize, 12 * gp.cellSize);
-        createObj(new Trap(gp), 27 * gp.cellSize, 12 * gp.cellSize);
-        createObj(new Trap(gp), 25 * gp.cellSize, 6 * gp.cellSize);
-        createObj(new Trap(gp), 26 * gp.cellSize, 6 * gp.cellSize);
-        createObj(new Trap(gp), 15 * gp.cellSize, 1 * gp.cellSize);
-        createObj(new Trap(gp), 15 * gp.cellSize, 2 * gp.cellSize);
-        createObj(new Trap(gp), 15 * gp.cellSize, 3 * gp.cellSize);
+        try {
+            File file;
 
-        // Create Door
-        createDoor();
-
-        // Create Guard
-        createGuard(new Guard(gp), 26 * gp.cellSize, 3 * gp.cellSize);
-        createGuard(new Guard(gp), 26 * gp.cellSize, 15 * gp.cellSize);
-        createGuard(new Guard(gp), 11 * gp.cellSize, 4 * gp.cellSize);
-
-        System.out.println("Creat lvl1 obj");
-    }
-
-    /**
-     * This is for create objects at level 2
-     *
-     * <p>
-     *     This method create object(Keys, Timer and Traps)
-     *     and guards by using createObj/createGuard method.
-     * </p>
-     */
-    public void setEntityLevel2(){
-
-        // Create Objects
-        createObj(new Key(gp), 8 * gp.cellSize, 11 * gp.cellSize);
-        createObj(new Key(gp), 16 * gp.cellSize, 11 * gp.cellSize);
-        createObj(new Key(gp), 27 * gp.cellSize, 15 * gp.cellSize);
-        createObj(new Key(gp), 26 * gp.cellSize, 2 * gp.cellSize);
-        createObj(new Timer(gp), 2 * gp.cellSize, 7 * gp.cellSize);
-        createObj(new Timer(gp), 22 * gp.cellSize, 14 * gp.cellSize);
-        createObj(new Trap(gp), 6 * gp.cellSize, 9 * gp.cellSize);
-        createObj(new Trap(gp), 7 * gp.cellSize, 9 * gp.cellSize);
-        createObj(new Trap(gp), 8 * gp.cellSize, 9 * gp.cellSize);
-
-        // Create Door
-        createDoor();
-
-        // Create Guard
-        createGuard(new Guard(gp), 6 * gp.cellSize, 8 * gp.cellSize);
-        createGuard(new Guard(gp), 7 * gp.cellSize, 8 * gp.cellSize);
-        createGuard(new Guard(gp), 8 * gp.cellSize, 8 * gp.cellSize);
-    }
-
-    /**
-     * This is for create objects at level 3
-     *
-     * <p>
-     *     This method create object(Keys, Timer and Traps)
-     *     and guards by using createObj/createGuard method.
-     * </p>
-     */
-    public void setEntityLevel3(){
-        for (int i = 0; i < gp.obj.length; i++){
-            if (gp.obj[i] != null){
-                gp.obj[i] = null;
+            if(level == 1) {
+                file = new File("src/main/resources/entityLevelFiles/EntityLevel1.txt");
+            }else if(level == 2){
+                file = new File("src/main/resources/entityLevelFiles/EntityLevel2.txt");
+            }else{
+                file = new File("src/main/resources/entityLevelFiles/EntityLevel3.txt");
             }
+
+            Scanner myReader = new Scanner(file);
+
+            String entityType;
+            int entityX, entityY;
+
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String [] setUpValues = data.split(" ");
+
+                entityType = setUpValues[0];
+                entityX = Integer.parseInt(setUpValues[1]);
+                entityY = Integer.parseInt(setUpValues[2]);
+
+                if(entityType.equals("Trap")){
+                    createObj(new Trap(gp), entityX * gp.cellSize, entityY  * gp.cellSize);
+                }else if(entityType.equals("Timer")){
+                    createObj(new Timer(gp), entityX * gp.cellSize, entityY  * gp.cellSize);
+                }else if(entityType.equals("Key")){
+                    createObj(new Key(gp), entityX * gp.cellSize, entityY  * gp.cellSize);
+                }else{
+                    createGuard(new Guard(gp), entityX * gp.cellSize, entityY * gp.cellSize);
+                }
+
+            }
+            createDoor();
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-
-        // Create Objects
-        createObj(new Key(gp), 8 * gp.cellSize, 8 * gp.cellSize);
-        createObj(new Key(gp), 9 * gp.cellSize, 16 * gp.cellSize);
-        createObj(new Key(gp), 22 * gp.cellSize, 7 * gp.cellSize);
-        createObj(new Key(gp), 4 * gp.cellSize, 10 * gp.cellSize);
-        createObj(new Key(gp), 18 * gp.cellSize, 13 * gp.cellSize);
-        createObj(new Timer(gp), 17 * gp.cellSize, 7 * gp.cellSize);
-        createObj(new Trap(gp), 16 * gp.cellSize, 10 * gp.cellSize);
-        createObj(new Trap(gp), 16 * gp.cellSize, 11 * gp.cellSize);
-        createObj(new Trap(gp), 16 * gp.cellSize, 5 * gp.cellSize);
-        createObj(new Trap(gp), 15 * gp.cellSize, 5 * gp.cellSize);
-        createObj(new Trap(gp), 25 * gp.cellSize, 2 * gp.cellSize);
-        createObj(new Trap(gp), 25 * gp.cellSize, 3 * gp.cellSize);
-        createObj(new Trap(gp), 19 * gp.cellSize, 15 * gp.cellSize);
-        createObj(new Trap(gp), 19 * gp.cellSize, 16 * gp.cellSize);
-
-        // Create Door
-        createDoor();
-
-        // Create Guards
-        createGuard(new Guard(gp), 6 * gp.cellSize, 8 * gp.cellSize);
-        createGuard(new Guard(gp), 7 * gp.cellSize, 8 * gp.cellSize);
-        createGuard(new Guard(gp), 8 * gp.cellSize, 8 * gp.cellSize);
     }
 
     /**
@@ -297,9 +246,9 @@ public class EntityManager {
      * <p>Setting up the objects such as timer, keys, traps and drum sticks for each level in the game.</p>
      */
     public void setUpAsset() {
-        if (GamePanel.GAME_LEVEL == 1){setEntityLevel1();}
-        else if (GamePanel.GAME_LEVEL == 2){setEntityLevel2();}
-        else if (GamePanel.GAME_LEVEL == 3){setEntityLevel3();}
+        if (GamePanel.GAME_LEVEL == 1){setEntityLevel(1);}
+        else if (GamePanel.GAME_LEVEL == 2){setEntityLevel(2);}
+        else if (GamePanel.GAME_LEVEL == 3){setEntityLevel(3);}
     }
 }
 
