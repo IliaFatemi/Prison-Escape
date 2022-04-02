@@ -18,7 +18,7 @@ import java.util.Objects;
  */
 public class Inmate extends MovingActor {
     GamePanel gp;
-    KeyManager keyH;
+    public KeyManager keyH;
     private int hasKey = 0;
     private int score = 0;
     private double time = 100;
