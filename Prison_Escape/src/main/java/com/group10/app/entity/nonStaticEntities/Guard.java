@@ -39,7 +39,7 @@ public class Guard extends MovingActor {
 
         setName("Guard");
         setDirection("down");
-        setSpeed(0);
+        setSpeed(1);
 
         getGuardImage();
 
