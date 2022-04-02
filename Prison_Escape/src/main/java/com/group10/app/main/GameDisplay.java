@@ -83,15 +83,15 @@ public class GameDisplay {
         // Draw the Score
         g2.setFont(arial_40);
         g2.setColor(Color.white);
-        g2.drawString("Score: " + dFormat.format(gp.inmate.score), gp.cellSize, gp.cellSize);
+        g2.drawString("Score: " + dFormat.format(gp.inmate.getScore()), gp.cellSize, gp.cellSize);
 
         // Draw the Time
-        gp.inmate.time -= (double) 1/60;
-        g2.drawString("Time: " + dFormat.format(gp.inmate.time), gp.cellSize * 11, gp.cellSize);
+        gp.inmate.setTimer(gp.inmate.getTimer() - (double) 1/60);
+        g2.drawString("Time: " + dFormat.format(gp.inmate.getTimer()), gp.cellSize * 11, gp.cellSize);
 
         // Draw the Key
         g2.drawImage(keyImage, gp.cellSize * 21, gp.cellSize - 32, null);
-        g2.drawString("X " + gp.inmate.hasKey, gp.cellSize * 22, gp.cellSize);
+        g2.drawString("X " + gp.inmate.getNumKeys(), gp.cellSize * 22, gp.cellSize);
 
     }
 

@@ -2,6 +2,7 @@ package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
 import com.group10.app.entity.nonStaticEntities.Guard;
+import com.group10.app.entity.nonStaticEntities.MovingActor;
 import com.group10.app.entity.staticEntities.Chicken;
 import com.group10.app.entity.staticEntities.Door;
 import com.group10.app.entity.staticEntities.Key;
@@ -16,7 +17,6 @@ import java.util.Random;
  */
 
 public class EntityManager {
-
 
     GamePanel gp;
     int doorIndex = 1;
@@ -227,11 +227,11 @@ public class EntityManager {
      *     in this index and set the guard's position(worldX, worldY).
      * </p>
      *
-     * @param entity passing in guard of entity
-     * @param worldX the guard's x coordination
-     * @param worldY the guard's y coordination
+     * @param guard passing in guard of entity
+     * @param x the guard's x coordination
+     * @param y the guard's y coordination
      */
-    public void createGuard(Entity entity, int worldX, int worldY) {
+    public void createGuard(MovingActor guard, int x, int y) {
 
         int i = 0;
 
@@ -239,9 +239,9 @@ public class EntityManager {
             i++;
         }
 
-        gp.guard[i] = entity;
-        gp.guard[i].x = worldX;
-        gp.guard[i].y = worldY;
+        gp.guard[i] = guard;
+        gp.guard[i].setX(x);
+        gp.guard[i].setY(y);
     }
 
     /**

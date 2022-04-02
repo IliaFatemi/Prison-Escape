@@ -2,6 +2,7 @@ package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
 import com.group10.app.entity.nonStaticEntities.Inmate;
+import com.group10.app.entity.nonStaticEntities.MovingActor;
 
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
@@ -28,11 +29,14 @@ public class CollisionManager {
      * wallCheck will check to see if the player is within a certain range of the block and will set the entity collision to true if the condiiton is true.
      * @param entity The entity that will be interacting with walls of the map
      */
-    public void wallCheck(Entity entity){
-        int entityLeftWorldX = entity.x + entity.solidArea.x;
-        int entityRightWorldX = entity.x + entity.solidArea.x + entity.solidArea.width;
-        int entityTopWorldY = entity.y + entity.solidArea.y;
-        int entityBottomWorldY = entity.y + entity.solidArea.y + entity.solidArea.height;
+    public void wallCheck(MovingActor entity){
+        if (entity.name == "Inmate"){
+            System.out.println("entity.solidArea.x is " + entity.solidArea.x);
+        }
+        int entityLeftWorldX = entity.getX() + entity.solidArea.x;
+        int entityRightWorldX = entity.getX() + entity.solidArea.x + entity.solidArea.width;
+        int entityTopWorldY = entity.getY() + entity.solidArea.y;
+        int entityBottomWorldY = entity.getY() + entity.solidArea.y + entity.solidArea.height;
 
         int LeftCol = entityLeftWorldX/gp.cellSize;
         int RightCol = entityRightWorldX/gp.cellSize;
@@ -41,9 +45,9 @@ public class CollisionManager {
 
         int tile1, tile2;
 
-        switch (entity.direction) {
+        switch (entity.getDirection()) {
             case "up":
-                TopRow = (entityTopWorldY - entity.speed) / gp.cellSize;
+                TopRow = (entityTopWorldY - entity.getSpeed()) / gp.cellSize;
                 tile1 = gp.tileManage.mapTileNum[LeftCol][TopRow];
                 tile2 = gp.tileManage.mapTileNum[RightCol][TopRow];
                 if (gp.tileManage.tile[tile1].collision || gp.tileManage.tile[tile2].collision) {
@@ -51,7 +55,7 @@ public class CollisionManager {
                 }
             break;
             case "down":
-                BottomRow = (entityBottomWorldY + entity.speed) / gp.cellSize;
+                BottomRow = (entityBottomWorldY + entity.getSpeed()) / gp.cellSize;
                 tile1 = gp.tileManage.mapTileNum[LeftCol][BottomRow];
                 tile2 = gp.tileManage.mapTileNum[RightCol][BottomRow];
                 if (gp.tileManage.tile[tile1].collision || gp.tileManage.tile[tile2].collision) {
@@ -59,7 +63,7 @@ public class CollisionManager {
                 }
             break;
             case "left":
-                LeftCol = (entityLeftWorldX - entity.speed) / gp.cellSize;
+                LeftCol = (entityLeftWorldX - entity.getSpeed()) / gp.cellSize;
                 tile1 = gp.tileManage.mapTileNum[LeftCol][TopRow];
                 tile2 = gp.tileManage.mapTileNum[LeftCol][BottomRow];
                 if (gp.tileManage.tile[tile1].collision || gp.tileManage.tile[tile2].collision) {
@@ -67,7 +71,7 @@ public class CollisionManager {
                 }
             break;
             case "right":
-                RightCol = (entityRightWorldX + entity.speed) / gp.cellSize;
+                RightCol = (entityRightWorldX + entity.getSpeed()) / gp.cellSize;
                 tile1 = gp.tileManage.mapTileNum[RightCol][TopRow];
                 tile2 = gp.tileManage.mapTileNum[RightCol][BottomRow];
                 if (gp.tileManage.tile[tile1].collision || gp.tileManage.tile[tile2].collision) {
