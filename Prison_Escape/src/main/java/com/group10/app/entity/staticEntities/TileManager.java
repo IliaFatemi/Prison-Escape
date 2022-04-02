@@ -18,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
+
 /**
  * This class handles the various items that appear on a map as barriers, paths or
  * furniture.
@@ -58,8 +59,7 @@ public class TileManager {
     public void registerImage(){
 
         try {
-            File file = new File("/Users/parshanpourbakht/Documents/SFU/second_year_2022/actual prison-escape/Prison_Escape/src/main/resources/tiles/tileSetUp.txt");
-
+            File file = new File("src/main/resources/tiles/tileSetUp.txt");
             Scanner myReader = new Scanner(file);
 
             while (myReader.hasNextLine()) {
