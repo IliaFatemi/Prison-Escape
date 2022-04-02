@@ -34,7 +34,7 @@ public class TileManager {
      */
     public TileManager(GamePanel gp){
         this.gp = gp;
-        tile = new Tiles[39];
+        tile = new Tiles[56];
         mapTileNum = new int[gp.screenColNumber][gp.screenRowNumber];
         registerImage();
     }
@@ -91,6 +91,23 @@ public class TileManager {
         setup(36, "desk1", true);
         setup(37, "desk2", true);
         setup(38, "chair", true);
+        setup(39, "RockGround", false);
+        setup(40, "creamTile", false);
+        setup(41, "stove1", true);
+        setup(42, "stove2", true);
+        setup(43, "showerDown", true);
+        setup(44, "showerUp", true);
+        setup(45, "freezer1", true);
+        setup(46, "freezer2", true);
+        setup(47, "box", true);
+        setup(48, "bigCell1", true);
+        setup(49, "bigCell2", true);
+        setup(50, "couch", true);
+        setup(51, "sink1", true);
+        setup(52, "sink2", true);
+        setup(53, "gunStash1", true);
+        setup(54, "gunStash2", true);
+        setup(55, "locker", true);
     }
 
     /**
