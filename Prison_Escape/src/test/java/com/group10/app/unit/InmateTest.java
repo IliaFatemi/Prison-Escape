@@ -146,4 +146,13 @@ public class InmateTest {
             Assert.assertEquals("right", inmate.getDirection());
         }
     }
+
+    @Test
+    public void testReset(){
+        Inmate inmate = new Inmate(gp, keyH);
+        inmate.resetInmate();
+        Assert.assertEquals(100, inmate.getTimer());
+        Assert.assertEquals(0, inmate.getScore());
+        Assert.assertEquals(0, inmate.getNumKeys());
+    }
 }
