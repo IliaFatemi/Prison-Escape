@@ -22,7 +22,7 @@ public class Guard extends MovingActor {
     int pixelCounter = 0;
 
     /**
-     * The constructor for the Guard class
+     * The constructor for the Guard class...
      *
      * <p>
      *     Default setting include: direction = down
