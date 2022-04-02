@@ -147,6 +147,10 @@ public class Inmate extends MovingActor {
      */
     public void setNumKeys(int newNumKeys){hasKey = newNumKeys;}
 
+    public void resetKeys() {hasKey = 0;}
+
+    public void resetScore() {score = 0;}
+
     /**
      * reset the time, score, and hasKey(Key number)
      */

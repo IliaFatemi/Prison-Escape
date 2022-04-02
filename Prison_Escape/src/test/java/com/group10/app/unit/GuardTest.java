@@ -1,6 +1,6 @@
 package com.group10.app.unit;
 
-import com.group10.app.entity.nonStatisEntities.Guard;
+import com.group10.app.entity.nonStaticEntities.Guard;
 import com.group10.app.main.*;
 
 import org.junit.Assert;
