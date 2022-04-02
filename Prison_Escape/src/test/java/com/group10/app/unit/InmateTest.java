@@ -130,4 +130,20 @@ public class InmateTest {
         inmate.setScore(-30);
         Assert.assertEquals(true, inmate.isScoreNegative());
     }
+
+    @Test
+    public void testUpdate(){
+        Inmate inmate = new Inmate(gp, keyH);
+        keyH.keySet("up");
+        inmate.update();
+        if (keyH.pressedUp) {
+            Assert.assertEquals("up", inmate.getDirection());
+        } else if (keyH.pressedDown) {
+            Assert.assertEquals("down", inmate.getDirection());
+        } else if (keyH.pressedLeft) {
+            Assert.assertEquals("left", inmate.getDirection());
+        } else {
+            Assert.assertEquals("right", inmate.getDirection());
+        }
+    }
 }

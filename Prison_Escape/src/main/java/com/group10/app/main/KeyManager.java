@@ -25,6 +25,18 @@ public class KeyManager implements KeyListener {
 
     public void keyTyped(KeyEvent e) {}
 
+    public void keySet(String y){
+        if (y == "up") {
+            pressedUp = true;
+        } else if (y == "down") {
+            pressedDown = true;
+        } else if (y == "right") {
+            pressedRight = true;
+        } else {
+            pressedLeft = true;;
+        }
+    }
+
     /**
      * keyPressed is a method that tracks what key is pressed by the user
      * @param e the event of a key being pressed
@@ -75,3 +87,4 @@ public class KeyManager implements KeyListener {
         }
     }
 }
+
