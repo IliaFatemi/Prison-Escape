@@ -31,10 +31,10 @@ public class CollisionManager {
      */
     public void wallCheck(MovingActor entity){
 
-        int entityLeftWorldX = entity.getX() + entity.solidArea.x;
-        int entityRightWorldX = entity.getX() + entity.solidArea.x + entity.solidArea.width;
-        int entityTopWorldY = entity.getY() + entity.solidArea.y;
-        int entityBottomWorldY = entity.getY() + entity.solidArea.y + entity.solidArea.height;
+        int entityLeftWorldX = entity.getX() + entity.getSolidArea().x;
+        int entityRightWorldX = entity.getX() + entity.getSolidArea().x + entity.getSolidArea().width;
+        int entityTopWorldY = entity.getY() + entity.getSolidArea().y;
+        int entityBottomWorldY = entity.getY() + entity.getSolidArea().y + entity.getSolidArea().height;
 
         int LeftCol = entityLeftWorldX/gp.cellSize;
         int RightCol = entityRightWorldX/gp.cellSize;
@@ -90,10 +90,10 @@ public class CollisionManager {
      *     Otherwise, return 999 means no object touch inmate.
      * </p>
      *
-     * @param entity passing entity to charge as a parameter
+     * @param inmate passing entity to charge as a parameter
      * @return       index of the object if anyone collides with inmate, or 999
      */
-    public int checkObject(MovingActor entity) {
+    public int checkObject(MovingActor inmate) {
 
         int index = 999;
 
@@ -101,53 +101,53 @@ public class CollisionManager {
             if (gp.obj[i] != null){
 
                 //Get inmate's solid area position
-                entity.solidArea.x = entity.getX() + entity.solidArea.x;
-                entity.solidArea.y = entity.getY() + entity.solidArea.y;
+                inmate.getSolidArea().x = inmate.getX() + inmate.getSolidArea().x;
+                inmate.getSolidArea().y = inmate.getY() + inmate.getSolidArea().y;
                 //Get object's solid area position
                 gp.obj[i].solidArea.x = gp.obj[i].x + gp.obj[i].solidArea.x;
                 gp.obj[i].solidArea.y = gp.obj[i].y + gp.obj[i].solidArea.y;
 
-                switch (entity.getDirection()) {
+                switch (inmate.getDirection()) {
                     case "up" : {
-                        entity.solidArea.y -= entity.getSpeed();
-                        if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
+                        inmate.getSolidArea().y -= inmate.getSpeed();
+                        if (inmate.getSolidArea().intersects(gp.obj[i].solidArea)) {
                             if (gp.obj[i].collision) {
-                                entity.collision = true;
+                                inmate.collision = true;
                             }
                             index = i;
                         }
                     }
                     case "down" : {
-                        entity.solidArea.y += entity.getSpeed();
-                        if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
+                        inmate.getSolidArea().y += inmate.getSpeed();
+                        if (inmate.getSolidArea().intersects(gp.obj[i].solidArea)) {
                             if (gp.obj[i].collision) {
-                                entity.collision = true;
+                                inmate.collision = true;
                             }
                             index = i;
                         }
                     }
                     case "left" : {
-                        entity.solidArea.x -= entity.getSpeed();
-                        if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
+                        inmate.getSolidArea().x -= inmate.getSpeed();
+                        if (inmate.getSolidArea().intersects(gp.obj[i].solidArea)) {
                             if (gp.obj[i].collision) {
-                                entity.collision = true;
+                                inmate.collision = true;
                             }
                             index = i;
                         }
                     }
                     case "right" : {
-                        entity.solidArea.x += entity.getSpeed();
-                        if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
+                        inmate.getSolidArea().x += inmate.getSpeed();
+                        if (inmate.getSolidArea().intersects(gp.obj[i].solidArea)) {
                             if (gp.obj[i].collision) {
-                                entity.collision = true;
+                                inmate.collision = true;
                             }
                             index = i;
                         }
                     }
                 }
 
-                entity.solidArea.x = entity.solidX;
-                entity.solidArea.y = entity.solidY;
+                inmate.getSolidArea().x = inmate.solidX;
+                inmate.getSolidArea().y = inmate.solidY;
                 gp.obj[i].solidArea.x = gp.obj[i].solidX;
                 gp.obj[i].solidArea.y = gp.obj[i].solidY;
             }
