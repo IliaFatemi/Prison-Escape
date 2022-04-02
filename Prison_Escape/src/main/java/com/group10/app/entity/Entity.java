@@ -28,11 +28,7 @@ public class Entity {
     public boolean collision = false;
 
     // States
-    public String direction = "down";
-
-    // Character Status
-    public String name;
-    public int speed;
+    private String name;
 
     // Counter
     public int disappears = 0;
@@ -51,6 +47,11 @@ public class Entity {
     public Entity(GamePanel gp) {
         this.gp = gp;
     }
+
+    public void setName(String name) { this.name = name; }
+
+    public String getName() { return name; }
+
 
     /**
      * This method is in charge of changing the appearance of the main gate

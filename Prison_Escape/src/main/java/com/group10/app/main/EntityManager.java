@@ -204,7 +204,7 @@ public class EntityManager {
             i++;
         }
 
-        if (Objects.equals(entity.name, "Door")) {
+        if (Objects.equals(entity.getName(), "Door")) {
 
             entity.down1 = entity.setup("/tiles/exit" + doorIndex);
             doorIndex++;
@@ -259,7 +259,7 @@ public class EntityManager {
         for (int i = 0; i < gp.obj.length; i++){
 
             if (gp.obj[i] != null){
-                if (Objects.equals(gp.obj[i].name, "Chicken")){
+                if (Objects.equals(gp.obj[i].getName(), "Chicken")){
                     gp.obj[i].disappears++;
 
                     if (gp.obj[i].disappears > expiredTime){

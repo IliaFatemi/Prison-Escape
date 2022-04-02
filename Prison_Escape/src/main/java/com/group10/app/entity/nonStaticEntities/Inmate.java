@@ -40,7 +40,7 @@ public class Inmate extends MovingActor {
         this.gp = gp;
         this.keyH = keyH;
 
-        name = "Inmate";
+        setName("Inmate");
         setSpeed(2);
 
         solidAreaDefaultX = getSolidArea().x;
@@ -174,10 +174,10 @@ public class Inmate extends MovingActor {
 
         if (i != 999){
 
-            String objectName = gp.obj[i].name;
-            String text = "Got a " + gp.obj[i].name + "!";
+            String objectName = gp.obj[i].getName();
+            String text = "Got a " + objectName + "!";
 
-            if (!Objects.equals(gp.obj[i].name, "Door")){
+            if (!Objects.equals(objectName, "Door")){
                 gp.ui.addMessage(text);
             }
 
