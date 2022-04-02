@@ -34,7 +34,7 @@ public class TileManager {
      */
     public TileManager(GamePanel gp){
         this.gp = gp;
-        tile = new Tiles[56];
+        tile = new Tiles[67];
         mapTileNum = new int[gp.screenColNumber][gp.screenRowNumber];
         registerImage();
     }
@@ -108,6 +108,16 @@ public class TileManager {
         setup(53, "gunStash1", true);
         setup(54, "gunStash2", true);
         setup(55, "locker", true);
+        setup(56, "grassGround", false);
+        setup(57, "doNotCross1", true);
+        setup(58, "doNotCross2", true);
+        setup(59, "doNotCross3", true);
+        setup(60, "doNotCross4", true);
+        setup(61, "audioConsole", true);
+        setup(62, "securityConsole1", true);
+        setup(63, "securityConsole2", true);
+        setup(64, "securityConsoleTopView1", true);
+        setup(65, "securityConsoleTopView2", true);
     }
 
     /**
