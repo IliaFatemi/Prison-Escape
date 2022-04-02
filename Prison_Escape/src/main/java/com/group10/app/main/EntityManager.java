@@ -48,14 +48,21 @@ public class EntityManager {
         createObj(new Timer(gp), 3 * gp.cellSize, 3 * gp.cellSize);
         createObj(new Trap(gp), 19 * gp.cellSize, 10 * gp.cellSize);
         createObj(new Trap(gp), 19 * gp.cellSize, 9 * gp.cellSize);
+        createObj(new Trap(gp), 26 * gp.cellSize, 12 * gp.cellSize);
+        createObj(new Trap(gp), 27 * gp.cellSize, 12 * gp.cellSize);
+        createObj(new Trap(gp), 25 * gp.cellSize, 6 * gp.cellSize);
+        createObj(new Trap(gp), 26 * gp.cellSize, 6 * gp.cellSize);
+        createObj(new Trap(gp), 15 * gp.cellSize, 1 * gp.cellSize);
+        createObj(new Trap(gp), 15 * gp.cellSize, 2 * gp.cellSize);
+        createObj(new Trap(gp), 15 * gp.cellSize, 3 * gp.cellSize);
 
         // Create Door
         createDoor();
 
         // Create Guard
-        createGuard(new Guard(gp), 6 * gp.cellSize, 8 * gp.cellSize);
-        createGuard(new Guard(gp), 7 * gp.cellSize, 8 * gp.cellSize);
-        createGuard(new Guard(gp), 8 * gp.cellSize, 8 * gp.cellSize);
+        createGuard(new Guard(gp), 26 * gp.cellSize, 3 * gp.cellSize);
+        createGuard(new Guard(gp), 26 * gp.cellSize, 15 * gp.cellSize);
+        createGuard(new Guard(gp), 11 * gp.cellSize, 4 * gp.cellSize);
 
         System.out.println("Creat lvl1 obj");
     }
