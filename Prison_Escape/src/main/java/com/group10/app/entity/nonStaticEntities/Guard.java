@@ -112,29 +112,12 @@ public class Guard extends MovingActor {
         collision = false;
         gp.collisionCheck.wallCheck(this);
 
-        int guardSpeed = getSpeed();
-        if (!collision) {
-            switch (getDirection()) {
-                case "up":
-                    setY(getY() - guardSpeed);
-                    break;
-                case "down":
-                    setY(getY() + guardSpeed);
-                    break;
-                case "left":
-                    setX(getX() - guardSpeed);
-                    break;
-                case "right":
-                    setX(getX() + guardSpeed);
-                    break;
-            }
-        }
         collisionUpdate();
         spriteUpdate();
 
-        pixelCounter += guardSpeed;
+        pixelCounter += getSpeed();
 
-        if (pixelCounter == 24) {
+        if (pixelCounter == 48) {
             moving = false;
             pixelCounter = 0;
         }

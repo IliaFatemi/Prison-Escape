@@ -30,9 +30,7 @@ public class CollisionManager {
      * @param entity The entity that will be interacting with walls of the map
      */
     public void wallCheck(MovingActor entity){
-        if (entity.name == "Inmate"){
-            System.out.println("entity.solidArea.x is " + entity.solidArea.x);
-        }
+
         int entityLeftWorldX = entity.getX() + entity.solidArea.x;
         int entityRightWorldX = entity.getX() + entity.solidArea.x + entity.solidArea.width;
         int entityTopWorldY = entity.getY() + entity.solidArea.y;

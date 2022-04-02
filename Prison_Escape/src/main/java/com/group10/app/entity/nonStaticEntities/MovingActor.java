@@ -118,7 +118,6 @@ public class MovingActor extends Entity {
         }
     }
 
-
     /**
      * in charge of drawing the guard and changing the guards current sprite
      * @param g2 used for drawing the 2D sprites
