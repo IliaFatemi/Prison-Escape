@@ -42,7 +42,7 @@ public class EntityManager {
     public void setEntityLevel1(){
 
         // Create Objects
-        createObj(new Key(gp), 2 * gp.cellSize, 15 * gp.cellSize);
+        createObj(new Key(gp), 2 * gp.cellSize, 7 * gp.cellSize);
         createObj(new Key(gp), 22 * gp.cellSize, 16 * gp.cellSize);
         createObj(new Key(gp), 18 * gp.cellSize, 11 * gp.cellSize);
         createObj(new Timer(gp), 3 * gp.cellSize, 3 * gp.cellSize);

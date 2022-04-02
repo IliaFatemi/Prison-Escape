@@ -38,7 +38,7 @@ public class Guard extends MovingActor {
         this.gp = gp;
 
         setDirection("down");
-        setSpeed(0);
+        setSpeed(1);
 
         getGuardImage();
 
