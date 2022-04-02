@@ -205,9 +205,9 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
             // Guard collision
-            for (Entity entity : guard) {
-                if (entity != null){
-                    if (collisionCheck.checkGuard(inmate, entity.x, entity.y, ENEMY_COLLISION_DISTANCE)) {
+            for (MovingActor guard : guard) {
+                if (guard != null){
+                    if (collisionCheck.checkGuard(inmate, guard.getX(), guard.getY(), ENEMY_COLLISION_DISTANCE)) {
                         System.out.println("ENEMY COLLIDED");
                         System.out.println("===================================");
                         state = GAMEOVER;
