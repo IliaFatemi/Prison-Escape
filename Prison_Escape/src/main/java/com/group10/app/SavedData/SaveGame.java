@@ -1,6 +1,7 @@
 package com.group10.app.SavedData;
 
 import com.group10.app.entity.Entity;
+import com.group10.app.entity.nonStaticEntities.MovingActor;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -21,7 +22,7 @@ public class SaveGame {
      * @param score An integer for the score
      * @param numKeys An integer for the number of keys collected on the map
      */
-    public void save(int level, int playerX, int playerY, int speed, double timer, int score, int numKeys, Entity[] objects, Entity[] guards){
+    public void save(int level, int playerX, int playerY, int speed, double timer, int score, int numKeys, Entity[] objects, MovingActor[] guards){
         try {
             FileWriter myWriter = new FileWriter("src/main/SavedGame/save0.txt");
             myWriter.write(level + " " + playerX + " " + playerY + " " + speed + " " + timer + " " + score + " " + numKeys + " ");
@@ -36,7 +37,6 @@ public class SaveGame {
             }
             bw.write("" + i);
 
-            System.out.println("object number is " + i);
             bw.newLine();
             for (Entity object : objects) {
 
@@ -56,18 +56,18 @@ public class SaveGame {
             }
 
             i = 0;
-            for (Entity object : guards) {
-                if (object != null){
+            for (MovingActor movingActor : guards) {
+                if (movingActor != null) {
                     i++;
                 }
             }
             bw.write("" + i);
             bw.newLine();
-            for (Entity object : guards) {
-                if (object != null){
-                    bw.write("" + object.x);
+            for (MovingActor guard : guards) {
+                if (guard != null) {
+                    bw.write("" + guard.getX());
                     bw.newLine();
-                    bw.write("" + object.y);
+                    bw.write("" + guard.getY());
                     bw.newLine();
                 }
             }

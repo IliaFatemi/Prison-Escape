@@ -1,11 +1,9 @@
 package com.group10.app.entity.nonStaticEntities;
 
-import com.group10.app.entity.Entity;
 import com.group10.app.main.GamePanel;
 import com.group10.app.main.KeyManager;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.Objects;
 
 /**
@@ -21,10 +19,10 @@ import java.util.Objects;
 public class Inmate extends MovingActor {
     GamePanel gp;
     KeyManager keyH;
-    public int hasKey = 0;
-    public int score = 0;
-    public double time = 100;
-    int standCounter = 0;
+    private int hasKey = 0;
+    private int score = 0;
+    private double time = 100;
+    private int standCounter = 0;
 
     /**
      * Constructor of the Inmate class
@@ -41,6 +39,9 @@ public class Inmate extends MovingActor {
         super(gp);
         this.gp = gp;
         this.keyH = keyH;
+
+        name = "Inmate";
+        setSpeed(2);
 
         solidArea = new Rectangle(8, 16, 32, 32);
 
@@ -103,19 +104,6 @@ public class Inmate extends MovingActor {
         }
     }
 
-
-    /**
-     * Get the x position of the player
-     * @return x the x position of the inmate
-     */
-    public double getX(){return x;}
-
-    /**
-     * Get the y position of the player
-     * @return y the y position of the inmate
-     */
-    public double getY(){return y;}
-
     /**
      * Get number of keys collected
      * @return hasKey which is the number of keys collected
@@ -132,7 +120,7 @@ public class Inmate extends MovingActor {
      * getting the current timer
      * @return time converted from double to int
      */
-    public int getTimer(){return (int)time;}
+    public double getTimer(){return time;}
 
     /**
      * Set the timer
@@ -148,10 +136,10 @@ public class Inmate extends MovingActor {
 
     /**
      * set player position
-     * @param posX
-     * @param posY
+     * @param x
+     * @param y
      */
-    public void setPos(int posX, int posY){x = posX; y = posY;}
+    public void setPos(int x, int y){setX(x); setY(y);}
 
     /**
      * set key amount
@@ -160,20 +148,9 @@ public class Inmate extends MovingActor {
     public void setNumKeys(int newNumKeys){hasKey = newNumKeys;}
 
     /**
-     * reset the keys
-     */
-    public void resetKeys(){hasKey = 0;}
-
-    /**
-     * reset the score
-     */
-    public void resetScore(){score = 0;}
-
-    /**
-     * reset the speed, time, score, and hasKey(Key number)
+     * reset the time, score, and hasKey(Key number)
      */
     public void resetInmate(){
-        setSpeed(2);
         time = 100;
         score = 0;
         hasKey = 0;
@@ -233,7 +210,7 @@ public class Inmate extends MovingActor {
      * @return boolean
      */
     public boolean reachedGate(){
-        return x >= 1344 && x <= 1350 && y >= 292 && y <= 544;
+        return getX() >= 1344 && getX() <= 1350 && getY() >= 292 && getY() <= 544;
     }
 
     /**

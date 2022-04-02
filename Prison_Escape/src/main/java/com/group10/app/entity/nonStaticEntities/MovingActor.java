@@ -7,10 +7,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class MovingActor extends Entity {
+    private int x,y;
     private int speed;
     private String direction = "down";
     private GamePanel gp;
-    private int spriteNum;
+    private int spriteNum = 1;
 
     public void setSpeed(int speed) {
         this.speed = speed;
@@ -26,6 +27,22 @@ public class MovingActor extends Entity {
 
     public void setSpriteNum(int spriteNum) {
         this.spriteNum = spriteNum;
+    }
+
+    /**
+     * Set the x position of the actor
+     * @return x the x position of the actor
+     */
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    /**
+     * Set the y position of the actor
+     * @return y the y position of the actor
+     */
+    public void setY(int y) {
+        this.y = y;
     }
 
     public int getSpeed() {
@@ -44,6 +61,17 @@ public class MovingActor extends Entity {
         return spriteNum;
     }
 
+    /**
+     * Get Actor's x position
+     * @return x the x position of the actor
+     */
+    public int getX() { return x;}
+
+    /**
+     * Get Actor's y position
+     * @return y the y position of the actor
+     */
+    public int getY() { return y;}
 
 
     /**
@@ -125,7 +153,7 @@ public class MovingActor extends Entity {
                     image = left1;
                 }
                 if (spriteNum == 2) {
-                    image = left3;
+                    image = left2;
                 }
                 if (spriteNum == 3) {
                     image = left3;

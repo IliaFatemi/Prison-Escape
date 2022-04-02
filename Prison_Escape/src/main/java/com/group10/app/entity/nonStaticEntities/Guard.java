@@ -66,30 +66,14 @@ public class Guard extends MovingActor {
     }
 
     /**
-     * Get Guards x position
-     * @return x of type int
-     */
-    public double getX(){
-        return x;
-    }
-
-    /**
-     * Get Guards y position
-     * @return y of type int
-     */
-    public double getY(){
-        return y;
-    }
-
-    /**
      * set the value for guard
      *
-     * @param setX x value to set guards x position
-     * @param setY y value to set guards y position
+     * @param x value to set guards x position
+     * @param y value to set guards y position
      */
-    public void setGuardValues(int setX, int setY){
-        x = setX;
-        y = setY;
+    public void setGuardValues(int x, int y){
+        setX(x);
+        setY(y);
         setSpeed(1);
         setDirection("default");
     }
@@ -106,18 +90,18 @@ public class Guard extends MovingActor {
 
         if (!moving) {
 
-            if (gp.inmate.x < x) {
+            if (gp.inmate.getX() < getX()) {
                 setDirection("left");
             }
-            else if (gp.inmate.x > x) {
+            else if (gp.inmate.getX() > getX()) {
                 setDirection("right");
             }
 
-            if (gp.inmate.x - x < (gp.cellSize/2) && x - gp.inmate.x < (gp.cellSize/2)){
-                if (gp.inmate.y < y) {
+            if (Math.abs(gp.inmate.getX() - getX()) < gp.cellSize){
+                if (gp.inmate.getY() < getY()) {
                     setDirection("up");
                 }
-                else if (gp.inmate.y > y) {
+                else if (gp.inmate.getY() > getY()) {
                     setDirection("down");
                 }
             }
@@ -132,16 +116,16 @@ public class Guard extends MovingActor {
         if (!collision) {
             switch (getDirection()) {
                 case "up":
-                    y -= guardSpeed;
+                    setY(getY() - guardSpeed);
                     break;
                 case "down":
-                    y += guardSpeed;
+                    setY(getY() + guardSpeed);
                     break;
                 case "left":
-                    x -= guardSpeed;
+                    setX(getX() - guardSpeed);
                     break;
                 case "right":
-                    x += guardSpeed;
+                    setX(getX() + guardSpeed);
                     break;
             }
         }
@@ -150,7 +134,7 @@ public class Guard extends MovingActor {
 
         pixelCounter += guardSpeed;
 
-        if (pixelCounter == 48) {
+        if (pixelCounter == 24) {
             moving = false;
             pixelCounter = 0;
         }
