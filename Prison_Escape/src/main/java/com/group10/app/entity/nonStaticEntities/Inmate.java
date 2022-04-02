@@ -43,10 +43,8 @@ public class Inmate extends MovingActor {
         name = "Inmate";
         setSpeed(2);
 
-        solidArea = new Rectangle(8, 16, 32, 32);
-
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
+        solidAreaDefaultX = getSolidArea().x;
+        solidAreaDefaultY = getSolidArea().y;
 
         getInmateImage();
     }
@@ -90,6 +88,7 @@ public class Inmate extends MovingActor {
             } else {
                 setDirection("right");
             }
+            collision = false;
             int objectIndex = gp.collisionCheck.checkObject(this);
             pickUpObject(objectIndex);
             collisionUpdate();

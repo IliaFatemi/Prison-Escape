@@ -12,6 +12,7 @@ public class MovingActor extends Entity {
     private String direction = "down";
     private GamePanel gp;
     private int spriteNum = 1;
+    private final Rectangle solidArea = new Rectangle(8, 16, 32, 32);
 
     public void setSpeed(int speed) {
         this.speed = speed;
@@ -27,6 +28,10 @@ public class MovingActor extends Entity {
 
     public void setSpriteNum(int spriteNum) {
         this.spriteNum = spriteNum;
+    }
+
+    public void setCollision(boolean collision) {
+        this.collision = collision;
     }
 
     /**
@@ -61,6 +66,10 @@ public class MovingActor extends Entity {
         return spriteNum;
     }
 
+    public boolean getCollision() {
+        return collision;
+    }
+
     /**
      * Get Actor's x position
      * @return x the x position of the actor
@@ -73,6 +82,7 @@ public class MovingActor extends Entity {
      */
     public int getY() { return y;}
 
+    public Rectangle getSolidArea() { return solidArea; }
 
     /**
      * The constructor for the Entity class
@@ -85,7 +95,6 @@ public class MovingActor extends Entity {
     }
 
     public void collisionUpdate(){
-        collision = false;
         gp.collisionCheck.wallCheck(this);
         if(!collision){
             switch (direction) {
