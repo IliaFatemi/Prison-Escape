@@ -41,14 +41,14 @@ public class SaveGame {
             for (Entity object : objects) {
 
                 if (object != null){
-                    bw.write(object.name);
+                    bw.write(object.getName());
                     bw.newLine();
                     bw.write("" + object.x);
                     bw.newLine();
                     bw.write("" + object.y);
                     bw.newLine();
 
-                    if (Objects.equals(object.name, "Chicken")){
+                    if (Objects.equals(object.getName(), "Chicken")){
                         bw.write("" + object.disappears);
                         bw.newLine();
                     }
