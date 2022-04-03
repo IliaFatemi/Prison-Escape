@@ -42,7 +42,7 @@ public class TileManager {
      */
     public TileManager(GamePanel gp){
         this.gp = gp;
-        tile = new Tiles[79];
+        tile = new Tiles[88];
         mapTileNum = new int[gp.screenColNumber][gp.screenRowNumber];
         registerImage();
     }
@@ -57,6 +57,7 @@ public class TileManager {
      * </p>
      */
     public void registerImage(){
+
 
         try {
             File file = new File("src/main/resources/tiles/tileSetUp.txt");

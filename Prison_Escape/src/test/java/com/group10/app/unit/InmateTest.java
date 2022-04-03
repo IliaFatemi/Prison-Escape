@@ -70,9 +70,9 @@ public class InmateTest {
     @Test
     public void testTimer(){
         Inmate inmate = new Inmate(gp, keyH);
-        Assert.assertEquals(100, inmate.getTimer());
+        Assert.assertEquals(100, inmate.getTimer(), 0.001);
         inmate.setTimer(10);
-        Assert.assertEquals(10, inmate.getTimer());
+        Assert.assertEquals(10, inmate.getTimer(), 0.001);
     }
 
     @Test
@@ -129,5 +129,31 @@ public class InmateTest {
         Assert.assertEquals(false, inmate.isScoreNegative());
         inmate.setScore(-30);
         Assert.assertEquals(true, inmate.isScoreNegative());
+    }
+
+    @Test
+    public void testUpdate(){
+        keyH = new KeyManager();
+        Inmate inmate = new Inmate(gp, keyH);
+        keyH.keySet("up");
+        inmate.updateDirection();
+        if (keyH.pressedUp) {
+            Assert.assertEquals("up", inmate.getDirection());
+        } else if (keyH.pressedDown) {
+            Assert.assertEquals("down", inmate.getDirection());
+        } else if (keyH.pressedLeft) {
+            Assert.assertEquals("left", inmate.getDirection());
+        } else {
+            Assert.assertEquals("right", inmate.getDirection());
+        }
+    }
+
+    @Test
+    public void testReset(){
+        Inmate inmate = new Inmate(gp, keyH);
+        inmate.resetInmate();
+        Assert.assertEquals(100, inmate.getTimer(), 0.0001);
+        Assert.assertEquals(0, inmate.getScore());
+        Assert.assertEquals(0, inmate.getNumKeys());
     }
 }
