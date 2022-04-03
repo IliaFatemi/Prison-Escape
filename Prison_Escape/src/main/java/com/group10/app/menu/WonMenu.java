@@ -15,10 +15,6 @@ import com.group10.app.main.GamePanel;
  * @author Ilia Fatemi
  */
 public class WonMenu extends Menu{
-    /**
-     * Game panel will be used to access it's methods and variables
-     */
-    GamePanel gp;
 
     /**
      * Creates a DecimalFormat using the given pattern and the symbols for the default FORMAT locale.

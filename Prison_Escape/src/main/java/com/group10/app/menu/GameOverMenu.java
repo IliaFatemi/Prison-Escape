@@ -14,10 +14,6 @@ import com.group10.app.main.GamePanel;
  * @author Ilia Fatemi
  */
 public class GameOverMenu extends Menu{
-    /**
-     * Game panel will be used to access it's methods and variables
-     */
-    GamePanel gp;
 
     /**
      * returnMenu: will register the return to menu button picture

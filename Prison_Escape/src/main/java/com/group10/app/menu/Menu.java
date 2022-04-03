@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Menu {
 
-    GamePanel gp;
+    public GamePanel gp;
 
     public Menu(GamePanel gp){
         this.gp = gp;
@@ -19,7 +19,6 @@ public class Menu {
     }
 
     public Menu checkMenuType(){
-        System.out.println(gp.getState());
         if(gp.getState() == GameStates.PAUSED) {
             return new PauseMenu(gp);
         }else if(gp.getState() == GameStates.MENU){

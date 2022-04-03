@@ -13,12 +13,6 @@ import com.group10.app.main.GamePanel;
  * @author Ilia Fatemi
  */
 public class MenuScreen extends Menu{
-
-    /**
-     * Game panel will be used to access it's methods and variables
-     */
-    GamePanel gp;
-
     /**
      * newGame: will register the return to menu button picture
      * continue_: will register the retry button picture

@@ -15,11 +15,6 @@ import com.group10.app.main.GamePanel;
 public class PauseMenu extends Menu{
 
     /**
-     * Game panel will be used to access it's methods and variables
-     */
-    GamePanel gp;
-
-    /**
      * resume: will register the resume button
      * returnMenu: will register the return to main menu button
      * pauseTemplate: will register the background image
