@@ -28,7 +28,7 @@ public class Entity {
     public boolean collision = false;
 
     // States
-    private String name;
+    public String name;
 
     // Counter
     public int disappears = 0;
