@@ -1,7 +1,6 @@
 package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
-import com.group10.app.entity.nonStaticEntities.Guard;
 import com.group10.app.entity.nonStaticEntities.Inmate;
 
 import com.group10.app.entity.nonStaticEntities.MovingActor;
@@ -96,7 +95,7 @@ public class GamePanel extends JPanel implements Runnable{
     SaveGame saveGame = new SaveGame();
 
     //Set up the keyboard keys
-    KeyManager keyH = new KeyManager(this);
+    KeyManager keyH = new KeyManager();
 
     Thread gameThread;
     
@@ -170,7 +169,6 @@ public class GamePanel extends JPanel implements Runnable{
 
         while(gameThread != null){
             update();
-            //render graphics
             repaint();
 
             try {
