@@ -18,7 +18,7 @@ import java.util.Objects;
  */
 public class Inmate extends MovingActor {
     GamePanel gp;
-    KeyManager keyH;
+    public KeyManager keyH;
     private int hasKey = 0;
     private int score = 0;
     private double time = 100;
@@ -79,15 +79,7 @@ public class Inmate extends MovingActor {
      */
     public void update(){
         if(keyH.pressedUp|| keyH.pressedDown || keyH.pressedLeft || keyH.pressedRight) {
-            if (keyH.pressedUp) {
-                setDirection("up");
-            } else if (keyH.pressedDown) {
-                setDirection("down");
-            } else if (keyH.pressedLeft) {
-                setDirection("left");
-            } else {
-                setDirection("right");
-            }
+            updateDirection();
             collision = false;
             int objectIndex = gp.collisionCheck.checkObject(this);
             pickUpObject(objectIndex);
@@ -100,6 +92,18 @@ public class Inmate extends MovingActor {
                 setSpriteNum(2);
                 standCounter = 0;
             }
+        }
+    }
+
+    public void updateDirection() {
+        if (keyH.pressedUp) {
+            setDirection("up");
+        } else if (keyH.pressedDown) {
+            setDirection("down");
+        } else if (keyH.pressedLeft) {
+            setDirection("left");
+        } else {
+            setDirection("right");
         }
     }
 
