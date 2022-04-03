@@ -18,10 +18,9 @@ import java.util.Objects;
  */
 public class Entity {
 
-
     GamePanel gp;
 
-    public BufferedImage up1, up2, up3, up4, up5, down1, down2, down3, down4, down5, left1, left2, left3, left4, left5, right1, right2, right3, right4, right5;
+    public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, left3, right1, right2, right3;
     public BufferedImage door1, door2, door3, door4, door5;
     public BufferedImage image;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
@@ -42,7 +41,6 @@ public class Entity {
     //
     public int x, y;
     public int spriteCounter = 0;
-    public int spriteNum = 1;
     public int solidX, solidY;
     //
 
@@ -99,5 +97,21 @@ public class Entity {
     }
     public boolean isScoreNegative() {
         return false;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 }

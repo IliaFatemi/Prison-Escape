@@ -64,8 +64,8 @@ public class WonMenu {
         g2.drawImage(returnMenu, gp.screenWidth/2-103, gp.screenHeight/2 - 30, 206, 70, null);
 
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 70F));
-        g2.drawString(String.valueOf(gp.inmate.score), gp.cellSize * 24, (int) (gp.cellSize * 5.8));
-        g2.drawString(String.valueOf(dFormat.format(gp.inmate.time)), gp.cellSize * 24, (int) (gp.cellSize * 7.5));
+        g2.drawString(String.valueOf(gp.inmate.getScore()), gp.cellSize * 24, (int) (gp.cellSize * 5.8));
+        g2.drawString(String.valueOf(dFormat.format(gp.inmate.getTimer())), gp.cellSize * 24, (int) (gp.cellSize * 7.5));
 
     }
 }

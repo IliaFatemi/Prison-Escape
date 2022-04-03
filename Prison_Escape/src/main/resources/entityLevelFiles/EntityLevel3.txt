@@ -1,0 +1,17 @@
+Key 8 8
+Key 9 16
+Key 22 7
+Key 4 10
+Key 18 13
+Timer 17 7
+Trap 16 10
+Trap 16 11
+Trap 16 5
+Trap 15 5
+Trap 25 2
+Trap 25 3
+Trap 19 15
+Trap 19 16
+Guard 6 8
+Guard 7 8
+Guard 8 8

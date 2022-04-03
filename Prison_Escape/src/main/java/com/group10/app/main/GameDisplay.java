@@ -20,12 +20,41 @@ import static com.group10.app.main.GameStates.*;
  */
 public class GameDisplay {
 
-    GamePanel gp;
-    Graphics2D g2;
-    Font arial_40;
-    BufferedImage keyImage;
-    ArrayList<String> message = new ArrayList<>();
-    ArrayList<Integer> messageCounter = new ArrayList<>();
+    private GamePanel gp;
+    private Graphics2D g2;
+    private Font arial_40;
+    private BufferedImage keyImage;
+    private ArrayList<String> message = new ArrayList<>();
+    private ArrayList<Integer> messageCounter = new ArrayList<>();
+
+
+    public GamePanel getGp() {
+        return gp;
+    }
+
+    public Graphics2D getG2() {
+        return g2;
+    }
+
+    public Font getArial_40() {
+        return arial_40;
+    }
+
+    public BufferedImage getKeyImage() {
+        return keyImage;
+    }
+
+    public ArrayList<String> getMessage() {
+        return message;
+    }
+
+    public ArrayList<Integer> getMessageCounter() {
+        return messageCounter;
+    }
+
+    public DecimalFormat getdFormat() {
+        return dFormat;
+    }
 
     DecimalFormat dFormat = new DecimalFormat("#0.0");
 
@@ -83,15 +112,15 @@ public class GameDisplay {
         // Draw the Score
         g2.setFont(arial_40);
         g2.setColor(Color.white);
-        g2.drawString("Score: " + dFormat.format(gp.inmate.score), gp.cellSize, gp.cellSize);
+        g2.drawString("Score: " + dFormat.format(gp.inmate.getScore()), gp.cellSize, gp.cellSize);
 
         // Draw the Time
-        gp.inmate.time -= (double) 1/60;
-        g2.drawString("Time: " + dFormat.format(gp.inmate.time), gp.cellSize * 11, gp.cellSize);
+        gp.inmate.setTimer(gp.inmate.getTimer() - (double) 1/60);
+        g2.drawString("Time: " + dFormat.format(gp.inmate.getTimer()), gp.cellSize * 11, gp.cellSize);
 
         // Draw the Key
         g2.drawImage(keyImage, gp.cellSize * 21, gp.cellSize - 32, null);
-        g2.drawString("X " + gp.inmate.hasKey, gp.cellSize * 22, gp.cellSize);
+        g2.drawString("X " + gp.inmate.getNumKeys(), gp.cellSize * 22, gp.cellSize);
 
     }
 

@@ -1,8 +1,9 @@
 package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
-import com.group10.app.entity.nonStatisEntities.Inmate;
+import com.group10.app.entity.nonStaticEntities.Inmate;
 
+import com.group10.app.entity.nonStaticEntities.MovingActor;
 import com.group10.app.entity.staticEntities.TileManager;
 import com.group10.app.menu.GameOverMenu;
 import com.group10.app.menu.MenuScreen;
@@ -94,7 +95,7 @@ public class GamePanel extends JPanel implements Runnable{
     SaveGame saveGame = new SaveGame();
 
     //Set up the keyboard keys
-    KeyManager keyH = new KeyManager(this);
+    KeyManager keyH = new KeyManager();
 
     Thread gameThread;
     
@@ -120,7 +121,7 @@ public class GamePanel extends JPanel implements Runnable{
     GameOverMenu gameOver = new GameOverMenu(this);
 
     // Create guard array;
-    public Entity[] guard = new Entity[5];
+    public MovingActor[] guard = new MovingActor[5];
 
     // Create object array;
     public Entity[] obj = new Entity[30];
@@ -168,7 +169,6 @@ public class GamePanel extends JPanel implements Runnable{
 
         while(gameThread != null){
             update();
-            //render graphics
             repaint();
 
             try {
@@ -203,9 +203,9 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
             // Guard collision
-            for (Entity entity : guard) {
-                if (entity != null){
-                    if (collisionCheck.checkGuard(inmate, entity.x, entity.y, ENEMY_COLLISION_DISTANCE)) {
+            for (MovingActor guard : guard) {
+                if (guard != null){
+                    if (collisionCheck.checkGuard(inmate, guard.getX(), guard.getY(), ENEMY_COLLISION_DISTANCE)) {
                         System.out.println("ENEMY COLLIDED");
                         System.out.println("===================================");
                         state = GAMEOVER;
