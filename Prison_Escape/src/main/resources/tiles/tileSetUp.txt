@@ -86,3 +86,5 @@
 85 guardPost2 true
 86 guardPost3 true
 87 guardPost4 true
+88 steelDoor true
+89 toiletRight true

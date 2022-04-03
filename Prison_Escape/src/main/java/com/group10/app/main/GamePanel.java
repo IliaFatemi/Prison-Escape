@@ -129,7 +129,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void setState(GameStates newState) {
-        this.state = newState;
+        state = newState;
     }
 
     /**
