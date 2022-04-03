@@ -147,7 +147,7 @@ public class InmateCollisionsIT {
         gp.update();
 
         assertEquals(GameStates.GAMEWON,gp.getState());
-        gp.mouseK.GameWonMenuControls(711, 436);
+        gp.mouseK.GameWonMenuControls(711, 336);
         assertEquals(0, gp.inmate.getScore());
         assertEquals(100, gp.inmate.getTimer());
         assertEquals(0, gp.inmate.getNumKeys());
