@@ -95,7 +95,7 @@ public class GamePanel extends JPanel implements Runnable{
     SaveGame saveGame = new SaveGame();
 
     //Set up the keyboard keys
-    KeyManager keyH = new KeyManager();
+    public KeyManager keyH = new KeyManager();
 
     Thread gameThread;
     
@@ -106,7 +106,7 @@ public class GamePanel extends JPanel implements Runnable{
     public Inmate inmate = new Inmate(this, keyH);
 
     //Set up the Mouse Keys
-    MouseManager mouseK = new MouseManager(this);
+    public MouseManager mouseK = new MouseManager(this);
 
     //Set up the main menu screen 
     MenuScreen mainMenu = new MenuScreen(this);

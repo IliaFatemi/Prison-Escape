@@ -11,6 +11,7 @@ import com.group10.app.main.GamePanel;
 import com.group10.app.main.GameStates;
 import com.group10.app.main.KeyManager;
 
+import com.group10.app.main.MouseManager;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,24 +20,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InmateCollisionsIT {
     private GamePanel gp;
-    private KeyManager key;
-    private Inmate inmate;
 
     @BeforeEach
     void setUp(){
         gp = new GamePanel();
-        key = new KeyManager();
-        key.pressedUp = true;
+        gp.keyH = new KeyManager();
+        gp.keyH.pressedUp = true;
 
         gp.setState(GameStates.GAME);
 
-        inmate = new Inmate(gp, key);
+        gp.inmate = new Inmate(gp, gp.keyH);
 
-        inmate.setX(50);
-        inmate.setY(50);
+        gp.inmate.setX(50);
+        gp.inmate.setY(50);
 
-        inmate.setScore(200);
-        inmate.setTimer(100);
+        gp.inmate.setScore(200);
+        gp.inmate.setTimer(100);
     }
 
     @Test
@@ -46,9 +45,9 @@ public class InmateCollisionsIT {
         chicken.setY(50);
         gp.obj[0] = chicken;
 
-        inmate.update();
+        gp.inmate.update();
 
-        assertEquals(300, inmate.getScore());
+        assertEquals(300, gp.inmate.getScore());
 
     }
 
@@ -59,9 +58,9 @@ public class InmateCollisionsIT {
         timer.setY(50);
         gp.obj[0] = timer;
 
-        inmate.update();
+        gp.inmate.update();
 
-        assertEquals(120, inmate.getTimer());
+        assertEquals(120, gp.inmate.getTimer());
     }
 
     @Test
@@ -72,9 +71,9 @@ public class InmateCollisionsIT {
         key.setY(50);
         gp.obj[0] = key;
 
-        inmate.update();
-        assertEquals(1, inmate.getNumKeys());
-        assertEquals(250, inmate.getScore());
+        gp.inmate.update();
+        assertEquals(1, gp.inmate.getNumKeys());
+        assertEquals(250, gp.inmate.getScore());
     }
 
     @Test
@@ -89,11 +88,12 @@ public class InmateCollisionsIT {
 
         gp.update();
 
-
         assertEquals(GameStates.GAMEOVER,gp.getState());
-        assertEquals(0, inmate.getScore());
-        assertEquals(0, inmate.getTimer());
-        assertEquals(0, inmate.getNumKeys());
+
+        gp.mouseK.GameOverMenuControls(707, 433);
+        assertEquals(0, gp.inmate.getScore());
+        assertEquals(100, gp.inmate.getTimer());
+        assertEquals(0, gp.inmate.getNumKeys());
     }
 
     @Test
@@ -118,35 +118,35 @@ public class InmateCollisionsIT {
 
         gp.obj[0] = door;
 
-        inmate.update();
+        gp.inmate.update();
         gp.update();
 
         assertEquals(GameStates.GAME,gp.getState());
-        assertEquals(200, inmate.getScore());
-        assertEquals(100, inmate.getTimer());
-        assertEquals(0, inmate.getNumKeys());
+        assertEquals(200, gp.inmate.getScore());
+        assertEquals(100, gp.inmate.getTimer());
+        assertEquals(0, gp.inmate.getNumKeys());
 
-        inmate.setX(0);
-        inmate.setY(51);
+        gp.inmate.setX(0);
+        gp.inmate.setY(51);
         gp.obj[1] = key1;
-        inmate.update();
+        gp.inmate.update();
 
-        inmate.setX(0);
-        inmate.setY(52);
+        gp.inmate.setX(0);
+        gp.inmate.setY(52);
         gp.obj[2] = key2;
-        inmate.update();
+        gp.inmate.update();
 
-        inmate.setX(0);
-        inmate.setY(53);
+        gp.inmate.setX(0);
+        gp.inmate.setY(53);
         gp.obj[3] = key3;
 
-        inmate.update();
+        gp.inmate.update();
         gp.update();
 
         assertEquals(GameStates.GAMEWON,gp.getState());
-        assertEquals(0, inmate.getScore());
-        assertEquals(0, inmate.getTimer());
-        assertEquals(0, inmate.getNumKeys());
+        assertEquals(0, gp.inmate.getScore());
+        assertEquals(0, gp.inmate.getTimer());
+        assertEquals(0, gp.inmate.getNumKeys());
         assertEquals(0, -1);
 
 
