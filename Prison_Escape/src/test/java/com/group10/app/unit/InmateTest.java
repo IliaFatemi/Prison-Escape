@@ -133,7 +133,7 @@ public class InmateTest {
 
     @Test
     public void testUpdate(){
-        keyH = new KeyManager(gp);
+        keyH = new KeyManager();
         Inmate inmate = new Inmate(gp, keyH);
         keyH.keySet("up");
         inmate.updateDirection();

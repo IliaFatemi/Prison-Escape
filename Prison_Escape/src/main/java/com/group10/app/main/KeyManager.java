@@ -12,15 +12,10 @@ import static com.group10.app.main.GameStates.*;
  * KeyManager implements from the KeyListener interface
  */
 public class KeyManager implements KeyListener {
-    GamePanel gp;
 
     public boolean pressedUp, pressedDown, pressedRight, pressedLeft, pressedEscape;
     int keyCount = 0;
-
-    /**
-     * KeyManager is a constructor responsible to initializing the game panel for this class
-     */
-    public KeyManager() {this.gp = gp;}
+    
 
     public void keyTyped(KeyEvent e) {}
 
