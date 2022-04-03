@@ -3,10 +3,8 @@ package com.group10.app.it;
 
 import com.group10.app.entity.nonStaticEntities.Guard;
 import com.group10.app.entity.nonStaticEntities.Inmate;
-import com.group10.app.entity.staticEntities.Chicken;
-import com.group10.app.entity.staticEntities.Door;
-import com.group10.app.entity.staticEntities.Key;
-import com.group10.app.entity.staticEntities.Timer;
+import com.group10.app.entity.staticEntities.*;
+import com.group10.app.main.CollisionManager;
 import com.group10.app.main.GamePanel;
 import com.group10.app.main.GameStates;
 import com.group10.app.main.KeyManager;
@@ -27,8 +25,6 @@ public class InmateCollisionsIT {
         gp = new GamePanel();
         key = new KeyManager();
         key.pressedUp = true;
-
-        gp.setState(GameStates.GAME);
 
         inmate = new Inmate(gp, key);
 
@@ -78,6 +74,18 @@ public class InmateCollisionsIT {
     }
 
     @Test
+    public void inmateCollidesWithTrap(){
+        Trap trap = new Trap(gp);
+        trap.setX(50);
+        trap.setY(50);
+        gp.obj[0] = trap;
+
+        inmate.update();
+
+        assertEquals( 150, inmate.getScore());
+    }
+
+    @Test
     public void inmateCollidesWithGuard(){
         Guard guard = new Guard(gp);
 
@@ -85,14 +93,20 @@ public class InmateCollisionsIT {
         guard.setX(50);
         guard.setY(50);
 
+        System.out.println(gp.getState());
+        CollisionManager cm = new CollisionManager(gp);
+        assertEquals(true, cm.checkGuard(inmate, guard.getX(), guard.getY(), 40));
         gp.guard[0] = guard;
 
         gp.update();
 
 
-        assertEquals(GameStates.GAMEOVER,gp.getState());
+        //assertEquals(GameStates.GAMEOVER,gp.getState());
+
+
+
         assertEquals(0, inmate.getScore());
-        assertEquals(0, inmate.getTimer());
+        assertEquals(100, inmate.getTimer());
         assertEquals(0, inmate.getNumKeys());
     }
 
