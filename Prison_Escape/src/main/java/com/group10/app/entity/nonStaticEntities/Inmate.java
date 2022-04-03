@@ -95,7 +95,7 @@ public class Inmate extends MovingActor {
         }
     }
 
-    public void updateDirection(){
+    public void updateDirection() {
         if (keyH.pressedUp) {
             setDirection("up");
         } else if (keyH.pressedDown) {
@@ -106,6 +106,7 @@ public class Inmate extends MovingActor {
             setDirection("right");
         }
     }
+
     /**
      * Get number of keys collected
      * @return hasKey which is the number of keys collected
