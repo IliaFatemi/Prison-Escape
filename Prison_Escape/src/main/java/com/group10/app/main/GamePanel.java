@@ -69,21 +69,6 @@ public class GamePanel extends JPanel implements Runnable{
      */
     int ENEMY_COLLISION_DISTANCE = 40;
 
-    /**
-     * Level 1 file location
-     */
-    String LEVEL1 = "/levels/Level1.txt";
-
-    /**
-     * Level 2 file location
-     */
-    String LEVEL2 = "/levels/Level2.txt";
-
-    /**
-     * Level 3 file location
-     */
-    String LEVEL3 = "/levels/Level3.txt";
-
     //The level the player is on
     public static int GAME_LEVEL = 1;
     Boolean GAME_SAVED = false;
