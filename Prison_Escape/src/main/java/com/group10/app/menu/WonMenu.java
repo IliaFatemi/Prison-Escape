@@ -14,7 +14,7 @@ import com.group10.app.main.GamePanel;
  * WonMenu will create an object for win menu.
  * @author Ilia Fatemi
  */
-public class WonMenu {
+public class WonMenu extends Menu{
     /**
      * Game panel will be used to access it's methods and variables
      */
@@ -37,14 +37,15 @@ public class WonMenu {
      * @param gp the GamePanel object
      */
     public WonMenu(GamePanel gp){
-        this.gp = gp;
-        registerGameWonGraphics();
+        super(gp);
+        registerMenuGraphics();
+
     }
 
     /**
      * <p>Registering the images for the background, next level button, return to main menu button.</p>
      */
-    public void registerGameWonGraphics(){
+    public void registerMenuGraphics(){
         try{
             gameWonTemp = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/gameWon.png")));
             returnMenu = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/returnToMenuBtn.png")));
@@ -58,7 +59,7 @@ public class WonMenu {
      * <p>Registering the images for the background, next level button, return to main menu button.
      * This method will also display the time the player finished the level at and will display the score.</p>
      */
-    public void renderWonGraphics(Graphics2D g2){
+    public void renderMenu(Graphics2D g2){
         g2.drawImage(gameWonTemp,  0, 0, gp.screenWidth, gp.screenHeight, null);
         g2.drawImage(nextLevel,  gp.screenWidth/2 - 103, gp.screenHeight/2 - 130, 206, 70, null);
         g2.drawImage(returnMenu, gp.screenWidth/2-103, gp.screenHeight/2 - 30, 206, 70, null);

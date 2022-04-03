@@ -9,6 +9,7 @@ import com.group10.app.menu.GameOverMenu;
 import com.group10.app.menu.MenuScreen;
 import com.group10.app.menu.PauseMenu;
 import com.group10.app.menu.WonMenu;
+import com.group10.app.menu.Menu;
 
 import com.group10.app.SavedData.LoadGame;
 import com.group10.app.SavedData.SaveGame;
@@ -108,17 +109,7 @@ public class GamePanel extends JPanel implements Runnable{
     //Set up the Mouse Keys
     public MouseManager mouseK = new MouseManager(this);
 
-    //Set up the main menu screen 
-    MenuScreen mainMenu = new MenuScreen(this);
-
-    //set up the pause menu
-    PauseMenu pauseMenu = new PauseMenu(this);
-
-    //set up the win screen
-    WonMenu wonMenu = new WonMenu(this);
-
-    //set up game over screen
-    GameOverMenu gameOver = new GameOverMenu(this);
+    public Menu menu = new MenuScreen(this);
 
     // Create guard array;
     public MovingActor[] guard = new MovingActor[5];
@@ -281,24 +272,10 @@ public class GamePanel extends JPanel implements Runnable{
 
             g2.dispose();
         }
-        else if(state == PAUSED){
-            //render the pause menu
-            pauseMenu.renderPauseMenu(g2);
-            g2.dispose();
-        }
-        else if (state == MENU){
-            //Render the main menu
-            mainMenu.renderMain(g2);
-            g2.dispose();
-        }
-        else if (state == GAMEWON){
-            //render the game won menu
-            wonMenu.renderWonGraphics(g2);
-            g2.dispose();
-        }
-        else if (state == GAMEOVER){
-            //render game over menu
-            gameOver.renderGameOverMenu(g2);
+        else{
+            menu = menu.checkMenuType();
+            menu.renderMenu(g2);
+
             g2.dispose();
         }
     }
