@@ -79,15 +79,7 @@ public class Inmate extends MovingActor {
      */
     public void update(){
         if(keyH.pressedUp|| keyH.pressedDown || keyH.pressedLeft || keyH.pressedRight) {
-            if (keyH.pressedUp) {
-                setDirection("up");
-            } else if (keyH.pressedDown) {
-                setDirection("down");
-            } else if (keyH.pressedLeft) {
-                setDirection("left");
-            } else {
-                setDirection("right");
-            }
+            updateDirection();
             collision = false;
             int objectIndex = gp.collisionCheck.checkObject(this);
             pickUpObject(objectIndex);
@@ -103,6 +95,17 @@ public class Inmate extends MovingActor {
         }
     }
 
+    public void updateDirection(){
+        if (keyH.pressedUp) {
+            setDirection("up");
+        } else if (keyH.pressedDown) {
+            setDirection("down");
+        } else if (keyH.pressedLeft) {
+            setDirection("left");
+        } else {
+            setDirection("right");
+        }
+    }
     /**
      * Get number of keys collected
      * @return hasKey which is the number of keys collected

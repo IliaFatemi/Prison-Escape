@@ -133,9 +133,10 @@ public class InmateTest {
 
     @Test
     public void testUpdate(){
+        keyH = new KeyManager(gp);
         Inmate inmate = new Inmate(gp, keyH);
-        inmate.keyH.keySet("up");
-        inmate.update();
+        keyH.keySet("up");
+        inmate.updateDirection();
         if (keyH.pressedUp) {
             Assert.assertEquals("up", inmate.getDirection());
         } else if (keyH.pressedDown) {
