@@ -58,6 +58,7 @@ public class TileManager {
      */
     public void registerImage(){
 
+
         try {
             File file = new File("src/main/resources/tiles/tileSetUp.txt");
             Scanner myReader = new Scanner(file);
