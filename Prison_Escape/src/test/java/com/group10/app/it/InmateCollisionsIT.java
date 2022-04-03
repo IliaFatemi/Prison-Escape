@@ -36,8 +36,9 @@ public class InmateCollisionsIT {
         Chicken chicken = new Chicken(gp);
         chicken.setX(50);
         chicken.setY(50);
+        gp.obj[0] = chicken;
 
-         gp.update();
+        inmate.update();
 
         assertEquals(300, inmate.getScore());
 
