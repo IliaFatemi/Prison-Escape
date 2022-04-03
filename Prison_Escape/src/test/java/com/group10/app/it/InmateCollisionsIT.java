@@ -113,8 +113,8 @@ public class InmateCollisionsIT {
 
         gp.setGameLevel(1);
 
-        door.setX(0);
-        door.setY(50);
+        door.setX(1376);
+        door.setY(445);
 
         gp.obj[0] = door;
 
@@ -139,15 +139,18 @@ public class InmateCollisionsIT {
         gp.inmate.setX(0);
         gp.inmate.setY(53);
         gp.obj[3] = key3;
-
         gp.inmate.update();
+
+        gp.inmate.setX(1344);
+        gp.inmate.setY(445);
+
         gp.update();
 
         assertEquals(GameStates.GAMEWON,gp.getState());
+        gp.mouseK.GameWonMenuControls(711, 436);
         assertEquals(0, gp.inmate.getScore());
-        assertEquals(0, gp.inmate.getTimer());
+        assertEquals(100, gp.inmate.getTimer());
         assertEquals(0, gp.inmate.getNumKeys());
-        assertEquals(0, -1);
 
 
     }

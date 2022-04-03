@@ -35,6 +35,7 @@ public class MenuTest {
 
         gp.setState(GameStates.GAMEOVER);
         ms.GameOverMenuControls(756, 342);
+        gp.mouseK.GameOverMenuControls(707, 433);
 
 
         assertEquals(0, inmate.getScore());
