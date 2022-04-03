@@ -140,6 +140,22 @@ public class GamePanel extends JPanel implements Runnable{
 
     public static GameStates state = MENU;
 
+    public int getGameLevel() {
+        return GAME_LEVEL;
+    }
+
+    public void setGameLevel(int gameLevel) {
+        GAME_LEVEL = gameLevel;
+    }
+
+    public GameStates getState() {
+        return state;
+    }
+
+    public void setState(GameStates newState) {
+        this.state = newState;
+    }
+
     /**
      * Initializing the background, mouse keys, keyboard, screen size, 
      */
