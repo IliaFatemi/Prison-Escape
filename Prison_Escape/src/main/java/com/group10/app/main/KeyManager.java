@@ -19,9 +19,8 @@ public class KeyManager implements KeyListener {
 
     /**
      * KeyManager is a constructor responsible to initializing the game panel for this class
-     * @param gp main game panel for game
      */
-    public KeyManager (GamePanel gp) {this.gp = gp;}
+    public KeyManager() {this.gp = gp;}
 
     public void keyTyped(KeyEvent e) {}
 
