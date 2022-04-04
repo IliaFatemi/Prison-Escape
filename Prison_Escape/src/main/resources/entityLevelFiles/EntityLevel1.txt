@@ -11,6 +11,6 @@ Trap 26 6
 Trap 15 1
 Trap 15 2
 Trap 15 3
-Guard 26 3
-Guard 26 15
-Guard 11 4
+Guard 20 2
+Guard 14 15
+Guard 3 3

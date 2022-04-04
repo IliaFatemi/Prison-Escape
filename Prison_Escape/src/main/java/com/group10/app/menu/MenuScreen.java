@@ -12,13 +12,7 @@ import com.group10.app.main.GamePanel;
  * MenuScreen will create an object for the main menu screen.
  * @author Ilia Fatemi
  */
-public class MenuScreen{
-
-    /**
-     * Game panel will be used to access it's methods and variables
-     */
-    GamePanel gp;
-
+public class MenuScreen extends Menu{
     /**
      * newGame: will register the return to menu button picture
      * continue_: will register the retry button picture
@@ -31,7 +25,7 @@ public class MenuScreen{
      * @param gp the GamePanel object
      */
     public MenuScreen(GamePanel gp){
-        this.gp = gp;
+        super(gp);
         registerMenuGraphics();
     }
 
@@ -55,7 +49,7 @@ public class MenuScreen{
      * continue button and quit game button.</p>
      * @param g2 using the Graphics2D to draw the registered images onto the display
      */
-    public void renderMain(Graphics2D g2){
+    public void renderMenu(Graphics2D g2){
         g2.drawImage(backgroundImg, 0, 0, gp.screenWidth, gp.screenHeight, null);
         g2.drawImage(gameTitle, gp.screenWidth/2 - 211, 28, 423, 57, null);
         g2.drawImage(newGame,  gp.screenWidth/2-103, gp.screenHeight/2 - 300, 206, 70, null);
