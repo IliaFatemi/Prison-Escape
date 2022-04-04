@@ -87,18 +87,7 @@ public class Entity {
         return image;
     }
 
-    public boolean reachedGate(){
-        return false;
-    }
-    public boolean gotAllKeys(){
-        return false;
-    }
-    public boolean isTimeOver() {
-        return false;
-    }
-    public boolean isScoreNegative() {
-        return false;
-    }
+    
 
     public int getX() {
         return x;
