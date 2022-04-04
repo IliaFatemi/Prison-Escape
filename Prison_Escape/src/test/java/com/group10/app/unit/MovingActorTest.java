@@ -1,10 +1,6 @@
 package com.group10.app.unit;
 import com.group10.app.main.GamePanel;
-import com.group10.app.entity.nonStaticEntities.Inmate;
 import com.group10.app.entity.nonStaticEntities.MovingActor;
-import com.group10.app.main.GamePanel;
-import com.group10.app.main.GameStates;
-import com.group10.app.main.KeyManager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
