@@ -12,18 +12,24 @@ import static com.group10.app.main.GameStates.*;
  * KeyManager implements from the KeyListener interface
  */
 public class KeyManager implements KeyListener {
-    GamePanel gp;
 
     public boolean pressedUp, pressedDown, pressedRight, pressedLeft, pressedEscape;
     int keyCount = 0;
-
-    /**
-     * KeyManager is a constructor responsible to initializing the game panel for this class
-     * @param gp main game panel for game
-     */
-    public KeyManager (GamePanel gp) {this.gp = gp;}
+    
 
     public void keyTyped(KeyEvent e) {}
+
+    public void keySet(String y){
+        if (y == "up") {
+            pressedUp = true;
+        } else if (y == "down") {
+            pressedDown = true;
+        } else if (y == "right") {
+            pressedRight = true;
+        } else {
+            pressedLeft = true;;
+        }
+    }
 
     /**
      * keyPressed is a method that tracks what key is pressed by the user
@@ -75,3 +81,4 @@ public class KeyManager implements KeyListener {
         }
     }
 }
+

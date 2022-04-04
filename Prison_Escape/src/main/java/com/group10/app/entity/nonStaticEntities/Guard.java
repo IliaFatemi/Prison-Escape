@@ -16,13 +16,13 @@ import com.group10.app.main.GamePanel;
  * </p>
  *
  */
-public class Guard extends MovingEntities {
+public class Guard extends MovingActor {
     GamePanel gp;
     boolean moving = false;
     int pixelCounter = 0;
 
     /**
-     * The constructor for the Guard class
+     * The constructor for the Guard class...
      *
      * <p>
      *     Default setting include: direction = down
@@ -37,14 +37,13 @@ public class Guard extends MovingEntities {
         super(gp);
         this.gp = gp;
 
-        direction = "down";
-        speed = 1;
+        setDirection("down");
+        setSpeed(1);
 
         getGuardImage();
-        solidArea = new Rectangle(8, 16, 32, 32);
 
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
+        solidAreaDefaultX = getSolidArea().x;
+        solidAreaDefaultY = getSolidArea().y;
     }
 
     /**
@@ -54,58 +53,26 @@ public class Guard extends MovingEntities {
         up1 = setup("/prisonGuard/WalkUp1");
         up2 = setup("/prisonGuard/WalkUp2");
         up3 = setup("/prisonGuard/WalkUp3");
-        up4 = setup("/prisonGuard/WalkUp4");
-        up5 = setup("/prisonGuard/WalkUp5");
         down1 = setup("/prisonGuard/WalkDown1");
         down2 = setup("/prisonGuard/WalkDown2");
         down3 = setup("/prisonGuard/WalkDown3");
-        down4 = setup("/prisonGuard/WalkDown4");
-        down5 = setup("/prisonGuard/WalkDown5");
         left1 = setup("/prisonGuard/WalkLeft1");
         left2 = setup("/prisonGuard/WalkLeft2");
         left3 = setup("/prisonGuard/WalkLeft3");
-        left4 = setup("/prisonGuard/WalkLeft4");
-        left5 = setup("/prisonGuard/WalkLeft5");
         right1 = setup("/prisonGuard/WalkRight1");
         right2 = setup("/prisonGuard/WalkRight2");
         right3 = setup("/prisonGuard/WalkRight3");
-        right4 = setup("/prisonGuard/WalkRight4");
-        right5 = setup("/prisonGuard/WalkRight5");
-    }
-
-    /**
-     * Get Guards x position
-     * @return x of type int
-     */
-    public double getX(){
-        return x;
-    }
-
-    /**
-     * Get Guards y position
-     * @return y of type int
-     */
-    public double getY(){
-        return y;
-    }
-
-    /**
-     * Gets guard direction
-     * @return direction of type String
-     */
-    public String getDirection(){
-        return direction;
     }
 
     /**
      * set the value for guard
      *
-     * @param setX x value to set guards x position
-     * @param setY y value to set guards y position
+     * @param x value to set guards x position
+     * @param y value to set guards y position
      */
-    public void setGuardValues(int setX, int setY){
-        x = setX;
-        y = setY;
+    public void setGuardValues(int x, int y){
+        setX(x);
+        setY(y);
         setSpeed(1);
         setDirection("default");
     }
@@ -122,18 +89,18 @@ public class Guard extends MovingEntities {
 
         if (!moving) {
 
-            if (gp.inmate.x < x) {
+            if (gp.inmate.getX() < getX()) {
                 setDirection("left");
             }
-            else if (gp.inmate.x > x) {
+            else if (gp.inmate.getX() > getX()) {
                 setDirection("right");
             }
 
-            if (gp.inmate.x - x < (gp.cellSize/2) && x - gp.inmate.x < (gp.cellSize/2)){
-                if (gp.inmate.y < y) {
+            if (Math.abs(gp.inmate.getX() - getX()) < gp.cellSize){
+                if (gp.inmate.getY() < getY()) {
                     setDirection("up");
                 }
-                else if (gp.inmate.y > y) {
+                else if (gp.inmate.getY() > getY()) {
                     setDirection("down");
                 }
             }
@@ -143,41 +110,11 @@ public class Guard extends MovingEntities {
 
         collision = false;
         gp.collisionCheck.wallCheck(this);
-        int i = getSpeed();
-        if (!collision) {
-            switch (getDirection()) {
-                case "up":
-                    y -= i;
-                    break;
-                case "down":
-                    y += speed;
-                    break;
-                case "left":
-                    x -= speed;
-                    break;
-                case "right":
-                    x += speed;
-                    break;
-            }
-        }
 
-        spriteCounter++;
-        if (spriteCounter > 20) {
-            if (spriteNum == 1) {
-                spriteNum = 2;
-            } else if (spriteNum == 2) {
-                spriteNum = 3;
-            } else if (spriteNum == 3) {
-                spriteNum = 4;
-            } else if (spriteNum == 4) {
-                spriteNum = 5;
-            } else if (spriteNum == 5) {
-                spriteNum = 1;
-            }
-            spriteCounter = 0;
-        }
+        collisionUpdate();
+        spriteUpdate();
 
-        pixelCounter += speed;
+        pixelCounter += getSpeed();
 
         if (pixelCounter == 48) {
             moving = false;
@@ -185,84 +122,4 @@ public class Guard extends MovingEntities {
         }
     }
 
-    /**
-     * in charge of drawing the guard and changing the guards current sprite
-     * @param g2 used for drawing the 2D sprites
-     */
-    public void draw(Graphics2D g2){
-        BufferedImage image = null;
-        switch (direction) {
-            case "up":
-                if (spriteNum == 1) {
-                    image = up1;
-                }
-                if (spriteNum == 2) {
-                    image = up2;
-                }
-                if (spriteNum == 3) {
-                    image = up3;
-                }
-                if (spriteNum == 4) {
-                    image = up4;
-                }
-                if (spriteNum == 5) {
-                    image = up5;
-                }
-                break;
-            case "down":
-                if (spriteNum == 1) {
-                    image = down1;
-                }
-                if (spriteNum == 2) {
-                    image = down2;
-                }
-                if (spriteNum == 3) {
-                    image = down3;
-                }
-                if (spriteNum == 4) {
-                    image = down4;
-                }
-                if (spriteNum == 5) {
-                    image = down5;
-                }
-                break;
-            case "left":
-                if (spriteNum == 1) {
-                    image = left1;
-                }
-                if (spriteNum == 2) {
-                    image = left2;
-                }
-                if (spriteNum == 3) {
-                    image = left3;
-                }
-                if (spriteNum == 4) {
-                    image = left4;
-                }
-                if (spriteNum == 5) {
-                    image = left5;
-                }
-                break;
-            case "right":
-                if (spriteNum == 1) {
-                    image = right1;
-                }
-                if (spriteNum == 2) {
-                    image = right2;
-                }
-                if (spriteNum == 3) {
-                    image = right3;
-                }
-                if (spriteNum == 4) {
-                    image = right4;
-                }
-                if (spriteNum == 5) {
-                    image = right5;
-                }
-                break;
-            default: break;
-
-        }
-        g2.drawImage(image, x , y, gp.cellSize, gp.cellSize, null);
-    }
 }

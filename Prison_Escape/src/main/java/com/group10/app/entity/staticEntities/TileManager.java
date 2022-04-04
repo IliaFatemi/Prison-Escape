@@ -4,12 +4,20 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
- 
+
 import javax.imageio.ImageIO;
 import com.group10.app.main.GamePanel;
 
 import java.awt.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Objects;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+
 
 /**
  * This class handles the various items that appear on a map as barriers, paths or
@@ -34,7 +42,7 @@ public class TileManager {
      */
     public TileManager(GamePanel gp){
         this.gp = gp;
-        tile = new Tiles[39];
+        tile = new Tiles[88];
         mapTileNum = new int[gp.screenColNumber][gp.screenRowNumber];
         registerImage();
     }
@@ -49,48 +57,24 @@ public class TileManager {
      * </p>
      */
     public void registerImage(){
-        // Placeholder
-        setup(0, "ConcreteBlock", false);
-        setup(1, "ConcreteBlock", false);
-        setup(2, "ConcreteBlock", false);
-        setup(3, "ConcreteBlock", false);
-        setup(4, "ConcreteBlock", false);
-        setup(5, "ConcreteBlock", false);
-        setup(6, "ConcreteBlock", false);
-        setup(7, "ConcreteBlock", false);
-        setup(8, "ConcreteBlock", false);
-        setup(9, "ConcreteBlock", false);
-        // Placeholder
 
-        setup(10, "ConcreteBlock", false);
-        setup(11, "AsphaltGround", false);
-        setup(12, "GravelGround", false);
-        setup(13, "TileGround", false);
-        setup(14, "WoodenGround", false);
-        setup(15, "horizontalWall", true);
-        setup(16, "verticalWall", true);
-        setup(17, "CeramicGround", false);
-        setup(18, "cell2", true);
-        setup(19, "toilet", true);
-        setup(20, "bed", true);
-        setup(21, "exit1", true);
-        setup(22, "exit2", true);
-        setup(23, "exit3", true);
-        setup(24, "exit4", true);
-        setup(25, "exit5", true);
-        setup(26, "cell1", true);
-        setup(27, "cornerTopLeft", true);
-        setup(28, "cornerTopRight", true);
-        setup(29, "cornerBottomLeft", true);
-        setup(30, "cornerBottomRight", true);
-        setup(31, "TUp", true);
-        setup(32, "TDown", true);
-        setup(33, "TRight", true);
-        setup(34, "TLeft", true);
-        setup(35, "4WayWall", true);
-        setup(36, "desk1", true);
-        setup(37, "desk2", true);
-        setup(38, "chair", true);
+
+        try {
+            File file = new File("src/main/resources/tiles/tileSetUp.txt");
+            Scanner myReader = new Scanner(file);
+
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String [] setUpValues = data.split(" ");
+                setup(Integer.parseInt(setUpValues[0]), setUpValues[1], Boolean.parseBoolean(setUpValues[2]));
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+
     }
 
     /**

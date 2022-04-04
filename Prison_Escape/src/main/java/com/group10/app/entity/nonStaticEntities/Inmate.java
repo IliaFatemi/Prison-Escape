@@ -1,11 +1,9 @@
 package com.group10.app.entity.nonStaticEntities;
 
-import com.group10.app.entity.Entity;
 import com.group10.app.main.GamePanel;
 import com.group10.app.main.KeyManager;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.Objects;
 
 /**
@@ -18,13 +16,13 @@ import java.util.Objects;
  *     interactions, and drawing the players sprites
  * </p>
  */
-public class Inmate extends MovingEntities {
+public class Inmate extends MovingActor {
     GamePanel gp;
-    KeyManager keyH;
-    public int hasKey = 0;
-    public int score = 0;
-    public double time = 100;
-    int standCounter = 0;
+    public KeyManager keyH;
+    private int hasKey = 0;
+    private int score = 0;
+    private double time = 100;
+    private int standCounter = 0;
 
     /**
      * Constructor of the Inmate class
@@ -42,10 +40,11 @@ public class Inmate extends MovingEntities {
         this.gp = gp;
         this.keyH = keyH;
 
-        solidArea = new Rectangle(8, 16, 32, 32);
+        name = "Inmate";
+        setSpeed(2);
 
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
+        solidAreaDefaultX = getSolidArea().x;
+        solidAreaDefaultY = getSolidArea().y;
 
         getInmateImage();
     }
@@ -80,77 +79,33 @@ public class Inmate extends MovingEntities {
      */
     public void update(){
         if(keyH.pressedUp|| keyH.pressedDown || keyH.pressedLeft || keyH.pressedRight) {
-            if (keyH.pressedUp) {
-                setDirection("up");
-            } else if (keyH.pressedDown) {
-                setDirection("down");
-            } else if (keyH.pressedLeft) {
-                setDirection("left");
-            } else {
-                setDirection("right");
-            }
-
+            updateDirection();
             collision = false;
-            gp.collisionCheck.wallCheck(this);
-
             int objectIndex = gp.collisionCheck.checkObject(this);
             pickUpObject(objectIndex);
-
-            if(!collision){
-                switch (direction) {
-                    case "up":      y -= speed; break;
-                    case "down":    y += speed; break;
-                    case "left":    x -= speed; break;
-                    case "right":   x += speed; break;
-                }
-            }
-
-            spriteCounter++;
-            if (spriteCounter > 10) {
-                if (spriteNum == 1) {
-                    spriteNum = 2;
-                } else if (spriteNum == 2) {
-                    spriteNum = 3;
-                } else if (spriteNum == 3) {
-                    spriteNum = 1;
-                }
-                spriteCounter = 0;
-            }
+            collisionUpdate();
+            spriteUpdate();
         }
         else {
             standCounter++;
-
             if (standCounter > 10){
-                spriteNum = 2;
+                setSpriteNum(2);
                 standCounter = 0;
             }
         }
     }
 
-    /**
-     * Get the x position of the player
-     * @return x the x position of the inmate
-     */
-    public double getX(){return x;}
-
-    /**
-     * Get the y position of the player
-     * @return y the y position of the inmate
-     */
-    public double getY(){return y;}
-
-    /**
-     * Get player speed
-     * @return speed
-     */
-    public double getSpeed(){return speed;}
-
-    /**
-     * Get player direction
-     * @return String
-     */
-    public String getDirection(){return direction;}
-
+    public void updateDirection(){
+        if (keyH.pressedUp) {
+            setDirection("up");
+        } else if (keyH.pressedDown) {
+            setDirection("down");
+        } else if (keyH.pressedLeft) {
+            setDirection("left");
+        } else {
+            setDirection("right");
+        }
+    }
     /**
      * Get number of keys collected
      * @return hasKey which is the number of keys collected
@@ -167,7 +122,7 @@ public class Inmate extends MovingEntities {
      * getting the current timer
      * @return time converted from double to int
      */
-    public int getTimer(){return (int)time;}
+    public double getTimer(){return time;}
 
     /**
      * Set the timer
@@ -183,44 +138,25 @@ public class Inmate extends MovingEntities {
 
     /**
      * set player position
-     * @param posX
-     * @param posY
+     * @param x
+     * @param y
      */
-    public void setPos(int posX, int posY){x = posX; y = posY;}
-//
-//    /**
-//     * set player speed
-//     * @param newSpeed
-//     */
-//    public void setSpeed(int newSpeed){speed = newSpeed;}
-//
-//    /**
-//     * set players direction
-//     * @param newDir
-//     */
-//    public void setDirection(String newDir){direction = newDir;}
-//
-//    /**
-//     * set key amount
-//     * @param newNumKeys
-//     */
+    public void setPos(int x, int y){setX(x); setY(y);}
+
+    /**
+     * set key amount
+     * @param newNumKeys
+     */
     public void setNumKeys(int newNumKeys){hasKey = newNumKeys;}
 
-    /**
-     * reset the keys
-     */
-    public void resetKeys(){hasKey = 0;}
+    public void resetKeys() {hasKey = 0;}
+
+    public void resetScore() {score = 0;}
 
     /**
-     * reset the score
-     */
-    public void resetScore(){score = 0;}
-
-    /**
-     * reset the speed, time, score, and hasKey(Key number)
+     * reset the time, score, and hasKey(Key number)
      */
     public void resetInmate(){
-        speed = 2;
         time = 100;
         score = 0;
         hasKey = 0;
@@ -274,70 +210,13 @@ public class Inmate extends MovingEntities {
         }
     }
 
-    /**
-     * in charge of drawing the inmate and changing the inmates current sprite
-     * @param g2 used for drawing the 2D sprites
-     */
-    public void draw(Graphics2D g2){
-        BufferedImage image = null;
-
-        switch (direction) {
-            case "up":
-                if (spriteNum == 1) {
-                    image = up1;
-                }
-                if (spriteNum == 2) {
-                    image = up2;
-                }
-                if (spriteNum == 3) {
-                    image = up3;
-                }
-            break;
-            case "down":
-                if (spriteNum == 1) {
-                    image = down1;
-                }
-                if (spriteNum == 2) {
-                    image = down2;
-                }
-                if (spriteNum == 3) {
-                    image = down3;
-                }
-            break;
-            case "left":
-                if (spriteNum == 1) {
-                    image = left1;
-                }
-                if (spriteNum == 2) {
-                    image = left2;
-                }
-                if (spriteNum == 3) {
-                    image = left3;
-                }
-            break;
-            case "right":
-                if (spriteNum == 1) {
-                    image = right1;
-                }
-                if (spriteNum == 2) {
-                    image = right2;
-                }
-                if (spriteNum == 3) {
-                    image = right3;
-                }
-            break;
-            default: break;
-            
-        }
-        g2.drawImage(image, x , y, gp.cellSize, gp.cellSize, null);
-    }
 
     /**
      * <p>if the player is within the area of the gate the mehtod will return true, otherwise false</p>
      * @return boolean
      */
     public boolean reachedGate(){
-        return x >= 1344 && x <= 1350 && y >= 292 && y <= 544;
+        return getX() >= 1344 && getX() <= 1350 && getY() >= 292 && getY() <= 544;
     }
 
     /**

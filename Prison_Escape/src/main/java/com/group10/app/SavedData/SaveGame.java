@@ -1,10 +1,12 @@
 package com.group10.app.SavedData;
 
 import com.group10.app.entity.Entity;
+import com.group10.app.entity.nonStaticEntities.MovingActor;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * SaveGame will save the players position, timer, score, number of keys collected, enemies position, and the players current level.
@@ -20,10 +22,10 @@ public class SaveGame {
      * @param score An integer for the score
      * @param numKeys An integer for the number of keys collected on the map
      */
-    public void save(int level, int playerX, int playerY, double timer, int score, int numKeys, Entity[] objects, Entity[] guards){
+    public void save(int level, int playerX, int playerY, int speed, double timer, int score, int numKeys, Entity[] objects, MovingActor[] guards){
         try {
             FileWriter myWriter = new FileWriter("src/main/SavedGame/save0.txt");
-            myWriter.write(level + " " + playerX + " " + playerY + " " + timer + " " + score + " " + numKeys + " ");
+            myWriter.write(level + " " + playerX + " " + playerY + " " + speed + " " + timer + " " + score + " " + numKeys + " ");
             myWriter.close();
 
             BufferedWriter bw = new BufferedWriter( new FileWriter("src/main/SavedGame/saveEntity.txt"));
@@ -34,6 +36,7 @@ public class SaveGame {
                 }
             }
             bw.write("" + i);
+
             bw.newLine();
             for (Entity object : objects) {
 
@@ -45,7 +48,7 @@ public class SaveGame {
                     bw.write("" + object.y);
                     bw.newLine();
 
-                    if (object.name == "Chicken"){
+                    if (Objects.equals(object.name, "Chicken")){
                         bw.write("" + object.disappears);
                         bw.newLine();
                     }
@@ -53,18 +56,18 @@ public class SaveGame {
             }
 
             i = 0;
-            for (Entity object : guards) {
-                if (object != null){
+            for (MovingActor movingActor : guards) {
+                if (movingActor != null) {
                     i++;
                 }
             }
             bw.write("" + i);
             bw.newLine();
-            for (Entity object : guards) {
-                if (object != null){
-                    bw.write("" + object.x);
+            for (MovingActor guard : guards) {
+                if (guard != null) {
+                    bw.write("" + guard.getX());
                     bw.newLine();
-                    bw.write("" + object.y);
+                    bw.write("" + guard.getY());
                     bw.newLine();
                 }
             }

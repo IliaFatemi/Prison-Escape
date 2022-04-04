@@ -22,7 +22,6 @@ public class App{
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
         window.setTitle("Prison Escape");
-
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
 

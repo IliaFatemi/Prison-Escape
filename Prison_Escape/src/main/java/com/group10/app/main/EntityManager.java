@@ -2,14 +2,18 @@ package com.group10.app.main;
 
 import com.group10.app.entity.Entity;
 import com.group10.app.entity.nonStaticEntities.Guard;
+import com.group10.app.entity.nonStaticEntities.MovingActor;
 import com.group10.app.entity.staticEntities.Chicken;
-import com.group10.app.entity.staticEntities.Gate;
+import com.group10.app.entity.staticEntities.Door;
 import com.group10.app.entity.staticEntities.Key;
 import com.group10.app.entity.staticEntities.Timer;
 import com.group10.app.entity.staticEntities.Trap;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Objects;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * This is for create and delete entities.
@@ -38,95 +42,48 @@ public class EntityManager {
      *     and guards by using createObj/createGuard method.
      * </p>
      */
-    public void setEntityLevel1(){
+    public void setEntityLevel(int level){
 
-        // Create Objects
-        createObj(new Key(gp), 11, 11);
-        createObj(new Key(gp), 2, 15);
-        createObj(new Key(gp), 18, 11);
-        createObj(new Timer(gp), 3, 3);
-        createObj(new Trap(gp), 19, 10);
-        createObj(new Trap(gp), 19, 9);
+        try {
+            File file;
 
-        // Create Door
-        createDoor();
-
-        // Create Guard
-        createGuard(new Guard(gp), 6, 8);
-        createGuard(new Guard(gp), 7, 8);
-        createGuard(new Guard(gp), 8, 8);
-
-        System.out.println("Creat lvl1 obj");
-    }
-
-    /**
-     * This is for create objects at level 2
-     *
-     * <p>
-     *     This method create object(Keys, Timer and Traps)
-     *     and guards by using createObj/createGuard method.
-     * </p>
-     */
-    public void setEntityLevel2(){
-
-        // Create Objects
-        createObj(new Key(gp), 8, 11);
-        createObj(new Key(gp), 16, 11);
-        createObj(new Key(gp), 27, 15);
-        createObj(new Key(gp), 26, 2);
-        createObj(new Timer(gp), 2, 7);
-        createObj(new Timer(gp), 22, 14);
-        createObj(new Trap(gp), 6, 9);
-        createObj(new Trap(gp), 7, 9);
-        createObj(new Trap(gp), 8, 9);
-
-        // Create Door
-        createDoor();
-
-        // Create Guard
-        createGuard(new Guard(gp), 6, 8);
-        createGuard(new Guard(gp), 7, 8);
-        createGuard(new Guard(gp), 8, 8);
-    }
-
-    /**
-     * This is for create objects at level 3
-     *
-     * <p>
-     *     This method create object(Keys, Timer and Traps)
-     *     and guards by using createObj/createGuard method.
-     * </p>
-     */
-    public void setEntityLevel3(){
-        for (int i = 0; i < gp.obj.length; i++){
-            if (gp.obj[i] != null){
-                gp.obj[i] = null;
+            if(level == 1) {
+                file = new File("src/main/resources/entityLevelFiles/EntityLevel1.txt");
+            }else if(level == 2){
+                file = new File("src/main/resources/entityLevelFiles/EntityLevel2.txt");
+            }else{
+                file = new File("src/main/resources/entityLevelFiles/EntityLevel3.txt");
             }
+
+            Scanner myReader = new Scanner(file);
+
+            String entityType;
+            int entityX, entityY;
+
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String [] setUpValues = data.split(" ");
+
+                entityType = setUpValues[0];
+                entityX = Integer.parseInt(setUpValues[1]);
+                entityY = Integer.parseInt(setUpValues[2]);
+
+                if(entityType.equals("Trap")){
+                    createObj(new Trap(gp), entityX * gp.cellSize, entityY  * gp.cellSize);
+                }else if(entityType.equals("Timer")){
+                    createObj(new Timer(gp), entityX * gp.cellSize, entityY  * gp.cellSize);
+                }else if(entityType.equals("Key")){
+                    createObj(new Key(gp), entityX * gp.cellSize, entityY  * gp.cellSize);
+                }else{
+                    createGuard(new Guard(gp), entityX * gp.cellSize, entityY * gp.cellSize);
+                }
+
+            }
+            createDoor();
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-
-        // Create Objects
-        createObj(new Key(gp), 8, 8);
-        createObj(new Key(gp), 9, 16);
-        createObj(new Key(gp), 22, 7);
-        createObj(new Key(gp), 4, 10);
-        createObj(new Key(gp), 18, 13);
-        createObj(new Timer(gp), 17, 7);
-        createObj(new Trap(gp), 16, 10);
-        createObj(new Trap(gp), 16, 11);
-        createObj(new Trap(gp), 16, 5);
-        createObj(new Trap(gp), 15, 5);
-        createObj(new Trap(gp), 25, 2);
-        createObj(new Trap(gp), 25, 3);
-        createObj(new Trap(gp), 19, 15);
-        createObj(new Trap(gp), 19, 16);
-
-        // Create Door
-        createDoor();
-
-        // Create Guards
-        createGuard(new Guard(gp), 6, 8);
-        createGuard(new Guard(gp), 7, 8);
-        createGuard(new Guard(gp), 8, 8);
     }
 
     /**
@@ -172,7 +129,7 @@ public class EntityManager {
                 int tileNum = gp.tileManage.mapTileNum[randomX][randomY];
 
                 if (!gp.tileManage.tile[tileNum].collision) {
-                    createObj(entity, randomX, randomY);
+                    createObj(entity, randomX * gp.cellSize, randomY * gp.cellSize);
                     break;
                 }
             }
@@ -214,8 +171,8 @@ public class EntityManager {
         }
 
         gp.obj[i] = entity;
-        gp.obj[i].x = gp.cellSize * worldX;
-        gp.obj[i].y = gp.cellSize * worldY;
+        gp.obj[i].x = worldX;
+        gp.obj[i].y = worldY;
     }
 
     /**
@@ -226,11 +183,11 @@ public class EntityManager {
      *     in this index and set the guard's position(worldX, worldY).
      * </p>
      *
-     * @param entity passing in guard of entity
-     * @param worldX the guard's x coordination
-     * @param worldY the guard's y coordination
+     * @param guard passing in guard of entity
+     * @param x the guard's x coordination
+     * @param y the guard's y coordination
      */
-    public void createGuard(Entity entity, int worldX, int worldY) {
+    public void createGuard(MovingActor guard, int x, int y) {
 
         int i = 0;
 
@@ -238,9 +195,9 @@ public class EntityManager {
             i++;
         }
 
-        gp.guard[i] = entity;
-        gp.guard[i].x = gp.cellSize * worldX;
-        gp.guard[i].y = gp.cellSize * worldY;
+        gp.guard[i] = guard;
+        gp.guard[i].setX(x);
+        gp.guard[i].setY(y);
     }
 
     /**
@@ -278,20 +235,20 @@ public class EntityManager {
      */
     public void createDoor() {
 
-        createObj(new Gate(gp), 29, 7);
-        createObj(new Gate(gp), 29, 8);
-        createObj(new Gate(gp), 29, 9);
-        createObj(new Gate(gp), 29, 10);
-        createObj(new Gate(gp), 29, 11);
+        createObj(new Door(gp), 29 * gp.cellSize, 7 * gp.cellSize);
+        createObj(new Door(gp), 29 * gp.cellSize, 8 * gp.cellSize);
+        createObj(new Door(gp), 29 * gp.cellSize, 9 * gp.cellSize);
+        createObj(new Door(gp), 29 * gp.cellSize, 10 * gp.cellSize);
+        createObj(new Door(gp), 29 * gp.cellSize, 11 * gp.cellSize);
     }
 
     /**
      * <p>Setting up the objects such as timer, keys, traps and drum sticks for each level in the game.</p>
      */
     public void setUpAsset() {
-        if (GamePanel.GAME_LEVEL == 1){setEntityLevel1();}
-        else if (GamePanel.GAME_LEVEL == 2){setEntityLevel2();}
-        else if (GamePanel.GAME_LEVEL == 3){setEntityLevel3();}
+        if (GamePanel.GAME_LEVEL == 1){setEntityLevel(1);}
+        else if (GamePanel.GAME_LEVEL == 2){setEntityLevel(2);}
+        else if (GamePanel.GAME_LEVEL == 3){setEntityLevel(3);}
     }
 }
 

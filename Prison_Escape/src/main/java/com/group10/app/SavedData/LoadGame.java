@@ -1,10 +1,11 @@
 package com.group10.app.SavedData;
 
+import com.group10.app.entity.nonStaticEntities.Guard;
 import com.group10.app.main.GamePanel;
+import com.group10.app.entity.staticEntities.*;
 
 import java.io.*;
 import java.util.Arrays;
-import java.util.Objects;
 
 /**
  * LoadGame loads the last position of the player, the level, player position, time on the timer, the score, number of keys collected and enemy position. Load game will read up on a text file called save0.txt.
@@ -43,38 +44,68 @@ public class LoadGame {
             InputStream level = new FileInputStream("src/main/SavedGame/save0.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(level));
             String line = br.readLine();
-            int i = 0;
             String[] savedData = line.split(" ");
 
             GamePanel.GAME_LEVEL = Integer.parseInt(savedData[0]);
-            gp.inmate.x = Integer.parseInt(savedData[1]);
-            gp.inmate.y = Integer.parseInt(savedData[2]);
-            gp.inmate.time = Double.parseDouble(savedData[3]);
-            gp.inmate.score = Integer.parseInt(savedData[4]);
-            gp.inmate.hasKey = Integer.parseInt(savedData[5]);
+            gp.inmate.setX(Integer.parseInt(savedData[1]));
+            gp.inmate.setY(Integer.parseInt(savedData[2]));
+            gp.inmate.setSpeed(Integer.parseInt(savedData[3]));
+            gp.inmate.setTimer(Double.parseDouble(savedData[4]));
+            gp.inmate.setScore(Integer.parseInt(savedData[5]));
+            gp.inmate.setNumKeys(Integer.parseInt(savedData[6]));
 
             br.close();
 
             Arrays.fill(gp.obj, null);
             Arrays.fill(gp.guard, null);
 
+            int objNum = 0;
+            for (int i = 0; i < gp.obj.length; i++){
+                if (gp.obj[i] != null){
+                    objNum++;
+                }
+            }
+            System.out.println("before load, there are " + objNum + " objects");
+
+            gp.tileManage.loadMap("/levels/Level" + GamePanel.GAME_LEVEL + ".txt");
+            System.out.println("load map");
+
             br = new BufferedReader(new FileReader("src/main/SavedGame/saveEntity.txt"));
 
             int objLength = Integer.parseInt(br.readLine());
-            for (int j = 0; j < objLength; j++) {
-                gp.obj[i].name = br.readLine();
-                gp.obj[i].x = Integer.parseInt(br.readLine());
-                gp.obj[i].y = Integer.parseInt(br.readLine());
+            System.out.println("will load " + objLength + " objects");
 
-                if (Objects.equals(gp.obj[i].name, "Chicken")) {
-                    gp.obj[i].disappears = Integer.parseInt(br.readLine());
+            for (int i = 0; i < objLength; i++) {
+
+                String name = br.readLine();
+                int posX = Integer.parseInt(br.readLine());
+                int posY = Integer.parseInt(br.readLine());
+
+                switch (name) {
+                    case "Chicken":
+                        gp.asset.createObj(new Chicken(gp), posX, posY);
+                        gp.obj[i].disappears = Integer.parseInt(br.readLine());
+                        break;
+                    case "Key":
+                        gp.asset.createObj(new Key(gp), posX, posY);
+                        break;
+                    case "Timer":
+                        gp.asset.createObj(new Timer(gp), posX, posY);
+                        break;
+                    case "Trap":
+                        gp.asset.createObj(new Trap(gp), posX, posY);
+                        break;
+                    case "Door":
+                        gp.asset.createObj(new Door(gp), posX, posY);
+                        break;
                 }
             }
 
             int guardLength = Integer.parseInt(br.readLine());
             for (int j = 0; j < guardLength; j++) {
-                gp.guard[i].x = Integer.parseInt(br.readLine());
-                gp.guard[i].y = Integer.parseInt(br.readLine());
+                int posX = Integer.parseInt(br.readLine());
+                int posY = Integer.parseInt(br.readLine());
+                gp.asset.createGuard(new Guard(gp), posX, posY);
             }
 
             br.close();

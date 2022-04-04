@@ -3,11 +3,13 @@ package com.group10.app.main;
 import com.group10.app.entity.Entity;
 import com.group10.app.entity.nonStaticEntities.Inmate;
 
+import com.group10.app.entity.nonStaticEntities.MovingActor;
 import com.group10.app.entity.staticEntities.TileManager;
 import com.group10.app.menu.GameOverMenu;
 import com.group10.app.menu.MenuScreen;
 import com.group10.app.menu.PauseMenu;
 import com.group10.app.menu.WonMenu;
+import com.group10.app.menu.Menu;
 
 import com.group10.app.SavedData.LoadGame;
 import com.group10.app.SavedData.SaveGame;
@@ -94,33 +96,23 @@ public class GamePanel extends JPanel implements Runnable{
     SaveGame saveGame = new SaveGame();
 
     //Set up the keyboard keys
-    KeyManager keyH = new KeyManager(this);
+    public KeyManager keyH = new KeyManager();
 
     Thread gameThread;
     
     //set up the tiles
-    TileManager tileManage = new TileManager(this);
+    public TileManager tileManage = new TileManager(this);
     
     //set player default position
     public Inmate inmate = new Inmate(this, keyH);
 
     //Set up the Mouse Keys
-    MouseManager mouseK = new MouseManager(this);
+    public MouseManager mouseK = new MouseManager(this);
 
-    //Set up the main menu screen 
-    MenuScreen mainMenu = new MenuScreen(this);
-
-    //set up the pause menu
-    PauseMenu pauseMenu = new PauseMenu(this);
-
-    //set up the win screen
-    WonMenu wonMenu = new WonMenu(this);
-
-    //set up game over screen
-    GameOverMenu gameOver = new GameOverMenu(this);
+    public Menu menu = new MenuScreen(this);
 
     // Create guard array;
-    public Entity[] guard = new Entity[5];
+    public MovingActor[] guard = new MovingActor[5];
 
     // Create object array;
     public Entity[] obj = new Entity[30];
@@ -138,6 +130,22 @@ public class GamePanel extends JPanel implements Runnable{
     public SoundManager music = new SoundManager();
 
     public static GameStates state = MENU;
+
+    public int getGameLevel() {
+        return GAME_LEVEL;
+    }
+
+    public void setGameLevel(int gameLevel) {
+        GAME_LEVEL = gameLevel;
+    }
+
+    public GameStates getState() {
+        return state;
+    }
+
+    public void setState(GameStates newState) {
+        this.state = newState;
+    }
 
     /**
      * Initializing the background, mouse keys, keyboard, screen size, 
@@ -168,7 +176,6 @@ public class GamePanel extends JPanel implements Runnable{
 
         while(gameThread != null){
             update();
-            //render graphics
             repaint();
 
             try {
@@ -203,9 +210,9 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
             // Guard collision
-            for (Entity entity : guard) {
-                if (entity != null){
-                    if (collisionCheck.checkGuard(inmate, entity.x, entity.y, ENEMY_COLLISION_DISTANCE)) {
+            for (MovingActor guard : guard) {
+                if (guard != null){
+                    if (collisionCheck.checkGuard(inmate, guard.getX(), guard.getY(), ENEMY_COLLISION_DISTANCE)) {
                         System.out.println("ENEMY COLLIDED");
                         System.out.println("===================================");
                         state = GAMEOVER;
@@ -265,24 +272,10 @@ public class GamePanel extends JPanel implements Runnable{
 
             g2.dispose();
         }
-        else if(state == PAUSED){
-            //render the pause menu
-            pauseMenu.renderPauseMenu(g2);
-            g2.dispose();
-        }
-        else if (state == MENU){
-            //Render the main menu
-            mainMenu.renderMain(g2);
-            g2.dispose();
-        }
-        else if (state == GAMEWON){
-            //render the game won menu
-            wonMenu.renderWonGraphics(g2);
-            g2.dispose();
-        }
-        else if (state == GAMEOVER){
-            //render game over menu
-            gameOver.renderGameOverMenu(g2);
+        else{
+            menu = menu.checkMenuType();
+            menu.renderMenu(g2);
+
             g2.dispose();
         }
     }
