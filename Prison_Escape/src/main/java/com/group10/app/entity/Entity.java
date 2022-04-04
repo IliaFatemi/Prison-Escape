@@ -84,6 +84,7 @@ public class Entity {
             e.printStackTrace();
         }
 
+
         return image;
     }
 
