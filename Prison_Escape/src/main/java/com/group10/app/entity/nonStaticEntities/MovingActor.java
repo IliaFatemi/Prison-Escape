@@ -22,10 +22,6 @@ public class MovingActor extends Entity {
         this.direction = direction;
     }
 
-    public void setGp(GamePanel gp) {
-        this.gp = gp;
-    }
-
     public void setSpriteNum(int spriteNum) {
         this.spriteNum = spriteNum;
     }
