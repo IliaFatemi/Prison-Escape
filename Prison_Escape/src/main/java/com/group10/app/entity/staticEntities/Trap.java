@@ -24,7 +24,7 @@ public class Trap extends Entity {
     public Trap(GamePanel gp){
         super(gp);
 
-        name = "Trap";
+        setName("Trap");
         down1 = setup("/trap/trap");
     }
 

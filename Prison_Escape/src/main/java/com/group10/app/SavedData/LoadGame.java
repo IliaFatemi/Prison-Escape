@@ -65,7 +65,6 @@ public class LoadGame {
                     objNum++;
                 }
             }
-            System.out.println("before load, there are " + objNum + " objects");
 
             gp.tileManage.loadMap("/levels/Level" + GamePanel.GAME_LEVEL + ".txt");
             System.out.println("load map");
@@ -73,7 +72,6 @@ public class LoadGame {
             br = new BufferedReader(new FileReader("src/main/SavedGame/saveEntity.txt"));
 
             int objLength = Integer.parseInt(br.readLine());
-            System.out.println("will load " + objLength + " objects");
 
             for (int i = 0; i < objLength; i++) {
 

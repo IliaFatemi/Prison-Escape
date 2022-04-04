@@ -26,8 +26,11 @@ public class KeyManager implements KeyListener {
             pressedDown = true;
         } else if (y == "right") {
             pressedRight = true;
-        } else {
+        } else if (y == "left"){
             pressedLeft = true;;
+        } else if (y == "esc"){
+            pressedEscape = true;
+            System.out.println("press esc");
         }
     }
 
@@ -36,25 +39,24 @@ public class KeyManager implements KeyListener {
      * @param e the event of a key being pressed
      */
     public void keyPressed(KeyEvent e) {
-        int code = e.getKeyCode();
+        if (GamePanel.state == GAME) {
+            int code = e.getKeyCode();
 
-        if(code == KeyEvent.VK_W){pressedUp     = true;}
-        if(code == KeyEvent.VK_S){pressedDown   = true;}
-        if(code == KeyEvent.VK_A){pressedLeft   = true;}
-        if(code == KeyEvent.VK_D){pressedRight  = true;}
+            if(code == KeyEvent.VK_W){pressedUp     = true;}
+            if(code == KeyEvent.VK_S){pressedDown   = true;}
+            if(code == KeyEvent.VK_A){pressedLeft   = true;}
+            if(code == KeyEvent.VK_D){pressedRight  = true;}
 
-        if(code == KeyEvent.VK_ESCAPE){
-            if(GamePanel.state != MENU){
-
-                pressedEscape = true;
+            if(code == KeyEvent.VK_ESCAPE){
                 GamePanel.state = PAUSED;
-                keyCount++;
-                if (keyCount%2 == 0){
-                    pressedEscape = false;
-                    GamePanel.state = GAME;
-                }
+                pressedEscape = true;
             }
         }
+        else if (GamePanel.state == PAUSED) {
+            GamePanel.state = GAME;
+            pressedEscape = false;
+        }
+
     }
 
     /**
@@ -79,6 +81,7 @@ public class KeyManager implements KeyListener {
         if(code == KeyEvent.VK_D){
             pressedRight = false;
         }
+
     }
 }
 

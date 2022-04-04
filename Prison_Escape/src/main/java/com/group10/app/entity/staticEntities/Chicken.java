@@ -11,6 +11,7 @@ import com.group10.app.main.GamePanel;
  * </p>
  */
 public class Chicken extends Entity {
+    public int disappears = 0;
 
     /**
      * Constructor Method to assign initial values to chicken object.
@@ -24,8 +25,12 @@ public class Chicken extends Entity {
     public Chicken(GamePanel gp){
         super(gp);
 
-        name = "Chicken";
+        setName("Chicken");
         down1 = setup("/collectibles/chickenDrumStick");
     }
+
+    public void setDisappear(int disappear) { this.disappears = disappear; }
+
+    public int getDisappear() { return disappears; }
 
 }
