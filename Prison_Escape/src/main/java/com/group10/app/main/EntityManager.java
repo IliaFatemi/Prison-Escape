@@ -19,6 +19,7 @@ import java.util.Scanner;
  * This is for create and delete entities.
  */
 
+
 public class EntityManager {
 
     GamePanel gp;
