@@ -51,7 +51,7 @@ public class SaveGame {
             BufferedWriter bw = new BufferedWriter( new FileWriter("src/main/SavedGame/" + fileName));
             bw.write(gp.getGameLevel() + " " + gp.inmate.getX() + " " + gp.inmate.getY() + " " +
                                                         gp.inmate.getSpeed() + " " + gp.inmate.getTimer() + " " +
-                                                        gp.inmate.getScore() + " " + gp.inmate.getNumKeys() + " ");
+                                                        gp.inmate.getScore() + " " + gp.inmate.getNumKeys());
             bw.newLine();
             bw.close();
         } catch (IOException e) {
@@ -147,7 +147,7 @@ public class SaveGame {
     public void save(int level, int playerX, int playerY, int speed, double timer, int score, int numKeys, Entity[] objects, MovingActor[] guards){
         try {
             FileWriter myWriter = new FileWriter("src/main/SavedGame/save0.txt");
-            myWriter.write(level + " " + playerX + " " + playerY + " " + speed + " " + timer + " " + score + " " + numKeys + " ");
+            myWriter.write(level + " " + playerX + " " + playerY + " " + speed + " " + timer + " " + score + " " + numKeys);
             myWriter.close();
 
             BufferedWriter bw = new BufferedWriter( new FileWriter("src/main/SavedGame/saveEntity.txt"));

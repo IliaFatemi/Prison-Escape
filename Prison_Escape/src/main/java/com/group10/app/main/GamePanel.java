@@ -72,7 +72,7 @@ public class GamePanel extends JPanel implements Runnable{
     Boolean GAME_SAVED = false;
 
     //Load saved data
-    LoadGame load = new LoadGame(this);
+    public LoadGame loadGame = new LoadGame(this);
 
     //set up save game
     public SaveGame saveGame = new SaveGame(this);
