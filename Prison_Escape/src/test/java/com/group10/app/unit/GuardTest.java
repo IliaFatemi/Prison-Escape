@@ -5,7 +5,8 @@ import com.group10.app.entity.nonStaticEntities.Inmate;
 import com.group10.app.main.*;
 
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class GuardTest {
     GamePanel gp;
