@@ -93,6 +93,7 @@ public class InmateTest {
     @Test
     public void testGotAllKeys(){
         Inmate inmate = new Inmate(gp, keyH);
+        GamePanel.GAME_LEVEL = 1;
         Assert.assertEquals(false, inmate.gotAllKeys());
         inmate.setNumKeys(3);
         Assert.assertEquals(true, inmate.gotAllKeys());
