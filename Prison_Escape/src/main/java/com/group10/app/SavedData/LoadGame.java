@@ -43,6 +43,7 @@ public class LoadGame {
         this.gp = gp;
     }
 
+
     /**
      * <p>loadData will load up the save0.txt file and store the values inside of a private array inside the LoadGame</p>
      */

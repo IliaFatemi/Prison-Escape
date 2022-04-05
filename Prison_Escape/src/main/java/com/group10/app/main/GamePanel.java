@@ -5,10 +5,7 @@ import com.group10.app.entity.nonStaticEntities.Inmate;
 
 import com.group10.app.entity.nonStaticEntities.MovingActor;
 import com.group10.app.entity.staticEntities.TileManager;
-import com.group10.app.menu.GameOverMenu;
 import com.group10.app.menu.MenuScreen;
-import com.group10.app.menu.PauseMenu;
-import com.group10.app.menu.WonMenu;
 import com.group10.app.menu.Menu;
 
 import com.group10.app.SavedData.LoadGame;
@@ -75,7 +72,7 @@ public class GamePanel extends JPanel implements Runnable{
     Boolean GAME_SAVED = false;
 
     //Load saved data
-    LoadGame load = new LoadGame(this);
+    public LoadGame loadGame = new LoadGame(this);
 
     //set up save game
     public SaveGame saveGame = new SaveGame(this);

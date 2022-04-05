@@ -112,7 +112,7 @@ public class MouseManager implements MouseListener{
             if(mouseY >= gp.screenHeight/2 - 200 && mouseY <= gp.screenHeight/2 - 130){
                 System.out.println("Continuing game");
                 GamePanel.state = GAME;
-                gp.load.loadData("test.txt");
+                gp.loadGame.loadData("test.txt");
                 System.out.println("loading Complete");
             }
         }
