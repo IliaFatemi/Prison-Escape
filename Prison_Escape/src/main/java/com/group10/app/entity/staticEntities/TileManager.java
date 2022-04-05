@@ -9,8 +9,6 @@ import javax.imageio.ImageIO;
 import com.group10.app.main.GamePanel;
 
 import java.awt.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Objects;
 
 import java.io.File;

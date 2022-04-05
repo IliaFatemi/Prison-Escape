@@ -5,10 +5,7 @@ import com.group10.app.entity.nonStaticEntities.Inmate;
 
 import com.group10.app.entity.nonStaticEntities.MovingActor;
 import com.group10.app.entity.staticEntities.TileManager;
-import com.group10.app.menu.GameOverMenu;
 import com.group10.app.menu.MenuScreen;
-import com.group10.app.menu.PauseMenu;
-import com.group10.app.menu.WonMenu;
 import com.group10.app.menu.Menu;
 
 import com.group10.app.SavedData.LoadGame;

@@ -1,6 +1,5 @@
 package com.group10.app.main;
 
-import com.group10.app.entity.Entity;
 import com.group10.app.entity.nonStaticEntities.Inmate;
 import com.group10.app.entity.nonStaticEntities.MovingActor;
 

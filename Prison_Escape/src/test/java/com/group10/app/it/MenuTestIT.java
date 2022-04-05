@@ -1,21 +1,15 @@
 package com.group10.app.it;
 
-import com.group10.app.entity.nonStaticEntities.Inmate;
-import com.group10.app.entity.staticEntities.Chicken;
+
 import com.group10.app.main.GamePanel;
 import com.group10.app.main.GameStates;
-import com.group10.app.main.KeyManager;
 import com.group10.app.main.MouseManager;
-import com.group10.app.menu.Menu;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.awt.event.MouseEvent;
 
-import java.awt.event.KeyEvent;
-import java.security.Key;
-
 import static com.group10.app.main.GameStates.*;
-import static java.awt.event.KeyEvent.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 

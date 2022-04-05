@@ -7,8 +7,6 @@ import com.group10.app.main.KeyManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 public class SaveLoadTestIT {
     private GamePanel gp;
 

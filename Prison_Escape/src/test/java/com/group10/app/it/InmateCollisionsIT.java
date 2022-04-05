@@ -11,8 +11,7 @@ import com.group10.app.main.GamePanel;
 import com.group10.app.main.GameStates;
 import com.group10.app.main.KeyManager;
 
-import com.group10.app.main.MouseManager;
-import org.junit.Assert;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
