@@ -4,34 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c4764ef-1f4f-45aa-b74c-178f8418422a" name="Changes" comment="delete UtilityTool.java">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-02,_4_45_p_m__[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-02,_5_12_p_m__[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-02__4_45_p_m___Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-04-02__5_12_p_m___Changes_.xml" beforeDir="false" />
+    <list default="true" id="1c4764ef-1f4f-45aa-b74c-178f8418422a" name="Changes" comment="added back tests from previous master branch">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/SavedGame/save0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/SavedGame/save0.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/SavedGame/saveEntity.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/SavedGame/saveEntity.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/SavedData/LoadGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/SavedData/LoadGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/SavedData/SaveGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/SavedData/SaveGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/nonStaticEntities/Guard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/nonStaticEntities/Guard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/nonStaticEntities/Inmate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/nonStaticEntities/Inmate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/staticEntities/Chicken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/staticEntities/Chicken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/staticEntities/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/staticEntities/Door.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/staticEntities/Key.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/staticEntities/Key.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/staticEntities/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/staticEntities/TileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/staticEntities/Timer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/staticEntities/Timer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/staticEntities/Trap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/entity/staticEntities/Trap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/EntityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/EntityManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/group10/app/main/KeyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/group10/app/main/KeyManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/group10/app/it/MenuTestIT.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/group10/app/unit/GameDisplayTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/group10/app/unit/InmateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/group10/app/unit/InmateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/group10/app/unit/LevelTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/group10/app/unit/ScoreTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/group10/app/unit/timerTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +30,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -75,8 +54,16 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/java/com/group10/app/unit" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.group10.app.App" />
       <module name="Prison_Escape" />
@@ -90,13 +77,73 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GameDisplayTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Prison_Escape" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.group10.app.unit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.group10.app.unit" />
+      <option name="MAIN_CLASS_NAME" value="com.group10.app.unit.GameDisplayTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GuardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Prison_Escape" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.group10.app.unit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.group10.app.unit" />
+      <option name="MAIN_CLASS_NAME" value="com.group10.app.unit.GuardTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InmateCollisionsIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Prison_Escape" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.group10.app.it.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.group10.app.it" />
+      <option name="MAIN_CLASS_NAME" value="com.group10.app.it.InmateCollisionsIT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MenuTestIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Prison_Escape" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.group10.app.it.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.group10.app.it" />
+      <option name="MAIN_CLASS_NAME" value="com.group10.app.it.MenuTestIT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
-        <item itemvalue="Application.App" />
-        <item itemvalue="Application.App" />
-        <item itemvalue="Application.App" />
-        <item itemvalue="Application.App" />
+        <item itemvalue="JUnit.MenuTestIT" />
+        <item itemvalue="JUnit.InmateCollisionsIT" />
+        <item itemvalue="JUnit.GameDisplayTest" />
+        <item itemvalue="JUnit.GuardTest" />
       </list>
     </recent_temporary>
   </component>
@@ -181,7 +228,21 @@
       <option name="project" value="LOCAL" />
       <updated>1647755243840</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="head reset">
+      <created>1649123888144</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1649123888144</updated>
+    </task>
+    <task id="LOCAL-00011" summary="added back tests from previous master branch">
+      <created>1649126385952</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1649126385953</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,7 +267,9 @@
     <MESSAGE value="javaDoc for Sound" />
     <MESSAGE value="delete UtilityTool.java" />
     <MESSAGE value="javaDoc Collision checkObject" />
-    <option name="LAST_COMMIT_MESSAGE" value="javaDoc Collision checkObject" />
+    <MESSAGE value="head reset" />
+    <MESSAGE value="added back tests from previous master branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="added back tests from previous master branch" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Guard_java$App.ic" NAME="App Coverage Results" MODIFIED="1648931558605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
