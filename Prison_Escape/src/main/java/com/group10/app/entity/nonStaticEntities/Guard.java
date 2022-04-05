@@ -37,7 +37,6 @@ public class Guard extends MovingActor {
         super(gp);
         this.gp = gp;
 
-        setName("Guard");
         setDirection("down");
         setSpeed(1);
 

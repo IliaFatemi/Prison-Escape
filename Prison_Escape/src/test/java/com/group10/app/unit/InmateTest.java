@@ -70,9 +70,9 @@ public class InmateTest {
     @Test
     public void testTimer(){
         Inmate inmate = new Inmate(gp, keyH);
-        Assert.assertEquals(100, inmate.getTimer(), 0.0001);
+        Assert.assertEquals(100, inmate.getTimer(), 0.001);
         inmate.setTimer(10);
-        Assert.assertEquals(10, inmate.getTimer(), 0.00001);
+        Assert.assertEquals(10, inmate.getTimer(), 0.001);
     }
 
     @Test
@@ -152,7 +152,7 @@ public class InmateTest {
     public void testReset(){
         Inmate inmate = new Inmate(gp, keyH);
         inmate.resetInmate();
-        Assert.assertEquals(100, inmate.getTimer(), 0.00001);
+        Assert.assertEquals(100, inmate.getTimer(), 0.0001);
         Assert.assertEquals(0, inmate.getScore());
         Assert.assertEquals(0, inmate.getNumKeys());
     }
