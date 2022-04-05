@@ -78,7 +78,7 @@ public class GamePanel extends JPanel implements Runnable{
     LoadGame load = new LoadGame(this);
 
     //set up save game
-    SaveGame saveGame = new SaveGame();
+    public SaveGame saveGame = new SaveGame(this);
 
     //Set up the keyboard keys
     public KeyManager keyH = new KeyManager();
