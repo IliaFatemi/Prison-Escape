@@ -74,6 +74,7 @@ public class Guard extends MovingActor {
         setX(x);
         setY(y);
         setSpeed(1);
+        moving = false;
         setDirection("default");
     }
 
