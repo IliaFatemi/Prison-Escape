@@ -5,7 +5,8 @@ import com.group10.app.entity.nonStaticEntities.Inmate;
 import com.group10.app.main.*;
 
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class GuardTest {
     GamePanel gp;
@@ -50,24 +51,25 @@ public class GuardTest {
 
     @Test
     public void testGuardUpdate(){
-        Inmate inmate = new Inmate(gp, keyH);
+        gp = new GamePanel();
+        gp.inmate = new Inmate(gp, keyH);
         Guard guard = new Guard(gp);
-        inmate.setPos(100, 100);
+        gp.inmate.setPos(100, 100);
         guard.setGuardValues(150, 100);
         guard.update();
         Assert.assertEquals("left", guard.getDirection());
-        inmate.setPos(100, 100);
+        gp.inmate.setPos(100, 100);
         guard.setGuardValues(50, 100);
         guard.update();
         Assert.assertEquals("right", guard.getDirection());
-        inmate.setPos(100, 100);
+        gp.inmate.setPos(100, 100);
         guard.setGuardValues(100, 150);
         guard.update();
-        Assert.assertEquals("down", guard.getDirection());
-        inmate.setPos(100, 100);
+        Assert.assertEquals("up", guard.getDirection());
+        gp.inmate.setPos(100, 100);
         guard.setGuardValues(100, 50);
         guard.update();
-        Assert.assertEquals("up", guard.getDirection());
+        Assert.assertEquals("down", guard.getDirection());
     }
 }
 
