@@ -57,7 +57,6 @@ public class Door extends Entity {
 
             if (doorLightly < i) {
                 changeAlpha(g2, 0.5f);
-                System.out.println("GAME_LEVEL is " + GamePanel.GAME_LEVEL);
             }
             else {
                 changeAlpha(g2, 1f);

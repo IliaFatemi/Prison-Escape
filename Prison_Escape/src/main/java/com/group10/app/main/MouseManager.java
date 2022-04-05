@@ -112,7 +112,7 @@ public class MouseManager implements MouseListener{
             if(mouseY >= gp.screenHeight/2 - 200 && mouseY <= gp.screenHeight/2 - 130){
                 System.out.println("Continuing game");
                 GamePanel.state = GAME;
-                gp.load.loadData();
+                gp.load.loadData("test.txt");
                 System.out.println("loading Complete");
             }
         }
@@ -143,9 +143,7 @@ public class MouseManager implements MouseListener{
         //return to main menu controls
         if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(103)){
             if(mouseY >= gp.screenHeight/2 + 70 && mouseY <= gp.screenHeight/2 + 140){
-                gp.saveGame.save(GamePanel.GAME_LEVEL, gp.inmate.getX(), gp.inmate.getY(),
-                        gp.inmate.getSpeed(), gp.inmate.getTimer(), gp.inmate.getScore(), gp.inmate.getNumKeys(),
-                        gp.obj, gp.guard);
+                gp.saveGame.mySave("test.txt");
                 System.out.println("returning to Main menu");
                 GamePanel.state = MENU;
             }
@@ -178,9 +176,8 @@ public class MouseManager implements MouseListener{
             if(mouseY >= gp.screenHeight/2 - 30 && mouseY <= gp.screenHeight/2 + 40){
                 GamePanel.GAME_LEVEL++;
                 System.out.println("(Update) Level: "+GamePanel.GAME_LEVEL);
-                gp.saveGame.save(GamePanel.GAME_LEVEL, gp.inmate.getX(), gp.inmate.getY(),
-                        gp.inmate.getSpeed(), gp.inmate.getTimer(), gp.inmate.getScore(), gp.inmate.getNumKeys(),
-                        gp.obj, gp.guard);
+                gp.levelCheck();
+                gp.saveGame.mySave("test.txt");
                 System.out.println(mouseX + " "+ mouseY + ": returning to Main menu");
                 GamePanel.state = MENU;
             }
@@ -206,7 +203,8 @@ public class MouseManager implements MouseListener{
         if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(106)){
             if(mouseY >= gp.screenHeight/2 - 30 && mouseY <= gp.screenHeight/2 + 40){
                 System.out.println("returning to Main menu");
-                gp.inmate.resetInmate();
+                gp.levelCheck();
+                gp.saveGame.mySave("test.txt");
                 GamePanel.state = MENU;
             }   
         }
