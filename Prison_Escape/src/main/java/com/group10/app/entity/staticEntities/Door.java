@@ -31,7 +31,7 @@ public class Door extends Entity {
 
         this.gp = gp;
 
-        setName("Door");
+        name = "Door";
 
         door1 = setup("/tiles/exit1");
         door2 = setup("/tiles/exit2");

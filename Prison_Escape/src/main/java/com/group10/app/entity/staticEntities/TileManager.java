@@ -4,12 +4,20 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
- 
+
 import javax.imageio.ImageIO;
 import com.group10.app.main.GamePanel;
 
 import java.awt.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Objects;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+
 
 /**
  * This class handles the various items that appear on a map as barriers, paths or
@@ -49,88 +57,24 @@ public class TileManager {
      * </p>
      */
     public void registerImage(){
-        // Placeholder
-        setup(0, "ConcreteBlock", false);
-        setup(1, "ConcreteBlock", false);
-        setup(2, "ConcreteBlock", false);
-        setup(3, "ConcreteBlock", false);
-        setup(4, "ConcreteBlock", false);
-        setup(5, "ConcreteBlock", false);
-        setup(6, "ConcreteBlock", false);
-        setup(7, "ConcreteBlock", false);
-        setup(8, "ConcreteBlock", false);
-        setup(9, "ConcreteBlock", false);
-        // Placeholder
 
-        setup(10, "ConcreteBlock", false);
-        setup(11, "AsphaltGround", false);
-        setup(12, "GravelGround", false);
-        setup(13, "TileGround", false);
-        setup(14, "WoodenGround", false);
-        setup(15, "horizontalWall", true);
-        setup(16, "verticalWall", true);
-        setup(17, "CeramicGround", false);
-        setup(18, "cell2", true);
-        setup(19, "toilet", true);
-        setup(20, "bed", true);
-        setup(21, "exit1", true);
-        setup(22, "exit2", true);
-        setup(23, "exit3", true);
-        setup(24, "exit4", true);
-        setup(25, "exit5", true);
-        setup(26, "cell1", true);
-        setup(27, "cornerTopLeft", true);
-        setup(28, "cornerTopRight", true);
-        setup(29, "cornerBottomLeft", true);
-        setup(30, "cornerBottomRight", true);
-        setup(31, "TUp", true);
-        setup(32, "TDown", true);
-        setup(33, "TRight", true);
-        setup(34, "TLeft", true);
-        setup(35, "4WayWall", true);
-        setup(36, "desk1", true);
-        setup(37, "desk2", true);
-        setup(38, "chair", true);
-        setup(39, "RockGround", false);
-        setup(40, "creamTile", false);
-        setup(41, "stove1", true);
-        setup(42, "stove2", true);
-        setup(43, "showerDown", true);
-        setup(44, "showerUp", true);
-        setup(45, "freezer1", true);
-        setup(46, "freezer2", true);
-        setup(47, "box", true);
-        setup(48, "bigCell1", true);
-        setup(49, "bigCell2", true);
-        setup(50, "couch", true);
-        setup(51, "sink1", true);
-        setup(52, "sink2", true);
-        setup(53, "gunStash1", true);
-        setup(54, "gunStash2", true);
-        setup(55, "locker", true);
-        setup(56, "grassGround", false);
-        setup(57, "doNotCross1", true);
-        setup(58, "doNotCross2", true);
-        setup(59, "doNotCross3", true);
-        setup(60, "doNotCross4", true);
-        setup(61, "audioConsole", true);
-        setup(62, "securityConsole1", true);
-        setup(63, "securityConsole2", true);
-        setup(64, "securityConsoleTopView1", true);
-        setup(65, "securityConsoleTopView2", true);
-        setup(66, "stoneGround1", false);
-        setup(67, "stoneGround2", false);
-        setup(68, "stoneGround3", false);
-        setup(69, "stoneGround4", false);
-        setup(70, "concreteBlock2", false);
-        setup(71, "grass2", false);
-        setup(72, "grass3", false);
-        setup(73, "bench1", true);
-        setup(74, "bench2", true);
-        setup(75, "couchVertical1", true);
-        setup(76, "couchVertical2", true);
-        setup(77, "closedDoor1", true);
-        setup(78, "closedDoor2", true);
+
+        try {
+            File file = new File("src/main/resources/tiles/tileSetUp.txt");
+            Scanner myReader = new Scanner(file);
+
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String [] setUpValues = data.split(" ");
+                setup(Integer.parseInt(setUpValues[0]), setUpValues[1], Boolean.parseBoolean(setUpValues[2]));
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+
     }
 
     /**
@@ -155,7 +99,6 @@ public class TileManager {
             e.printStackTrace();
         }
     }
-
 
     /**
      * Loads the associated map with each level.

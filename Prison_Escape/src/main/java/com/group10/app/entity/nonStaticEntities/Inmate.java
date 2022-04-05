@@ -40,7 +40,7 @@ public class Inmate extends MovingActor {
         this.gp = gp;
         this.keyH = keyH;
 
-        setName("Inmate");
+        name = "Inmate";
         setSpeed(2);
 
         solidAreaDefaultX = getSolidArea().x;
@@ -95,7 +95,7 @@ public class Inmate extends MovingActor {
         }
     }
 
-    public void updateDirection() {
+    public void updateDirection(){
         if (keyH.pressedUp) {
             setDirection("up");
         } else if (keyH.pressedDown) {
@@ -106,7 +106,6 @@ public class Inmate extends MovingActor {
             setDirection("right");
         }
     }
-
     /**
      * Get number of keys collected
      * @return hasKey which is the number of keys collected
@@ -178,10 +177,10 @@ public class Inmate extends MovingActor {
 
         if (i != 999){
 
-            String objectName = gp.obj[i].getName();
-            String text = "Got a " + objectName + "!";
+            String objectName = gp.obj[i].name;
+            String text = "Got a " + gp.obj[i].name + "!";
 
-            if (!Objects.equals(objectName, "Door")){
+            if (!Objects.equals(gp.obj[i].name, "Door")){
                 gp.ui.addMessage(text);
             }
 

@@ -25,7 +25,7 @@ public class Key extends Entity {
     public Key(GamePanel gp){
         super(gp);
 
-        setName("Key");
+        name = "Key";
         down1 = setup("/collectibles/key");
     }
 
