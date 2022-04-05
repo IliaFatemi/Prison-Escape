@@ -112,7 +112,6 @@ public class TileManager {
 
         try{
             InputStream level = getClass().getResourceAsStream(filePath);
-            assert level != null;
             BufferedReader br = new BufferedReader(new InputStreamReader(level));
             int col = 0;
             int row = 0;
