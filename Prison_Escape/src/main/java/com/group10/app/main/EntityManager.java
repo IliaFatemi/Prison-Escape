@@ -12,6 +12,7 @@ import com.group10.app.entity.staticEntities.Trap;
 import java.util.Objects;
 import java.util.Random;
 
+
 /**
  * This is for create and delete entities.
  */

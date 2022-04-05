@@ -74,15 +74,6 @@ public class LevelTest {
     }
 
     @Test
-    public void continueGameLevel1Test(){
-        gp.setState(GameStates.MENU);
-        gp.setGameLevel(1);
-        gp.mouseK.MainMenuControls(700,  268);
-        assertEquals(1, gp.getGameLevel());
-    }
-
-
-    @Test
     public void firstToFirstLevelGameStateTest(){
         gp.setState(GameStates.GAME);
         gp.setGameLevel(1);
