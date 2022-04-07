@@ -6,12 +6,12 @@ mvn tests
 ```
 mvn failsafe:integration-test
 ```
-# How to run both Unit and Integration tests (does not work currently, works in intellij)
+# How to run both Unit and Integration tests
 ```
 mvn verify
 ```
-# How build and run the maven program (does not work currently, works in intellij)
+# How build and run the maven program
 ```
 mvn package
-java -cp target/Prison_Escape-1.0-SNAPSHOT.jar com.group10.app.App
+mvn exec:java -Dexec.mainClass="com.group10.app.App"
 ```
