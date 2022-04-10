@@ -18,7 +18,7 @@ public class MenuScreen extends Menu{
      * continue_: will register the retry button picture
      * quitGame: will register the gameover display template
      */
-    public BufferedImage newGame, continue_, quitGame, gameTitle, backgroundImg;
+    public BufferedImage newGame, continue_, quitGame, gameTitle, backgroundImg, help, credits;
 
     /**
      * <p>The contructor for MenuScreen will setup the registered images</p>
@@ -39,6 +39,8 @@ public class MenuScreen extends Menu{
             continue_ = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/continueBtn.png")));
             quitGame = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/quitGameBtn.png")));
             backgroundImg = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/backgroundMenuImg.png")));
+            help = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/helpBtn.png")));
+            credits = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/creditsBtn.png")));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -54,6 +56,8 @@ public class MenuScreen extends Menu{
         g2.drawImage(gameTitle, gp.screenWidth/2 - 211, gp.screenHeight/2 - 300, 423, 57, null);
         g2.drawImage(newGame,  gp.screenWidth/2-103,  gp.screenHeight/2 - 200, 206, 70, null);
         g2.drawImage(continue_, gp.screenWidth/2-103, gp.screenHeight/2 - 100, 206, 70, null);
-        g2.drawImage(quitGame, gp.screenWidth/2-103, gp.screenHeight/2, 206, 70, null);
+        g2.drawImage(help, gp.screenWidth/2-103, gp.screenHeight/2, 206, 70, null);
+        g2.drawImage(credits, gp.screenWidth/2-103, gp.screenHeight/2 + 100, 207, 70, null);
+        g2.drawImage(quitGame, gp.screenWidth/2-103, gp.screenHeight/2 + 200, 206, 70, null);
     }
 }

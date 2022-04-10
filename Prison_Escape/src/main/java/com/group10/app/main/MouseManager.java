@@ -105,9 +105,23 @@ public class MouseManager implements MouseListener{
             }
         }
 
-        //Exit game button
+        //Help button
         if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(106)){
             if(mouseY >= gp.screenHeight/2 && mouseY <= gp.screenHeight/2 + 70){
+                System.out.println("Help display");
+            }
+        }
+
+        //Credits Button
+        if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(106)){
+            if(mouseY >= gp.screenHeight/2 + 100 && mouseY <= gp.screenHeight/2 + 170){
+                System.out.println("Credits display");
+            }
+        }
+
+        //Exit game button
+        if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(106)){
+            if(mouseY >= gp.screenHeight/2 + 200 && mouseY <= gp.screenHeight/2 + 270){
                 //Close the screen
                 System.out.println("Exiting game");
                 App.window.dispatchEvent(new WindowEvent(App.window, WindowEvent.WINDOW_CLOSING));
