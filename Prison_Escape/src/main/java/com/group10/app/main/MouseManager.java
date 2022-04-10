@@ -86,7 +86,7 @@ public class MouseManager implements MouseListener{
 
         //new game button
         if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(106)){
-            if(mouseY >= gp.screenHeight/2-300 && mouseY <= gp.screenHeight/2-230){
+            if(mouseY >= gp.screenHeight/2 - 200 && mouseY <= gp.screenHeight/2 - 130){
                 System.out.println("Starting new game");
                 GamePanel.GAME_LEVEL = 1;
                 gp.levelCheck();
@@ -97,7 +97,7 @@ public class MouseManager implements MouseListener{
 
         //Continue button
         if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(106)){
-            if(mouseY >= gp.screenHeight/2 - 200 && mouseY <= gp.screenHeight/2 - 130){
+            if(mouseY >= gp.screenHeight/2 - 100 && mouseY <= gp.screenHeight/2 - 30){
                 System.out.println("Continuing game");
                 GamePanel.state = GAME;
                 gp.loadGame.loadData("test.txt");
@@ -107,7 +107,7 @@ public class MouseManager implements MouseListener{
 
         //Exit game button
         if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(106)){
-            if(mouseY >= gp.screenHeight/2 - 100 && mouseY <= gp.screenHeight/2 - 30){
+            if(mouseY >= gp.screenHeight/2 && mouseY <= gp.screenHeight/2 + 70){
                 //Close the screen
                 System.out.println("Exiting game");
                 App.window.dispatchEvent(new WindowEvent(App.window, WindowEvent.WINDOW_CLOSING));

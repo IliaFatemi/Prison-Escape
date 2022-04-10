@@ -51,9 +51,9 @@ public class MenuScreen extends Menu{
      */
     public void renderMenu(Graphics2D g2){
         g2.drawImage(backgroundImg, 0, 0, gp.screenWidth, gp.screenHeight, null);
-        g2.drawImage(gameTitle, gp.screenWidth/2 - 211, 28, 423, 57, null);
-        g2.drawImage(newGame,  gp.screenWidth/2-103, gp.screenHeight/2 - 300, 206, 70, null);
-        g2.drawImage(continue_, gp.screenWidth/2-103, gp.screenHeight/2 - 200, 206, 70, null);
-        g2.drawImage(quitGame, gp.screenWidth/2-103, gp.screenHeight/2 - 100, 206, 70, null);
+        g2.drawImage(gameTitle, gp.screenWidth/2 - 211, gp.screenHeight/2 - 300, 423, 57, null);
+        g2.drawImage(newGame,  gp.screenWidth/2-103,  gp.screenHeight/2 - 200, 206, 70, null);
+        g2.drawImage(continue_, gp.screenWidth/2-103, gp.screenHeight/2 - 100, 206, 70, null);
+        g2.drawImage(quitGame, gp.screenWidth/2-103, gp.screenHeight/2, 206, 70, null);
     }
 }
