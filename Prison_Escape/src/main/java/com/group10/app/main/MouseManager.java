@@ -50,22 +50,26 @@ public class MouseManager implements MouseListener{
         System.out.println("col: "+mouseX/gp.cellSize + ", " + "row: "+mouseY/gp.cellSize);
 
         //Mouse control works only in main menu
-        if(GamePanel.state != GAME && GamePanel.state != PAUSED && GamePanel.state != GAMEWON && GamePanel.state != GAMEOVER){
+        if(GamePanel.state != GAME && GamePanel.state != PAUSED && GamePanel.state != GAMEWON && GamePanel.state != GAMEOVER && GamePanel.state != HELP_MENU){
             MainMenuControls(mouseX, mouseY);
         }
 
+        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEWON && GamePanel.state != GAMEOVER && GamePanel.state != PAUSED){
+            HelpMenuControls(mouseX, mouseY);
+        }
+
         //Mouse control works only in pause menu
-        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEWON && GamePanel.state != GAMEOVER){
+        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEWON && GamePanel.state != GAMEOVER && GamePanel.state != HELP_MENU){
             PauseMenuControls(mouseX, mouseY);
         }
 
         //Mouse control for game won menu
-        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEOVER && GamePanel.state != PAUSED){
+        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEOVER && GamePanel.state != PAUSED && GamePanel.state != HELP_MENU){
             GameWonMenuControls(mouseX, mouseY);
         }
 
         //Mouse control for game over menu
-        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEWON && GamePanel.state != PAUSED){
+        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEWON && GamePanel.state != PAUSED && GamePanel.state != HELP_MENU){
             GameOverMenuControls(mouseX, mouseY);
         }
         
@@ -109,6 +113,7 @@ public class MouseManager implements MouseListener{
         if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(106)){
             if(mouseY >= gp.screenHeight/2 && mouseY <= gp.screenHeight/2 + 70){
                 System.out.println("Help display");
+                GamePanel.state = HELP_MENU;
             }
         }
 
@@ -125,6 +130,22 @@ public class MouseManager implements MouseListener{
                 //Close the screen
                 System.out.println("Exiting game");
                 App.window.dispatchEvent(new WindowEvent(App.window, WindowEvent.WINDOW_CLOSING));
+            }
+        }
+    }
+
+    /**
+     * <p>MainMenuControls will only work on the main menu screen if the state of the game is GAME</p>
+     * @param mouseX integer location for mouse X position
+     * @param mouseY integer location for mouse Y position
+     */
+    public void HelpMenuControls(int mouseX, int mouseY){
+        //Return to menu button
+        if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(106)){
+            if(mouseY >= gp.screenHeight/2 + 350 && mouseY <= gp.screenHeight/2 + 398){
+                //Close the screen
+                System.out.println("return to main menu");
+                GamePanel.state = MENU;
             }
         }
     }
