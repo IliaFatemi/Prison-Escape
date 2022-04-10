@@ -42,9 +42,6 @@ public class Inmate extends MovingActor {
         name = "Inmate";
         setSpeed(2);
 
-        solidAreaDefaultX = getSolidArea().x;
-        solidAreaDefaultY = getSolidArea().y;
-
         getInmateImage();
     }
 

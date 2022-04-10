@@ -34,13 +34,13 @@ public class Guard extends MovingActor {
         super(gp);
         this.gp = gp;
 
+        name = "Guard";
         setDirection("down");
         setSpeed(1);
+        setSolidHeight(31);
 
         getGuardImage();
 
-        solidAreaDefaultX = getSolidArea().x;
-        solidAreaDefaultY = getSolidArea().y;
     }
 
     /**
@@ -107,8 +107,6 @@ public class Guard extends MovingActor {
         }
 
         collision = false;
-        gp.collisionCheck.wallCheck(this);
-
         collisionUpdate();
         spriteUpdate();
 
