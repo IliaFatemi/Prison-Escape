@@ -133,6 +133,7 @@ public class GamePanel extends JPanel implements Runnable{
      * Initializing the background, mouse keys, keyboard, screen size, 
      */
     public GamePanel(){
+
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -195,6 +196,8 @@ public class GamePanel extends JPanel implements Runnable{
             for (MovingActor guard : guard) {
                 if (guard != null){
                     if (collisionCheck.checkGuard(inmate, guard.getX(), guard.getY(), ENEMY_COLLISION_DISTANCE)) {
+                        music.playSE(4);
+                        music.playSE(6);
                         System.out.println("ENEMY COLLIDED");
                         System.out.println("===================================");
                         state = GAMEOVER;
@@ -204,6 +207,7 @@ public class GamePanel extends JPanel implements Runnable{
 
             // Time is up or score is negative
             if (inmate.isTimeOver() || inmate.isScoreNegative()) {
+                music.playSE(6);
                 state = GAMEOVER;
             }
 
@@ -228,7 +232,7 @@ public class GamePanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D) graphic;
         
         if (state == GAME){
-    
+
             //draw tiles
             tileManage.draw(g2);
 

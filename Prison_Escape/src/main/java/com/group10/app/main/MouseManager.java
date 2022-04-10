@@ -4,8 +4,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 
-import com.group10.app.SavedData.SaveGame;
 import com.group10.app.App;
+import com.group10.app.SavedData.SaveGame;
 
 import static com.group10.app.main.GameStates.*;
 
