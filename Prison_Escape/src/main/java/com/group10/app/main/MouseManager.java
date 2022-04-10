@@ -98,7 +98,7 @@ public class MouseManager implements MouseListener{
         if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(106)){
             if(mouseY >= gp.screenHeight/2 - 200 && mouseY <= gp.screenHeight/2 - 130){
                 System.out.println("Starting new game");
-                GamePanel.GAME_LEVEL = 3;
+                GamePanel.GAME_LEVEL = 1;
                 gp.levelCheck();
                 System.out.println("Resetting number of keys");
                 GamePanel.state = GAME;
