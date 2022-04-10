@@ -36,17 +36,13 @@ public class MovingActor extends Entity {
      * Set the x position of the actor
      * @return x the x position of the actor
      */
-    public void setX(int x) {
-        this.x = x;
-    }
+    public void setX(int x) { this.x = x; }
 
     /**
      * Set the y position of the actor
      * @return y the y position of the actor
      */
-    public void setY(int y) {
-        this.y = y;
-    }
+    public void setY(int y) { this.y = y; }
 
     public void setSolidX(int x) { solidArea.x = x; }
 

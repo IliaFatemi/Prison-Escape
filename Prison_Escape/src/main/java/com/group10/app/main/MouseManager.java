@@ -106,6 +106,8 @@ public class MouseManager implements MouseListener{
                 GamePanel.state = GAME;
                 gp.loadGame.loadData("test.txt");
                 System.out.println("loading Complete");
+
+                gp.music.playMusic(8);
             }
         }
 
@@ -169,6 +171,8 @@ public class MouseManager implements MouseListener{
                 gp.saveGame.mySave("test.txt");
                 System.out.println("returning to Main menu");
                 GamePanel.state = MENU;
+
+                gp.music.playMusic(0);
             }
         }
     }
@@ -191,6 +195,8 @@ public class MouseManager implements MouseListener{
                 }else{
                     gp.levelCheck();
                 }
+
+                gp.music.playMusic(8);
             }
         }
 
@@ -203,6 +209,8 @@ public class MouseManager implements MouseListener{
                 gp.saveGame.mySave("test.txt");
                 System.out.println(mouseX + " "+ mouseY + ": returning to Main menu");
                 GamePanel.state = MENU;
+
+                gp.music.playMusic(0);
             }
         }
     }
@@ -219,6 +227,8 @@ public class MouseManager implements MouseListener{
                 System.out.println("Retry Level");
                 gp.levelCheck();
                 GamePanel.state = GAME;
+
+                gp.music.playMusic(8);
             }
         }
 
@@ -229,6 +239,8 @@ public class MouseManager implements MouseListener{
                 gp.levelCheck();
                 gp.saveGame.mySave("test.txt");
                 GamePanel.state = MENU;
+
+                gp.music.playMusic(0);
             }   
         }
     }

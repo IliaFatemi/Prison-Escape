@@ -33,8 +33,6 @@ public class SoundManager {
         soundURL[7] = getClass().getResource("/sound/winLevel.wav");
         soundURL[8] = getClass().getResource("/sound/inGameMusic.wav");
 
-
-
     }
 
     /**
@@ -83,6 +81,9 @@ public class SoundManager {
      * @param i the index of soundURL
      */
     public void playMusic (int i) {
+        if (clip != null) {
+            stop();
+        }
         setFile(i);
         play();
         loop();
@@ -93,6 +94,7 @@ public class SoundManager {
      */
     public void stopMusic () {
         stop();
+
     }
 
     /**
