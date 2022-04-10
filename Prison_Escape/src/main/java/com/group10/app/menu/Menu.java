@@ -27,6 +27,8 @@ public class Menu {
             return new WonMenu(gp);
         }else if(gp.getState() == GameStates.GAMEOVER){
             return new GameOverMenu(gp);
+        }else if(gp.getState() == GameStates.HELP_MENU){
+            return new HelpMenu(gp);
         }
         return null;
     }
