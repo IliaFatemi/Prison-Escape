@@ -3,6 +3,8 @@ package com.group10.app.main;
 import com.group10.app.entity.nonStaticEntities.Inmate;
 import com.group10.app.entity.nonStaticEntities.MovingActor;
 
+import java.util.Objects;
+
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
@@ -74,6 +76,16 @@ public class CollisionManager {
                 if (gp.tileManage.tile[tile1].collision || gp.tileManage.tile[tile2].collision) {
                     entity.collision = true;
                 }
+//                if (Objects.equals(entity.getName(), "Guard")) {
+//                    System.out.println("guard entity.getY() is " + entity.getY());
+//                    System.out.println("guard entity.getSolidArea().y is " + entity.getSolidArea().y);
+//                    System.out.println("guard entity.getSolidArea().height is " + entity.getSolidArea().height);
+//                    System.out.println("RightCol is " + RightCol);
+//                    System.out.println("TopRow is " + TopRow);
+//                    System.out.println("BottomRow is " + BottomRow);
+//                    System.out.println("[RightCol][TopRow] is " + gp.tileManage.tile[tile1].collision);
+//                    System.out.println("[RightCol][BottomRow] is " + gp.tileManage.tile[tile2].collision);
+//                }
             break;
         }
     }
@@ -145,8 +157,8 @@ public class CollisionManager {
                     }
                 }
 
-                inmate.getSolidArea().x = inmate.solidX;
-                inmate.getSolidArea().y = inmate.solidY;
+                inmate.getSolidArea().x = inmate.getSolidAreaDefaultX();
+                inmate.getSolidArea().y = inmate.getSolidAreaDefaultY();
                 gp.obj[i].solidArea.x = gp.obj[i].solidX;
                 gp.obj[i].solidArea.y = gp.obj[i].solidY;
             }

@@ -23,11 +23,16 @@ public class SoundManager {
      */
     public SoundManager() {
 
-        soundURL[0] = getClass().getResource("/sound/bgm.wav");
+        soundURL[0] = getClass().getResource("/sound/defaultMusic.wav");
         soundURL[1] = getClass().getResource("/sound/getKey.wav");
         soundURL[2] = getClass().getResource("/sound/getTimer.wav");
         soundURL[3] = getClass().getResource("/sound/getChicken.wav");
         soundURL[4] = getClass().getResource("/sound/getTrap.wav");
+        soundURL[5] = getClass().getResource("/sound/inmateSeesGuard.wav");
+        soundURL[6] = getClass().getResource("/sound/loseLevel.wav");
+        soundURL[7] = getClass().getResource("/sound/winLevel.wav");
+        soundURL[8] = getClass().getResource("/sound/inGameMusic.wav");
+
     }
 
     /**
@@ -76,6 +81,9 @@ public class SoundManager {
      * @param i the index of soundURL
      */
     public void playMusic (int i) {
+        if (clip != null) {
+            stop();
+        }
         setFile(i);
         play();
         loop();
@@ -86,6 +94,7 @@ public class SoundManager {
      */
     public void stopMusic () {
         stop();
+
     }
 
     /**

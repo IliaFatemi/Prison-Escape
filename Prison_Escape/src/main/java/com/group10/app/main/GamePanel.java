@@ -110,6 +110,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     // Set up music and sound effect
     public SoundManager music = new SoundManager();
+    public SoundManager soundEffect = new SoundManager();
 
     public static GameStates state = MENU;
 
@@ -133,6 +134,7 @@ public class GamePanel extends JPanel implements Runnable{
      * Initializing the background, mouse keys, keyboard, screen size, 
      */
     public GamePanel(){
+
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -155,6 +157,8 @@ public class GamePanel extends JPanel implements Runnable{
     public void run() {
         double drawInterval = 1000000000/ framePerSecond;
         double nextDrawTime = System.nanoTime() + drawInterval;
+
+        music.playMusic(0);
 
         while(gameThread != null){
             update();
@@ -195,6 +199,9 @@ public class GamePanel extends JPanel implements Runnable{
             for (MovingActor guard : guard) {
                 if (guard != null){
                     if (collisionCheck.checkGuard(inmate, guard.getX(), guard.getY(), ENEMY_COLLISION_DISTANCE)) {
+                        music.stopMusic();
+                        soundEffect.playSE(4);
+                        soundEffect.playSE(6);
                         System.out.println("ENEMY COLLIDED");
                         System.out.println("===================================");
                         state = GAMEOVER;
@@ -204,11 +211,17 @@ public class GamePanel extends JPanel implements Runnable{
 
             // Time is up or score is negative
             if (inmate.isTimeOver() || inmate.isScoreNegative()) {
+                music.stopMusic();
+                soundEffect.playSE(6);
                 state = GAMEOVER;
             }
 
             // Got all keys and reached the gate
-            if(inmate.gotAllKeys() && inmate.reachedGate()){state = GAMEWON;}
+            if(inmate.gotAllKeys() && inmate.reachedGate()) {
+                music.stopMusic();
+                soundEffect.playSE(7);
+                state = GAMEWON;
+            }
         }
 
     }
@@ -228,7 +241,7 @@ public class GamePanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D) graphic;
         
         if (state == GAME){
-    
+
             //draw tiles
             tileManage.draw(g2);
 
@@ -283,13 +296,10 @@ public class GamePanel extends JPanel implements Runnable{
 
         tileManage.loadMap("/levels/Level" + GAME_LEVEL + ".txt");
 
-        if (music.clip != null){
-            music.stopMusic();
-        }
-
         Arrays.fill(obj, null);
         Arrays.fill(guard, null);
 
         asset.setUpAsset();
+        music.playMusic(8);
     }
 }

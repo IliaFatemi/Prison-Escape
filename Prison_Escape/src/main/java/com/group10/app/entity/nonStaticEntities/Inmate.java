@@ -42,9 +42,6 @@ public class Inmate extends MovingActor {
         name = "Inmate";
         setSpeed(2);
 
-        solidAreaDefaultX = getSolidArea().x;
-        solidAreaDefaultY = getSolidArea().y;
-
         getInmateImage();
     }
 
@@ -156,6 +153,7 @@ public class Inmate extends MovingActor {
      * reset the time, score, and hasKey(Key number)
      */
     public void resetInmate(){
+        setDirection("down");
         time = 100;
         score = 0;
         hasKey = 0;
@@ -185,23 +183,23 @@ public class Inmate extends MovingActor {
 
             switch (objectName) {
                 case "Key":
-                    gp.music.playSE(1);
+                    gp.soundEffect.playSE(1);
                     score += 50;
                     hasKey++;
                     gp.obj[i] = null;
                 break;
                 case "Timer":
-                    gp.music.playSE(2);
+                    gp.soundEffect.playSE(2);
                     time += 20;
                     gp.obj[i] = null;
                 break;
                 case "Chicken":
-                    gp.music.playSE(3);
+                    gp.soundEffect.playSE(3);
                     score += 100;
                     gp.obj[i] = null;
                 break;
                 case "Trap":
-                    gp.music.playSE(4);
+                    gp.soundEffect.playSE(4);
                     score -= 50;
                     gp.obj[i] = null;
                 break;

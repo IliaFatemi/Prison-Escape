@@ -10,9 +10,11 @@ public class MovingActor extends Entity {
     private int x,y;
     private int speed;
     private String direction = "down";
-    private GamePanel gp;
+    private final GamePanel gp;
     private int spriteNum = 1;
-    private final Rectangle solidArea = new Rectangle(8, 16, 32, 32);
+    private Rectangle solidArea = new Rectangle(8, 16, 32, 32);
+    private final int solidAreaDefaultX = solidArea.x;
+    private final int solidAreaDefaultY = solidArea.y;
 
     public void setSpeed(int speed) {
         this.speed = speed;
@@ -34,17 +36,21 @@ public class MovingActor extends Entity {
      * Set the x position of the actor
      * @return x the x position of the actor
      */
-    public void setX(int x) {
-        this.x = x;
-    }
+    public void setX(int x) { this.x = x; }
 
     /**
      * Set the y position of the actor
      * @return y the y position of the actor
      */
-    public void setY(int y) {
-        this.y = y;
-    }
+    public void setY(int y) { this.y = y; }
+
+    public void setSolidX(int x) { solidArea.x = x; }
+
+    public void setSolidY(int y) { solidArea.y = y; }
+
+    public void setSolidWidth(int width) { solidArea.width = width; }
+
+    public void setSolidHeight(int height) { solidArea.height = height; }
 
     public int getSpeed() {
         return speed;
@@ -79,6 +85,12 @@ public class MovingActor extends Entity {
     public int getY() { return y;}
 
     public Rectangle getSolidArea() { return solidArea; }
+
+    public int getSolidAreaDefaultX() { return solidAreaDefaultX; }
+
+    public int getSolidAreaDefaultY() { return solidAreaDefaultY; }
+
+    public String getName() { return name; }
 
     /**
      * The constructor for the Entity class
