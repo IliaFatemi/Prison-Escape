@@ -17,37 +17,36 @@ public class Guard extends MovingActor {
     GamePanel gp;
     boolean moving = false;
     int pixelCounter = 0;
-    boolean alerted = false;
 
     /**
      * The constructor for the Guard class...
      *
      * <p>
-     * Default setting include: direction = down
-     * speed = 1
-     * SolidArea(8, 16, 32, 32)
-     * Get guard's images
+     *     Default setting include: direction = down
+     *                              speed = 1
+     *                              SolidArea(8, 16, 32, 32)
+     *                              Get guard's images
      * </p>
      *
      * @param gp main game panel
      */
-    public Guard(GamePanel gp) {
+    public Guard(GamePanel gp){
         super(gp);
         this.gp = gp;
 
+        name = "Guard";
         setDirection("down");
         setSpeed(1);
+        setSolidHeight(31);
 
         getGuardImage();
 
-        solidAreaDefaultX = getSolidArea().x;
-        solidAreaDefaultY = getSolidArea().y;
     }
 
     /**
      * getGuardImage method is in charge of registering the image directories for the guard enemy
      */
-    public void getGuardImage() {
+    public void getGuardImage(){
         up1 = setup("/prisonGuard/WalkUp1");
         up2 = setup("/prisonGuard/WalkUp2");
         up3 = setup("/prisonGuard/WalkUp3");
@@ -68,7 +67,7 @@ public class Guard extends MovingActor {
      * @param x value to set guards x position
      * @param y value to set guards y position
      */
-    public void setGuardValues(int x, int y) {
+    public void setGuardValues(int x, int y){
         setX(x);
         setY(y);
         setSpeed(1);
@@ -77,96 +76,46 @@ public class Guard extends MovingActor {
     }
 
     /**
-     * Decides if the inmate is close enough for the guard to be in an alerted state
-     */
-    public void GuardAlerted() {
-        if (((gp.inmate.getX() - getX()) < 200) && ((gp.inmate.getY() - getY()) < 200)) {
-            alerted = true;
-        } else {
-            alerted = false;
-        }
-    }
-
-    /**
      * update method is in charge of updating the position of the guard
      * <p>
-     * The update method in the Guard class is responsible for the movement
-     * of the guard when the inmate comes within range of the guard. Once the inmate
-     * is in range the guard will follow the player
+     *     The update method in the Guard class is responsible for the movement
+     *     of the guard when the inmate comes within range of the guard. Once the inmate
+     *     is in range the guard will follow the player
      * </p>
      */
     public void update() {
-        GuardAlerted();
-        if (alerted) {
-            if (!moving) {
-                if (gp.inmate.getX() < getX()) {
-                    setDirection("left");
-                } else if (gp.inmate.getX() > getX()) {
-                    setDirection("right");
-                }
 
-                if (Math.abs(gp.inmate.getX() - getX()) < gp.cellSize) {
-                    if (gp.inmate.getY() < getY()) {
-                        setDirection("up");
-                    } else if (gp.inmate.getY() > getY()) {
-                        setDirection("down");
-                    }
-                }
+        if (!moving) {
 
-                moving = true;
+            if (gp.inmate.getX() < getX()) {
+                setDirection("left");
+            }
+            else if (gp.inmate.getX() > getX()) {
+                setDirection("right");
             }
 
-            collision = false;
-            gp.collisionCheck.wallCheck(this);
-
-            collisionUpdate();
-            spriteUpdate();
-
-            pixelCounter += getSpeed();
-
-            if (pixelCounter == 48) {
-                moving = false;
-                pixelCounter = 0;
-            }
-        } else {
-            String currentDirection = getDirection();
-            collision = false;
-            gp.collisionCheck.wallCheck(this);
-
-            collisionUpdate();
-            if(collision){
-                if(getDirection() == "left"){
-                    setDirection("right");
-                }
-                else if(getDirection() == "right"){
-                    setDirection("left");
-                }
-                else if(getDirection() == "up"){
-                    setDirection("down");
-                }
-                else if(getDirection() == "down"){
+            if (Math.abs(gp.inmate.getX() - getX()) < gp.cellSize){
+                if (gp.inmate.getY() < getY()) {
                     setDirection("up");
                 }
-                spriteUpdate();
-
-                pixelCounter += getSpeed();
-
-                if (pixelCounter == 48) {
-                    moving = false;
-                    pixelCounter = 0;
+                else if (gp.inmate.getY() > getY()) {
+                    setDirection("down");
                 }
             }
-            else{
-                setDirection(currentDirection);
-                spriteUpdate();
 
-                pixelCounter += getSpeed();
+            moving = true;
+        }
 
-                if (pixelCounter == 48) {
-                    moving = false;
-                    pixelCounter = 0;
-                }
-            }
+        collision = false;
+        collisionUpdate();
+        spriteUpdate();
+
+        pixelCounter += getSpeed();
+
+        if (pixelCounter == 48) {
+            moving = false;
+            pixelCounter = 0;
         }
     }
+
 }
