@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RunManager" selected="Application.App">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.group10.app.App" />
+      <module name="Prison_Escape" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.group10.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SaveLoadTestIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Prison_Escape" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.group10.app.it.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.group10.app.it" />
+      <option name="MAIN_CLASS_NAME" value="com.group10.app.it.SaveLoadTestIT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SaveLoadTestIT" />
+        <item itemvalue="Application.App" />
+      </list>
+    </recent_temporary>
+  </component>
+</project>
