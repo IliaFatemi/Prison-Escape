@@ -12,7 +12,7 @@ public class MovingActor extends Entity {
     private String direction = "down";
     private final GamePanel gp;
     private int spriteNum = 1;
-    private Rectangle solidArea = new Rectangle(8, 16, 32, 32);
+    private final Rectangle solidArea = new Rectangle(8, 16, 32, 32);
     private final int solidAreaDefaultX = solidArea.x;
     private final int solidAreaDefaultY = solidArea.y;
 

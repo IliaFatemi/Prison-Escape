@@ -35,6 +35,7 @@ public class Guard extends MovingActor {
         super(gp);
         this.gp = gp;
 
+        name = "guard";
         setDirection("down");
         setSpeed(1);
 
@@ -118,8 +119,6 @@ public class Guard extends MovingActor {
             }
 
             collision = false;
-            gp.collisionCheck.wallCheck(this);
-
             collisionUpdate();
             spriteUpdate();
 
