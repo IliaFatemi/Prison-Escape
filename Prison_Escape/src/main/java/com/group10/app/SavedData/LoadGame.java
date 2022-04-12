@@ -14,6 +14,8 @@ import java.util.Arrays;
 public class LoadGame {
     GamePanel gp;
     private String fileName;
+    private InputStream level;
+    private BufferedReader br;
 
     /**
      * All the data from the text file will be stored in the data array.
@@ -43,7 +45,6 @@ public class LoadGame {
         this.gp = gp;
     }
 
-
     /**
      * <p>loadData will load up the save0.txt file and store the values inside of a private array inside the LoadGame</p>
      */
@@ -51,10 +52,24 @@ public class LoadGame {
         setFileName(fileName);
 
         try{
-            System.out.println("Loading level...");
-            System.out.println("getting saved data");
-            InputStream level = new FileInputStream("src/main/SavedGame/" + fileName);
-            BufferedReader br = new BufferedReader(new InputStreamReader(level));
+            level = new FileInputStream("src/main/SavedGame/" + fileName);
+            br = new BufferedReader(new InputStreamReader(level));
+
+            loadInmate();
+            gp.tileManage.loadMap("/levels/Level" + GamePanel.GAME_LEVEL + ".txt");
+            loadEntity();
+            loadGuard();
+
+            br.close();
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void loadInmate() {
+
+        try{
             String line = br.readLine();
             String[] savedData = line.split(" ");
 
@@ -66,11 +81,16 @@ public class LoadGame {
             gp.inmate.setScore(Integer.parseInt(savedData[5]));
             gp.inmate.setNumKeys(Integer.parseInt(savedData[6]));
 
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void loadEntity() {
+
+        try{
             Arrays.fill(gp.obj, null);
             Arrays.fill(gp.guard, null);
-
-            gp.tileManage.loadMap("/levels/Level" + GamePanel.GAME_LEVEL + ".txt");
-            System.out.println("load map");
 
             int objNum = Integer.parseInt(br.readLine());
 
@@ -102,7 +122,16 @@ public class LoadGame {
                 }
             }
 
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void loadGuard() {
+
+        try{
             int guardNum = Integer.parseInt(br.readLine());
+
             for (int j = 0; j < guardNum; j++) {
                 String guard = br.readLine();
                 String[] guardInfo = guard.split(" ");
@@ -111,11 +140,7 @@ public class LoadGame {
                 gp.asset.createGuard(new Guard(gp), x, y);
             }
 
-            br.close();
-            System.out.println("Data loaded");
-
         }catch(Exception e){
-            System.out.println("Failed to load save file");
             e.printStackTrace();
         }
     }
