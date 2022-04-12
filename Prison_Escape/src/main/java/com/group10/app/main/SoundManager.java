@@ -1,9 +1,17 @@
 package com.group10.app.main;
 
+import com.group10.app.entity.staticEntities.Tiles;
+
+import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
+import java.util.Scanner;
 
 /**
  * This is class for music and sound effects
@@ -21,17 +29,33 @@ public class SoundManager {
      * </p>
      *
      */
-    public SoundManager() {
+    public SoundManager() { setup(); }
 
-        soundURL[0] = getClass().getResource("/sound/defaultMusic.wav");
-        soundURL[1] = getClass().getResource("/sound/getKey.wav");
-        soundURL[2] = getClass().getResource("/sound/getTimer.wav");
-        soundURL[3] = getClass().getResource("/sound/getChicken.wav");
-        soundURL[4] = getClass().getResource("/sound/getTrap.wav");
-        soundURL[5] = getClass().getResource("/sound/inmateSeesGuard.wav");
-        soundURL[6] = getClass().getResource("/sound/loseLevel.wav");
-        soundURL[7] = getClass().getResource("/sound/winLevel.wav");
-        soundURL[8] = getClass().getResource("/sound/inGameMusic.wav");
+    /**
+     * Read from the file that stored all sounds.
+     * Insert sounds into soundURL.
+     *
+     * <p>
+     *     The sound file in the format of integer, sound_name.wav
+     *     Separate by a space.
+     * </p>
+     */
+    public void setup() {
+
+        try {
+            File file = new File("src/main/resources/sound/soundSetUp.txt");
+            Scanner myReader = new Scanner(file);
+
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String [] setUpValues = data.split(" ");
+                soundURL[Integer.parseInt(setUpValues[0])] = getClass().getResource("/sound/" + setUpValues[1]);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
     }
 
