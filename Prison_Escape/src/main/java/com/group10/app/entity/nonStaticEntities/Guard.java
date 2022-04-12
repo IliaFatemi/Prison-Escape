@@ -90,6 +90,24 @@ public class Guard extends MovingActor {
     }
 
     /**
+     * Updates the sprite and resets the pixelCounter if over limit
+     * <p>
+     *      Helper function to guard's update() which helps update the sprite
+     *      and pixelCounter.
+     * </p>
+     */
+    public void spritePixelUpdate() {
+        spriteUpdate();
+
+        pixelCounter += getSpeed();
+
+        if (pixelCounter == 48) {
+            moving = false;
+            pixelCounter = 0;
+        }
+    }
+
+    /**
      * update method is in charge of updating the position of the guard
      * <p>
      * The update method in the Guard class is responsible for the movement
@@ -99,6 +117,9 @@ public class Guard extends MovingActor {
      */
     public void update() {
         GuardAlerted();
+        collision = false;
+        gp.collisionCheck.wallCheck(this);
+        collisionUpdate();
         if (alerted) {
             if (!moving) {
                 if (gp.inmate.getX() < getX()) {
@@ -114,27 +135,11 @@ public class Guard extends MovingActor {
                         setDirection("down");
                     }
                 }
-
                 moving = true;
             }
-
-            collision = false;
-            collisionUpdate();
-            spriteUpdate();
-
-            pixelCounter += getSpeed();
-
-            if (pixelCounter == 48) {
-                moving = false;
-                pixelCounter = 0;
-            }
+            spritePixelUpdate();
         } else {
-            String currentDirection = getDirection();
-            collision = false;
-            gp.collisionCheck.wallCheck(this);
-
-            collisionUpdate();
-            if(collision){
+            if (collision){
                 if(getDirection() == "left"){
                     setDirection("right");
                 }
@@ -147,25 +152,10 @@ public class Guard extends MovingActor {
                 else if(getDirection() == "down"){
                     setDirection("up");
                 }
-                spriteUpdate();
-
-                pixelCounter += getSpeed();
-
-                if (pixelCounter == 48) {
-                    moving = false;
-                    pixelCounter = 0;
-                }
+                spritePixelUpdate();
             }
             else{
-                setDirection(currentDirection);
-                spriteUpdate();
-
-                pixelCounter += getSpeed();
-
-                if (pixelCounter == 48) {
-                    moving = false;
-                    pixelCounter = 0;
-                }
+                spritePixelUpdate();
             }
         }
     }

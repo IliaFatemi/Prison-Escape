@@ -16,14 +16,26 @@ public class MovingActor extends Entity {
     private final int solidAreaDefaultX = solidArea.x;
     private final int solidAreaDefaultY = solidArea.y;
 
+    /**
+     * Sets the speed of the entity with the value passed into it
+     * @param speed
+     */
     public void setSpeed(int speed) {
         this.speed = speed;
     }
 
+    /**
+     * Sets the direction of the entity with the string passed into it
+     * @param direction
+     */
     public void setDirection(String direction) {
         this.direction = direction;
     }
 
+    /**
+     * Sets the sprite of the entity with the value passed into it
+     * @param spriteNum
+     */
     public void setSpriteNum(int spriteNum) {
         this.spriteNum = spriteNum;
     }

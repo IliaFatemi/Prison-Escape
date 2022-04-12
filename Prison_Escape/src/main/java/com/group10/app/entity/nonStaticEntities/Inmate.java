@@ -91,6 +91,12 @@ public class Inmate extends MovingActor {
         }
     }
 
+    /**
+     * Sets the direction of the inmate depending upon the key input.
+     * <p>
+     *     Takes in the input of the user and sets the direction of the inmate accordingly.
+     * </p>
+     */
     public void updateDirection(){
         if (keyH.pressedUp) {
             setDirection("up");
@@ -145,8 +151,14 @@ public class Inmate extends MovingActor {
      */
     public void setNumKeys(int newNumKeys){hasKey = newNumKeys;}
 
+    /**
+     * Resets the number of keys collected by the inmate to 0
+     */
     public void resetKeys() {hasKey = 0;}
 
+    /**
+     * Resets the score attained by the inmate to 0
+     */
     public void resetScore() {score = 0;}
 
     /**
