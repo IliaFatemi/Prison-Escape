@@ -88,3 +88,4 @@
 87 guardPost4 true
 88 steelDoor true
 89 toiletRight true
+90 underGateBlock true

@@ -153,9 +153,6 @@ public class CollisionManager {
             }
         }
 
-        if (Objects.equals(actor.name, "guard") && actor.collision) {
-            System.out.println("check door");
-        }
         return index;
     }
 
