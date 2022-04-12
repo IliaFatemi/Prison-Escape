@@ -36,24 +36,8 @@ public class GameDisplay {
         return g2;
     }
 
-    public Font getArial_40() {
-        return arial_40;
-    }
-
-    public BufferedImage getKeyImage() {
-        return keyImage;
-    }
-
-    public ArrayList<String> getMessage() {
-        return message;
-    }
-
     public ArrayList<Integer> getMessageCounter() {
         return messageCounter;
-    }
-
-    public DecimalFormat getdFormat() {
-        return dFormat;
     }
 
     DecimalFormat dFormat = new DecimalFormat("#0.0");
