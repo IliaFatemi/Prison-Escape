@@ -86,21 +86,43 @@ public class Entity {
         return image;
     }
 
-    
-
+    /**
+     * Returns the x value of the entity.
+     * @return
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Sets the x value of the entity.
+     * @param x
+     */
     public void setX(int x) {
         this.x = x;
     }
 
+    /**
+     * Returns the y value of the entity.
+     * @return
+     */
     public int getY() {
         return y;
     }
 
+    /**
+     * Sets the y value of the entity.
+     * @param y
+     */
     public void setY(int y) {
         this.y = y;
+    }
+
+    /**
+     * Sets the collision boolean to true of false as required.
+     * @param collision
+     */
+    public void setCollision(boolean collision) {
+        this.collision = collision;
     }
 }

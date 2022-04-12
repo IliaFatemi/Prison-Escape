@@ -1,6 +1,6 @@
 package com.group10.app.entity.nonStaticEntities;
 
-import com.group10.app.main.GamePanel;
+import  com.group10.app.main.GamePanel;
 import com.group10.app.main.KeyManager;
 
 import java.util.Objects;

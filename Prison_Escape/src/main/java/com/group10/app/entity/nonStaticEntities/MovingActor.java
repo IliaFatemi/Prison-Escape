@@ -40,10 +40,6 @@ public class MovingActor extends Entity {
         this.spriteNum = spriteNum;
     }
 
-    public void setCollision(boolean collision) {
-        this.collision = collision;
-    }
-
     /**
      * Set the x position of the actor
      * @return x the x position of the actor
