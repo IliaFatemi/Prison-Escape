@@ -38,7 +38,7 @@ public class MenuScreen extends Menu{
             newGame = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/newGameBtn.png")));
             continue_ = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/continueBtn.png")));
             quitGame = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/quitGameBtn.png")));
-            backgroundImg = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/backgroundMenuImg.png")));
+            backgroundImg = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/backgroundMenuImg2.png")));
             help = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/helpBtn.png")));
             credits = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/creditsBtn.png")));
         }catch(IOException e){
@@ -53,7 +53,7 @@ public class MenuScreen extends Menu{
      */
     public void renderMenu(Graphics2D g2){
         g2.drawImage(backgroundImg, 0, 0, gp.screenWidth, gp.screenHeight, null);
-        g2.drawImage(gameTitle, gp.screenWidth/2 - 211, gp.screenHeight/2 - 300, 423, 57, null);
+        g2.drawImage(gameTitle, gp.screenWidth/2 - 211, gp.screenHeight/2 - 400, 423, 57, null);
         g2.drawImage(newGame,  gp.screenWidth/2-103,  gp.screenHeight/2 - 200, 206, 70, null);
         g2.drawImage(continue_, gp.screenWidth/2-103, gp.screenHeight/2 - 100, 206, 70, null);
         g2.drawImage(help, gp.screenWidth/2-103, gp.screenHeight/2, 206, 70, null);

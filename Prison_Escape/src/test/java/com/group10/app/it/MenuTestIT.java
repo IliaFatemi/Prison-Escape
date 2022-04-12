@@ -28,12 +28,20 @@ public class MenuTestIT {
     public void mainMenuButton(){
         assertEquals(GameStates.MENU, gp.getState());
 
-        gp.mouseK.MainMenuControls(700,168);
+        gp.mouseK.MainMenuControls(681, 277);
         assertEquals(GameStates.GAME, gp.getState());
 
         gp.setState(GameStates.MENU);
-        gp.mouseK.MainMenuControls(700,268);
+        gp.mouseK.MainMenuControls(735,371);
         assertEquals(GameStates.GAME, gp.getState());
+
+        gp.setState(GameStates.MENU);
+        gp.mouseK.MainMenuControls(712,462);
+        assertEquals(GameStates.HELP_MENU, gp.getState());
+
+        gp.setState(GameStates.MENU);
+        gp.mouseK.MainMenuControls(716,567);
+        assertEquals(GameStates.CREDITS_MENU, gp.getState());
 
         gp.setState(GameStates.MENU);
     }
