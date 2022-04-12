@@ -56,6 +56,7 @@ public class SaveLoadTestIT {
         BufferedReader br = new BufferedReader(new InputStreamReader(level));
         String line = br.readLine();
         assertEquals("2 610 562 2 100.0 0 0", line);
+        br.close();
     }
 
     @Test
@@ -68,6 +69,7 @@ public class SaveLoadTestIT {
         BufferedReader br = new BufferedReader(new InputStreamReader(level));
         String line = br.readLine();
         assertEquals("3 110 101 2 100.0 0 0", line);
+        br.close();
     }
 
     @Test

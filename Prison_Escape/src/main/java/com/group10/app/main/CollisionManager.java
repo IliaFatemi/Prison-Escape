@@ -3,8 +3,6 @@ package com.group10.app.main;
 import com.group10.app.entity.nonStaticEntities.Inmate;
 import com.group10.app.entity.nonStaticEntities.MovingActor;
 
-import java.util.Objects;
-
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
