@@ -44,7 +44,8 @@ public class KeyManager implements KeyListener {
         if(code == KeyEvent.VK_D){pressedRight  = true;}
 
         if(code == KeyEvent.VK_ESCAPE){
-            if(GamePanel.state != MENU){
+            if(GamePanel.state != MENU && GamePanel.state != HELP_MENU
+                && GamePanel.state != CREDITS_MENU){
 
                 pressedEscape = true;
                 GamePanel.state = PAUSED;
