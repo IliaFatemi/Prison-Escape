@@ -302,6 +302,8 @@ public class GamePanel extends JPanel implements Runnable{
             inmate.setPos(610, 562);
         }else if (getGameLevel() == 3){
             inmate.setPos(110, 101);
+        }else if (getGameLevel() == 4){
+            inmate.setPos(296, 389);
         }
 
         tileManage.loadMap("/levels/Level" + GAME_LEVEL + ".txt");
