@@ -76,7 +76,7 @@ public class SaveLoadTestIT {
     public void loadInmateLevel1Test() throws IOException {
         gp.setGameLevel(1);
         gp.levelCheck();
-        gp.saveGame.mySave("test.txt");
+        gp.saveGame.saveData("test.txt");
         gp.loadGame.loadData("test.txt");
         assertEquals(1, gp.getGameLevel());
         assertEquals(279, gp.inmate.getX());
@@ -91,7 +91,7 @@ public class SaveLoadTestIT {
     public void loadInmateLevel2Test() throws IOException {
         gp.setGameLevel(2);
         gp.levelCheck();
-        gp.saveGame.mySave("test.txt");
+        gp.saveGame.saveData("test.txt");
         gp.loadGame.loadData("test.txt");
         assertEquals(2, gp.getGameLevel());
         assertEquals(610, gp.inmate.getX());
@@ -106,7 +106,7 @@ public class SaveLoadTestIT {
     public void loadInmateLevel3Test() throws IOException {
         gp.setGameLevel(3);
         gp.levelCheck();
-        gp.saveGame.mySave("test.txt");
+        gp.saveGame.saveData("test.txt");
         gp.loadGame.loadData("test.txt");
         assertEquals(3, gp.getGameLevel());
         assertEquals(110, gp.inmate.getX());

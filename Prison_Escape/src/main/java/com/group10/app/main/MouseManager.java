@@ -201,7 +201,7 @@ public class MouseManager implements MouseListener{
         //return to main menu controls
         if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(103)){
             if(mouseY >= gp.screenHeight/2 - 30 && mouseY <= gp.screenHeight/2 + 30){
-                gp.saveGame.mySave("saveFile.txt");
+                gp.saveGame.saveData("saveFile.txt");
                 System.out.println("returning to Main menu");
                 gp.setState(MENU);
                 gp.music.playMusic(0);
@@ -266,7 +266,7 @@ public class MouseManager implements MouseListener{
             if(mouseY >= gp.screenHeight/2 - 30 && mouseY <= gp.screenHeight/2 + 40){
                 System.out.println("returning to Main menu");
                 gp.levelCheck();
-                gp.saveGame.mySave("saveFile.txt");
+                gp.saveGame.saveData("saveFile.txt");
                 gp.setState(MENU);
                 gp.music.playMusic(0);
             }   
