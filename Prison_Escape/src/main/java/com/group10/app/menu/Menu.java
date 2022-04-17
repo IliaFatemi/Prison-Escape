@@ -31,6 +31,8 @@ public class Menu {
             return new HelpMenu(gp);
         }else if(gp.getState() == GameStates.CREDITS_MENU){
             return new CreditsMenu(gp);
+        }else if (gp.getState() == GameStates.ERROR_MENU){
+            return new ErrorMenu(gp);
         }
         return null;
     }

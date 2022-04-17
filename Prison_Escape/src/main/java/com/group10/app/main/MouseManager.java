@@ -50,33 +50,38 @@ public class MouseManager implements MouseListener{
         System.out.println("col: "+mouseX/gp.cellSize + ", " + "row: "+mouseY/gp.cellSize);
 
         //Mouse control works only in main menu
-        if(GamePanel.state != GAME && GamePanel.state != PAUSED && GamePanel.state != GAMEWON && GamePanel.state != GAMEOVER && GamePanel.state != HELP_MENU && GamePanel.state != CREDITS_MENU){
+        if(GamePanel.state != GAME && GamePanel.state != PAUSED && GamePanel.state != GAMEWON && GamePanel.state != GAMEOVER && GamePanel.state != HELP_MENU && GamePanel.state != CREDITS_MENU && GamePanel.state != ERROR_MENU){
             MainMenuControls(mouseX, mouseY);
         }
 
         //Mouse control works only in help menu
-        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEWON && GamePanel.state != GAMEOVER && GamePanel.state != PAUSED && GamePanel.state != CREDITS_MENU){
+        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEWON && GamePanel.state != GAMEOVER && GamePanel.state != PAUSED && GamePanel.state != CREDITS_MENU && GamePanel.state != ERROR_MENU){
             HelpMenuControls(mouseX, mouseY);
         }
 
         //Mouse control works only in credits menu
-        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEWON && GamePanel.state != GAMEOVER && GamePanel.state != PAUSED && GamePanel.state != HELP_MENU){
+        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEWON && GamePanel.state != GAMEOVER && GamePanel.state != PAUSED && GamePanel.state != HELP_MENU && GamePanel.state != ERROR_MENU){
             HelpMenuControls(mouseX, mouseY);
         }
 
         //Mouse control works only in pause menu
-        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEWON && GamePanel.state != GAMEOVER && GamePanel.state != HELP_MENU && GamePanel.state != CREDITS_MENU){
+        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEWON && GamePanel.state != GAMEOVER && GamePanel.state != HELP_MENU && GamePanel.state != CREDITS_MENU && GamePanel.state != ERROR_MENU){
             PauseMenuControls(mouseX, mouseY);
         }
 
         //Mouse control for game won menu
-        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEOVER && GamePanel.state != PAUSED && GamePanel.state != HELP_MENU && GamePanel.state != CREDITS_MENU){
+        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEOVER && GamePanel.state != PAUSED && GamePanel.state != HELP_MENU && GamePanel.state != CREDITS_MENU && GamePanel.state != ERROR_MENU){
             GameWonMenuControls(mouseX, mouseY);
         }
 
         //Mouse control for game over menu
-        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEWON && GamePanel.state != PAUSED && GamePanel.state != HELP_MENU && GamePanel.state != CREDITS_MENU){
+        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEWON && GamePanel.state != PAUSED && GamePanel.state != HELP_MENU && GamePanel.state != CREDITS_MENU && GamePanel.state != ERROR_MENU){
             GameOverMenuControls(mouseX, mouseY);
+        }
+
+        //Mouse controls for error menu
+        if(GamePanel.state != GAME && GamePanel.state != MENU && GamePanel.state != GAMEWON && GamePanel.state != PAUSED && GamePanel.state != HELP_MENU && GamePanel.state != CREDITS_MENU && GamePanel.state != GAMEOVER){
+            ErrorMenuControls(mouseX, mouseY);
         }
         
     }
@@ -108,8 +113,8 @@ public class MouseManager implements MouseListener{
         //Continue button
         if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(106)){
             if(mouseY >= gp.screenHeight/2 - 100 && mouseY <= gp.screenHeight/2 - 30){
-                if (gp.loadGame.isEmpty("saveFile.txt") && GamePanel.GAME_LEVEL != 1) {
-                    GamePanel.state = HELP_MENU;
+                if (gp.loadGame.isEmpty("saveFile.txt")) {
+                    GamePanel.state = ERROR_MENU;
                 }
                 else {
                     System.out.println("Continuing game");
@@ -219,6 +224,7 @@ public class MouseManager implements MouseListener{
                 GamePanel.GAME_LEVEL++;
                 System.out.println("(Update) Level: "+ GamePanel.GAME_LEVEL);
                 if(GamePanel.GAME_LEVEL > 3){
+                    gp.loadGame.resetFile("saveFile.txt");
                     GamePanel.GAME_LEVEL = 1;
                     GamePanel.state = CREDITS_MENU;
                 }else{
@@ -270,6 +276,22 @@ public class MouseManager implements MouseListener{
 
                 gp.music.playMusic(0);
             }   
+        }
+    }
+
+    /**
+     * <p>ErrorMenuControls will only work on the main menu screen if the state of the game is ERROR_MENU</p>
+     * @param mouseX integer location for mouse X position
+     * @param mouseY integer location for mouse Y position
+     */
+    public void ErrorMenuControls(int mouseX, int mouseY){
+        //Return to menu button
+        if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(106)){
+            if(mouseY >= gp.screenHeight/2 + 350 && mouseY <= gp.screenHeight/2 + 398){
+                //Close the screen
+                System.out.println("return to main menu");
+                GamePanel.state = MENU;
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ public class LoadGame {
     GamePanel gp;
     private String fileName;
     private InputStream level;
+    private FileOutputStream newFile;
     private BufferedReader br;
 
     /**
@@ -148,5 +149,13 @@ public class LoadGame {
     public boolean isEmpty(String fileName) {
         File file = new File("src/main/SavedGame/" + fileName);
         return file.length() == 0;
+    }
+
+    public void resetFile(String file){
+        try{
+            newFile = new FileOutputStream("src/main/SavedGame/" + file);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }
