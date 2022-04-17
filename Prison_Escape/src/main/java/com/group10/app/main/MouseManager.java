@@ -201,7 +201,7 @@ public class MouseManager implements MouseListener{
         }
         //return to main menu controls
         if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(103)){
-            if(mouseY >= gp.screenHeight/2 + 70 && mouseY <= gp.screenHeight/2 + 140){
+            if(mouseY >= gp.screenHeight/2 - 30 && mouseY <= gp.screenHeight/2 + 30){
                 gp.saveGame.mySave("saveFile.txt");
                 System.out.println("returning to Main menu");
                 GamePanel.state = MENU;

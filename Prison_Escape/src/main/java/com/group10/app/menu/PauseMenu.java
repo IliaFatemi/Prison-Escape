@@ -38,7 +38,7 @@ public class PauseMenu extends Menu{
         try{
             resume = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/resumeBtn.png")));
             returnMenu = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/returnToMenuBtn.png")));
-            pauseTemplate = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/pausedTemplate.png")));
+            pauseTemplate = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/menu/ui_pause_title.png")));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -49,8 +49,8 @@ public class PauseMenu extends Menu{
      * @param g2 using the Graphics2D to draw the registered images onto the display
      */
     public void renderMenu(Graphics2D g2){
-        g2.drawImage(pauseTemplate, gp.screenWidth/2-350, gp.screenHeight/2-250, 700, 500, null);
+        g2.drawImage(pauseTemplate, gp.screenWidth/2-140, gp.screenHeight/2-250, 280, 70, null);
         g2.drawImage(resume, gp.screenWidth/2 - 103, gp.screenHeight/2 - 130, 206, 70, null);
-        g2.drawImage(returnMenu, gp.screenWidth/2-103, gp.screenHeight/2 + 70, 206, 70, null);
+        g2.drawImage(returnMenu, gp.screenWidth/2-103, gp.screenHeight/2 - 30, 206, 70, null);
     }
 }
