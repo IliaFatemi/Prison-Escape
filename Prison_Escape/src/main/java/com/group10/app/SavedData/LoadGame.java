@@ -94,18 +94,17 @@ public class LoadGame {
         }
     }
 
-
     /**
-     * The first line of the file is Inmate's data
+     * To load the Entity's data
+     * The line that read first time is an integral that represent the number of Entities
      *
      * <p>
-     *     For example: "1 279 717 2 96.76666666666685 50 2"
-     *     "1" is Game Level
-     *     "279 717" is the Inmate's position (x,y)
-     *     "2" is the Inmate's speed
-     *     "96.76666666666685" is the Inmate's rest of time
-     *     "50" is the Inmate's score
-     *     "2" is the Inmate's number of keys
+     *     For example: "19
+     *                   Key 96 336
+     *                   ..."
+     *     "19" is total number of Entities
+     *     "Key" is the kind of object
+     *     "96 336" is the object's position
      * </p>
      */
     public void loadEntity() {
@@ -149,6 +148,19 @@ public class LoadGame {
         }
     }
 
+    /**
+     * To load the Guard's data
+     * The line that read first time is an integral that represent the number of Guard
+     *
+     * <p>
+     *     For example: "3
+     *                   960 96
+     *                   672 720
+     *                   144 144"
+     *     "3" is total number of Guards
+     *     "960 96" is the Guard's position
+     * </p>
+     */
     public void loadGuard() {
 
         try{
@@ -167,6 +179,13 @@ public class LoadGame {
         }
     }
 
+    /**
+     * Check the file is or not empty
+     *
+     * @param fileName the path of the file
+     * @return if empty, return true
+     *         otherwise, return false
+     */
     public boolean isEmpty(String fileName) {
         File file = new File("src/main/SavedGame/" + fileName);
         return file.length() == 0;
