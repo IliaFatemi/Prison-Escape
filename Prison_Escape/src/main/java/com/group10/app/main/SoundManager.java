@@ -1,16 +1,11 @@
 package com.group10.app.main;
 
-import com.group10.app.entity.staticEntities.Tiles;
-
-import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.Scanner;
 
 /**
