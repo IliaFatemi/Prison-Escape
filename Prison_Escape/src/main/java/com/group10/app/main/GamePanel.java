@@ -69,7 +69,7 @@ public class GamePanel extends JPanel implements Runnable{
     int ENEMY_COLLISION_DISTANCE = 40;
 
     //The level the player is on
-    public static int GAME_LEVEL = 1;
+    private int GAME_LEVEL = 1;
     Boolean GAME_SAVED = false;
 
     //Load saved data
@@ -298,9 +298,9 @@ public class GamePanel extends JPanel implements Runnable{
         inmate.resetInmate();
         if(GAME_LEVEL == 1){
             inmate.setPos(279, 717);
-        }else if (GamePanel.GAME_LEVEL == 2){
+        }else if (getGameLevel() == 2){
             inmate.setPos(610, 562);
-        }else if (GamePanel.GAME_LEVEL == 3){
+        }else if (getGameLevel() == 3){
             inmate.setPos(110, 101);
         }
 

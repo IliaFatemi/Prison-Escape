@@ -233,9 +233,9 @@ public class Inmate extends MovingActor {
      * @return boolean
      */
     public boolean gotAllKeys(){
-        if(GamePanel.GAME_LEVEL == 1 && hasKey >= 3){return true;}
-        else if(GamePanel.GAME_LEVEL == 2 && hasKey >= 4){return true;}
-        else if(GamePanel.GAME_LEVEL == 3 && hasKey >= 5){return true;}
+        if(gp.getGameLevel() == 1 && hasKey >= 3){return true;}
+        else if(gp.getGameLevel() == 2 && hasKey >= 4){return true;}
+        else if(gp.getGameLevel() == 3 && hasKey >= 5){return true;}
         return false;
     }
 

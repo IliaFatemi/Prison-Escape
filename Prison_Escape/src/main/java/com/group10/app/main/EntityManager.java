@@ -246,9 +246,9 @@ public class EntityManager {
      * <p>Setting up the objects such as timer, keys, traps and drum sticks for each level in the game.</p>
      */
     public void setUpAsset() {
-        if (GamePanel.GAME_LEVEL == 1){setEntityLevel(1);}
-        else if (GamePanel.GAME_LEVEL == 2){setEntityLevel(2);}
-        else if (GamePanel.GAME_LEVEL == 3){setEntityLevel(3);}
+        if (gp.getGameLevel() == 1){setEntityLevel(1);}
+        else if (gp.getGameLevel() == 2){setEntityLevel(2);}
+        else if (gp.getGameLevel() == 3){setEntityLevel(3);}
     }
 }
 

@@ -33,7 +33,7 @@ public class MenuTestIT {
 
         gp.setState(GameStates.MENU);
         gp.mouseK.MainMenuControls(735,371);
-        assertEquals(GameStates.GAME, gp.getState());
+        assertEquals(GameStates.ERROR_MENU, gp.getState());
 
         gp.setState(GameStates.MENU);
         gp.mouseK.MainMenuControls(712,462);
@@ -55,7 +55,7 @@ public class MenuTestIT {
         assertEquals(GameStates.GAME, gp.getState());
 
         gp.setState(PAUSED);
-        gp.mouseK.PauseMenuControls(700,533);
+        gp.mouseK.PauseMenuControls(734, 419);
         assertEquals(GameStates.MENU, gp.getState());
     }
 

@@ -57,7 +57,7 @@ public class LoadGame {
             br = new BufferedReader(new InputStreamReader(level));
 
             loadInmate();
-            gp.tileManage.loadMap("/levels/Level" + GamePanel.GAME_LEVEL + ".txt");
+            gp.tileManage.loadMap("/levels/Level" + gp.getGameLevel() + ".txt");
             loadEntity();
             loadGuard();
 
@@ -73,8 +73,7 @@ public class LoadGame {
         try{
             String line = br.readLine();
             String[] savedData = line.split(" ");
-
-            GamePanel.GAME_LEVEL = Integer.parseInt(savedData[0]);
+            gp.setGameLevel(Integer.parseInt(savedData[0]));
             gp.inmate.setX(Integer.parseInt(savedData[1]));
             gp.inmate.setY(Integer.parseInt(savedData[2]));
             gp.inmate.setSpeed(Integer.parseInt(savedData[3]));

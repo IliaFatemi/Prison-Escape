@@ -1,14 +1,36 @@
 package com.group10.app.unit;
 
 import com.group10.app.entity.nonStaticEntities.Inmate;
-import com.group10.app.main.*;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
+import com.group10.app.main.GamePanel;
+import com.group10.app.main.GameStates;
+import com.group10.app.main.KeyManager;
+
+
+import org.junit.jupiter.api.BeforeEach;
+
+
 public class InmateTest {
     GamePanel gp;
     KeyManager keyH;
+
+    @BeforeEach
+    void setUp(){
+        gp = new GamePanel();
+        gp.keyH = new KeyManager();
+        gp.keyH.pressedUp = true;
+
+        gp.setState(GameStates.GAME);
+
+        gp.inmate = new Inmate(gp, gp.keyH);
+
+        gp.inmate.setX(50);
+        gp.inmate.setY(50);
+
+    }
 
     @Test
     public void testPosition(){
@@ -92,19 +114,19 @@ public class InmateTest {
     @Test
     public void testGotAllKeys(){
         Inmate inmate = new Inmate(gp, keyH);
-        GamePanel.GAME_LEVEL = 1;
+        gp.setGameLevel(1);
         Assert.assertEquals(false, inmate.gotAllKeys());
         inmate.setNumKeys(3);
         Assert.assertEquals(true, inmate.gotAllKeys());
-        GamePanel.GAME_LEVEL = 2;
+        gp.setGameLevel(2);
         Assert.assertEquals(false, inmate.gotAllKeys());
         inmate.setNumKeys(4);
         Assert.assertEquals(true, inmate.gotAllKeys());
-        GamePanel.GAME_LEVEL = 3;
+        gp.setGameLevel(3);
         Assert.assertEquals(false, inmate.gotAllKeys());
         inmate.setNumKeys(5);
         Assert.assertEquals(true, inmate.gotAllKeys());
-        GamePanel.GAME_LEVEL = 4;
+        gp.setGameLevel(4);
         Assert.assertEquals(false, inmate.gotAllKeys());
     }
     

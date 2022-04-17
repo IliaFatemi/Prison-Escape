@@ -53,7 +53,7 @@ public class Door extends Entity {
 
         int i = 25;
 
-        if (gp.inmate.getNumKeys() == 2 + GamePanel.GAME_LEVEL){
+        if (gp.inmate.getNumKeys() == 2 + gp.getGameLevel()){
 
             if (doorLightly < i) {
                 changeAlpha(g2, 0.5f);
