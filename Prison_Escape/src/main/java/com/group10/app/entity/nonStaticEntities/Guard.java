@@ -82,7 +82,10 @@ public class Guard extends MovingActor {
      * </p>
      */
     public void GuardAlerted() {
-        if (((gp.inmate.getX() - getX()) < 200) && ((gp.inmate.getY() - getY()) < 200)) {
+        if ((Math.abs(gp.inmate.getX() - getX()) < 200) && (Math.abs(gp.inmate.getY() - getY()) < 200)) {
+            if (!alerted) {
+                gp.soundEffect.playSE(5);
+            }
             alerted = true;
         } else {
             alerted = false;
