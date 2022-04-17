@@ -154,6 +154,7 @@ public class LoadGame {
     public void resetFile(String file){
         try{
             newFile = new FileOutputStream("src/main/SavedGame/" + file);
+            newFile.close();
         }catch(Exception e){
             e.printStackTrace();
         }
