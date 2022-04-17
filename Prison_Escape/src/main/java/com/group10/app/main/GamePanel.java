@@ -13,6 +13,7 @@ import com.group10.app.SavedData.SaveGame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.Arrays;
 
 import static com.group10.app.main.GameStates.*;
@@ -221,6 +222,11 @@ public class GamePanel extends JPanel implements Runnable{
                 music.stopMusic();
                 soundEffect.playSE(7);
                 state = GAMEWON;
+
+                if (GAME_LEVEL == 3) {
+                    File file = new File("src/main/SavedGame/saveFile.txt");
+                    file.delete();
+                }
             }
         }
 

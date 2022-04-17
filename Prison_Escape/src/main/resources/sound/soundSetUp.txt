@@ -4,5 +4,6 @@
 3 getChicken.wav
 4 getTrap.wav
 5 inmateSeesGuard.wav
+6 loseLevel.wav
 7 winLevel.wav
 8 inGameMusic.wav

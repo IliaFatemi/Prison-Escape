@@ -108,12 +108,18 @@ public class MouseManager implements MouseListener{
         //Continue button
         if(mouseX >= gp.screenWidth/2-103 && mouseX <= gp.screenWidth/2+(106)){
             if(mouseY >= gp.screenHeight/2 - 100 && mouseY <= gp.screenHeight/2 - 30){
-                System.out.println("Continuing game");
-                GamePanel.state = GAME;
-                gp.loadGame.loadData("saveFile.txt");
-                System.out.println("loading Complete");
+                if (gp.loadGame.isEmpty("saveFile.txt") && GamePanel.GAME_LEVEL != 1) {
+                    GamePanel.state = HELP_MENU;
+                }
+                else {
+                    System.out.println("Continuing game");
+                    GamePanel.state = GAME;
+                    gp.loadGame.loadData("saveFile.txt");
+                    System.out.println("loading Complete");
 
-                gp.music.playMusic(8);
+                    gp.music.playMusic(8);
+                }
+
             }
         }
 
@@ -229,7 +235,6 @@ public class MouseManager implements MouseListener{
                 GamePanel.GAME_LEVEL++;
                 System.out.println("(Update) Level: "+GamePanel.GAME_LEVEL);
                 gp.levelCheck();
-                gp.saveGame.mySave("saveFile.txt");
                 System.out.println(mouseX + " "+ mouseY + ": returning to Main menu");
                 GamePanel.state = MENU;
 

@@ -144,4 +144,9 @@ public class LoadGame {
             e.printStackTrace();
         }
     }
+
+    public boolean isEmpty(String fileName) {
+        File file = new File("src/main/SavedGame/" + fileName);
+        return file.length() == 0;
+    }
 }
