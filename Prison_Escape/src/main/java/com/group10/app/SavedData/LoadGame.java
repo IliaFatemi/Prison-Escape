@@ -18,19 +18,6 @@ public class LoadGame {
     private FileOutputStream newFile;
     private BufferedReader br;
 
-    /**
-     * All the data from the text file will be stored in the data array.
-     * index 0: level
-     * index 1: player x cor
-     * index 2: player y cor
-     * index 3: timer
-     * index 4: score
-     * index 5: number of keys
-     * index 6: enemy x cor
-     * index 7: enemy y cor
-     */
-    int[] data = new int[8];
-
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
@@ -47,7 +34,14 @@ public class LoadGame {
     }
 
     /**
-     * <p>loadData will load up the save0.txt file and store the values inside of a private array inside the LoadGame</p>
+     * Load all date from the file
+     *
+     * <p>
+     *     Call setFileName method to setup the filename
+     *     Try open that file and load Inmate, Map, Entity, Guard
+     * </p>
+     *
+     * @param fileName the path of the file that save data
      */
     public void loadData(String fileName){
         setFileName(fileName);
@@ -68,6 +62,20 @@ public class LoadGame {
         }
     }
 
+    /**
+     * To load the map level and the Inmate's data
+     * Using the first line of the file
+     *
+     * <p>
+     *     For example: "1 279 717 2 96.76666666666685 50 2"
+     *     "1" is Game Level
+     *     "279 717" is the Inmate's position (x,y)
+     *     "2" is the Inmate's speed
+     *     "96.76666666666685" is the Inmate's rest of time
+     *     "50" is the Inmate's score
+     *     "2" is the Inmate's number of keys
+     * </p>
+     */
     public void loadInmate() {
 
         try{
@@ -86,6 +94,20 @@ public class LoadGame {
         }
     }
 
+
+    /**
+     * The first line of the file is Inmate's data
+     *
+     * <p>
+     *     For example: "1 279 717 2 96.76666666666685 50 2"
+     *     "1" is Game Level
+     *     "279 717" is the Inmate's position (x,y)
+     *     "2" is the Inmate's speed
+     *     "96.76666666666685" is the Inmate's rest of time
+     *     "50" is the Inmate's score
+     *     "2" is the Inmate's number of keys
+     * </p>
+     */
     public void loadEntity() {
 
         try{
