@@ -36,7 +36,7 @@ public class Entity {
 
     // Counter
     public int disappears = 0;
-    public int doorLightly = 0;
+    public int lightly = 0;
 
     //
     public int x, y;
@@ -124,5 +124,12 @@ public class Entity {
      */
     public void setCollision(boolean collision) {
         this.collision = collision;
+    }
+
+    /**
+     * Changes the brightness
+     */
+    public void changeAlpha(Graphics2D g2, float alphaValue) {
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }
 }

@@ -3,6 +3,8 @@ package com.group10.app.entity.staticEntities;
 import com.group10.app.entity.Entity;
 import com.group10.app.main.GamePanel;
 
+import java.awt.*;
+
 /**
  * This is the class which embodies the chicken drumstick collectible.
  * <p>
@@ -12,6 +14,7 @@ import com.group10.app.main.GamePanel;
  */
 public class Chicken extends Entity {
 
+    GamePanel gp;
     /**
      * Constructor Method to assign initial values to chicken object.
      * <p>
@@ -23,9 +26,28 @@ public class Chicken extends Entity {
      */
     public Chicken(GamePanel gp){
         super(gp);
+        this.gp = gp;
 
         name = "Chicken";
         down1 = setup("/collectibles/chickenDrumStick");
     }
 
+    public void draw(Graphics2D g2) {
+
+        if (disappears > 900){
+
+            if (lightly < 25) {
+                changeAlpha(g2, 0.5f);
+            }
+
+            lightly++;
+
+            if (lightly > 50){
+                lightly = 0;
+            }
+        }
+
+        g2.drawImage(down1, x, y, gp.cellSize, gp.cellSize, null);
+        changeAlpha(g2, 1f);
+    }
 }
