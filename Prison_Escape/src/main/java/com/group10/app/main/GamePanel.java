@@ -123,6 +123,10 @@ public class GamePanel extends JPanel implements Runnable{
         GAME_LEVEL = gameLevel;
     }
 
+    public void increaseLevel(){
+        GAME_LEVEL++;
+    }
+
     public GameStates getState() {
         return state;
     }
