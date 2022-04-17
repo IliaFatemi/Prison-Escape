@@ -79,6 +79,7 @@ public class Guard extends MovingActor {
 
     /**
      * Decides if the inmate is close enough for the guard to be in an alerted state
+     * And play the soundEffect periodic
      * <p>
      *     Checks if the inmate is within a certain radius of the guard in order for
      *     the guard to be alerted of the inmate's presence and follow him.
