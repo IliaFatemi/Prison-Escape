@@ -30,6 +30,7 @@ public class SaveGame {
         return fileName;
     }
 
+
     public void saveInmate() {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/SavedGame/" + fileName));
@@ -112,7 +113,7 @@ public class SaveGame {
         }
     }
 
-    public void mySave(String fileName) {
+    public void saveData(String fileName) {
         setFileName(fileName);
         saveInmate();
         saveEntity();

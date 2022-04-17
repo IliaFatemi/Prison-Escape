@@ -18,6 +18,9 @@ public class Guard extends MovingActor {
     boolean moving = false;
     int pixelCounter = 0;
     boolean alerted = false;
+    private int frequency = 50;
+    private int heartSoundCounter = 0;
+    private boolean isHeartSound = false;
 
     /**
      * The constructor for the Guard class...
@@ -82,13 +85,27 @@ public class Guard extends MovingActor {
      * </p>
      */
     public void GuardAlerted() {
-        if ((Math.abs(gp.inmate.getX() - getX()) < 200) && (Math.abs(gp.inmate.getY() - getY()) < 200)) {
-            if (!alerted) {
+        int xDiff = Math.abs(gp.inmate.getX() - getX());
+        int yDiff = Math.abs(gp.inmate.getY() - getY());
+
+        if (xDiff < 200 && yDiff < 200) {
+
+            if (!isHeartSound) {
                 gp.soundEffect.playSE(5);
+                isHeartSound = true;
             }
+
+            heartSoundCounter++;
+            if (heartSoundCounter > frequency) {
+                isHeartSound = false;
+                heartSoundCounter = 0;
+            }
+
             alerted = true;
         } else {
             alerted = false;
+            heartSoundCounter = 0;
+            isHeartSound = false;
         }
     }
 
