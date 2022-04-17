@@ -191,6 +191,10 @@ public class LoadGame {
         return file.length() == 0;
     }
 
+    /**
+     * <p>This method will overwrite an existing file. If that file does not exists, a file of the given type will be created.</p>
+     * @param file A file name. eg. "Test.txt"
+     */
     public void resetFile(String file){
         try{
             newFile = new FileOutputStream("src/main/SavedGame/" + file);
