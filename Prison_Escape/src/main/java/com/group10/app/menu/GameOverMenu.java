@@ -20,7 +20,7 @@ public class GameOverMenu extends Menu{
      * retry: will register the retry button picture
      * gameOverTemplate: will register the gameover display template
      */
-    public BufferedImage returnMenu, gameOverTemplate, retry;
+    private BufferedImage returnMenu, gameOverTemplate, retry;
 
     /**
      * <p>The contructor for GameOverMenu will setup the registered images</p>

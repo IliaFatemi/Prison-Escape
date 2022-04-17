@@ -18,7 +18,7 @@ public class MenuScreen extends Menu{
      * continue_: will register the retry button picture
      * quitGame: will register the gameover display template
      */
-    public BufferedImage newGame, continue_, quitGame, gameTitle, backgroundImg, help, credits;
+    private BufferedImage newGame, continue_, quitGame, gameTitle, backgroundImg, help, credits;
 
     /**
      * <p>The contructor for MenuScreen will setup the registered images</p>

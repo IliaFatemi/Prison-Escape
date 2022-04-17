@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class CreditsMenu extends Menu{
 
-    public BufferedImage returnMenu, CreditsTemplate, gameTitle;
+    private BufferedImage returnMenu, CreditsTemplate, gameTitle;
 
     public CreditsMenu(GamePanel gp){
         super(gp);

@@ -26,7 +26,7 @@ public class WonMenu extends Menu{
      * returnMenu: will register the return to main menu button
      * gameWonTemp: will register the background image
      */ 
-    public BufferedImage returnMenu, gameWonTemp, nextLevel;
+    private BufferedImage returnMenu, gameWonTemp, nextLevel;
 
     /**
      * <p>The contractor for WonMenu will setup the registered images</p>

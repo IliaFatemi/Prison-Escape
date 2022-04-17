@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class ErrorMenu extends Menu{
 
-    BufferedImage returnToMenuBtn, backgroundImg, gameTitle;
+    private BufferedImage returnToMenuBtn, backgroundImg, gameTitle;
 
     ErrorMenu(GamePanel gp){
         super(gp);

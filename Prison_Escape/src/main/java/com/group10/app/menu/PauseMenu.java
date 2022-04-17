@@ -19,7 +19,7 @@ public class PauseMenu extends Menu{
      * returnMenu: will register the return to main menu button
      * pauseTemplate: will register the background image
      */ 
-    public BufferedImage resume, returnMenu, pauseTemplate;
+    private BufferedImage resume, returnMenu, pauseTemplate;
 
     /**
      * <p>The contructor for PauseMenu will setup the registered images</p>

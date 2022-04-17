@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class HelpMenu extends Menu{
     
-    public BufferedImage returnMenu, helpTemplate, gameTitle;
+    private BufferedImage returnMenu, helpTemplate, gameTitle;
 
     HelpMenu(GamePanel gp){
         super(gp);
