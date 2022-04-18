@@ -18,6 +18,8 @@ mvn exec:java -Dexec.mainClass="com.group10.app.App"
 # How to create Javadocs HMTL files
 ```
 mvn javadoc:javadoc
+
+The Javadocs are found in `${basedir}/target/site/apidocs/` if the above command is executed
 ```
 # link to video
 
