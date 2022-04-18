@@ -49,38 +49,33 @@ public class Door extends Entity {
         solidAreaDefaultY = solidArea.y;
     }
 
+    /**
+     * changes the brightness of the door based off the value of alphavalue after
+     * all keys have been collected
+     *
+     * @param g2
+     */
     public void draw(Graphics2D g2) {
 
         int i = 25;
 
         if (gp.inmate.getNumKeys() == 2 + gp.getGameLevel()){
 
-            if (doorLightly < i) {
+            if (lightly < i) {
                 changeAlpha(g2, 0.5f);
             }
             else {
                 changeAlpha(g2, 1f);
             }
 
-            doorLightly++;
+            lightly++;
 
-            if (doorLightly > 50){
-                doorLightly = 0;
+            if (lightly > 50){
+                lightly = 0;
             }
         }
 
         g2.drawImage(down1, x, y, gp.cellSize, gp.cellSize, null);
         changeAlpha(g2, 1f);
-    }
-
-    /**
-     * changes the brightness of the door based off the value of alphavalue after
-     * all keys have been collected
-     *
-     * @param g2
-     * @param alphaValue (scale factor for adjusting the brightness of the door)
-     */
-    public void changeAlpha(Graphics2D g2, float alphaValue) {
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }
 }
