@@ -20,6 +20,6 @@ mvn exec:java -Dexec.mainClass="com.group10.app.App"
 mvn javadoc:javadoc
 ```
 #link to video
-```
-https://youtu.be/Dx4wshp9L6U 
-```
+
+<https://youtu.be/Dx4wshp9L6U>
+
