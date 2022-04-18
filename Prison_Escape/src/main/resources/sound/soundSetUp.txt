@@ -1,9 +1,10 @@
 0 defaultMusic.wav
 1 getKey.wav
-2 getTimer.wav
+2 clock1.wav
 3 getChicken.wav
-4 getTrap.wav
+4 trap1.wav
 5 inmateSeesGuard.wav
 6 loseLevel.wav
 7 winLevel.wav
 8 inGameMusic.wav
+9 eat1.wav

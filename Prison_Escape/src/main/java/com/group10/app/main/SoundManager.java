@@ -121,7 +121,15 @@ public class SoundManager {
      * @param i the index of soundURL
      */
     public void playSE(int i) {
-        setFile(i);
-        play();
+        double drawInterval = 1000000000/ 60;
+        double nextDrawTime = System.nanoTime() + drawInterval;
+        try {    setFile(i);    play();    double remainingTime = nextDrawTime - System.nanoTime();    
+            remainingTime /= 1000000;    
+            if(remainingTime < 0){        remainingTime = 0;    
+            }    
+            Thread.sleep((long) remainingTime);
+        } catch (InterruptedException e) {    
+            e.printStackTrace();
+        }
     }
 }

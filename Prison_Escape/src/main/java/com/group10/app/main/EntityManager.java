@@ -51,8 +51,10 @@ public class EntityManager {
                 file = new File("src/main/resources/entityLevelFiles/EntityLevel1.txt");
             }else if(level == 2){
                 file = new File("src/main/resources/entityLevelFiles/EntityLevel2.txt");
-            }else{
+            }else if(level == 3){
                 file = new File("src/main/resources/entityLevelFiles/EntityLevel3.txt");
+            }else{
+                file = new File("src/main/resources/entityLevelFiles/EntityLevel4.txt");
             }
 
             Scanner myReader = new Scanner(file);
@@ -249,6 +251,7 @@ public class EntityManager {
         if (gp.getGameLevel() == 1){setEntityLevel(1);}
         else if (gp.getGameLevel() == 2){setEntityLevel(2);}
         else if (gp.getGameLevel() == 3){setEntityLevel(3);}
+        else if (gp.getGameLevel() == 4){setEntityLevel(4);}
     }
 }
 

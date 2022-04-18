@@ -206,7 +206,7 @@ public class Inmate extends MovingActor {
                     gp.obj[i] = null;
                 break;
                 case "Chicken":
-                    gp.soundEffect.playSE(3);
+                    gp.soundEffect.playSE(9);
                     score += 100;
                     gp.obj[i] = null;
                 break;
