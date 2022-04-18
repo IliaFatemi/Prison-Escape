@@ -15,3 +15,7 @@ mvn verify
 mvn package
 mvn exec:java -Dexec.mainClass="com.group10.app.App"
 ```
+#How to create Javadocs HMTL files
+```
+mvn javadoc:javadoc
+```
